@@ -9,11 +9,16 @@
 
 ### Documento SAD
 
+Enlace de acceso : https://docs.google.com/document/d/11u25nmgTEFXUJUhwhHgtjGMZMWVZTHEgK8G0ghsfsBY/edit?usp=sharing
 
 ### Documentación Proyecto 1
 
+Enlace de acceso : https://docs.google.com/document/d/1y4x6MdS4Lko5u9519i3nYDw_TpropayZdieUk5FI-Fk/edit?usp=sharing
 
 ### Prototipo
 
+Enlace de acceso : https://www.figma.com/file/4yvAgIu0X93hqsqoyQ8VMQ/Plataforma--Dise%C3%B1o?node-id=1%3A12&t=IUrKzElxReZwGiXB-1
 
 ### Diagramas y modelos
+
+Enlace de acceso : https://drive.google.com/file/d/1QGPldNnXB0DnRVoPsy1-VjTByl6mOHNv/view?usp=sharing
