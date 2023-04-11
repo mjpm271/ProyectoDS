@@ -981,7 +981,58 @@
 											"top": 323,
 											"width": 559.60302734375,
 											"height": 13,
-											"text": "+cargarEstudiantes(): bool",
+											"text": "+agregarMiembroGrupoGuia(IdProfesor: Int): bool",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHbnf2TleoEc4=",
+											"_parent": {
+												"$ref": "AAAAAAF7d9zkSWR7i5o="
+											},
+											"model": {
+												"$ref": "AAAAAAGHbnf2O1elz44="
+											},
+											"font": "Arial;13;0",
+											"left": 925,
+											"top": 338,
+											"width": 559.60302734375,
+											"height": 13,
+											"text": "+eliminarMiembroGrupoGuia(IdProfesor: Int): bool",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHbnuXtxXVWOI=",
+											"_parent": {
+												"$ref": "AAAAAAF7d9zkSWR7i5o="
+											},
+											"model": {
+												"$ref": "AAAAAAGHbnuXshXSo0Y="
+											},
+											"font": "Arial;13;0",
+											"left": 925,
+											"top": 353,
+											"width": 559.60302734375,
+											"height": 13,
+											"text": "+seleccionarMiembroGrupoGuia(idProfesor: int): ProfesoresGuias",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHbn/wY4LLfYU=",
+											"_parent": {
+												"$ref": "AAAAAAF7d9zkSWR7i5o="
+											},
+											"model": {
+												"$ref": "AAAAAAGHbn/wWYLIBgw="
+											},
+											"font": "Arial;13;0",
+											"left": 925,
+											"top": 368,
+											"width": 559.60302734375,
+											"height": 13,
+											"text": "+modificarMiembroGrupoGuia(idProfesor: int): bool",
 											"horizontalAlignment": 0
 										},
 										{
@@ -995,7 +1046,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 338,
+											"top": 383,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+elegirCoordinadorDeEquipo(): bool",
@@ -1012,7 +1063,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 353,
+											"top": 398,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getProfesoresGuias(): Collection<ProfesoresGuias>",
@@ -1029,7 +1080,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 368,
+											"top": 413,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getDetalleActividadSiguiente(): Actividad",
@@ -1046,7 +1097,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 383,
+											"top": 428,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getEquipoGuia(): EquipoGuia",
@@ -1063,7 +1114,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 398,
+											"top": 443,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getListaEstudiantes(): Collection<Estudiante>",
@@ -1080,7 +1131,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 413,
+											"top": 458,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getListaEstudiantesPorCentro(sede: Sede): Collection<Estudiante>",
@@ -1097,7 +1148,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 428,
+											"top": 473,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getEstudianteAModificar(carnet: int): Estudiante",
@@ -1114,7 +1165,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 443,
+											"top": 488,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+generarExcelListaEstudiantes(): bool",
@@ -1131,7 +1182,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 458,
+											"top": 503,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "-generarExcelListaEstudiantesPorCentro(sede: Sede): bool",
@@ -1148,7 +1199,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 473,
+											"top": 518,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+registrarComentariosPorActividad(Comentario: String, IdActividad: int): bool",
@@ -1165,7 +1216,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 488,
+											"top": 533,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+responderMensaje(IdComentario: int, Respuesta: String): bool",
@@ -1182,7 +1233,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 503,
+											"top": 548,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+getPlanDeTrabajo(VerComentarios: bool, IdPlanDeTrabajo: int): PlanDeTrabajo",
@@ -1199,7 +1250,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 518,
+											"top": 563,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+definirPlanDeTrabajo(ProfesorCoordinador: ProfesorGuia): bool",
@@ -1216,7 +1267,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 533,
+											"top": 578,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+definirActividades(IdPlanDeTrabajo: int, DTOactividad: DTOActividad): bool",
@@ -1233,7 +1284,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 548,
+											"top": 593,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+activarPublicacionDeLaActividad(IdPlanDeTrabajo: int, IdActividad: int): bool",
@@ -1250,7 +1301,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 563,
+											"top": 608,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+marcarActividadRealizada(IdPlanDeTrabajo: int, IdActividad: int): bool",
@@ -1267,7 +1318,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 578,
+											"top": 623,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+cancelarActividad(IdPlanDeTrabajo: int, IdActividad: int): bool",
@@ -1284,7 +1335,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 593,
+											"top": 638,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+guardarInfoEstudiante(elEstudiante: Estudiante): bool",
@@ -1319,7 +1370,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 925,
-											"top": 608,
+											"top": 653,
 											"width": 559.60302734375,
 											"height": 13,
 											"text": "+modificarInfoProfesor(IdProfesor: Int): bool",
@@ -1330,7 +1381,7 @@
 									"left": 920,
 									"top": 318,
 									"width": 569.60302734375,
-									"height": 308
+									"height": 353
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1373,7 +1424,7 @@
 							"left": 920,
 							"top": 240,
 							"width": 569.60302734375,
-							"height": 409,
+							"height": 431,
 							"nameCompartment": {
 								"$ref": "AAAAAAF7d9zkSWR1vrw="
 							},
@@ -2362,8 +2413,8 @@
 											"visible": false,
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 648,
-											"top": -136,
+											"left": 728,
+											"top": -200,
 											"height": 13
 										},
 										{
@@ -2374,8 +2425,8 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;1",
-											"left": 133,
-											"top": 191,
+											"left": 173,
+											"top": 159,
 											"width": 535,
 											"height": 13,
 											"text": "FrAsistentesAdm"
@@ -2389,8 +2440,8 @@
 											"visible": false,
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 648,
-											"top": -136,
+											"left": 728,
+											"top": -200,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from view)"
@@ -2404,16 +2455,16 @@
 											"visible": false,
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 648,
-											"top": -136,
+											"left": 728,
+											"top": -200,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"fillColor": "#00b799",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 184,
+									"left": 168,
+									"top": 152,
 									"width": 545,
 									"height": 25,
 									"stereotypeLabel": {
@@ -2440,8 +2491,8 @@
 									},
 									"fillColor": "#00b799",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 209,
+									"left": 168,
+									"top": 177,
 									"width": 545,
 									"height": 10
 								},
@@ -2466,11 +2517,11 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 224,
+											"left": 173,
+											"top": 192,
 											"width": 535,
 											"height": 13,
-											"text": "+Acesso...()",
+											"text": "+agregarMiembroGrupoGuia()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2484,11 +2535,47 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 239,
+											"left": 173,
+											"top": 207,
 											"width": 535,
 											"height": 13,
-											"text": "+cargarEstudiantes()",
+											"text": "+eliminarMiembroGrupoGuia()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHbnmw55VAgDs=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/sqAY1yKnY="
+											},
+											"model": {
+												"$ref": "AAAAAAGHbnmw25U3VAE="
+											},
+											"fillColor": "#00b799",
+											"font": "Arial;13;0",
+											"left": 173,
+											"top": 222,
+											"width": 535,
+											"height": 13,
+											"text": "+seleccionarMiembroGrupoGuia()",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHbn1ZTl1b4KU=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/sqAY1yKnY="
+											},
+											"model": {
+												"$ref": "AAAAAAGHbn1ZRF1SM+s="
+											},
+											"fillColor": "#00b799",
+											"font": "Arial;13;0",
+											"left": 173,
+											"top": 237,
+											"width": 535,
+											"height": 13,
+											"text": "+modificarMiembroGrupoGuia()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2502,8 +2589,8 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 254,
+											"left": 173,
+											"top": 252,
 											"width": 535,
 											"height": 13,
 											"text": "+definirCoordinadorDeEquipo()",
@@ -2520,8 +2607,8 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 269,
+											"left": 173,
+											"top": 267,
 											"width": 535,
 											"height": 13,
 											"text": "+consutarEquipoDeProfesores()",
@@ -2538,8 +2625,8 @@
 											},
 											"fillColor": "#00b799",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 284,
+											"left": 173,
+											"top": 282,
 											"width": 535,
 											"height": 13,
 											"text": "+verDetalleDeActividadSiguiente()",
@@ -2548,10 +2635,10 @@
 									],
 									"fillColor": "#00b799",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 219,
+									"left": 168,
+									"top": 187,
 									"width": 545,
-									"height": 83
+									"height": 113
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2565,8 +2652,8 @@
 									"visible": false,
 									"fillColor": "#00b799",
 									"font": "Arial;13;0",
-									"left": 1712,
-									"top": 640,
+									"left": 1752,
+									"top": 608,
 									"width": 10,
 									"height": 10
 								},
@@ -2582,8 +2669,8 @@
 									"visible": false,
 									"fillColor": "#00b799",
 									"font": "Arial;13;0",
-									"left": 1712,
-									"top": 640,
+									"left": 1752,
+									"top": 608,
 									"width": 10,
 									"height": 10
 								}
@@ -2594,10 +2681,10 @@
 							"fillColor": "#00b799",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 128,
-							"top": 184,
+							"left": 168,
+							"top": 152,
 							"width": 545,
-							"height": 118,
+							"height": 148,
 							"nameCompartment": {
 								"$ref": "AAAAAAF7d/sqAY1szWE="
 							},
@@ -2635,7 +2722,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 796,
+									"left": 816,
 									"top": 243,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2656,7 +2743,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 796,
+									"left": 816,
 									"top": 228,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2677,7 +2764,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 796,
+									"left": 816,
 									"top": 273,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -2698,7 +2785,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 697,
+									"left": 737,
 									"top": 243,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -2719,7 +2806,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 700,
+									"left": 740,
 									"top": 229,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -2740,7 +2827,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 693,
+									"left": 733,
 									"top": 270,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -2853,7 +2940,7 @@
 							"tail": {
 								"$ref": "AAAAAAF7d/sqAY1rCLk="
 							},
-							"points": "672:264;920:264",
+							"points": "712:264;920:264",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF7d/vIfJACF28="
@@ -2918,7 +3005,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1872,
-											"top": -272,
+											"top": -304,
 											"height": 13
 										},
 										{
@@ -2929,8 +3016,8 @@
 											},
 											"font": "Arial;13;1",
 											"left": 1685,
-											"top": 231,
-											"width": 327,
+											"top": 215,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "AdmAsistentes"
 										},
@@ -2943,7 +3030,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1872,
-											"top": -272,
+											"top": -304,
 											"width": 91.736328125,
 											"height": 13,
 											"text": "(from controller)"
@@ -2957,15 +3044,15 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": 1872,
-											"top": -272,
+											"top": -304,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 224,
-									"width": 337,
+									"top": 208,
+									"width": 390.40869140625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAF7d/fpBYICwE0="
@@ -2991,8 +3078,8 @@
 									},
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 249,
-									"width": 337,
+									"top": 233,
+									"width": 390.40869140625,
 									"height": 10
 								},
 								{
@@ -3016,8 +3103,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 264,
-											"width": 327,
+											"top": 248,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+AdmAsistentes()",
 											"horizontalAlignment": 0
@@ -3033,8 +3120,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 279,
-											"width": 327,
+											"top": 263,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+Acesso...(): d",
 											"horizontalAlignment": 0
@@ -3050,8 +3137,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 294,
-											"width": 327,
+											"top": 278,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+cargarEstudiantes(): bool",
 											"horizontalAlignment": 0
@@ -3067,8 +3154,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 309,
-											"width": 327,
+											"top": 293,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+elegirCoordinadorDeEquipo(): bool",
 											"horizontalAlignment": 0
@@ -3084,8 +3171,8 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 324,
-											"width": 327,
+											"top": 308,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+getEquipoProfesores(): Collection<equipoGuia>",
 											"horizontalAlignment": 0
@@ -3101,18 +3188,86 @@
 											},
 											"font": "Arial;13;0",
 											"left": 1685,
-											"top": 339,
-											"width": 327,
+											"top": 323,
+											"width": 380.40869140625,
 											"height": 13,
 											"text": "+getDetalleActividadSiguiente(): Actividad",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHboCb680Gl/A=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/fpBYIHZ64="
+											},
+											"model": {
+												"$ref": "AAAAAAGHboCb3Mz6Hnk="
+											},
+											"font": "Arial;13;0",
+											"left": 1685,
+											"top": 338,
+											"width": 380.40869140625,
+											"height": 13,
+											"text": "+agregarMiembroGrupoGuia(IdProfesor: Int): bool",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHboCy69ZrdvE=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/fpBYIHZ64="
+											},
+											"model": {
+												"$ref": "AAAAAAGHboCy4tZfnLk="
+											},
+											"font": "Arial;13;0",
+											"left": 1685,
+											"top": 353,
+											"width": 380.40869140625,
+											"height": 13,
+											"text": "+eliminarMiembroGrupoGuia(IdProfesor: Int): bool",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHboDSm+Q+47A=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/fpBYIHZ64="
+											},
+											"model": {
+												"$ref": "AAAAAAGHboDSjuQySFc="
+											},
+											"font": "Arial;13;0",
+											"left": 1685,
+											"top": 368,
+											"width": 380.40869140625,
+											"height": 13,
+											"text": "+seleccionarMiembroGrupoGuia(idProfesor: int): ProfesoresGuias",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGHboEEb/SIVRo=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/fpBYIHZ64="
+											},
+											"model": {
+												"$ref": "AAAAAAGHboEEYvR8mxY="
+											},
+											"font": "Arial;13;0",
+											"left": 1685,
+											"top": 383,
+											"width": 380.40869140625,
+											"height": 13,
+											"text": "+modificarMiembroGrupoGuia(idProfesor: int): bool",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1680,
-									"top": 259,
-									"width": 337,
-									"height": 98
+									"top": 243,
+									"width": 390.40869140625,
+									"height": 158
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -3126,7 +3281,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1912,
-									"top": 456,
+									"top": 440,
 									"width": 10,
 									"height": 10
 								},
@@ -3142,7 +3297,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1912,
-									"top": 456,
+									"top": 440,
 									"width": 10,
 									"height": 10
 								}
@@ -3153,9 +3308,9 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 1680,
-							"top": 224,
-							"width": 337,
-							"height": 133,
+							"top": 208,
+							"width": 390.40869140625,
+							"height": 193,
 							"nameCompartment": {
 								"$ref": "AAAAAAF7d/fpBYIB5mo="
 							},
@@ -4767,7 +4922,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1349,
-									"top": 667,
+									"top": 689,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 30,
@@ -4787,7 +4942,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1335,
-									"top": 670,
+									"top": 692,
 									"height": 13,
 									"alpha": -0.7853981633974483,
 									"distance": 40,
@@ -4807,7 +4962,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1376,
-									"top": 663,
+									"top": 685,
 									"height": 13,
 									"alpha": 0.5235987755982988,
 									"distance": 25,
@@ -4858,7 +5013,7 @@
 							"tail": {
 								"$ref": "AAAAAAF7pyRtsm79188="
 							},
-							"points": "672:712;1364:712;1364:648",
+							"points": "672:712;1364:712;1364:670",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF7pyTjrHGn+6o="
@@ -5236,7 +5391,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 1015,
-									"top": 781,
+									"top": 792,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -5257,7 +5412,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 1030,
-									"top": 781,
+									"top": 792,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -5278,7 +5433,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 985,
-									"top": 782,
+									"top": 793,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -5295,7 +5450,7 @@
 							"tail": {
 								"$ref": "AAAAAAF7d9zkSWR0Lpc="
 							},
-							"points": "1000:648;1000:928",
+							"points": "1000:670;1000:928",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF7pyYRs3uQ5QI="
@@ -7015,8 +7170,8 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 464,
-											"top": 136,
+											"left": 544,
+											"top": 168,
 											"height": 13
 										},
 										{
@@ -7027,8 +7182,8 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;1",
-											"left": 133,
-											"top": 535,
+											"left": 173,
+											"top": 551,
 											"width": 551,
 											"height": 13,
 											"text": "FrProfesorCoordinador"
@@ -7042,8 +7197,8 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 464,
-											"top": 136,
+											"left": 544,
+											"top": 168,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from view)"
@@ -7057,16 +7212,16 @@
 											"visible": false,
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 464,
-											"top": 136,
+											"left": 544,
+											"top": 168,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 528,
+									"left": 168,
+									"top": 544,
 									"width": 561,
 									"height": 25,
 									"stereotypeLabel": {
@@ -7093,8 +7248,8 @@
 									},
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 553,
+									"left": 168,
+									"top": 569,
 									"width": 561,
 									"height": 10
 								},
@@ -7119,8 +7274,8 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 568,
+											"left": 173,
+											"top": 584,
 											"width": 551,
 											"height": 13,
 											"text": "+definirPlanDeTrabajo()",
@@ -7137,8 +7292,8 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 583,
+											"left": 173,
+											"top": 599,
 											"width": 551,
 											"height": 13,
 											"text": "+activarPublicacionDeLaActividad()",
@@ -7155,8 +7310,8 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 598,
+											"left": 173,
+											"top": 614,
 											"width": 551,
 											"height": 13,
 											"text": "+marcarActividadRealizada()",
@@ -7173,8 +7328,8 @@
 											},
 											"fillColor": "#ffebd8",
 											"font": "Arial;13;0",
-											"left": 133,
-											"top": 613,
+											"left": 173,
+											"top": 629,
 											"width": 551,
 											"height": 13,
 											"text": "+cancelarActividad()",
@@ -7183,8 +7338,8 @@
 									],
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 128,
-									"top": 563,
+									"left": 168,
+									"top": 579,
 									"width": 561,
 									"height": 68
 								},
@@ -7200,8 +7355,8 @@
 									"visible": false,
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 1656,
-									"top": 856,
+									"left": 1696,
+									"top": 872,
 									"width": 10,
 									"height": 10
 								},
@@ -7217,8 +7372,8 @@
 									"visible": false,
 									"fillColor": "#ffebd8",
 									"font": "Arial;13;0",
-									"left": 1656,
-									"top": 856,
+									"left": 1696,
+									"top": 872,
 									"width": 10,
 									"height": 10
 								}
@@ -7229,8 +7384,8 @@
 							"fillColor": "#ffebd8",
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 128,
-							"top": 528,
+							"left": 168,
+							"top": 544,
 							"width": 561,
 							"height": 103,
 							"nameCompartment": {
@@ -7270,7 +7425,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 804,
+									"left": 824,
 									"top": 539,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -7291,7 +7446,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 804,
+									"left": 824,
 									"top": 524,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -7312,7 +7467,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 804,
+									"left": 824,
 									"top": 569,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -7333,7 +7488,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 713,
+									"left": 753,
 									"top": 539,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -7354,7 +7509,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 716,
+									"left": 756,
 									"top": 525,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -7375,7 +7530,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 709,
+									"left": 749,
 									"top": 566,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -7488,7 +7643,7 @@
 							"tail": {
 								"$ref": "AAAAAAF7pyvqi6SZqJg="
 							},
-							"points": "688:560;920:560",
+							"points": "728:560;920:560",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF7p04kgounk64="
@@ -7550,7 +7705,7 @@
 							"tail": {
 								"$ref": "AAAAAAF732GfkN3fN04="
 							},
-							"points": "1760:196;1760:224"
+							"points": "1760:196;1760:208"
 						},
 						{
 							"_type": "UMLAssociationView",
@@ -15414,7 +15569,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2041,
+									"left": 2094,
 									"top": 247,
 									"height": 13,
 									"alpha": 0.5235987755982988,
@@ -15435,7 +15590,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2044,
+									"left": 2097,
 									"top": 233,
 									"height": 13,
 									"alpha": 0.7853981633974483,
@@ -15456,7 +15611,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 2037,
+									"left": 2090,
 									"top": 274,
 									"height": 13,
 									"alpha": -0.5235987755982988,
@@ -15562,7 +15717,7 @@
 							"tail": {
 								"$ref": "AAAAAAF7d/fpBYIAK4o="
 							},
-							"points": "2016:268;2408:268;2408:208;2464:208",
+							"points": "2069:268;2408:268;2408:208;2464:208",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGHOq9ASllesh8="
@@ -16786,13 +16941,106 @@
 									"_parent": {
 										"$ref": "AAAAAAF7d9zkSWRyWIY="
 									},
-									"name": "cargarEstudiantes",
+									"name": "agregarMiembroGrupoGuia",
 									"parameters": [
 										{
 											"_type": "UMLParameter",
 											"_id": "AAAAAAF7d/JHNG3TfKs=",
 											"_parent": {
 												"$ref": "AAAAAAF7d/Etum2dlac="
+											},
+											"type": "bool",
+											"direction": "return"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHbnjxnGT2co4=",
+											"_parent": {
+												"$ref": "AAAAAAF7d/Etum2dlac="
+											},
+											"name": "IdProfesor",
+											"type": "Int"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHbnf2O1elz44=",
+									"_parent": {
+										"$ref": "AAAAAAF7d9zkSWRyWIY="
+									},
+									"name": "eliminarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHbnpTELa4/iw=",
+											"_parent": {
+												"$ref": "AAAAAAGHbnf2O1elz44="
+											},
+											"name": "IdProfesor",
+											"type": "Int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHbnpTEba5+Pk=",
+											"_parent": {
+												"$ref": "AAAAAAGHbnf2O1elz44="
+											},
+											"type": "bool",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHbnuXshXSo0Y=",
+									"_parent": {
+										"$ref": "AAAAAAF7d9zkSWRyWIY="
+									},
+									"name": "seleccionarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHbnyblBgQ4yY=",
+											"_parent": {
+												"$ref": "AAAAAAGHbnuXshXSo0Y="
+											},
+											"name": "idProfesor",
+											"type": "int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHbnyblxgRMCA=",
+											"_parent": {
+												"$ref": "AAAAAAGHbnuXshXSo0Y="
+											},
+											"type": "ProfesoresGuias",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHbn/wWYLIBgw=",
+									"_parent": {
+										"$ref": "AAAAAAF7d9zkSWRyWIY="
+									},
+									"name": "modificarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboAgY4UGmpk=",
+											"_parent": {
+												"$ref": "AAAAAAGHbn/wWYLIBgw="
+											},
+											"name": "idProfesor",
+											"type": "int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboAgY4UH0Ic=",
+											"_parent": {
+												"$ref": "AAAAAAGHbn/wWYLIBgw="
 											},
 											"type": "bool",
 											"direction": "return"
@@ -17609,6 +17857,118 @@
 											"type": {
 												"$ref": "AAAAAAGHH/IRgmcAL5A="
 											},
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHboCb3Mz6Hnk=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/fpBYH+E60="
+									},
+									"name": "agregarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboChUc93kGQ=",
+											"_parent": {
+												"$ref": "AAAAAAGHboCb3Mz6Hnk="
+											},
+											"name": "IdProfesor",
+											"type": "Int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboChUc94vL0=",
+											"_parent": {
+												"$ref": "AAAAAAGHboCb3Mz6Hnk="
+											},
+											"type": "bool",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHboCy4tZfnLk=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/fpBYH+E60="
+									},
+									"name": "eliminarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboC2qNjcjNI=",
+											"_parent": {
+												"$ref": "AAAAAAGHboCy4tZfnLk="
+											},
+											"name": "IdProfesor",
+											"type": "Int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboC2qNjd5Hc=",
+											"_parent": {
+												"$ref": "AAAAAAGHboCy4tZfnLk="
+											},
+											"type": "bool",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHboDSjuQySFc=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/fpBYH+E60="
+									},
+									"name": "seleccionarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboDXweavdSo=",
+											"_parent": {
+												"$ref": "AAAAAAGHboDSjuQySFc="
+											},
+											"name": "idProfesor",
+											"type": "int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboDXwuawERM=",
+											"_parent": {
+												"$ref": "AAAAAAGHboDSjuQySFc="
+											},
+											"type": "ProfesoresGuias",
+											"direction": "return"
+										}
+									]
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHboEEYvR8mxY=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/fpBYH+E60="
+									},
+									"name": "modificarMiembroGrupoGuia",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboEHJPb5dBk=",
+											"_parent": {
+												"$ref": "AAAAAAGHboEEYvR8mxY="
+											},
+											"name": "idProfesor",
+											"type": "int"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGHboEHJPb66Aw=",
+											"_parent": {
+												"$ref": "AAAAAAGHboEEYvR8mxY="
+											},
+											"type": "bool",
 											"direction": "return"
 										}
 									]
@@ -20570,7 +20930,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF7d/sqAY1pL04="
 									},
-									"name": "Acesso..."
+									"name": "agregarMiembroGrupoGuia"
 								},
 								{
 									"_type": "UMLOperation",
@@ -20578,7 +20938,23 @@
 									"_parent": {
 										"$ref": "AAAAAAF7d/sqAY1pL04="
 									},
-									"name": "cargarEstudiantes"
+									"name": "eliminarMiembroGrupoGuia"
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHbnmw25U3VAE=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/sqAY1pL04="
+									},
+									"name": "seleccionarMiembroGrupoGuia"
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGHbn1ZRF1SM+s=",
+									"_parent": {
+										"$ref": "AAAAAAF7d/sqAY1pL04="
+									},
+									"name": "modificarMiembroGrupoGuia"
 								},
 								{
 									"_type": "UMLOperation",
