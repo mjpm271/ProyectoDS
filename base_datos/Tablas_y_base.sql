@@ -1,20 +1,20 @@
 create database proyecto;
 
 create table equipoGuia(
-	IDequipoGuia int not null,
+	IDequipoGuia int not null IDENTITY(1,1),
 	Nombre varchar(32) not null
 	primary key  (IDequipoGuia)
 );
 
 create table sede(
-	IDsede int not null,
+	IDsede int not null IDENTITY(1,1),
 	Nombre varchar(32) not null,
 	Abreviacion varchar(10) not null
 	primary key (IDsede)
 );
 
 create table tipoPersona(
-	IDtipo int not null,
+	IDtipo int not null IDENTITY(1,1),
 	Nombre varchar(32) not null
 	primary key (IDtipo)
 )
@@ -39,32 +39,32 @@ create table equipoGuia_Profesor(
 );
 
 create table modalidad(
-	IDmodalidad int not null,
+	IDmodalidad int not null IDENTITY(1,1),
 	Nombre varchar(32) not null
 	primary key (IDmodalidad)
 );
 
 create table tipoActividad(
-	IDtipo int not null,
+	IDtipo int not null IDENTITY(1,1),
 	Nombre varchar(32)
 	primary key (IDtipo)
 );
 
 create table tipoAfiche(
-	IDtipo int not null,
+	IDtipo int not null IDENTITY(1,1),
 	Nombre varchar(32)
 	primary key (IDtipo)
 );
 
 
 create table estadoActividad(
-	IDestado int not null,
+	IDestado int not null IDENTITY(1,1),
 	Nombre varchar(32)
 	primary key (IDestado)
 );
 
 create table planTrabajo(
-	IDplanTrabajo int not null,
+	IDplanTrabajo int not null IDENTITY(1,1),
 	Nombre varchar(32) not null,
 	Abreviacion varchar(32) not null,
 	IDcoordinador int not null
@@ -73,7 +73,7 @@ create table planTrabajo(
 );
 
 create table actividad(
-	IDactividad int not null,
+	IDactividad int not null IDENTITY(1,1),
 	Semana int,
 	Fecha date,
 	Hora time,
@@ -101,7 +101,7 @@ create table responsableActividad(
 );
 
 create table observacionActividad(
-	IDobservacion int not null,
+	IDobservacion int not null IDENTITY(1,1),
 	observacion varchar(max) not null,
 	IDactividad int not null
 	primary key (IDobservacion) 
@@ -109,7 +109,7 @@ create table observacionActividad(
 );
 
 create table comentario(
-	IDcomentario int not null,
+	IDcomentario int not null IDENTITY(1,1),
 	IDprofesor int not null,
 	IDemisor int not null,
 	IDactividad int not null,
