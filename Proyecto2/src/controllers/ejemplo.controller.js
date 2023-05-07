@@ -5,7 +5,7 @@
         const pool = await getConnection()
         const result = await pool
             .request()
-            .query('Select * from TipoPersona')
+            .query('ReadTiposPersona')
         console.log(result)
         if (result.recordset.length == 0) {
             console.log('No hay resultados')
