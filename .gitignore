@@ -1,0 +1,7 @@
+/node_modules
+node_modules
+/.pnp
+.pnp.js
+dbconfig.js
+requests
+prod
