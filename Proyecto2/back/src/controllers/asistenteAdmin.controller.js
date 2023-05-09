@@ -1,4 +1,4 @@
-import {getConnection} from '../database/connection'
+import {getConnection, sql} from '../database/connection'
 
 // ------C R U D ------  Equipo Profesores ------//
 // Agregar Profesores en Equipo
@@ -103,7 +103,7 @@ export const DefinirCoordinador = async (req, res) => {
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
     try {
-        const pool = await getConnection();
+        const pool = await getConnection()
         const result = await pool
             .request()
             .input('ID Profesor', sql.Int, IDpersona)
@@ -126,25 +126,25 @@ export const AgregarProfesor = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const { ID, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDtipo } = req.body
     console.log('valores:', req.body)
-    if (!ID || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
-        console.log('here')
-        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    // if (!ID || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    //     console.log('here')
+    //     return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    // }
     try {
         const pool = await getConnection();
-        //console.log('whatever')
+        console.log('whatever')
         const result = await pool
             .request()
-            .input('ID ', sql.Int, ID)
-            .input('Nombre Completo', sql.VarChar, NombreCompleto)
+            .input('ID', sql.Int, ID)
+            .input('NombreCompleto', sql.VarChar, NombreCompleto)
             .input('Correo ', sql.VarChar, Correo)
-            .input('Contraseña', sql.VarChar, Contra)
-            .input('Habilitado', sql.bit, Habilitado)
-            .input('Coordinador', sql.bit, Coordinador)
-            .input('Sede ', sql.Int, Sede)
-            .input('ID tipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .input('Contra', sql.VarChar, Contra)
+            .input('Habilitado', sql.Bit, Habilitado)
+            .input('Coordinador', sql.Bit, Coordinador)
+            .input('Sede', sql.Int, Sede)
+            .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreatePersona')
-        console.log(result)
+        console.log(result) 
     } catch (err) {
         res.sendStatus(500, err.message)
     }
@@ -190,14 +190,22 @@ export const ModificarProfesor = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('ID ', sql.Int, ID)
-            .input('Nombre Completo', sql.VarChar, NombreCompleto)
-            .input('Correo ', sql.VarChar, Correo)
-            .input('Contraseña', sql.VarChar, Contra)
-            .input('Habilitado', sql.bit, Habilitado)
-            .input('Coordinador', sql.bit, Coordinador)
-            .input('Sede ', sql.Int, Sede)
-            .input('ID tipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .parameters(ID)
+            .parameters(NombreCompleto)
+            .parameters(Correo)
+            .parameters(Contra)
+            .parameters(Habilitado)
+            .parameters(Coordinador)
+            .parameters(Sede)
+            .parameters(IDtipo)
+            // .input('ID ', sql.Int, ID)
+            // .input('Nombre Completo', sql.VarChar, NombreCompleto)
+            // .input('Correo ', sql.VarChar, Correo)
+            // .input('Contraseña', sql.VarChar, Contra)
+            // .input('Habilitado', sql.bit, Habilitado)
+            // .input('Coordinador', sql.bit, Coordinador)
+            // .input('Sede ', sql.Int, Sede)
+            // .input('ID tipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('UpdatePersona')
         console.log(result)
     } catch (err) {
