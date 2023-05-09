@@ -50,7 +50,7 @@ export const seleccionarEmpleado = async (req, res) => {
     }
 }
 export const renderFormSelectEmpleado = async (req, res) => {
-    res.render('formulario_EmpleadoS')
+    res.render('formulario_Empleados')
 }
 // CRUD Bonos
 export const consultarBono = async (req, res) => {
