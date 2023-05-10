@@ -38,18 +38,16 @@ export const getTipoPersona = async (req, res) => {
 
 //Consultar Profesores -- Deberia ser solo por sede (?)
 export const ConsultarProfesores = async (req, res) => {
-  //Los headers deben habilitarse para que el frontend pueda recuperar los datos
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
-  res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');   
-  const pool = await getConnection()
-  const result = await pool
-          .request()
-          .execute('ReadPersonas')
-  console.log(result)
-  res.json(
-      result.recordset)
-
-  }  
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+    const pool = await getConnection()
+    const result = await pool
+        .request()
+        .execute('ReadPersonas')
+    console.log(result)
+    res.json(result.recordset)
+}
 
 //  export const seleccionarEmpleado = async (req, res) => {
 //     const { ID_Empleado } = req.body
@@ -70,3 +68,45 @@ export const ConsultarProfesores = async (req, res) => {
 //         res.sendStatus(500, err.message)
 //     }
 // }
+
+export const loginPostFunction = async (req, res) => {
+    const { Correo, Contra } = req.body
+    console.log("user login:", Correo, Contra)
+    if (!Correo || !Contra) {
+        return res.status(400).json({ msg: 'Bad Request. Please fill all fields' })
+    }
+    try {
+        const pool = await getConnection();
+        //console.log(pool);
+        const result = await pool
+            .request()
+            .input('Correo', sql.VarChar, Correo)
+            .input('Contra', sql.VarChar, Contra)
+            .output('ExitCode', sql.Int)
+            .execute('sp_LoginPersona')
+        console.log(result);
+            //console.log(result.output.ExitCode);
+        //console.log(result.recordset);
+        // let statusCode = result.output.ExitCode
+        // if (!([1, 2, 3].includes(statusCode))) {
+        //     //console.log("si llego, tranqui")
+        //     return res.render('login_view', { err_msg: "No se pudo hacer el inicio de sesión" })
+        // }
+        // console.log('Login de tipo', statusCode)
+        // if (statusCode == 1) {
+        //     // es admin
+        //     console.log('Es admin')
+        //     res.redirect('admin?Login=' + result.recordset[0]['IDUsuarioBase'])
+        // } else if (statusCode == 2) {
+        //     // es empleado
+        //     console.log('Es empleado')
+        //     res.redirect('empleado?Login=' + result.recordset[0]['IDUsuarioBase'])
+        // } else {
+        //     // es cliente
+        //     console.log('Es cliente')
+        //     res.redirect('cliente?Login=' + result.recordset[0]['IDUsuarioBase'])
+        // }
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+};

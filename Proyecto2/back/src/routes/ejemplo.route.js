@@ -1,8 +1,9 @@
 import { Router } from "express"
-import { getTipoPersona } from "../controllers/ejemplo.controller"
+import { getTipoPersona, loginPostFunction } from "../controllers/ejemplo.controller"
 
 const router = Router()
 
 router.get('/tipoPersona',getTipoPersona)
+router.post('/login', loginPostFunction)
 
 export default router
