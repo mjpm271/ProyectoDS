@@ -4,6 +4,7 @@ import './index.css';
 //import App from './App';
 import Create from './components/create';
 import Read from './components/read';
+import ReadPersona from './components/readPersonaID';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Create />
+    <ReadPersona />
   </React.StrictMode>
 );
 

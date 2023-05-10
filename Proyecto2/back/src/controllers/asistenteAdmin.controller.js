@@ -136,9 +136,9 @@ export const AgregarProfesor = async (req, res) => {
         const result = await pool
             .request()
             .input('ID', sql.Int, ID)
-            .input('NombreCompleto', sql.VarChar, NombreCompleto)
-            .input('Correo ', sql.VarChar, Correo)
-            .input('Contra', sql.VarChar, Contra)
+            .input('NombreCompleto', sql.VarChar(100), NombreCompleto)
+            .input('Correo ', sql.VarChar(100), Correo)
+            .input('Contra', sql.VarChar(64), Contra)
             .input('Habilitado', sql.Bit, Habilitado)
             .input('Coordinador', sql.Bit, Coordinador)
             .input('Sede', sql.Int, Sede)
@@ -167,7 +167,7 @@ export const BuscarProfesor = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Profesor', sql.Int, IDpersona)
+            .input('IDpersona', sql.Int, IDpersona)
             .execute('ReadPersonaPorID')
         console.log(result)
         res.json(result.recordset)
@@ -176,7 +176,7 @@ export const BuscarProfesor = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}      
+}           
 
 //Modificar informacion de Profesor 
 export const ModificarProfesor = async (req, res) => {
