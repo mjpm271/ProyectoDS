@@ -122,7 +122,7 @@ export const DefinirCoordinador = async (req, res) => {
 // Agregar Profesor -- Deberia ser solo por sede
 export const AgregarProfesor = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const { ID, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDtipo } = req.body
     console.log('valores:', req.body)
@@ -145,6 +145,7 @@ export const AgregarProfesor = async (req, res) => {
             .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreatePersona')
         console.log(result) 
+        
     } catch (err) {
         res.sendStatus(500, err.message)
     }

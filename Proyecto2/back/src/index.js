@@ -1,8 +1,9 @@
 import app from './app'
-import ejemploRoutes from './routes/ejemplo.route'
+import AsistenteRoutes from './routes/asistenteAdmin.route'
 // import './database/connection.js'
 
 
 app.listen(app.get('port'))
+app.use('/ejemplo', AsistenteRoutes)
 
 console.log('server running on', app.get('port'))

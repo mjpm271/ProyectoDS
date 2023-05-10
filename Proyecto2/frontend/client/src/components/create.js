@@ -33,11 +33,11 @@ export default function Create() {
             Sede:Sede,
             IDtipo:IDtipo
           }
-        //   , {
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     }
-        //   }
+          , {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
           )
             .then(response => {
               console.log(response.data);

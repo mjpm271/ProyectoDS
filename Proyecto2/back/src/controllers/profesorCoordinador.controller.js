@@ -1,4 +1,5 @@
-import {getConnection} from '../database/connection'
+import {getConnection, sql} from '../database/connection'
+
 
 
 // Crear Plan Trabajo
