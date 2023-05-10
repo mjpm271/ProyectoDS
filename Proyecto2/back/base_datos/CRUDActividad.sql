@@ -60,7 +60,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE UpdateActividad 
+CREATE PROCEDURE UpdateActividad2
 (
     @IDactividad int,
     @Semana int,
@@ -72,13 +72,36 @@ CREATE PROCEDURE UpdateActividad
     @IDtipoActividad int,
     @IDtipoAfiche int,
     @IDtipoEstado int,
-    @IDplanTrabajo int
+    @IDplanTrabajo int,
+    @Exito bit OUTPUT
 )
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa bit;
+
     UPDATE actividad 
-	SET Semana = @Semana, Fecha = @Fecha, Cantidaddiasprevios = @Cantidaddiasprevios, Cantidaddiasrequeridos = @Cantidaddiasrequeridos, FechaPublicacion = @FechaPublicacion, IDmodalidad = @IDmodalidad, IDtipoActividad = @IDtipoActividad, IDtipoAfiche = @IDtipoAfiche, IDtipoEstado = @IDtipoEstado, IDplanTrabajo = @IDplanTrabajo
-    WHERE IDactividad = @IDactividad
+    SET Semana = @Semana,
+        Fecha = @Fecha,
+        Cantidaddiasprevios = @Cantidaddiasprevios,
+        Cantidaddiasrequeridos = @Cantidaddiasrequeridos,
+        FechaPublicacion = @FechaPublicacion,
+        IDmodalidad = @IDmodalidad,
+        IDtipoActividad = @IDtipoActividad,
+        IDtipoAfiche = @IDtipoAfiche,
+        IDtipoEstado = @IDtipoEstado,
+        IDplanTrabajo = @IDplanTrabajo
+    WHERE IDactividad = @IDactividad;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+	SELECT @Exito AS Exito;
 END;
 GO
 

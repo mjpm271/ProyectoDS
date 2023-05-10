@@ -27,19 +27,34 @@ BEGIN
     SELECT * FROM planTrabajo
 END;
 GO
-CREATE PROCEDURE UpdatePlanTrabajo 
+CREATE PROCEDURE UpdatePlanTrabajo
 (
-    @IDplanTrabajo int,
-    @Nombre varchar(32),
-    @Abreviacion varchar(32),
-    @IDcoordinador int
+    @IDplanTrabajo INT,
+    @Nombre VARCHAR(32),
+    @Abreviacion VARCHAR(32),
+    @IDcoordinador INT,
+    @Exito BIT OUTPUT
 )
 AS
 BEGIN
-    UPDATE planTrabajo SET Nombre = @Nombre, Abreviacion = @Abreviacion, IDcoordinador = @IDcoordinador
-    WHERE IDplanTrabajo = @IDplanTrabajo
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
+    UPDATE planTrabajo 
+    SET Nombre = @Nombre, Abreviacion = @Abreviacion, IDcoordinador = @IDcoordinador
+    WHERE IDplanTrabajo = @IDplanTrabajo;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+	SELECT @Exito AS Exito;
 END;
 GO
+
 
 CREATE PROCEDURE DeletePlanTrabajo 
 (

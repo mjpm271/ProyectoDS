@@ -28,14 +28,31 @@ GO
 
 CREATE PROCEDURE UpdateEquipoGuia
     @IDequipoGuia INT,
-    @Nombre VARCHAR(32)
+    @Nombre VARCHAR(32),
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE equipoGuia
     SET Nombre = @Nombre
     WHERE IDequipoGuia = @IDequipoGuia;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+    SELECT @Exito AS Exito;
 END;
 GO
+
+
+
 
 CREATE PROCEDURE DeleteEquipoGuia
     @IDequipoGuia INT

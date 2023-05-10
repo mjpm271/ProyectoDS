@@ -25,13 +25,26 @@ END;
 GO
 
 CREATE PROCEDURE UpdateResponsableActividad 
-    @IDprofesor int, 
-    @IDactividad int
+    @IDprofesor INT, 
+    @IDactividad INT,
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE responsableActividad
     SET IDprofesor = @IDprofesor
-    WHERE IDactividad = @IDactividad
+    WHERE IDactividad = @IDactividad;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+	SELECT @Exito AS Exito;
 END;
 GO
 

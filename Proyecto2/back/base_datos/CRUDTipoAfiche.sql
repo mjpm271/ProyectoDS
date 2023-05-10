@@ -26,15 +26,30 @@ END
 GO
 
 CREATE PROCEDURE UpdateTipoAfiche
-    @IDtipo int,
-    @Nombre varchar(32)
+    @IDtipo INT,
+    @Nombre VARCHAR(32),
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE tipoAfiche
     SET Nombre = @Nombre
-    WHERE IDtipo = @IDtipo
-END
+    WHERE IDtipo = @IDtipo;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+    SELECT @Exito AS Exito;
+END;
 GO
+
 
 CREATE PROCEDURE DeleteTipoAfiche
     @IDtipo int

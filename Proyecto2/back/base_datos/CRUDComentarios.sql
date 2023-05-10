@@ -61,7 +61,7 @@ END;
 GO
 
 -- UPDATE
-CREATE PROCEDURE UpdateComentario 
+CREATE PROCEDURE UpdateComentario1
 (
     @IDcomentario int,
     @IDpersona int,
@@ -69,14 +69,32 @@ CREATE PROCEDURE UpdateComentario
     @IDcomentarioPadre int,
     @Hora time,
     @Fecha date,
-    @Contenido varchar(max)
+    @Contenido varchar(max),
+    @Exito bit OUTPUT
 )
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa bit;
+
     UPDATE comentario 
-	SET IDpersona = @IDpersona, IDactividad = @IDactividad, 
-        IDcomentarioPadre = @IDcomentarioPadre, Hora = @Hora, Fecha = @Fecha, Contenido = @Contenido
-    WHERE IDcomentario = @IDcomentario
+    SET IDpersona = @IDpersona,
+        IDactividad = @IDactividad,
+        IDcomentarioPadre = @IDcomentarioPadre,
+        Hora = @Hora,
+        Fecha = @Fecha,
+        Contenido = @Contenido
+    WHERE IDcomentario = @IDcomentario;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+    SELECT @Exito AS Exito;
 END;
 GO
 

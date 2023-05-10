@@ -29,12 +29,26 @@ END;
 GO
 
 CREATE PROCEDURE HabilitarProfesor
-    @IDprofesor INT
+    @IDprofesor INT,
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE EquipoGuia_Profesor
     SET Habilitado = 1
     WHERE IDprofesor = @IDprofesor;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+	SELECT @Exito AS Exito;
 END;
 GO
 

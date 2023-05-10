@@ -27,16 +27,31 @@ END;
 GO
 CREATE PROCEDURE UpdateObservacionActividad 
 (
-    @IDobservacion int,
-    @observacion varchar(max),
-    @IDactividad int
+    @IDobservacion INT,
+    @observacion VARCHAR(MAX),
+    @IDactividad INT,
+    @Exito BIT OUTPUT
 )
 AS
 BEGIN
-    UPDATE observacionActividad SET observacion = @observacion, IDactividad = @IDactividad
-    WHERE IDobservacion = @IDobservacion
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
+    UPDATE observacionActividad 
+    SET observacion = @observacion, IDactividad = @IDactividad
+    WHERE IDobservacion = @IDobservacion;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+	SELECT @Exito AS Exito;
 END;
-Go
+GO
 CREATE PROCEDURE DeleteObservacionActividad 
 (
     @IDobservacion int

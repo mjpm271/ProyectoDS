@@ -25,14 +25,28 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE UptadeTipoActividad
+CREATE PROCEDURE UpdateTipoActividad
     @IDtipo INT,
-    @Nombre VARCHAR(32)
+    @Nombre VARCHAR(32),
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE tipoActividad
     SET Nombre = @Nombre
     WHERE IDtipo = @IDtipo;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+    SELECT @Exito AS Exito;
 END;
 GO
 

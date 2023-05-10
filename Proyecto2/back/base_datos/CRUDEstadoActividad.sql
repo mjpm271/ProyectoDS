@@ -25,14 +25,29 @@ BEGIN
 END;
 GO
 
+
 CREATE PROCEDURE UpdateEstadoActividad
-    @IDestado int,
-    @Nombre varchar(32)
+    @IDestado INT,
+    @Nombre VARCHAR(32),
+    @Exito BIT OUTPUT
 AS
 BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @ActualizacionExitosa BIT;
+
     UPDATE estadoActividad
     SET Nombre = @Nombre
-    WHERE IDestado = @IDestado
+    WHERE IDestado = @IDestado;
+
+    IF @@ROWCOUNT > 0
+        SET @ActualizacionExitosa = 1;
+    ELSE
+        SET @ActualizacionExitosa = 0;
+
+    SET @Exito = @ActualizacionExitosa;
+
+	SELECT @Exito AS Exito;
 END;
 GO
 
