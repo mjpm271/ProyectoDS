@@ -29,4 +29,5 @@ EXEC CreateSede @Nombre = LIMON, @Abreviacion = CR_L;
 
 EXEC CreateTipoPersona @Nombre = PROFESOR;
 EXEC CreateTipoPersona @Nombre = ASISTENTEADMIN;
+EXEC CreateTipoPersona @Nombre = ESTUDIANTE;
 --EXEC ReadTiposPersona

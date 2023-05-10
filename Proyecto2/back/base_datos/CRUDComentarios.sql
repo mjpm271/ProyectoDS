@@ -1,19 +1,17 @@
 -- CREATE
 CREATE PROCEDURE CreateComentario
 (
-    @IDprofesor int,
-    @IDemisor int,
+    @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
     @Hora time,
     @Fecha date,
-    @Comentarios varchar(max),
     @Contenido varchar(max)
 )
 AS
 BEGIN
-    INSERT INTO comentario (IDprofesor, IDemisor, IDactividad, IDcomentarioPadre, Hora, Fecha, Comentarios, Contenido)
-    VALUES (@IDprofesor, @IDemisor, @IDactividad, @IDcomentarioPadre, @Hora, @Fecha, @Comentarios, @Contenido)
+    INSERT INTO comentario (IDpersona, IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido)
+    VALUES (@IDpersona, @IDactividad, @IDcomentarioPadre, @Hora, @Fecha, @Contenido)
 END;
 GO
 
@@ -24,14 +22,41 @@ CREATE PROCEDURE ReadComentarioPorID
 )
 AS
 BEGIN
-    SELECT * FROM comentario WHERE IDcomentario = @IDcomentario
+    SELECT * 
+	FROM comentario 
+	WHERE IDcomentario = @IDcomentario
+END;
+GO
+
+CREATE PROCEDURE ReadComentarioPorIDpadre
+(
+    @IDcomentarioPadre int
+)
+AS
+BEGIN
+    SELECT * 
+	FROM comentario 
+	WHERE IDcomentarioPadre = @IDcomentarioPadre
+END;
+GO
+
+CREATE PROCEDURE ReadComentarioPorIDactividad
+(
+    @IDactividad int
+)
+AS
+BEGIN
+    SELECT * 
+	FROM comentario 
+	WHERE IDactividad = @IDactividad
 END;
 GO
 
 CREATE PROCEDURE ReadComentarios
 AS
 BEGIN
-    SELECT * FROM comentario
+    SELECT * 
+	FROM comentario
 END;
 GO
 
@@ -39,19 +64,18 @@ GO
 CREATE PROCEDURE UpdateComentario 
 (
     @IDcomentario int,
-    @IDprofesor int,
-    @IDemisor int,
+    @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
     @Hora time,
     @Fecha date,
-    @Comentarios varchar(max),
     @Contenido varchar(max)
 )
 AS
 BEGIN
-    UPDATE comentario SET IDprofesor = @IDprofesor, IDemisor = @IDemisor, IDactividad = @IDactividad, 
-        IDcomentarioPadre = @IDcomentarioPadre, Hora = @Hora, Fecha = @Fecha, Comentarios = @Comentarios, Contenido = @Contenido
+    UPDATE comentario 
+	SET IDpersona = @IDpersona, IDactividad = @IDactividad, 
+        IDcomentarioPadre = @IDcomentarioPadre, Hora = @Hora, Fecha = @Fecha, Contenido = @Contenido
     WHERE IDcomentario = @IDcomentario
 END;
 GO
@@ -63,6 +87,7 @@ CREATE PROCEDURE DeleteComentario
 )
 AS
 BEGIN
-    DELETE FROM comentario WHERE IDcomentario = @IDcomentario
+    DELETE FROM comentario 
+	WHERE IDcomentario = @IDcomentario
 END;
 GO

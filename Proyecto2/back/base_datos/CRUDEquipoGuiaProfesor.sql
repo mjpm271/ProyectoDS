@@ -3,8 +3,8 @@ CREATE PROCEDURE CreateEquipoGuiaProfesor
     @IDprofesor INT
 AS
 BEGIN
-    INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor)
-    VALUES (@IDequipoGuia, @IDprofesor);
+    INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor, Habilitado)
+    VALUES (@IDequipoGuia, @IDprofesor, 1);
 END;
 GO 
 
@@ -28,23 +28,22 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE UpdateEquipoGuiaProfesor
-    @IDequipoGuia INT,
+CREATE PROCEDURE HabilitarProfesor
     @IDprofesor INT
 AS
 BEGIN
     UPDATE EquipoGuia_Profesor
-    SET IDprofesor = @IDprofesor
-    WHERE IDequipoGuia = @IDequipoGuia;
+    SET Habilitado = 1
+    WHERE IDprofesor = @IDprofesor;
 END;
 GO
 
-CREATE PROCEDURE DeleteEquipoGuiaProfesor
-    @IDequipoGuia INT,
+CREATE PROCEDURE inhabilitarProfesor
     @IDprofesor INT
 AS
 BEGIN
-    DELETE FROM EquipoGuia_Profesor 
-	WHERE IDequipoGuia = @IDequipoGuia AND IDprofesor = @IDprofesor;
+    UPDATE EquipoGuia_Profesor
+    SET Habilitado = 0
+    WHERE IDprofesor = @IDprofesor;
 END;
 GO

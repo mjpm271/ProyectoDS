@@ -26,6 +26,7 @@ create table persona(
 	Contra varchar(64),
 	Habilitado bit not null,
 	Coordinador bit not null,
+	Telefono varchar(64),
 	Sede int not null,
 	IDtipo int not null
 	primary key (IDpersona)
@@ -35,7 +36,8 @@ create table persona(
 
 create table equipoGuia_Profesor(
 	IDequipoGuia int not null,
-	IDprofesor int not null
+	IDprofesor int not null,
+	Habilitado bit
 	foreign key (IDequipoGuia) references equipoGuia(IDequipoGuia),
 	foreign key (IDprofesor) references persona(IDpersona)
 );
@@ -77,8 +79,7 @@ create table planTrabajo(
 create table actividad(
 	IDactividad int not null IDENTITY(1,1),
 	Semana int,
-	Fecha date,
-	Hora time,
+	Fecha datetime,
 	Cantidaddiasprevios int,
 	Cantidaddiasrequeridos int,
 	FechaPublicacion date,
@@ -112,17 +113,14 @@ create table observacionActividad(
 
 create table comentario(
 	IDcomentario int not null IDENTITY(1,1),
-	IDprofesor int not null,
-	IDemisor int not null,
+	IDpersona int not null,
 	IDactividad int not null,
 	IDcomentarioPadre int,
 	Hora time,
 	Fecha date,
-	Comentarios varchar(max),
 	Contenido varchar(max)
 	primary key (IDcomentario),
-	foreign key (IDprofesor) references persona(IDpersona),
-	foreign key (IDemisor) references persona(IDpersona),
+	foreign key (IDpersona) references persona(IDpersona),
 	foreign key (IDactividad) references actividad(IDactividad),
 	foreign key (IDcomentarioPadre) references comentario(IDcomentario)
 );
