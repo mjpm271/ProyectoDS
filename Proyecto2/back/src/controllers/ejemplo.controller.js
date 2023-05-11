@@ -1,4 +1,7 @@
 import {getConnection , sql} from '../database/connection'
+import { createPerson } from '../PersonFactory';
+// aqui la idea es que después de logearse se cree la clase persona con los datos que se envía
+// y de ahí hacer el render o enviar el control a react para que guarde el estado del objeto en memoria
  
 export const getTipoPersona = async (req, res) => {
    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
