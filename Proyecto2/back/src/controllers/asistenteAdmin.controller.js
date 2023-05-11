@@ -122,8 +122,8 @@ export const DefinirCoordinador = async (req, res) => {
 // Agregar Profesor -- Deberia ser solo por sede
 export const AgregarProfesor = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
-    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
-    // res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const { IDpersona, NombreCompleto, Correo, Contra,Habilitado, Coordinador, Telefono,Sede, IDtipo } = req.body
     //
     console.log('valores:', req.body)
@@ -136,7 +136,7 @@ export const AgregarProfesor = async (req, res) => {
         console.log('whatever')
         const result = await pool
             .request()
-            .input('IDpersona', sql.Int, IDpersona)
+            .input('ID', sql.Int, IDpersona)
             .input('NombreCompleto', sql.VarChar(100), NombreCompleto)
             .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)

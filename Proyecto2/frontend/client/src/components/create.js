@@ -15,7 +15,7 @@ export default function Create() {
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
-        axios.post('http://localhost:4000/ejemplo/asistente/AgregarProfesor', {
+        axios.post('http://localhost:4000/ejemplo/AgregarProfesor', {
             IDpersona:IDpersona,
             NombreCompleto:NombreCompleto,
             Correo:Correo,
