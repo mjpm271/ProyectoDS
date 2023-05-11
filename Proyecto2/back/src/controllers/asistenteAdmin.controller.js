@@ -26,7 +26,7 @@ export const AgregarProfesorEquipo = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 //Buscar 1 Profesor en Equipo Profesores
 export const BuscarProfesorEquipo = async (req, res) => {
@@ -53,7 +53,7 @@ export const BuscarProfesorEquipo = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 //Consultar Integrantes del Equipo de Profesores
     //Falta opcion para consultar los integrantes del equipo guia
@@ -84,7 +84,7 @@ export const ModificarProfesorEquipo = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 //Inhabilitar Profesor en Equipo Profesor
 
@@ -115,18 +115,19 @@ export const DefinirCoordinador = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 
 // ------C R U D ------ Profesores ------//
 // Agregar Profesor -- Deberia ser solo por sede
 export const AgregarProfesor = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000/'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
-    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
-    const { ID, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDtipo } = req.body
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    // res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
+    const { IDpersona, NombreCompleto, Correo, Contra,Habilitado, Coordinador, Telefono,Sede, IDtipo } = req.body
+    //
     console.log('valores:', req.body)
-    // if (!ID || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    // if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado  || !Coordinador || !Telefono || !Sede || !IDtipo) {
     //     console.log('here')
     //     return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     // }
@@ -135,12 +136,13 @@ export const AgregarProfesor = async (req, res) => {
         console.log('whatever')
         const result = await pool
             .request()
-            .input('ID', sql.Int, ID)
+            .input('IDpersona', sql.Int, IDpersona)
             .input('NombreCompleto', sql.VarChar(100), NombreCompleto)
-            .input('Correo ', sql.VarChar(100), Correo)
+            .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)
             .input('Habilitado', sql.Bit, Habilitado)
             .input('Coordinador', sql.Bit, Coordinador)
+            .input('Telefono',sql.VarChar(64),Telefono)
             .input('Sede', sql.Int, Sede)
             .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreatePersona')
@@ -150,7 +152,7 @@ export const AgregarProfesor = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 //Buscar Profesor -- Deberia ser solo por sede (?)
 export const BuscarProfesor = async (req, res) => {
@@ -176,7 +178,7 @@ export const BuscarProfesor = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}           
+};       
 
 //Modificar informacion de Profesor 
 export const ModificarProfesor = async (req, res) => {
@@ -213,7 +215,7 @@ export const ModificarProfesor = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}
+};
 
 //Inhabilitar Profesor 
 export const InhabilitarProfesor = async (req, res) => {
@@ -239,4 +241,4 @@ export const InhabilitarProfesor = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 
-}  
+}; 

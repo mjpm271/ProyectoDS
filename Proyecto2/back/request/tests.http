@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "Correo": "maria@hotmail.com",
-    "Contra": "12345"
+    "Contra": "1234"
 }
 
 ###

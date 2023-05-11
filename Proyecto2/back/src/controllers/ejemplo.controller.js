@@ -9,7 +9,7 @@ export const getTipoPersona = async (req, res) => {
    const pool = await getConnection()
    const result = await pool
            .request()
-           .execute('ReadSede')
+           .execute('ReadPersonas')
    console.log(result)
    res.json(
        result.recordset)
@@ -110,3 +110,4 @@ export const loginPostFunction = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 };
+
