@@ -5,6 +5,7 @@ import AsistenteAdmin from './routes/asistenteAdmin.route'
 
 // app.use('/ejemplo', ejemploRoutes)
 app.use('/ejemplo', AsistenteAdmin)
+app.use('/',ejemploRoutes)
 
 app.listen(app.get('port'))
 

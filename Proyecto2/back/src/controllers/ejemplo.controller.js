@@ -1,4 +1,4 @@
-import {getConnection} from '../database/connection'
+import {getConnection , sql} from '../database/connection'
  
 export const getTipoPersona = async (req, res) => {
    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -80,9 +80,9 @@ export const loginPostFunction = async (req, res) => {
         //console.log(pool);
         const result = await pool
             .request()
-            .input('Correo', sql.VarChar, Correo)
-            .input('Contra', sql.VarChar, Contra)
-            .output('ExitCode', sql.Int)
+            .input('Correo', sql.VarChar(100), Correo)
+            .input('Contra', sql.VarChar(64), Contra)
+            // .output('ExitCode', sql.Int)
             .execute('sp_LoginPersona')
         console.log(result);
             //console.log(result.output.ExitCode);
