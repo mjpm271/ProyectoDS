@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form } from 'semantic-ui-react'
+import Navbar from "../components/Navbar"
 
 export default function Create() {
     const [IDpersona, setIDpersona] = useState();
@@ -53,6 +54,7 @@ export default function Create() {
  
     return (
         <div>
+            <Navbar />
             <Form className="create-form">
                 <Form.Field>
                     <label>IDpersona </label>
