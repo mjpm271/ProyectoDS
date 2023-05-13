@@ -12,7 +12,7 @@ export const getTipoPersona = async (req, res) => {
    const pool = await getConnection()
    const result = await pool
            .request()
-           .execute('ReadPersonas')
+           .execute('ReadTipoPersona')
    console.log(result)
    res.json(
        result.recordset)

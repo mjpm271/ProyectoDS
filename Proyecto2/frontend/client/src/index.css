@@ -1,6 +1,6 @@
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 body {
   margin: 0;
@@ -9,13 +9,21 @@ body {
 
 nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   background-color: #21222A;
   height: 90px;
   padding: 30px 25px;
 }
 
+footer{
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  background-color: #21222A;
+  height: 200px;
+  margin-bottom: auto;
+}
 
 .nav--logo_text {
   justify-content: center;

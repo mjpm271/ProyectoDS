@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form } from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
+import Footer from '../components/Footer';
 
 export default function Create() {
     const [IDpersona, setIDpersona] = useState();
@@ -56,6 +57,7 @@ export default function Create() {
         <div>
             <Navbar />
             <Form className="create-form">
+                
                 <Form.Field>
                     <label>IDpersona </label>
                     <input placeholder='IDpersona' onChange={(e) => setIDpersona(parseInt( e.target.value))}/>
@@ -94,6 +96,7 @@ export default function Create() {
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
+            <Footer/>
         </div>
     )
 }
