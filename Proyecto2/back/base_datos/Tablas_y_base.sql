@@ -24,9 +24,11 @@ create table persona(
 	NombreCompleto varchar(100),
 	Correo varchar(100),
 	Contra varchar(64),
+	Foto varchar(100),
 	Habilitado bit not null,
 	Coordinador bit not null,
 	Telefono varchar(64),
+	TelefonoOficina varchar(64),
 	Sede int not null,
 	IDtipo int not null
 	primary key (IDpersona)

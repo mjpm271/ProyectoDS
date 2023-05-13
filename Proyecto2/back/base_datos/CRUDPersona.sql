@@ -1,24 +1,27 @@
+Use proyecto2
 CREATE PROCEDURE CreatePersona
 	@ID int,
     @NombreCompleto varchar(100),
     @Correo varchar(100),
     @Contra varchar(64),
+	@Foto varchar(100),
     @Habilitado bit,
     @Coordinador bit,
 	@Telefono varchar(64),
+	@TelefonoOficina varchar(64),
     @Sede int,
     @IDtipo int
 AS
 BEGIN
-    INSERT INTO persona (IDpersona, NombreCompleto, Correo, Contra,Habilitado, Coordinador, Telefono, Sede, IDtipo)
-    VALUES (@ID, @NombreCompleto, @Correo, @Contra, @Habilitado, @Coordinador, @Telefono ,@Sede, @IDtipo)
+    INSERT INTO persona (IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina,Sede, IDtipo)
+    VALUES (@ID, @NombreCompleto, @Correo, @Contra,@Foto, @Habilitado, @Coordinador, @Telefono,@TelefonoOficina ,@Sede, @IDtipo)
 END;
 GO
 
 CREATE PROCEDURE ReadPersonas
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo 
+    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto, Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo 
 	FROM persona;
 END;
 GO
@@ -27,7 +30,7 @@ CREATE PROCEDURE ReadPersonaPorID
     @IDpersona INT
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
+    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo  
 	FROM persona 
 	WHERE IDpersona = @IDpersona;
 END;
@@ -37,7 +40,7 @@ CREATE PROCEDURE ReadPersonaPorIDTipo
     @IDtipo INT
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
+    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo
 	FROM persona 
 	WHERE IDtipo = @IDtipo;
 END;
@@ -74,15 +77,17 @@ END;
 GO
 
 CREATE PROCEDURE UpdatePersona
-    @IDpersona INT,
-    @NombreCompleto VARCHAR(100),
-    @Correo VARCHAR(100),
-    @Contra VARCHAR(64),
+    @IDpersona int,
+    @NombreCompleto varchar(100),
+    @Correo varchar(100),
+    @Contra varchar(64),
+	@Foto varchar(100),
     @Habilitado bit,
     @Coordinador bit,
-    @Telefono varchar(64),
-    @Sede INT,
-    @IDtipo INT,
+	@Telefono varchar(64),
+	@TelefonoOficina varchar(64),
+    @Sede int,
+    @IDtipo int,
     @Exito bit OUTPUT
 AS
 BEGIN
@@ -92,9 +97,11 @@ BEGIN
     SET NombreCompleto = @NombreCompleto,
         Correo = @Correo,
         Contra = @Contra,
+		Foto=@Foto,
         Habilitado = @Habilitado,
         Coordinador = @Coordinador,
         Telefono = @Telefono,
+		TelefonoOficina=@TelefonoOficina,
         Sede = @Sede,
         IDtipo = @IDtipo
     WHERE IDpersona = @IDpersona;
