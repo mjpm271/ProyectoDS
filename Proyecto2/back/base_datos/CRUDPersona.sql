@@ -1,4 +1,4 @@
-Use proyecto2
+
 CREATE PROCEDURE CreatePersona
 	@ID int,
     @NombreCompleto varchar(100),
