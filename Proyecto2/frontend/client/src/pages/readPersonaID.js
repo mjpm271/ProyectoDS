@@ -1,60 +1,54 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , List} from 'semantic-ui-react'
+import { Button,  Form , Table} from 'semantic-ui-react'
 
 export default function ReadPersona() {
+
     const [IDpersona, setIDpersona] = useState();
-    const [APIData, setAPIData] = useState([]);
-
-    useEffect( () => {
-      fetchItems();
-    }, []);
-
-    const fetchItems = async () => {
-      const data = await fetch('http://localhost:4000/ejemplo/asistente/BuscarProfesor');
-      const items = await data.json();
-      setAPIData(items);
-  };
-    // const [APIDpersonaata, setAPIDpersonaata] = useState([]);
-    const postData = () => {
-
-        axios.post(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`, {
-            IDpersona:IDpersona
-          }
-          , {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-          )
-            .then(response => {
-              console.log(response.data);
-            }).catch(error => {
-                console.log(error)
-            });
+    const [items, setItems] = useState([]);
+  //   useEffect( () => {
+  //     fetchItems();
+  // }, []);
 
 
-    }
-    const ListExampleBasic = () => (
-      <List>
-        <List.Item>(NombreCompleto: APIData.NombreCompleto)</List.Item>
-        {/* <List.Item>Pears</List.Item>
-        <List.Item>Oranges</List.Item> */}
-      </List>
-    )
-    
-    
-    // useEffect(() => (
+
+  //   const fetchItems = async() => {
+  //     const data = await axios.post(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`, {IDpersona:IDpersona});
+  //     const items = await data.json();
+  //     setItems(items);
+  //   }
+  // useEffect(() => (
     //   (async () => {
     //     const resp = await axios.get(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`)
     //   //   const data1 = await JSON.stringify(resp)
     //     .then((resp) =>{
     //       setAPIData(resp.data)
     //     })
-
+  
     //   })
-
+  
     // ), []);
+    const buscar = () => {
+
+      axios.post(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`, {
+          IDpersona:IDpersona
+        }
+        , {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        )
+          .then(response => {
+            const items = response.data
+            setItems(items)
+          }).catch(error => {
+              console.log(error)
+          });
+
+
+  }
+
  
     return (
         <div>
@@ -64,14 +58,34 @@ export default function ReadPersona() {
                     <input placeholder='IDpersona' onChange={(e) => setIDpersona(parseInt( e.target.value))}/>
                 </Form.Field>
 
-                <Button onClick={postData} type='submit'>Submit</Button>
+                <Button onClick={buscar} type='submit'>Submit</Button>
 
             </Form>
-            <div role="list" class="ui list">
-              <div role="listitem" class="item">NombreCompleto</div>
-              {/* <div role="listitem" class="item">Pears</div>
-              <div role="listitem" class="item">Oranges</div> */}
-            </div>
+            <div> 
+            <Table singleLine>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>IDpersona </Table.HeaderCell>
+                        <Table.HeaderCell>Nomre Completo </Table.HeaderCell>
+                        <Table.HeaderCell>Sede </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
+
+            <Table.Body>
+                    {items.map((item) => {
+                        return (
+                            <Table.Row>
+
+                                <Table.Cell>{item.IDpersona}</Table.Cell>
+                                <Table.Cell>{item.NombreCompleto}</Table.Cell>
+                                <Table.Cell>{item.Sede}</Table.Cell>
+                                
+                            </Table.Row>
+                        )
+                    })}
+                </Table.Body>
+                </Table>
+                </div>
         </div>
     )
 }

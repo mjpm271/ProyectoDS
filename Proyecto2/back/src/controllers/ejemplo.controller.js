@@ -12,31 +12,10 @@ export const getTipoPersona = async (req, res) => {
    const pool = await getConnection()
    const result = await pool
            .request()
-           .execute('ReadTipoPersona')
+           .execute('ReadSede')
    console.log(result)
    res.json(
        result.recordset)
-   // try {
-   //     const pool = await getConnection()
-   //     const result = await pool
-   //         .request()
-   //         .execute('ReadTiposPersona')
-   //     console.log(result)
-   //     if (result.recordset.length == 0) {
-   //         console.log('No hay resultados')
-   //         // res.redirect('/admin')
-   //     } else {
-   //         console.log('Ver resultados:')
-   //         console.log(result.recordset)
-   //         res.json(
-   //         result.recordset)
-   //         res.render('/ejemplo/tipoPersona')
-          
-   //     }
-   // } catch (err) {
-   //     res.sendStatus(500, err.message)
-   // }
-
 }
 
 //Consultar Profesores -- Deberia ser solo por sede (?)

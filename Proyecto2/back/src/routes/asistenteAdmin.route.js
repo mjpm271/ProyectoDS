@@ -8,7 +8,7 @@ router.get('/asistente/BuscarProfEquipo',BuscarProfesorEquipo)
 router.put('/asistente/ModificarProfEquipo',ModificarProfesorEquipo)
 router.put('/asistente/DefinirCoordinador',DefinirCoordinador)
 router.post('/AgregarProfesor',AgregarProfesor)
-router.get('/asistente/BuscarProfesor',BuscarProfesor)
+router.post('/asistente/BuscarProfesor',BuscarProfesor)
 router.put('/asistente/ModificarProfesor',ModificarProfesor)
 router.delete('/asistente/InhabilitarProfesor',InhabilitarProfesor)
 
