@@ -55,7 +55,7 @@ AS
 BEGIN
     SELECT TOP 1 * 
 	FROM actividad
-	WHERE Fecha >= @Fecha
+	WHERE Fecha >= @Fecha and (IDtipoEstado = 1 or IDtipoEstado = 2)
 	ORDER BY Fecha ASC
 END;
 GO
