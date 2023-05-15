@@ -6,28 +6,7 @@ export default function ReadPersona() {
 
     const [IDpersona, setIDpersona] = useState();
     const [items, setItems] = useState([]);
-  //   useEffect( () => {
-  //     fetchItems();
-  // }, []);
 
-
-
-  //   const fetchItems = async() => {
-  //     const data = await axios.post(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`, {IDpersona:IDpersona});
-  //     const items = await data.json();
-  //     setItems(items);
-  //   }
-  // useEffect(() => (
-    //   (async () => {
-    //     const resp = await axios.get(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`)
-    //   //   const data1 = await JSON.stringify(resp)
-    //     .then((resp) =>{
-    //       setAPIData(resp.data)
-    //     })
-  
-    //   })
-  
-    // ), []);
     const buscar = () => {
 
       axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {

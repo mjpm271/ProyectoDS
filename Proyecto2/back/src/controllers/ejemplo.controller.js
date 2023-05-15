@@ -64,30 +64,8 @@ export const loginPostFunction = async (req, res) => {
             .request()
             .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)
-            // .output('ExitCode', sql.Int)
-            .execute('sp_LoginPersona')
+            .execute('sp_LoginPersona3')
         console.log(result);
-            //console.log(result.output.ExitCode);
-        //console.log(result.recordset);
-        // let statusCode = result.output.ExitCode
-        // if (!([1, 2, 3].includes(statusCode))) {
-        //     //console.log("si llego, tranqui")
-        //     return res.render('login_view', { err_msg: "No se pudo hacer el inicio de sesión" })
-        // }
-        // console.log('Login de tipo', statusCode)
-        // if (statusCode == 1) {
-        //     // es admin
-        //     console.log('Es admin')
-        //     res.redirect('admin?Login=' + result.recordset[0]['IDUsuarioBase'])
-        // } else if (statusCode == 2) {
-        //     // es empleado
-        //     console.log('Es empleado')
-        //     res.redirect('empleado?Login=' + result.recordset[0]['IDUsuarioBase'])
-        // } else {
-        //     // es cliente
-        //     console.log('Es cliente')
-        //     res.redirect('cliente?Login=' + result.recordset[0]['IDUsuarioBase'])
-        // }
     } catch (err) {
         res.sendStatus(500, err.message)
     }

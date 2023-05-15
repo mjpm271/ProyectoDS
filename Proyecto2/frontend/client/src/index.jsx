@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './index.css';
 //import App from './App';
 import Create from './pages/create';
+import Login from './pages/login' 
 import Read from './pages/read';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
@@ -16,7 +17,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ReadPersona />}/>
+      <Route path="/" element={<Login />}/>
+        <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 @indexRoute = http://localhost:4000
-@loginRoute = http://localhost:4000/login
+@loginRoute = http://localhost:4000/ejemplo/login
 @empleadoRoute = http://localhost:4000/empleado
 
 
@@ -11,8 +11,8 @@ POST {{loginRoute}}
 Content-Type: application/json
 
 {
-    "Correo": "maria@hotmail.com",
-    "Contra": "1234"
+    "Correo": "maria2@hotmail.com",
+    "Contra": "12345"
 }
 
 ###
