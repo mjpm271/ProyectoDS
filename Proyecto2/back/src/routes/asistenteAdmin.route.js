@@ -14,3 +14,10 @@ router.put('/ModificarProfesor',ModificarProfesor)
 router.delete('/InhabilitarProfesor',InhabilitarProfesor)
 
 export default router
+
+/*
+GET -> Read (Sin parametros de busqueda)
+POST -> Create o Read(con parametros de entrada)
+PUT -> Update (con parametros de entrada)
+DELETE -> Delete(con parametros de entrada)
+*/
