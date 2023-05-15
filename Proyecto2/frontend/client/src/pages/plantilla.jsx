@@ -4,7 +4,7 @@ import { Button,  Form, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
-export default function Create() {
+export default function Plantilla() {
     const [IDpersona, setIDpersona] = useState();
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();

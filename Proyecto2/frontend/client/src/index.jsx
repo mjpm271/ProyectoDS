@@ -5,11 +5,13 @@ import './index.css';
 //import App from './App';
 import Create from './pages/create';
 import Login from './pages/login' 
+import Plantilla from './pages/plantilla';
 import Read from './pages/read';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 
@@ -20,7 +22,8 @@ function App() {
       <Route path="/" element={<Login />}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
-        <Route path="/plantilla" element={<Create />}/>
+        <Route path="/read" element={<Read />}/>
+        <Route path="/plantilla" element={<Plantilla />}/>
       </Routes>
     </BrowserRouter>
   )
