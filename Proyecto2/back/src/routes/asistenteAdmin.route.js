@@ -3,14 +3,14 @@ import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,Defin
 
 const router = Router()
 
-router.post('/asistente/CrearEquipoGuia',CrearEquipoGuia)
-router.post('/asistente/AgregarProfEquipo',AgregarProfesorEquipo)
-router.get('/asistente/BuscarProfEquipo',BuscarProfesorEquipo)
-router.put('/asistente/ModificarProfEquipo',ModificarProfesorEquipo)
-router.put('/asistente/DefinirCoordinador',DefinirCoordinador)
+router.post('/CrearEquipoGuia',CrearEquipoGuia)
+router.post('/AgregarProfEquipo',AgregarProfesorEquipo)
+router.get('/BuscarProfEquipo',BuscarProfesorEquipo)
+router.put('/ModificarProfEquipo',ModificarProfesorEquipo)
+router.put('/DefinirCoordinador',DefinirCoordinador)
 router.post('/AgregarProfesor',AgregarProfesor)
-router.post('/asistente/BuscarProfesor',BuscarProfesor)
-router.put('/asistente/ModificarProfesor',ModificarProfesor)
-router.delete('/asistente/InhabilitarProfesor',InhabilitarProfesor)
+router.post('/BuscarProfesor',BuscarProfesor)
+router.put('/ModificarProfesor',ModificarProfesor)
+router.delete('/InhabilitarProfesor',InhabilitarProfesor)
 
 export default router

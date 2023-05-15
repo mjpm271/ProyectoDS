@@ -30,7 +30,7 @@ export default function ReadPersona() {
     // ), []);
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/ejemplo/asistente/BuscarProfesor`, {
+      axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
           IDpersona:IDpersona
         }
         , {
