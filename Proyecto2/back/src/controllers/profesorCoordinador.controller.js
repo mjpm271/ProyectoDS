@@ -17,9 +17,9 @@ export const CrearPlanTrabajo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('Nombre Plan', sql.VarChar, Nombre)
-            .input('Abreviacion', sql.VarChar, Abreviacion)
-            .input('Coordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
+            .input('Nombre', sql.VarChar(32), Nombre)
+            .input('Abreviacion', sql.VarChar(32), Abreviacion)
+            .input('IDcoordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
             .execute('CreateEquipoGuiaProfesor')
         console.log(result)
         res.json(result.recordset)
@@ -45,7 +45,7 @@ export const VerPlanTrabajo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Plan Trabajo', sql.Int, IDplanTrabajo)
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
             .execute('ReadPlanTrabajoPorID')
         console.log(result)
         res.json(result.recordset)
@@ -86,10 +86,10 @@ export const ModificarInformacionPlan = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Plan',sql.Int,IDplanTrabajo)
-            .input('Nombre Plan', sql.VarChar, Nombre)
-            .input('Abreviacion', sql.VarChar, Abreviacion)
-            .input('Coordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
+            .input('IDplanTrabajo',sql.Int,IDplanTrabajo)
+            .input('Nombre', sql.VarChar(32), Nombre)
+            .input('Abreviacion', sql.VarChar(32), Abreviacion)
+            .input('IDcoordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
             .execute('UpdatePlanTrabajo')
         console.log(result)
         res.json(result.recordset)
@@ -116,7 +116,7 @@ export const EliminarPlanTrabajo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Plan', sql.Int, IDplanTrabajo)
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
             .execute('DeletePlanTrabajo')
         console.log(result)
         res.json(result.recordset)
@@ -139,9 +139,9 @@ export const CrearActividad = async (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const {     
-        Semana ,Fecha ,Hora ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
+        Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
     console.log('valores:', req.body)
-    if (!Semana || !Fecha || !Hora || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
+    if (!Semana || !Fecha || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
         || !IDtipoAfiche || !IDtipoEstado || !IDplanTrabajo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
@@ -151,16 +151,15 @@ export const CrearActividad = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('Semana ', sql.Int, Semana)
-            .input('Emisor ', sql.Date, IDemisor)
-            .input('Hora ', sql.Time, Hora)
+            .input('Semana', sql.Int, Semana)
+            .input('Fecha', sql.DateTime, Fecha)
             .input('Cantidaddiasprevios', sql.Int, Cantidaddiasprevios)
             .input('Cantidaddiasrequeridos', sql.Int, Cantidaddiasrequeridos)
             .input('FechaPublicacion', sql.Date, FechaPublicacion)
-            .input('IDmodalidad ', sql.Int, IDmodalidad)
-            .input('IDtipoActividad ', sql.Int, IDtipoActividad)
-            .input('IDtipoAfiche ', sql.Int, IDtipoAfiche)
-            .input('IDtipoEstado ', sql.Int, IDtipoEstado)                        
+            .input('IDmodalidad', sql.Int, IDmodalidad)
+            .input('IDtipoActividad', sql.Int, IDtipoActividad)
+            .input('IDtipoAfiche', sql.Int, IDtipoAfiche)
+            .input('IDtipoEstado', sql.Int, IDtipoEstado)                        
             .input('IDplanTrabajo', sql.Int, IDplanTrabajo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreateActividad')
         console.log(result)
@@ -185,7 +184,7 @@ export const VerActividad = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Actividad', sql.Int, IDactividad)
+            .input('IDactividad', sql.Int, IDactividad)
             .execute('ReadActividadPorID')
         console.log(result)
         res.json(result.recordset)
@@ -202,9 +201,9 @@ export const ModificarActividad = async (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const {     
-        Semana ,Fecha ,Hora ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
+        Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
     console.log('valores:', req.body)
-    if (!Semana || !Fecha || !Hora || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
+    if (!Semana || !Fecha|| !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
         || !IDtipoAfiche || !IDtipoEstado || !IDplanTrabajo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
@@ -214,17 +213,16 @@ export const ModificarActividad = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('Semana ', sql.Int, Semana)
-            .input('Emisor ', sql.Date, IDemisor)
-            .input('Hora ', sql.Time, Hora)
+            .input('Semana', sql.Int, Semana)
+            .input('Fecha', sql.DateTime, Fecha)
             .input('Cantidaddiasprevios', sql.Int, Cantidaddiasprevios)
             .input('Cantidaddiasrequeridos', sql.Int, Cantidaddiasrequeridos)
             .input('FechaPublicacion', sql.Date, FechaPublicacion)
-            .input('IDmodalidad ', sql.Int, IDmodalidad)
-            .input('IDtipoActividad ', sql.Int, IDtipoActividad)
-            .input('IDtipoAfiche ', sql.Int, IDtipoAfiche)
-            .input('IDtipoEstado ', sql.Int, IDtipoEstado)                        
-            .input('IDplanTrabajo', sql.Int, IDplanTrabajo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .input('IDmodalidad', sql.Int, IDmodalidad)
+            .input('IDtipoActividad', sql.Int, IDtipoActividad)
+            .input('IDtipoAfiche', sql.Int, IDtipoAfiche)
+            .input('IDtipoEstado', sql.Int, IDtipoEstado)                        
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo) 
             .execute('UpdateActividad')
         console.log(result)
     } catch (err) {
@@ -248,7 +246,7 @@ export const EliminarActividad = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Actividad', sql.Int, IDactividad)
+            .input('IDactividad', sql.Int, IDactividad)
             .execute('DeleteActividad')
         console.log(result)
         res.json(result.recordset)
