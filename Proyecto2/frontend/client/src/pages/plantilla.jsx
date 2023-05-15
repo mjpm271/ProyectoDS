@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { Button,  Form, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
@@ -9,13 +9,10 @@ export default function Create() {
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();
     const [Contra, setContra] = useState();
-    // const Habilitado = true;
-    // const Coordinador = false;
     const [Telefono, setTelefono] = useState();
     const [Sede, setSede] = useState();
     const [IDtipo, setIDtipo] = useState();
     const [Foto, setFoto] = useState();
-    const [Fecha, SetFecha] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -65,7 +62,7 @@ export default function Create() {
         reader.readAsDataURL(file);
     }
 
- 
+
     return (
         <div>
             <Navbar />
@@ -91,15 +88,31 @@ export default function Create() {
                     <label>Telefono</label>
                     <input placeholder='Telefono' onChange={(e) => setTelefono(e.target.value)}/>
                 </Form.Field>
-                <Form.Field>
+                {/* <Form.Field>
                     <label>Sede</label>
                     <input placeholder='Sede' onChange={(e) => setSede(parseInt( e.target.value))}/>
-                </Form.Field>
+                </Form.Field> */}
                 <Form.Field>
                     <label>IDtipo</label>
                     <input placeholder='IDtipo' onChange={(e) => setIDtipo(parseInt( e.target.value))}/>
                 </Form.Field>
-                <div>
+
+                <Label>Sede </Label>
+                <div className="container p-2">
+                    <select
+                        className="custom-select"
+                        value={Sede}
+                        onChange={(e) => {
+                        const SedeSeleccionada = e.target.value;
+                        setSede(SedeSeleccionada);
+                        }}
+                    >
+                        <option value={1}>Cartago</option>
+                        <option value={2}>San Jose</option>
+                        <option value={3}>Alajuela</option>
+                    </select>
+                    </div>
+                    <div>
                 <label>Foto</label>
                 {Foto ? (
                     <img src = {Foto} />

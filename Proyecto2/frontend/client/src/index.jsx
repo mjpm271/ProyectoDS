@@ -20,6 +20,7 @@ function App() {
       <Route path="/" element={<Login />}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
+        <Route path="/plantilla" element={<Create />}/>
       </Routes>
     </BrowserRouter>
   )
