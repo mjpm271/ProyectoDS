@@ -13,7 +13,7 @@ export default function Login() {
 
     // const [APIData, setAPIData] = useState([]);
 
-    const Autenticar = () =>{
+    const Autenticar = (items) =>{
         if (items.recordset.length === 0 ){
             navigate("/ReadPersona")
         }
@@ -35,10 +35,10 @@ export default function Login() {
           }
           )
             .then(response => {
-              console.log(response.data);
+              console.log(response.data)
               const items = response.data
               setItems(items)
-              Autenticar();
+              Autenticar(items);
               
             }).catch(error => {
                 console.log(error)

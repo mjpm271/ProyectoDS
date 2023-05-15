@@ -14,6 +14,7 @@ export default function Create() {
     const [Telefono, setTelefono] = useState();
     const [Sede, setSede] = useState();
     const [IDtipo, setIDtipo] = useState();
+    const [Foto, setFoto] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -26,7 +27,8 @@ export default function Create() {
             Coordinador:false,
             Telefono:Telefono,
             Sede:Sede,
-            IDtipo:IDtipo
+            IDtipo:IDtipo,
+            Foto:Foto
           }
           , {
             headers: {
@@ -51,6 +53,15 @@ export default function Create() {
         console.log(typeof IDpersona);
         console.log(NombreCompleto);
         console.log(typeof Sede);
+    }
+
+    const convert2base64 = e =>{
+        const file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onloadend =() =>{
+            setFoto(reader.result.toString())
+        }
+        reader.readAsDataURL(file);
     }
  
     return (
@@ -94,6 +105,17 @@ export default function Create() {
                     <label>IDtipo</label>
                     <input placeholder='IDtipo' onChange={(e) => setIDtipo(parseInt( e.target.value))}/>
                 </Form.Field>
+                <div>
+                <label>Foto</label>
+                {Foto ? (
+                    <img src = {Foto} />
+                ) : (
+                    <div>
+                        <input id = 'fileupload' className='hidden' type='file' onChange={(e) => convert2base64(e)}/>
+                        <label htmlFor='fileupload' ></label>
+                    </div>
+                )}
+                </div>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
