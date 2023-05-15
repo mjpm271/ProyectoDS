@@ -1,8 +1,9 @@
 import { Router } from "express"
-import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,DefinirCoordinador,AgregarProfesor,BuscarProfesor,ModificarProfesor,InhabilitarProfesor} from "../controllers/asistenteAdmin.controller"
+import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,DefinirCoordinador,AgregarProfesor,BuscarProfesor,ModificarProfesor,InhabilitarProfesor, CrearEquipoGuia} from "../controllers/asistenteAdmin.controller"
 
 const router = Router()
 
+router.post('/asistente/CrearEquipoGuia',CrearEquipoGuia)
 router.post('/asistente/AgregarProfEquipo',AgregarProfesorEquipo)
 router.get('/asistente/BuscarProfEquipo',BuscarProfesorEquipo)
 router.put('/asistente/ModificarProfEquipo',ModificarProfesorEquipo)
