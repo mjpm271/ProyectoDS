@@ -16,7 +16,7 @@ export const VerPlanTrabajo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Plan Trabajo', sql.Int, IDplanTrabajo)
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
             .execute('ReadPlanTrabajoPorID')
         console.log(result)
         res.json(result.recordset)
@@ -60,7 +60,7 @@ export const VerActividad = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Actividad', sql.Int, IDactividad)
+            .input('IDactividad', sql.Int, IDactividad)
             .execute('ReadActividadPorID')
         console.log(result)
         res.json(result.recordset)
@@ -74,7 +74,30 @@ export const VerActividad = async (req, res) => {
 
 // Ver actividad x Plan de trabajo --> Falta agregar procedure
 
+export const VerActividadxPlan = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDplanTrabajo} = req.body
+    console.log('valores:', req.body)
+    if (!IDplanTrabajo) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
+            .execute('ReadActividadesporPlan')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
 
+}    
 
 // Comentar
 export const Comentar = async (req, res) => {
@@ -110,9 +133,30 @@ export const Comentar = async (req, res) => {
 }
 
 // Ver comentarios x Actividad de un Plan especifico ---> Falta agregar procedure
+export const VerComentariosActividad = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDactividad} = req.body
+    console.log('valores:', req.body)
+    if (!IDactividad) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('ID Actividad', sql.Int, IDactividad)
+            .execute('ReadActividadPorID')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
 
-//Responder comentarios
-    // Preguntar como se maneja la columna comentarios en la base
+}    
 
 
 // Ver perfil profesor
@@ -127,7 +171,7 @@ export const VerProfesorPerfil = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Profesor', sql.Int, IDpersona)
+            .input('IDpersona', sql.Int, IDpersona)
             .execute('ReadPersonaPorID')
         console.log(result)
         res.json(result.recordset)
@@ -141,7 +185,9 @@ export const VerProfesorPerfil = async (req, res) => {
 //Modificar informacion perfil de profesor
 // recuperar informacion una vez ingrese el usuario al sistema
 export const ModificarProfesorPerfil = async (req, res) => {
-    const { IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDpersonatipo } = req.body
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono, TelefonoOficina,Sede, IDtipo } = req.body
     console.log('valores:', req.body)
     if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
         console.log('here')
@@ -152,18 +198,83 @@ export const ModificarProfesorPerfil = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('ID ', sql.Int, ID)
-            .input('Nombre Completo', sql.VarChar, NombreCompleto)
-            .input('Correo ', sql.VarChar, Correo)
-            .input('Contraseña', sql.VarChar, Contra)
-            .input('Habilitado', sql.bit, Habilitado)
-            .input('Coordinador', sql.bit, Coordinador)
-            .input('Sede ', sql.Int, Sede)
-            .input('ID tipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .input('ID', sql.Int, IDpersona)
+            .input('NombreCompleto', sql.VarChar(100), NombreCompleto)
+            .input('Correo', sql.VarChar(100), Correo)
+            .input('Contra', sql.VarChar(64), Contra)
+            .input('Foto',sql.VarChar(100),Foto)
+            .input('Habilitado', sql.Bit, Habilitado)
+            .input('Coordinador', sql.Bit, Coordinador)
+            .input('Telefono',sql.VarChar(64),Telefono)
+            .input('TelefonoOficina',sql.VarChar(64),TelefonoOficina)
+            .input('Sede', sql.Int, Sede)
+            .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('UpdatePersona')
         console.log(result)
     } catch (err) {
         res.sendStatus(500, err.message)
     }
 
-}
+};
+
+//Visualizar informacion de estudiantes
+ 
+//Alfabeticamente
+export const VerEstudiantesAlf = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    const pool = await getConnection()
+    const result = await pool
+            .request()
+            .execute('ReadEstudianteporAlf')
+    console.log(result)
+    res.json(
+        result.recordset)
+ }
+
+//Por Sede
+export const VerEstudianteSede = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { Sede} = req.body
+    console.log('valores:', req.body)
+    if (!Sede) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('Sede', sql.Int, Sede)
+            .execute('ReadActividadPorID')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+}    
+
+//Carnet
+export const VerEstudianteCarnet = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+    const pool = await getConnection()
+    const result = await pool
+            .request()
+            .execute('ReadEstudianteporCarnet')
+    console.log(result)
+    res.json(
+        result.recordset)
+    
+
+} ;

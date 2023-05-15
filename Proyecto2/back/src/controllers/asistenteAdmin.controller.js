@@ -285,7 +285,7 @@ export const InhabilitarProfesor = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Profesor', sql.Int, IDpersona)
+            .input('IDpersona', sql.Int, IDpersona)
             .execute('DeletePersona')
         console.log(result)
         res.json(result.recordset)
