@@ -9,17 +9,14 @@ import { Table } from 'semantic-ui-react';
 function Read(){
 
   const [APIData, setAPIData] = useState([]);
-  useEffect(() => (
-    (async () => {
-      const resp = await axios.get(`http://localhost:4000/ejemplo/tipoPersona`)
-    //   const data1 = await JSON.stringify(resp)
-      .then((resp) =>{
-        setAPIData(resp.data)
-      })
+  useEffect(() => {
+    axios.get(`http://localhost:4000/ejemplo/tipoPersona`)
+        .then((response) => {
+            console.log(response.data)
+            setAPIData(response.data);
+        })
+}, []);
 
-    })
-
-  ), []);
 
 
     return (
