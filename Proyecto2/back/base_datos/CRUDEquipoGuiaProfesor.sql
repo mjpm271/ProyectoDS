@@ -19,12 +19,12 @@ END;
 GO
 
 CREATE PROCEDURE ReadEquipoGuiaProfesorPorID
-    @IDequipoGuia INT,
-    @IDprofesor INT
+    @IDequipoGuia INT
 AS
 BEGIN
-    SELECT * FROM EquipoGuia_Profesor 
-	WHERE IDequipoGuia = @IDequipoGuia AND IDprofesor = @IDprofesor;
+    SELECT p.*  
+	FROM EquipoGuia_Profesor as eq, persona as p
+	WHERE IDequipoGuia = @IDequipoGuia and eq.IDprofesor = p.IDpersona
 END;
 GO
 
