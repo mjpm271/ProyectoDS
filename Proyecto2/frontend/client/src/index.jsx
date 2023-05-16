@@ -17,11 +17,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Login />}/>
+        <Route path='/' element={<Read/>}/>
+        {/* <Route path="/" element={<Login />}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
-        <Route path="/plantilla" element={<Plantilla />}/>
+        <Route path="/plantilla" element={<Plantilla />}/> */}
       </Routes>
     </BrowserRouter>
   )
