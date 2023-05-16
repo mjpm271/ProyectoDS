@@ -7,6 +7,7 @@ import Create from './pages/create';
 import Login from './pages/login' 
 import Plantilla from './pages/plantilla';
 import Read from './pages/read';
+import Cards from './pages/cards';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
@@ -17,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Read/>}/>
+        <Route path='/' element={<Cards/>}/>
         {/* <Route path="/" element={<Login />}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
