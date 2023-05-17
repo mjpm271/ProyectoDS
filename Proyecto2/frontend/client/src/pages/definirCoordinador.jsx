@@ -4,7 +4,7 @@ import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'seman
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
-export default function Create() {
+export default function DefinirCoordinador() {
     const [Carnet, setCarnet] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
