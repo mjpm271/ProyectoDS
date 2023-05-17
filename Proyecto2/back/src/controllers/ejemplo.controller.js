@@ -64,7 +64,15 @@ export const loginPostFunction = async (req, res) => {
             .request()
             .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)
-            .execute('sp_LoginPersona3')
+            .output('Exito',sql.Int)
+            .execute('Login5')
+        const outputValue = result.output.output;
+
+        // Hacer algo con el resultado y el output
+        // ...
+
+        // Enviar una respuesta al cliente
+        res.status(200).json({ output: outputValue });
         console.log(result);
     } catch (err) {
         res.sendStatus(500, err.message)

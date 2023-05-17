@@ -62,6 +62,8 @@ BEGIN
     FROM Persona
     WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
 
+	
+
 END;
 GO
 
@@ -79,6 +81,21 @@ BEGIN
         IDtipo
     FROM Persona
     WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
+
+END;
+GO
+
+CREATE PROCEDURE sp_LoginPersona4
+    @Correo VARCHAR(100),
+    @Contra VARCHAR(64),
+    @Exito Int OUTPUT
+AS
+BEGIN
+
+	Set @Exito = 0
+	Select @Exito = 1    FROM Persona
+    WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
+	
 
 END;
 GO

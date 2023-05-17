@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './index.css';
 //import App from './App';
 import Create from './pages/create';
-import Login from './pages/login' 
+import Login from './pages/login2' 
 import Plantilla from './pages/plantilla';
 import Read from './pages/read';
 import Cards from './pages/cards';
@@ -18,12 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Cards/>}/>
-        {/* <Route path="/" element={<Login />}/>
+        <Route path='/' element={<Login/>}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
-        <Route path="/plantilla" element={<Plantilla />}/> */}
+        <Route path="/plantilla" element={<Plantilla />}/>
       </Routes>
     </BrowserRouter>
   )

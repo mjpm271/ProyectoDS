@@ -20,7 +20,7 @@ const cardElements = cards.map(card => (
     <div key={card.IDsede} className="card-tile">
         <div className="card-info">
             <h3>{card.Nombre}</h3>
-            <p>${card.Abreviacion}<span>/day</span></p>
+            <p>{card.Abreviacion}<span></span></p>
         </div>
         <i className={`card-type ${card.type} selected`}>{card.type}</i>
     </div>
