@@ -74,7 +74,7 @@ export const BuscarProfesorEquipo = async (req, res) => {
             .request()
             .input('IDequipoGuia', sql.Int, IDequipoGuia)
             .input('IDprofesor', sql.Int, IDprofesor)
-            .execute('ReadEquipoGuiaProfesorPorID')
+            .execute('ReadEquipoGuiaProfesor')
         console.log(result)
         res.json(result.recordset)
         
@@ -85,17 +85,13 @@ export const BuscarProfesorEquipo = async (req, res) => {
 };
 
 //Consultar Integrantes del Equipo de Profesores
-    //Falta opcion para consultar los integrantes del equipo guia
-
-
-//Modificar informacion de Profesor en Equipo Profesores
-export const ModificarProfesorEquipo = async (req, res) => {
+export const ConsultarMiembrosEquipoGuia= async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDequipoGuia , IDprofesor} = req.body
+    const { IDequipoGuia } = req.body
     console.log('valores:', req.body)
-    if (!IDequipoGuia || !IDprofesor) {
+    if (!IDequipoGuia ) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -103,11 +99,44 @@ export const ModificarProfesorEquipo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Equipo Guia', sql.Int, IDequipoGuia)
-            .input('ID Profesor', sql.Int, IDprofesor)
-            .execute('UpdateEquipoGuiaProfesor')
+            .input('IDequipoGuia', sql.Int, IDequipoGuia)
+            .execute('ReadEquipoGuiaProfesorPorID')
         console.log(result)
         res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+};
+
+//Modificar informacion de Profesor en Equipo Profesores
+export const ModificarProfesorEquipo = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDprofesor} = req.body
+    console.log('valores:', req.body)
+    if (!IDprofesor) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDprofesor', sql.Int, IDprofesor)
+            .output('Exito',sql.Bit)
+            .execute('HabilitarProfesor')
+        console.log(result)
+        const outputValue = result.output;
+
+        // Hacer algo con el resultado y el output
+        // ...
+
+        // Enviar una respuesta al cliente
+        // res.status(200).json(outputValue.Exito); ---> Habilitar para leer el output
+        res.json(result.recordset) 
         
     } catch (err) {
         res.sendStatus(500, err.message)

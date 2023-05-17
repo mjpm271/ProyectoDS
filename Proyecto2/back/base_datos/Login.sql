@@ -41,66 +41,7 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE sp_LoginPersona2
-    @Correo VARCHAR(100),
-    @Contra VARCHAR(64),
-    @Exito Int OUTPUT
-AS
-BEGIN
-
-	Set @Exito = 0
-	Select @Exito = 1    FROM Persona
-    WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
-
-	SELECT
-        IDpersona ,
-		NombreCompleto,
-        Correo,
-        Coordinador,
-        Sede,
-        IDtipo
-    FROM Persona
-    WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
-
-	
-
-END;
-GO
-
-CREATE PROCEDURE sp_LoginPersona3
-    @Correo VARCHAR(100),
-    @Contra VARCHAR(64)
-AS
-BEGIN
-	SELECT
-        IDpersona ,
-		NombreCompleto,
-        Correo,
-        Coordinador,
-        Sede,
-        IDtipo
-    FROM Persona
-    WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
-
-END;
-GO
-
-CREATE PROCEDURE sp_LoginPersona4
-    @Correo VARCHAR(100),
-    @Contra VARCHAR(64),
-    @Exito Int OUTPUT
-AS
-BEGIN
-
-	Set @Exito = 0
-	Select @Exito = 1    FROM Persona
-    WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1;
-	
-
-END;
-GO
-
-CREATE PROCEDURE Login5
+CREATE PROCEDURE LoginUsuario
   @Correo VARCHAR(50),
   @Contra VARCHAR(50),
   @Exito INT OUTPUT
@@ -109,12 +50,37 @@ BEGIN
   -- Verificar las credenciales de inicio de sesión
   IF EXISTS (SELECT * FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1)
   BEGIN
-    -- Credenciales válidas, establecer el estado de inicio de sesión como 0 (éxito)
-    SET @Exito = 0;
+    -- Credenciales válidas
+	IF EXISTS (SELECT 1 FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1 AND IDtipo = 1 AND Coordinador = 1)
+		BEGIN
+		 SET @Exito = 1; -- Entra Coordinador
+		END
+	IF EXISTS (SELECT 1 FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1 AND IDtipo = 1 AND Coordinador = 0)
+		BEGIN
+		 SET @Exito = 2; --Entra Profesor
+		END
+
+	IF EXISTS (SELECT 1 FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1 AND IDtipo = 2)
+		BEGIN
+		 SET @Exito = 3; --Entra Asistente
+		END
+	IF EXISTS (SELECT 1 FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1 AND IDtipo = 2 AND Sede =1)
+		BEGIN
+		 SET @Exito = 4; --Entra Asistente de Cartago
+		END
+	
+	IF EXISTS (SELECT 1 FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1 AND IDtipo = 3)
+		BEGIN
+		 SET @Exito = 5; --Entra Estudiante (OPCION INVALIDA POR EL MOMENTO)
+		END
+	SELECT * FROM Persona WHERE Correo = @Correo AND Contra = @Contra
   END
   ELSE
   BEGIN
     -- Credenciales inválidas, establecer el estado de inicio de sesión diferente de 0 (error)
-    SET @Exito = 1;
+    SET @Exito = 5;
   END
+  
 END
+
+--DROP PROCEDURE LoginUsuario
