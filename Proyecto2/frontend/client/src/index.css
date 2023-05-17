@@ -35,7 +35,7 @@ footer{
 
 .nav--title {
   color: #DEEBF8;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .nav--icon {
@@ -45,11 +45,12 @@ footer{
 
 
 
-.van-list-container {
-  padding-inline: 23px
+.card-list-container {
+  padding-inline: 23px;
+
 }
 
-.van-list {
+.card-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
@@ -57,70 +58,24 @@ footer{
   margin-top: 57px;
 }
 
-.van-tile a {
+.card-tile a {
   color: #161616;
-  text-decoration: none;    
+  text-decoration: none;
+  font-weight: 700;
+  font-size: medium;    
 }
 
-.van-tile img {
+.card-tile img {
   max-width: 100%;
   border-radius: 5px;
 }
+.card-info{
+  background-color: beige;
+  height: 90px;
+  font-weight: 300px;
+}
 
-.van-list-container button {
+.card-list-container button {
   margin-right: 20px;
   cursor: pointer;
-}
-
-.van-type {
-  height: 34px;
-  padding: 6px 26px;
-  font-style: normal;
-  font-weight: 500;
-  border: none;
-  border-radius: 5px;
-  background-color: #FFEAD0;
-  color: #4D4D4D;
-  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.van-type:hover {
-  color: #FFEAD0;
-}
-
-.van-type:focus {
-  outline: none;
-}
-
-.van-type.selected {
-  color: #FFEAD0;
-}
-
-.van-type.simple:hover, .van-type.simple.selected {
-  background-color: #E17654;
-}
-
-.van-type.rugged:hover, .van-type.rugged.selected {
-  background-color: #115E59;
-}
-
-.van-type.luxury:hover, .van-type.luxury.selected {
-  background-color: #161616;
-}
-
-.van-type.clear-filters {
-  margin-left: -20px;
-  height: 34px;
-  padding: 6px 26px;
-  font-style: normal;
-  font-weight: 500;
-  border: none;
-  border-radius: 5px;
-  text-decoration: underline;
-  background-color: transparent;
-  color: #4D4D4D;
-}
-
-i[class*='van-type-'] {
-  padding: 7px 14px;
 }
