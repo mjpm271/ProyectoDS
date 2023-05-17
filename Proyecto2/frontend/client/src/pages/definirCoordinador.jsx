@@ -5,11 +5,11 @@ import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function Create() {
-    const [IDperson, setCarnet] = useState();
+    const [Carnet, setCarnet] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
-        axios.post('http://localhost:4000/asistente/AgregarProfesor', {
+        axios.put('http://localhost:4000/asistente/DefinirCoordinador', {
             Carnet:Carnet,
           }
           , {
@@ -34,16 +34,6 @@ export default function Create() {
         //axios.post(`http://localhost:4000/ejemplo/asistente/AgregarProfesor`,{ID,NombreCompleto,Correo,Contra,Habilitado,Coordinador,Sede,IDtipo})
         console.log(typeof Carnet);
     }
-
-    const convert2base64 = e =>{
-        const file = e.target.files[0]
-        const reader = new FileReader();
-        reader.onloadend =() =>{
-            setFoto(reader.result.toString())
-        }
-        reader.readAsDataURL(file);
-    }
-
     return (
         <div>
             <Navbar />

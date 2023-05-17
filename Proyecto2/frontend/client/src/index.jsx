@@ -8,6 +8,7 @@ import Login from './pages/login2'
 import Plantilla from './pages/plantilla';
 import Read from './pages/read';
 import Cards from './pages/cards';
+import DefinirCoordinador from './pages/definirCoordinador';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
@@ -23,6 +24,7 @@ function App() {
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
         <Route path="/plantilla" element={<Plantilla />}/>
+        <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
       </Routes>
     </BrowserRouter>
   )
