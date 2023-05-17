@@ -2,7 +2,6 @@ CREATE PROCEDURE CreateActividad
 (
     @Semana int,
     @Fecha datetime,
-
     @Cantidaddiasprevios int,
     @Cantidaddiasrequeridos int,
     @FechaPublicacion date,

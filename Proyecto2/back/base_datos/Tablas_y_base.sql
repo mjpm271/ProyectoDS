@@ -20,7 +20,8 @@ create table tipoPersona(
 )
 
 create table persona(
-	IDpersona int not null,
+	IDpersona int not null IDENTITY(1,1),
+	Carnet varchar(64) not null, 
 	NombreCompleto varchar(100),
 	Correo varchar(100),
 	Contra varchar(64),

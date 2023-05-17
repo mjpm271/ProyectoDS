@@ -1,9 +1,9 @@
 CREATE PROCEDURE ChangePassword
-    @IDpersona int,
+    @Carnet int,
     @NewPassword varchar(64)
 AS
 BEGIN
     UPDATE persona
     SET Contra = @NewPassword
-    WHERE IDpersona = @IDpersona
+    WHERE Carnet= @Carnet
 END

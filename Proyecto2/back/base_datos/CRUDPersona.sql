@@ -1,6 +1,6 @@
 
 CREATE PROCEDURE CreatePersona
-	@ID int,
+	@ID varchar(64),
     @NombreCompleto varchar(100),
     @Correo varchar(100),
     @Contra varchar(64),
@@ -13,7 +13,7 @@ CREATE PROCEDURE CreatePersona
     @IDtipo int
 AS
 BEGIN
-    INSERT INTO persona (IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina,Sede, IDtipo)
+    INSERT INTO persona (Carnet, NombreCompleto, Correo, Contra, Foto, Habilitado, Coordinador, Telefono, TelefonoOficina, Sede, IDtipo)
     VALUES (@ID, @NombreCompleto, @Correo, @Contra,@Foto, @Habilitado, @Coordinador, @Telefono,@TelefonoOficina ,@Sede, @IDtipo)
 END;
 GO
@@ -21,18 +21,18 @@ GO
 CREATE PROCEDURE ReadPersonas
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto, Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo 
+    SELECT Carnet, NombreCompleto, Correo, Contra,Foto, Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo 
 	FROM persona;
 END;
 GO
 
 CREATE PROCEDURE ReadPersonaPorID
-    @IDpersona INT
+    @Carnet varchar(64)
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo  
+    SELECT Carnet, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo  
 	FROM persona 
-	WHERE IDpersona = @IDpersona;
+	WHERE Carnet = @Carnet;
 END;
 GO
 
@@ -40,7 +40,7 @@ CREATE PROCEDURE ReadPersonaPorIDTipo
     @IDtipo INT
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo
+    SELECT Carnet, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo
 	FROM persona 
 	WHERE IDtipo = @IDtipo;
 END;
@@ -49,7 +49,7 @@ GO
 CREATE PROCEDURE ReadEstudianteporAlf 
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
+    SELECT Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
 	FROM persona 
 	WHERE IDtipo = 3
 	ORDER BY NombreCompleto ASC 
@@ -60,7 +60,7 @@ CREATE PROCEDURE ReadEstudianteporSede
 	@Sede INT
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
+    SELECT Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
 	FROM persona 
 	WHERE Sede = @Sede
 END;
@@ -69,7 +69,7 @@ GO
 CREATE PROCEDURE ReadEstudianteporCarnet     
 AS
 BEGIN
-    SELECT IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
+    SELECT Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
 	FROM persona 
 	WHERE IDtipo = 3
 	ORDER BY IDpersona ASC 
@@ -77,7 +77,7 @@ END;
 GO
 
 CREATE PROCEDURE UpdatePersona
-    @IDpersona int,
+    @Carnet varchar(64),
     @NombreCompleto varchar(100),
     @Correo varchar(100),
     @Contra varchar(64),
@@ -104,7 +104,7 @@ BEGIN
 		TelefonoOficina=@TelefonoOficina,
         Sede = @Sede,
         IDtipo = @IDtipo
-    WHERE IDpersona = @IDpersona;
+    WHERE Carnet = @Carnet;
     IF @@ROWCOUNT > 0
         SET @ActualizacionExitosa = 1; -- Éxito
     ELSE
@@ -117,11 +117,11 @@ END;
 GO
 
 CREATE PROCEDURE InhabilitarPersona
-    @IDpersona INT
+    @Carnet INT
 AS
 BEGIN
 	UPDATE persona
     SET Habilitado = 0
-	WHERE IDpersona = @IDpersona;
+	WHERE Carnet = @Carnet;
 END;
 GO
