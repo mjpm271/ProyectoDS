@@ -1,5 +1,5 @@
 CREATE PROCEDURE DefinirCoordinador
-    @Carnet int
+    @Carnet varchar(64)
 AS
 BEGIN
     UPDATE persona
