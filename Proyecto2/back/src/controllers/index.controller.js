@@ -22,7 +22,7 @@ export const login = async (req, res) => {
         // ...
 
         // Enviar una respuesta al cliente
-        res.status(200).json({ output: outputValue });
+        res.status(200).json(outputValue.Exito);
         console.log(outputValue);
     } catch (err) {
         res.sendStatus(500, err.message)

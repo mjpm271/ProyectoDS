@@ -28,9 +28,9 @@ const Login = () => {
       
         // El procedimiento almacenado devuelve 0 para un inicio de sesión exitoso
         const result = await response.json();
-        const Exito = result.outputValue; // Leer el valor del output recibido
-        console.log(Exito)
-        if (Exito === 0) {
+        const Status = parseInt(result); // Leer el valor del output recibido
+        console.log(typeof Status)
+        if (Status === 0) {
             console.log("EXITOOOOO")
           // Inicio de sesión exitoso
           setLoginError(false);
