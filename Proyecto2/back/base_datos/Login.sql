@@ -99,3 +99,22 @@ BEGIN
 
 END;
 GO
+
+CREATE PROCEDURE Login5
+  @Correo VARCHAR(50),
+  @Contra VARCHAR(50),
+  @Exito INT OUTPUT
+AS
+BEGIN
+  -- Verificar las credenciales de inicio de sesión
+  IF EXISTS (SELECT * FROM Persona WHERE Correo = @Correo AND Contra = @Contra AND Habilitado = 1)
+  BEGIN
+    -- Credenciales válidas, establecer el estado de inicio de sesión como 0 (éxito)
+    SET @Exito = 0;
+  END
+  ELSE
+  BEGIN
+    -- Credenciales inválidas, establecer el estado de inicio de sesión diferente de 0 (error)
+    SET @Exito = 1;
+  END
+END
