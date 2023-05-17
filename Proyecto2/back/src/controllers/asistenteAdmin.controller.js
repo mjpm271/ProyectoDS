@@ -304,7 +304,7 @@ export const InhabilitarProfesor = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDpersona} = req.body
+    const { Carnet} = req.body
     console.log('valores:', req.body)
     if (!IDprofesor) {
         console.log('here')
@@ -314,8 +314,8 @@ export const InhabilitarProfesor = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('IDpersona', sql.Int, IDpersona)
-            .execute('DeletePersona')
+            .input('Carnet', sql.Int, Carnet)
+            .execute('InhabilitarPersona')
         console.log(result)
         res.json(result.recordset)
         

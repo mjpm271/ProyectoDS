@@ -90,6 +90,7 @@ export const ModificarInformacionPlan = async (req, res) => {
             .input('Nombre', sql.VarChar(32), Nombre)
             .input('Abreviacion', sql.VarChar(32), Abreviacion)
             .input('IDcoordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
+            .output('Exito',sql.Bit)
             .execute('UpdatePlanTrabajo')
         console.log(result)
         res.json(result.recordset)
@@ -194,6 +195,30 @@ export const VerActividad = async (req, res) => {
     }
 
 }    
+
+export const VerActividadxPlan = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDplanTrabajo} = req.body
+    console.log('valores:', req.body)
+    if (!IDplanTrabajo) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
+            .execute('ReadActividadesporPlan')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+}  
 
 //Update Actividad
 export const ModificarActividad = async (req, res) => {

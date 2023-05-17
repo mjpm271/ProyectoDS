@@ -1,19 +1,20 @@
 import { Router } from "express"
-import { CrearPlanTrabajo,VerPlanTrabajo,VerPlanesTrabajo,ModificarInformacionPlan,EliminarPlanTrabajo,CrearActividad,VerActividad,ModificarActividad,EliminarActividad,VerProfesorPerfil,ModificarProfesorPerfil, Comentar } from "../controllers/profesorCoordinador.controller"
+import { CrearPlanTrabajo,VerPlanTrabajo,VerPlanesTrabajo,ModificarInformacionPlan,EliminarPlanTrabajo,CrearActividad,VerActividad,ModificarActividad,EliminarActividad,VerProfesorPerfil,ModificarProfesorPerfil, Comentar, VerActividadxPlan } from "../controllers/profesorCoordinador.controller"
 
 const router = Router()
 
-router.post('/coordinador/CrearPlan',CrearPlanTrabajo)
-router.get('/coordinador/VerPlanes',VerPlanesTrabajo)
-router.post('/coordinador/ModificarPlan',ModificarInformacionPlan)
-router.delete('/coordinador/EliminarPlan',EliminarPlanTrabajo)
-router.post('/coordinador/CrearActividad',CrearActividad)
-router.post('/coordinador/VerActividad',VerActividad)
-router.post('/coordinador/ModificarActividad',ModificarActividad)
-router.delete('/coordinador/EliminarActividad',EliminarActividad)
-router.post('/coordinador/Comentar',Comentar)
-router.post('/coordinador/VerPerfil',VerProfesorPerfil)
-router.post('/coordinador/ModificarPerfil',ModificarProfesorPerfil)
+router.post('/CrearPlan',CrearPlanTrabajo)
+router.get('/VerPlanes',VerPlanesTrabajo)
+router.post('/ModificarPlan',ModificarInformacionPlan)
+router.delete('/EliminarPlan',EliminarPlanTrabajo)
+router.post('/CrearActividad',CrearActividad)
+router.post('/VerActividad',VerActividad)
+router.post('/ActividadxPlan',VerActividadxPlan)
+router.post('/ModificarActividad',ModificarActividad)
+router.delete('/EliminarActividad',EliminarActividad)
+router.post('/Comentar',Comentar)
+router.post('/VerPerfil',VerProfesorPerfil)
+router.post('/ModificarPerfil',ModificarProfesorPerfil)
 
 
 export default router
