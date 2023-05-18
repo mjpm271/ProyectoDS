@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Link, useParams } from 'react-router-dom';
-
+import axios from 'axios';
 export default function ActivityList(){
   const { planId } = useParams();
-  const [activities] = useState([
-    { id: 1, name: 'Actividad 1', planId: 1 },
-    { id: 2, name: 'Actividad 2', planId: 1 },
-    { id: 3, name: 'Actividad 3', planId: 2 },
-    { id: 4, name: 'Actividad 4', planId: 2 },
-  ]);
+  const [activities, setactivities] = useState([])
+    useEffect(() => {
+      axios.post(`http://localhost:4000/profesor/VerActividadxPlan`, {
+        IDplanTrabajo:IDplanTrabajo
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+          .then((response) => {
+              console.log(response.data)
+              setactivities(response.data);
+          })
+  }, []);
 
-  const filteredActivities = activities.filter((activity) => activity.planId === Number(planId));
+  const filteredActivities = activities.filter((activity) => activity.IDplanTrabap === Number(planId));
 
   return (
     <div>
-      <h1>Actividades del Plan {planId}</h1>
+      <h1>Actividades del Plan {IDplanTrabajo}</h1>
       <ul>
-        {filteredActivities.map((activity) => (
-          <li key={activity.id}>
-            <Link to={`/planList/plan/${planId}/activity/${activity.id}`}>{activity.name}</Link>
+        {activities.map((activity) => (
+          <li key={activity.IDactividad}>
+            <Link to={`/planList/plan/${IDplanTrabajo}/activity/${activity.IDactividad}`}>{activity.Nombre}</Link>
           </li>
         ))}
       </ul>
