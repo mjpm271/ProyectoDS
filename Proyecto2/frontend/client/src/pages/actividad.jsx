@@ -1,59 +1,79 @@
-import React, { useState , useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
-export default function ActivityList(){
-  const { planId } = useParams();
-  const [activities, setactivities] = useState([])
-    useEffect(() => {
-      axios.post(`http://localhost:4000/profesor/VerActividadxPlan`, {
-        IDplanTrabajo:planId
-      }
-      , {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      )
-          .then((response) => {
-              console.log(response.data)
-              setactivities(response.data);
-          })
-  }, []);
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Grid, Segment } from 'semantic-ui-react';
 
-  const filteredActivities = activities.filter((activity) => activity.IDplanTrabap === Number(planId));
+export default function Actividad(){
+  const { planId, activityId } = useParams();
+  const [activities] = useState([
+    { id: 1, name: 'Actividad 1', planId: 1 },
+    { id: 2, name: 'Actividad 2', planId: 1 },
+    { id: 3, name: 'Actividad 3', planId: 2 },
+    { id: 4, name: 'Actividad 4', planId: 2 },
+  ]);
+
+  const [comments] = useState([
+    { id: 1, text: 'Comentario 1', activityId: 1 },
+    { id: 2, text: 'Comentario 2', activityId: 1 },
+    { id: 3, text: 'Comentario 3', activityId: 2 },
+    { id: 4, text: 'Comentario 4', activityId: 2 },
+  ]);
+
+  const activity = activities.find((activity) => activity.id === Number(activityId));
+  const filteredComments = comments.filter((comment) => comment.activityId === Number(activityId));
 
   return (
 
-    <div>
-    <section>
-      <div className="container">
-        <h1>Actividades del Plan {planId}</h1>
-        <div className="cards">
-          {activities.map((activity) => (
-            <div key={activity.IDplanTrabajo} className="card">
-              <Link to={`/planList/plan/${planId}/activity/${activity.IDactividad}`}>{activity.IDactividad}</Link>
-              
-              <h3> Semana:</h3>
-              <p>{activity.Semana}</p>
-              <h3>Fecha: </h3>
-              <h4>{activity.Fecha}</h4>
-              
-              {/* <button className="btn" onClick={navegar(plan.IDplanTrabajo)}>Explore</button> */}
-              
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </div> 
+    <Grid columns='equal'>
+    <Grid.Row>
+        <Grid.Column>
+          <Segment>Numero Actividad</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Semana</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Fecha Publicacion</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Coordinador</Segment>
+        </Grid.Column>
 
+      </Grid.Row>
+      
+    <Grid columns={3} divided>
+      <Grid.Row stretched>
+        <Grid.Column>
+          <Segment>
+          <h4>Seccion 1</h4>
+          <p>Fecha Actividad: </p>
+          <p>Dias Previos: </p>
+          <p>Dias requeridos: </p>
+          <p>Tipo Actividad: </p>
+          <p> Modalidad: </p>
+          <p>Lugar o enlace: </p>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Responsables</Segment>
+          <Segment>Afiche</Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Historial de Comentarios</Segment>
+          <Segment>Comentar</Segment>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+    </Grid>
+    // ESTO ES PARA LOS COMENTARIOS
     // <div>
-    //   <h1>Actividades del Plan {planId}</h1>
+    //   <h1>Actividad: {activity.name}</h1>
+    //   <h2>Comentarios:</h2>
     //   <ul>
-    //     {activities.map((activity) => (
-    //       <li key={activity.IDactividad}>
-    //         <Link to={`/planList/plan/${planId}/activity/${activity.IDactividad}`}>{activity.IDactividad}</Link>
-    //       </li>
+    //     {filteredComments.map((comment) => (
+    //       <li key={comment.id}>{comment.text}</li>
     //     ))}
     //   </ul>
     // </div>
