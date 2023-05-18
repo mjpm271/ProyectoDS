@@ -23,6 +23,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login/>}/>
         <Route path="/ReadPersona" element={<ReadPersona />}/>
+        <Route path="/Cards" element={<Cards />}/>
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
         <Route path="/plantilla" element={<Plantilla />}/>
