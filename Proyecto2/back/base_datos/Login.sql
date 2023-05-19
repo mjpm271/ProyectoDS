@@ -78,7 +78,7 @@ BEGIN
   ELSE
   BEGIN
     -- Credenciales inválidas, establecer el estado de inicio de sesión diferente de 0 (error)
-    SET @Exito = 5;
+    SET @Exito = 6;
   END
   
 END

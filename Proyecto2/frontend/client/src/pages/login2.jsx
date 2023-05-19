@@ -28,16 +28,36 @@ const Login = () => {
       
         // El procedimiento almacenado devuelve 0 para un inicio de sesión exitoso
         const result = await response.json();
-        const Status = parseInt(result); // Leer el valor del output recibido
-        console.log(typeof Status)
-        if (Status === 0) {
+        const Status = parseInt(result.output.Exito); // Leer el valor del output recibido
+        const Persona = JSON.stringify(result.recordset[0])
+        console.log(Persona)
+        if (Status === 1) {
             console.log("EXITOOOOO")
           // Inicio de sesión exitoso
           setLoginError(false);
           // Redirigir a la página deseada después del inicio de sesión exitoso
           navigate('/read'); // Ruta a la página de dashboard o la que desees
           
-        } else {
+        } else if (Status === 2)  {
+          console.log("EXITOOOOO")
+          // Inicio de sesión exitoso
+          setLoginError(false);
+          // Redirigir a la página deseada después del inicio de sesión exitoso
+
+          navigate('/IncioProfesor',{ state: Persona });  // Ruta a la página de dashboard o la que desees
+        }else if (Status === 3)  {
+          console.log("EXITOOOOO")
+          // Inicio de sesión exitoso
+          setLoginError(false);
+          // Redirigir a la página deseada después del inicio de sesión exitoso
+          navigate('/:IDpersona/IncioProfesor'); // Ruta a la página de dashboard o la que desees
+        }else if (Status === 4)  {
+          console.log("EXITOOOOO")
+          // Inicio de sesión exitoso
+          setLoginError(false);
+          // Redirigir a la página deseada después del inicio de sesión exitoso
+          navigate('/read'); // Ruta a la página de dashboard o la que desees
+        }else {
           // Error de inicio de sesión, el procedimiento almacenado devolvió un valor diferente de 0
           setLoginError(true);
         }

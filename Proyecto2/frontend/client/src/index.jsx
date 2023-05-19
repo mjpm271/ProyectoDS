@@ -15,6 +15,7 @@ import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
 import ConsultarMiembros  from './pages/consultarMiembros'
+import InicioProfesor from './pages/inicioProfesor';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -24,6 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>}/>
+
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/Cards" element={<Cards />}/>
         <Route path="/create" element={<Create />}/>
@@ -31,7 +33,8 @@ function App() {
         <Route path="/plantilla" element={<Plantilla />}/>
         <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
 
-        //Profesor//
+        {/*PROFESOR */}
+        <Route path="/IncioProfesor" element={<InicioProfesor />} />
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
