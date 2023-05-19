@@ -4,13 +4,13 @@ import { Button,  Form , Table} from 'semantic-ui-react'
 
 export default function ReadPersona() {
 
-    const [IDpersona, setIDpersona] = useState();
+    const [Carnet, setCarnet] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
       axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
-          IDpersona:IDpersona
+          Carnet:Carnet
         }
         , {
           headers: {
@@ -33,8 +33,8 @@ export default function ReadPersona() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>IDpersona </label>
-                    <input placeholder='IDpersona' onChange={(e) => setIDpersona(parseInt( e.target.value))}/>
+                    <label>Carnet </label>
+                    <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
                 </Form.Field>
 
                 <Button onClick={buscar} type='submit'>Submit</Button>
@@ -44,7 +44,7 @@ export default function ReadPersona() {
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>IDpersona </Table.HeaderCell>
+                        <Table.HeaderCell>Carnet </Table.HeaderCell>
                         <Table.HeaderCell>Nomre Completo </Table.HeaderCell>
                         <Table.HeaderCell>Sede </Table.HeaderCell>
                     </Table.Row>
@@ -55,7 +55,7 @@ export default function ReadPersona() {
                         return (
                             <Table.Row>
 
-                                <Table.Cell>{item.IDpersona}</Table.Cell>
+                                <Table.Cell>{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
                                 
