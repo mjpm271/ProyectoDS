@@ -11,11 +11,13 @@ import Cards from './pages/cards';
 import DefinirCoordinador from './pages/definirCoordinador';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
-import 'semantic-ui-css/semantic.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
+import ConsultarMiembros  from './pages/consultarMiembros'
+import 'semantic-ui-css/semantic.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -28,9 +30,13 @@ function App() {
         <Route path="/read" element={<Read />}/>
         <Route path="/plantilla" element={<Plantilla />}/>
         <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
+
+        //Profesor//
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
+
+        <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
       </Routes>
     </BrowserRouter>
   )
