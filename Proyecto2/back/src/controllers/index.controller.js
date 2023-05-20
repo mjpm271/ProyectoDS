@@ -15,14 +15,16 @@ export const login = async (req, res) => {
             .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)
             .output('Exito',sql.Int)
-            .execute('Login5')
+            .execute('LoginUsuario')
         const outputValue = result.output;
 
         // Hacer algo con el resultado y el output
         // ...
 
         // Enviar una respuesta al cliente
-        res.status(200).json(outputValue.Exito);
+        console.log(result.recordset)
+        res.json(result)
+        // res.status(200).json(outputValue.Exito);
         console.log(outputValue);
     } catch (err) {
         res.sendStatus(500, err.message)

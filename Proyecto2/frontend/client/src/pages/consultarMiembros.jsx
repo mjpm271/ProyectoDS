@@ -1,16 +1,16 @@
 import axios from 'axios';
-import React, { useState , useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
 
-export default function ReadPersona() {
+export default function ConsultarMiembros() {
 
-    const [Carnet, setCarnet] = useState();
+    const [IDequipoGuia, setIDequipoGuia] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
-          Carnet:Carnet
+      axios.post(`http://localhost:4000/asistente/ConsultarMiembrosEquipo`, {
+          IDequipoGuia:IDequipoGuia
         }
         , {
           headers: {
@@ -33,8 +33,8 @@ export default function ReadPersona() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>Carnet </label>
-                    <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
+                    <label>IDequipoGuia </label>
+                    <input placeholder='IDequipoGuia' onChange={(e) => setIDequipoGuia(parseInt(e.target.value))}/>
                 </Form.Field>
 
                 <Button onClick={buscar} type='submit'>Submit</Button>

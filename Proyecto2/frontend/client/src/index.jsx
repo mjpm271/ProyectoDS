@@ -11,18 +11,25 @@ import Cards from './pages/cards';
 import DefinirCoordinador from './pages/definirCoordinador';
 import ReadPersona from './pages/readPersonaID';
 import reportWebVitals from './reportWebVitals';
-import 'semantic-ui-css/semantic.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
+<<<<<<< HEAD
 import CrearEquipoGuia from './pages/crearEquipoGuia'
+=======
+import ConsultarMiembros  from './pages/consultarMiembros'
+import InicioProfesor from './pages/inicioProfesor';
+import 'semantic-ui-css/semantic.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+>>>>>>> f780d5dc2fb1563e60b7569799779878fa73d00d
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>}/>
+
         <Route path="/ReadPersona" element={<ReadPersona />}/>
         <Route path="/Cards" element={<Cards />}/>
         <Route path="/create" element={<Create />}/>
@@ -30,9 +37,14 @@ function App() {
         <Route path="/plantilla" element={<Plantilla />}/>
         <Route path="/crearEquipoGuia" element={<CrearEquipoGuia />}/>
         <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
+
+        {/*PROFESOR */}
+        <Route path="/IncioProfesor" element={<InicioProfesor />} />
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
+
+        <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
       </Routes>
     </BrowserRouter>
   )
