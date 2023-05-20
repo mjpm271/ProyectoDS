@@ -8,7 +8,6 @@ END;
 GO
 
 CREATE PROCEDURE ReadEquipoGuia
-    @IDequipoGuia INT
 AS
 BEGIN
     SELECT IDequipoGuia, Nombre 
@@ -16,13 +15,13 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE ReadEquipoGuiaPorID
-    @IDequipoGuia INT
+CREATE PROCEDURE ReadEquipoGuiaPorID -- Por nombre no tiene sentido ID pero cambiar el nombre del procedure afecta mucho
+    @Nombre varchar(32)
 AS
 BEGIN
     SELECT IDequipoGuia, Nombre 
 	FROM equipoGuia 
-	WHERE IDequipoGuia = @IDequipoGuia;
+	WHERE Nombre = @Nombre;
 END;
 GO
 
@@ -55,10 +54,10 @@ GO
 
 
 CREATE PROCEDURE DeleteEquipoGuia
-    @IDequipoGuia INT
+    @Nombre varchar(32)
 AS
 BEGIN
     DELETE FROM equipoGuia 
-	WHERE IDequipoGuia = @IDequipoGuia;
+	WHERE Nombre = @Nombre;
 END;
 GO

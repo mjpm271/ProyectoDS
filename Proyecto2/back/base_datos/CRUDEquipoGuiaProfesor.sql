@@ -1,5 +1,5 @@
 CREATE PROCEDURE CreateEquipoGuiaProfesor
-    @Nombre varchar(64),
+    @Nombre varchar(32),
     @Carnet varchar(64)
 AS
 BEGIN
@@ -15,15 +15,17 @@ GO
 CREATE PROCEDURE ReadEquipoGuiaProfesor
 AS
 BEGIN
-    SELECT IDequipoGuia, IDprofesor
+    SELECT *
 	FROM EquipoGuia_Profesor 
 END;
 GO
 
-CREATE PROCEDURE ReadEquipoGuiaProfesorPorID
-    @IDequipoGuia INT
+CREATE PROCEDURE ReadEquipoGuiaProfesorPorID -- ID del equipo no del profesor
+    @Nombre VARCHAR(32)
 AS
 BEGIN
+	DECLARE @IDequipoGuia AS INT
+	SET @IDequipoGuia = (select top 1 IDequipoGuia from equipoGuia where Nombre = @Nombre)
     SELECT p.*  
 	FROM EquipoGuia_Profesor as eq, persona as p
 	WHERE IDequipoGuia = @IDequipoGuia and eq.IDprofesor = p.IDpersona
@@ -31,7 +33,7 @@ END;
 GO
 
 CREATE PROCEDURE HabilitarProfesor
-    @IDprofesor INT,
+    @Carnet varchar(32),
     @Exito BIT OUTPUT
 AS
 BEGIN
@@ -39,7 +41,10 @@ BEGIN
 
     DECLARE @ActualizacionExitosa BIT;
 
-    UPDATE EquipoGuia_Profesor
+	declare @IDprofesor as int
+	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
+    
+	UPDATE EquipoGuia_Profesor
     SET Habilitado = 1
     WHERE IDprofesor = @IDprofesor;
 
@@ -55,9 +60,11 @@ END;
 GO
 
 CREATE PROCEDURE inhabilitarProfesor
-    @IDprofesor INT
+    @Carnet varchar(32)
 AS
 BEGIN
+	declare @IDprofesor as int
+	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
     UPDATE EquipoGuia_Profesor
     SET Habilitado = 0
     WHERE IDprofesor = @IDprofesor;
