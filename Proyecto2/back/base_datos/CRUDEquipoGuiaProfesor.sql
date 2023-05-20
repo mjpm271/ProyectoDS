@@ -1,16 +1,18 @@
 CREATE PROCEDURE CreateEquipoGuiaProfesor
-    @IDequipoGuia INT,
-    @IDprofesor INT
+    @Nombre varchar(64),
+    @Carnet varchar(64)
 AS
 BEGIN
+	declare @IDprofesor as int 
+	declare @IDequipoGuia as int
+	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
+	set @IDequipoGuia = (select top 1 IDequipoGuia from equipoGuia where Nombre = @Nombre);
     INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor, Habilitado)
     VALUES (@IDequipoGuia, @IDprofesor, 1);
 END;
 GO 
 
 CREATE PROCEDURE ReadEquipoGuiaProfesor
-    @IDequipoGuia INT,
-    @IDprofesor INT
 AS
 BEGIN
     SELECT IDequipoGuia, IDprofesor

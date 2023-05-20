@@ -1,7 +1,7 @@
 -- CREATE
 CREATE PROCEDURE CreateComentario
 (
-    @Carnet varchar(64),
+    @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
     @Hora time,
@@ -10,8 +10,8 @@ CREATE PROCEDURE CreateComentario
 )
 AS
 BEGIN
-    INSERT INTO comentario (Carnet, IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido)
-    VALUES (@Carnet, @IDactividad, @IDcomentarioPadre, @Hora, @Fecha, @Contenido)
+    INSERT INTO comentario (IDpersona, IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido)
+    VALUES (@IDpersona, @IDactividad, @IDcomentarioPadre, @Hora, @Fecha, @Contenido)
 END;
 GO
 
@@ -64,7 +64,7 @@ GO
 CREATE PROCEDURE UpdateComentario1
 (
     @IDcomentario int,
-    @Carnet int,
+    @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
     @Hora time,
@@ -79,7 +79,7 @@ BEGIN
     DECLARE @ActualizacionExitosa bit;
 
     UPDATE comentario 
-    SET Carnet = @Carnet,
+    SET IDpersona = @IDpersona,
         IDactividad = @IDactividad,
         IDcomentarioPadre = @IDcomentarioPadre,
         Hora = @Hora,

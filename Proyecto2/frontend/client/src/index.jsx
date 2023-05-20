@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
+import CrearEquipoGuia from './pages/crearEquipoGuia'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
         <Route path="/plantilla" element={<Plantilla />}/>
+        <Route path="/crearEquipoGuia" element={<CrearEquipoGuia />}/>
         <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />

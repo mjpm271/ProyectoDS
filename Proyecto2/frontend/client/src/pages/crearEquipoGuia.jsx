@@ -9,7 +9,7 @@ export default function CrearEquipoGuia() {
     const postData = () => {
         
         axios.post('http://localhost:4000/asistente/CrearEquipoGuia', {
-            Nombre:Nombre,
+            Nombre:Nombre
           }
           , {
             headers: {
