@@ -2,6 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import { useLocation , useParams} from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 export default function InicioProfesor() {
     const location = useLocation();
@@ -15,6 +16,7 @@ export default function InicioProfesor() {
     
     return(
         <div>
+        <Navbar/>   
         <section>
         <div className="container">
         

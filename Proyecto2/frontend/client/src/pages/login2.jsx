@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Message } from 'semantic-ui-react'
+import { Message } from 'semantic-ui-react';
 
 const Login = () => {
   const [Correo, setCorreo] = useState('');
   const [Contra, setContra] = useState('');
-  const [loginError, setLoginError] = useState(false);
 
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
-  const MessageExampleSuccess = () => (
-    <Message
-      success
-      header='Your user registration was successful'
-      content='You may now log-in with the username you have chosen'
-    />
-  )
+
   const handleCorreoChange = (event) => {
     setCorreo(event.target.value);
   };
@@ -44,18 +36,16 @@ const Login = () => {
         if (Status === 1) {
             console.log("EXITOOOOO")
           // Inicio de sesión exitoso
-          setLoginError(false);
-          setSuccess('Inicio de sesión exitoso');
+
           setError('');
           // Redirigir a la página deseada después del inicio de sesión exitoso
-          // navigate('/read'); // Ruta a la página de dashboard o la que desees
+          navigate('/read'); // Ruta a la página de dashboard o la que desees
           
         } else if (Status === 2)  {
           console.log("EXITOOOOO")
           // Inicio de sesión exitoso
-          setSuccess('Inicio de sesión exitoso');
+
           setError('');
-          setLoginError(false);
 
           // Redirigir a la página deseada después del inicio de sesión exitoso
 
@@ -63,44 +53,41 @@ const Login = () => {
         }else if (Status === 3)  {
           console.log("EXITOOOOO")
           // Inicio de sesión exitoso
-          setSuccess('Inicio de sesión exitoso');
+
           setError('');
-          setLoginError(false);
+
           // Redirigir a la página deseada después del inicio de sesión exitoso
           navigate('/:IDpersona/IncioProfesor'); // Ruta a la página de dashboard o la que desees
         }else if (Status === 4)  {
           console.log("EXITOOOOO")
           // Inicio de sesión exitoso
-          setSuccess('Inicio de sesión exitoso');
+
           setError('');
-          setLoginError(false);
+
           // Redirigir a la página deseada después del inicio de sesión exitoso
           navigate('/read'); // Ruta a la página de dashboard o la que desees
         }else if (Status === 5)  {
           console.log("EXITOOOOO")
           // Inicio de sesión exitoso
-          setSuccess('Inicio de sesión exitoso');
+
           setError('');
-          setLoginError(false);
+
           // Redirigir a la página deseada después del inicio de sesión exitoso
           navigate('/read'); // Ruta a la página de dashboard o la que deseeselse {
           // Error de inicio de sesión, el procedimiento almacenado devolvió un valor diferente de 0
-          setLoginError(true);
         }
     } catch (error) {
       console.error('Error:', error);
       setError('Credenciales incorrectas');
-      setSuccess('');
-      setLoginError(true);
     }
   };
 
   return (
     <div>
       <h1>Iniciar sesión</h1>
-      {/* {loginError && <p>Error en el inicio de sesión. Verifica tus credenciales.</p>} */}
+
       {error && <Message negative>{error}</Message>}
-      {success && <Message positive>{success}</Message>}
+
       <div>
         <label>Nombre de usuario:</label>
         <input type="text" value={Correo} onChange={handleCorreoChange} />
