@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React from 'react';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import { useLocation , useParams} from 'react-router-dom';
@@ -6,7 +6,9 @@ import { useLocation , useParams} from 'react-router-dom';
 export default function InicioProfesor() {
     const location = useLocation();
     const Persona = location.state;
-    const {info, setInfo} = useState();
+
+    
+    const info = JSON.parse(Persona)
 
     console.log(Persona)
     
@@ -16,11 +18,12 @@ export default function InicioProfesor() {
         <section>
         <div className="container">
         
-        <h1>Welcome!</h1>
+        <h1>Welcome!, {info.NombreCompleto}</h1>
         {/* {info.map((infor) => (
             <p>{infor.NombreCompleto}</p>
         ))} */}
         <p>{Persona}</p>
+        <p>{info.NombreCompleto}</p>
         
         
         

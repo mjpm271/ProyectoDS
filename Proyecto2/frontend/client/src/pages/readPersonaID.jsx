@@ -41,7 +41,7 @@ export default function ReadPersona() {
 
             </Form>
             <div> 
-            <Table singleLine>
+            <Table color={"blue"} singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Carnet </Table.HeaderCell>

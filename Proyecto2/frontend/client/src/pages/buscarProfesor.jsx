@@ -41,7 +41,7 @@ export default function BuscarProfesor() {
 
             </Form>
             <div> 
-            <Table singleLine>
+            <Table class="ui blue table" singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Carnet </Table.HeaderCell>

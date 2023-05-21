@@ -14,15 +14,12 @@ import reportWebVitals from './reportWebVitals';
 import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
-<<<<<<< HEAD
 import CrearEquipoGuia from './pages/crearEquipoGuia'
-=======
 import ConsultarMiembros  from './pages/consultarMiembros'
 import InicioProfesor from './pages/inicioProfesor';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
->>>>>>> f780d5dc2fb1563e60b7569799779878fa73d00d
 
 function App() {
   return (
@@ -35,6 +32,8 @@ function App() {
         <Route path="/create" element={<Create />}/>
         <Route path="/read" element={<Read />}/>
         <Route path="/plantilla" element={<Plantilla />}/>
+        
+        {/*Asistente Administrativo */}
         <Route path="/crearEquipoGuia" element={<CrearEquipoGuia />}/>
         <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
 
