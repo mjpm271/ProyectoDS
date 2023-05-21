@@ -7,116 +7,107 @@ import axios from 'axios';
 export default function Actividad(){
   const { planId, activityId } = useParams();
   const [actividad, setActividad] = useState([]);
-
-  const [IDmodalidad, setIDmodalidad] = useState([]);
+  const [actividadInfo, setActividadInfo] = useState({
+    IDmodalidad: null,
+    IDtipoActividad: null,
+    IDestado: null
+  });
+  // const [IDmodalidad, setIDmodalidad] = useState([]);
   const [Modalidad, setModalidad] = useState([]);
 
-  const [IDtipoActividad, setIDtipoActividad] = useState([]);
+  // const [IDtipoActividad, setIDtipoActividad] = useState([]);
   const [TipoActividad, setTipoActividad] = useState([]);
 
   const [Coordinador, setCoordinador] = useState([]);
 
 
-  const [IDestado, setIDestado] = useState([]);
+  // const [IDestado, setIDestado] = useState([]);
   const [Estado, setEstado] = useState([]);
 
   useEffect(() => {
-    axios.post(`http://localhost:4000/profesor/VerActividad`, {
-      IDactividad:activityId
-      }
-      , {
+    axios.post(
+      'http://localhost:4000/profesor/VerActividad',
+      { IDactividad: activityId },
+      {
         headers: {
           'Content-Type': 'application/json'
         }
       }
-      )
-          .then((response) => {
-              console.log(response.data)
-              setActividad(response.data)
+    ).then((response) => {
+      console.log(response.data);
+      setActividad(response.data);
 
-              actividad.map((informacion)=>(
-                setIDmodalidad(informacion.IDmodalidad),
-                setIDestado(informacion.IDtipoEstado),
-                setIDtipoActividad(informacion.IDtipoActividad)
-              ))
+      const informacion = actividad[0];
+      setActividadInfo({
+        IDmodalidad: informacion.IDmodalidad,
+        IDtipoActividad: informacion.IDtipoActividad,
+        IDestado: informacion.IDtipoEstado
+      });
 
-              console.log(IDestado)
-              
-
-          })
+      console.log(actividadInfo);
+    });
   }, []);
 
-const definiciones = () =>{
-  definirModalidad();
-  definirTipoActividad();
-  definirEstado();
-}
-  const definirModalidad = () => {
+  useEffect(() => {
+    definirModalidad();
+    definirTipoActividad();
+    definirEstado();
+  }, [actividadInfo]);
 
-    switch (IDmodalidad) {
+  const definirModalidad = () => {
+    switch (actividadInfo.IDmodalidad) {
       case 1:
-        setModalidad('PRESENCIAL')
+        setModalidad('PRESENCIAL');
         break;
-      case 2: 
-      setModalidad('VIRTUAL')
+      case 2:
+        setModalidad('VIRTUAL');
         break;
       default:
         console.log('default');
     }
- }
+  };
 
- const definirTipoActividad = () => {
-  //  ORIENTADORA;
-  //  MOTIVACIONAL;
-  //  APOYO_VIDA_ESTUDIANTIL;
-  //  ORDEN_TECNICO;
-  //  RECREACION;
-  console.log("Actividad", IDtipoActividad)
-  switch (IDtipoActividad) {
-    case 1:
-      setTipoActividad('ORIENTADORA')
-      break;
-    case 2: 
-    setTipoActividad('MOTIVACIONAL')
-      break;
-    case 3: 
-    setTipoActividad('APOYO_VIDA_ESTUDIANTIL')
-      break;
-    case 4: 
-    setTipoActividad('ORDEN_TECNICO')
-      break;  
-    case 5: 
-    setTipoActividad('RECREACION')
-      break;                 
-    default:
-      console.log('default');
-  }
-}
-
-const definirEstado = () => {
-  //  PLANEADA;
-  //  NOTIFICADA;
-  //  REALIZADA;
-  //  CANCELADA;
-  switch (IDestado) {
-    case 1:
-      setEstado('PLANEADA')
-      break;
-    case 2: 
-      setEstado('NOTIFICADA')
+  const definirTipoActividad = () => {
+    switch (actividadInfo.IDtipoActividad) {
+      case 1:
+        setTipoActividad('ORIENTADORA');
         break;
-    case 3: 
-      setEstado('REALIZADA')
-        break;   
-    case 4: 
-      setEstado('CANCELADA')
-        break;         
-    default:
-      console.log('default');
-  }
-}
+      case 2:
+        setTipoActividad('MOTIVACIONAL');
+        break;
+      case 3:
+        setTipoActividad('APOYO_VIDA_ESTUDIANTIL');
+        break;
+      case 4:
+        setTipoActividad('ORDEN_TECNICO');
+        break;
+      case 5:
+        setTipoActividad('RECREACION');
+        break;
+      default:
+        console.log('default');
+    }
+  };
 
- definiciones();
+  const definirEstado = () => {
+    switch (actividadInfo.IDestado) {
+      case 1:
+        setEstado('PLANEADA');
+        break;
+      case 2:
+        setEstado('NOTIFICADA');
+        break;
+      case 3:
+        setEstado('REALIZADA');
+        break;
+      case 4:
+        setEstado('CANCELADA');
+        break;
+      default:
+        console.log('default');
+    }
+  };
+
   return (
     
     <div>
