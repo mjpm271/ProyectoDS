@@ -4,7 +4,7 @@ import { Grid, Segment } from 'semantic-ui-react';
 import Navbar from '../components/Navbar'
 import axios from 'axios';
 
-export default function Actividad(){
+export default function Actividad() {
   const { planId, activityId } = useParams();
   const [actividad, setActividad] = useState([]);
   const [actividadInfo, setActividadInfo] = useState({
@@ -12,40 +12,34 @@ export default function Actividad(){
     IDtipoActividad: null,
     IDestado: null
   });
-  // const [IDmodalidad, setIDmodalidad] = useState([]);
   const [Modalidad, setModalidad] = useState([]);
-
-  // const [IDtipoActividad, setIDtipoActividad] = useState([]);
   const [TipoActividad, setTipoActividad] = useState([]);
-
-  const [Coordinador, setCoordinador] = useState([]);
-
-
-  // const [IDestado, setIDestado] = useState([]);
   const [Estado, setEstado] = useState([]);
 
   useEffect(() => {
-    axios.post(
-      'http://localhost:4000/profesor/VerActividad',
-      { IDactividad: activityId },
-      {
-        headers: {
-          'Content-Type': 'application/json'
+    axios
+      .post(
+        'http://localhost:4000/profesor/VerActividad',
+        { IDactividad: activityId },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    ).then((response) => {
-      console.log(response.data);
-      setActividad(response.data);
+      )
+      .then((response) => {
+        console.log(response.data);
+        setActividad(response.data);
 
-      const informacion = actividad[0];
-      setActividadInfo({
-        IDmodalidad: informacion.IDmodalidad,
-        IDtipoActividad: informacion.IDtipoActividad,
-        IDestado: informacion.IDtipoEstado
+        const informacion = response.data[0];
+        setActividadInfo({
+          IDmodalidad: informacion?.IDmodalidad,
+          IDtipoActividad: informacion?.IDtipoActividad,
+          IDestado: informacion?.IDtipoEstado
+        });
+
+        console.log(actividadInfo);
       });
-
-      console.log(actividadInfo);
-    });
   }, []);
 
   useEffect(() => {
@@ -55,7 +49,7 @@ export default function Actividad(){
   }, [actividadInfo]);
 
   const definirModalidad = () => {
-    switch (actividadInfo.IDmodalidad) {
+    switch (actividadInfo?.IDmodalidad) {
       case 1:
         setModalidad('PRESENCIAL');
         break;
@@ -68,7 +62,7 @@ export default function Actividad(){
   };
 
   const definirTipoActividad = () => {
-    switch (actividadInfo.IDtipoActividad) {
+    switch (actividadInfo?.IDtipoActividad) {
       case 1:
         setTipoActividad('ORIENTADORA');
         break;
@@ -90,7 +84,7 @@ export default function Actividad(){
   };
 
   const definirEstado = () => {
-    switch (actividadInfo.IDestado) {
+    switch (actividadInfo?.IDestado) {
       case 1:
         setEstado('PLANEADA');
         break;
@@ -107,6 +101,7 @@ export default function Actividad(){
         console.log('default');
     }
   };
+
 
   return (
     
