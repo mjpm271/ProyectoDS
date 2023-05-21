@@ -70,7 +70,7 @@ export const VerActividad = async (req, res) => {
     }
 
 }    
-
+// infromacion de actividad
 
 // Ver actividad x Plan de trabajo --> Falta agregar procedure
 
