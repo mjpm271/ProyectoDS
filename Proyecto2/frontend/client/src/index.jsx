@@ -42,7 +42,7 @@ function App() {
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
-
+        
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
       </Routes>
     </BrowserRouter>

@@ -8,17 +8,17 @@ export default function Actividad(){
   const { planId, activityId } = useParams();
   const [actividad, setActividad] = useState([]);
 
-  const [IDmodalidad, setIDmodalidad] = useState();
-  const [Modalidad, setModalidad] = useState();
+  const [IDmodalidad, setIDmodalidad] = useState([]);
+  const [Modalidad, setModalidad] = useState([]);
 
-  const [IDtipoActividad, setIDtipoActividad] = useState();
-  const [TipoActividad, setTipoActividad] = useState();
+  const [IDtipoActividad, setIDtipoActividad] = useState([]);
+  const [TipoActividad, setTipoActividad] = useState([]);
 
-  const [Coordinador, setCoordinador] = useState();
+  const [Coordinador, setCoordinador] = useState([]);
 
 
-  const [IDestado, setIDestado] = useState();
-  const [Estado, setEstado] = useState();
+  const [IDestado, setIDestado] = useState([]);
+  const [Estado, setEstado] = useState([]);
 
   useEffect(() => {
     axios.post(`http://localhost:4000/profesor/VerActividad`, {
@@ -39,17 +39,21 @@ export default function Actividad(){
                 setIDestado(informacion.IDtipoEstado),
                 setIDtipoActividad(informacion.IDtipoActividad)
               ))
-              console.log(IDmodalidad)
-              definirModalidad(IDmodalidad)
-              definirTipoActividad(IDtipoActividad)
-              definirEstado(IDestado)
+
+              console.log(IDestado)
+              
 
           })
   }, []);
 
-  const definirModalidad = (IDModalidad) => {
+const definiciones = () =>{
+  definirModalidad();
+  definirTipoActividad();
+  definirEstado();
+}
+  const definirModalidad = () => {
 
-    switch (IDModalidad) {
+    switch (IDmodalidad) {
       case 1:
         setModalidad('PRESENCIAL')
         break;
@@ -61,12 +65,13 @@ export default function Actividad(){
     }
  }
 
- const definirTipoActividad = (IDtipoActividad) => {
+ const definirTipoActividad = () => {
   //  ORIENTADORA;
   //  MOTIVACIONAL;
   //  APOYO_VIDA_ESTUDIANTIL;
   //  ORDEN_TECNICO;
   //  RECREACION;
+  console.log("Actividad", IDtipoActividad)
   switch (IDtipoActividad) {
     case 1:
       setTipoActividad('ORIENTADORA')
@@ -88,7 +93,7 @@ export default function Actividad(){
   }
 }
 
-const definirEstado = (IDestado) => {
+const definirEstado = () => {
   //  PLANEADA;
   //  NOTIFICADA;
   //  REALIZADA;
@@ -111,11 +116,11 @@ const definirEstado = (IDestado) => {
   }
 }
 
+ definiciones();
   return (
+    
     <div>
-      
       <Navbar/>
-      
       {actividad.map((info)=>(
 
       
