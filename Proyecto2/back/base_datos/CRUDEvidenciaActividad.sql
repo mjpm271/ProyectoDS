@@ -30,7 +30,6 @@ END;
 GO
 
 CREATE PROCEDURE UpdateEvidenciaActividad
-    @IDevidencia int,
     @Fotoparticipantes varchar(max),
     @linkGrabacion varchar(max),
     @IDactividad int
@@ -38,9 +37,8 @@ AS
 BEGIN
     UPDATE evidenciaActividad
     SET Fotoparticipantes = @Fotoparticipantes,
-        linkGrabacion = @linkGrabacion,
-        IDactividad = @IDactividad
-    WHERE IDevidencia = @IDevidencia
+        linkGrabacion = @linkGrabacion
+    where IDactividad = @IDactividad
 END
 GO
 

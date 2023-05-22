@@ -1,9 +1,18 @@
 CREATE PROCEDURE CreateEquipoGuia
-    @Nombre VARCHAR(32)
+    @Nombre VARCHAR(32),
+	@Result int output
 AS
 BEGIN
-    INSERT INTO equipoGuia (Nombre)
-    VALUES (@Nombre);
+	IF (select count(*) from equipoGuia where Nombre = @Nombre) >= 1
+	BEGIN
+		set @Result = 0
+		select @Result
+	END
+	ELSE 
+	BEGIN
+		INSERT INTO equipoGuia (Nombre)
+		VALUES (@Nombre);
+	END
 END;
 GO
 

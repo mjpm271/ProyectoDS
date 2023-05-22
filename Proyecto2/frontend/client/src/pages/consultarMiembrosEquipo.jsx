@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function ConsultarMiembrosEquipo() {
 
@@ -41,9 +41,10 @@ export default function ConsultarMiembrosEquipo() {
 
             </Form>
             <div> 
-            <Table class="ui blue table" singleLine>
+            <Table singleLine>
                 <Table.Header>
                     <Table.Row>
+                        <Table.HeaderCell>Foto </Table.HeaderCell>
                         <Table.HeaderCell>Carnet </Table.HeaderCell>
                         <Table.HeaderCell>Nombre Completo </Table.HeaderCell>
                         <Table.HeaderCell>Correo </Table.HeaderCell>
@@ -59,6 +60,11 @@ export default function ConsultarMiembrosEquipo() {
                     {items.map((item) => {
                         return (
                             <Table.Row>
+                                <Table.Cell>
+                                  <Header as='h4' image>
+                                    <Image src="https://i.postimg.cc/tCZ8XhHm/alba-photo-003.png" rounded size='huge' /> {/* Cambiar el link a item.foto (no sirve)*/}
+                                  </Header>
+                                </Table.Cell>
                                 <Table.Cell>{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Correo}</Table.Cell>

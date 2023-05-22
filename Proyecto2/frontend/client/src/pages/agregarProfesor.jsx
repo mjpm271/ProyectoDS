@@ -93,24 +93,17 @@ export default function AgregarProfesor() {
                     <input placeholder='Telefono' onChange={(e) => setTelefono(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Telefono</label>
-                    <input placeholder='TelefonoOficina' onChange={(e) => setTelefono(e.target.value)}/>
+                    <label>TelefonoOficina</label>
+                    <input placeholder='TelefonoOficina' onChange={(e) => setTelefonoOficina(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Sede</label>
                     <input placeholder='Sede' onChange={(e) => setSede(parseInt( e.target.value))}/>
                 </Form.Field>
-                <div>
-                <label>Foto</label>
-                {Foto ? (
-                    <img src = {Foto} />
-                ) : (
-                    <div>
-                        <input id = 'fileupload' className='hidden' type='file' onChange={(e) => convert2base64(e)}/>
-                        <label htmlFor='fileupload' ></label>
-                    </div>
-                )}
-                </div>
+                <Form.Field>
+                    <label>Foto</label>
+                    <input placeholder='Foto' onChange={(e) => setFoto(e.target.value)}/>
+                </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>

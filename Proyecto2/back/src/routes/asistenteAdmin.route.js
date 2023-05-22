@@ -6,9 +6,9 @@ const router = Router()
 
 router.post('/CrearEquipoGuia',CrearEquipoGuia)
 router.post('/AgregarProfesorEquipo',AgregarProfesorEquipo)
-router.get('/BuscarProfEquipo',BuscarProfesorEquipo) //No estoy segura de que deberia hacer xd
+router.post('/BuscarProfEquipo',BuscarProfesorEquipo) //No estoy segura de que deberia hacer xd
 router.post('/ConsultarMiembrosEquipo',ConsultarMiembrosEquipoGuia) //Miembros de un equipo
-router.put('/ModificarProfEquipo',ModificarProfesorEquipo)
+router.put('/ModificarProfesorEquipo',ModificarProfesorEquipo)
 router.put('/DefinirCoordinador',DefinirCoordinador)
 router.post('/AgregarProfesor',AgregarProfesor)
 router.post('/BuscarProfesor',BuscarProfesor)

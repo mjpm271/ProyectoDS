@@ -4,17 +4,26 @@ CREATE PROCEDURE CreatePersona
     @NombreCompleto varchar(100),
     @Correo varchar(100),
     @Contra varchar(64),
-	@Foto varchar(100),
+	@Foto varchar(max),
     @Habilitado bit,
     @Coordinador bit,
 	@Telefono varchar(64),
 	@TelefonoOficina varchar(64),
     @Sede int,
-    @IDtipo int
+    @IDtipo int,
+	@Result int output
 AS
 BEGIN
-    INSERT INTO persona (Carnet, NombreCompleto, Correo, Contra, Foto, Habilitado, Coordinador, Telefono, TelefonoOficina, Sede, IDtipo)
-    VALUES (@ID, @NombreCompleto, @Correo, @Contra,@Foto, @Habilitado, @Coordinador, @Telefono,@TelefonoOficina ,@Sede, @IDtipo)
+	IF (select count(*) from persona where Carnet = @ID) >= 1
+	BEGIN 
+		set @Result = 0;
+		select @result;
+	END
+	ELSE
+	BEGIN
+		INSERT INTO persona (Carnet, NombreCompleto, Correo, Contra, Foto, Habilitado, Coordinador, Telefono, TelefonoOficina, Sede, IDtipo)
+		VALUES (@ID, @NombreCompleto, @Correo, @Contra,@Foto, @Habilitado, @Coordinador, @Telefono,@TelefonoOficina ,@Sede, @IDtipo)
+	END	
 END;
 GO
 
@@ -81,7 +90,7 @@ CREATE PROCEDURE UpdatePersona
     @NombreCompleto varchar(100),
     @Correo varchar(100),
     @Contra varchar(64),
-	@Foto varchar(100),
+	@Foto varchar(max),
     @Habilitado bit,
     @Coordinador bit,
 	@Telefono varchar(64),

@@ -32,7 +32,6 @@ GO
 
 CREATE PROCEDURE UpdateObservacionActividad 
 (
-    @IDobservacion INT,
 	@Fecha datetime, 
     @Observacion VARCHAR(MAX),
     @IDactividad INT,
@@ -45,8 +44,8 @@ BEGIN
     DECLARE @ActualizacionExitosa BIT;
 
     UPDATE observacionActividad 
-    SET Fecha = @Fecha, Observacion = @Observacion, IDactividad = @IDactividad
-    WHERE IDobservacion = @IDobservacion;
+    SET Fecha = @Fecha, Observacion = @Observacion
+    WHERE IDactividad = @IDactividad;
 
     IF @@ROWCOUNT > 0
         SET @ActualizacionExitosa = 1;
