@@ -14,7 +14,7 @@ export default function AgregarProfesor() {
     const [Telefono, setTelefono] = useState();
     const [TelefonoOficina, setTelefonoOficina] = useState();
     const [Sede, setSede] = useState();
-    const [IDtipo, setIDtipo] = 1;
+    const [IDtipo, setIDtipo] = useState(1);
     const [Foto, setFoto] = useState();
     const [Fecha, SetFecha] = useState();
     // const [APIData, setAPIData] = useState([]);
