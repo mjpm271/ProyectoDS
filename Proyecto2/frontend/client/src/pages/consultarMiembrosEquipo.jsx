@@ -62,7 +62,7 @@ export default function ConsultarMiembrosEquipo() {
                             <Table.Row>
                                 <Table.Cell>
                                   <Header as='h4' image>
-                                    <Image src="https://i.postimg.cc/tCZ8XhHm/alba-photo-003.png" rounded size='huge' /> {/* Cambiar el link a item.foto (no sirve)*/}
+                                    <Image src="https://i.postimg.cc/tCZ8XhHm/alba-photo-003.png" rounded size='huge' /> 
                                   </Header>
                                 </Table.Cell>
                                 <Table.Cell>{item.Carnet}</Table.Cell>
