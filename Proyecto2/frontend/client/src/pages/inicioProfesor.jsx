@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
-import { useLocation , useParams} from 'react-router-dom';
+import { useLocation , Link} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 export default function InicioProfesor() {
@@ -26,6 +26,37 @@ export default function InicioProfesor() {
         ))} */}
         <p>{Persona}</p>
         <p>{info.NombreCompleto}</p>
+        </div>
+        <div className='buttons'>
+            <div className='button'>
+            <nav>
+          <ul>
+            <li>
+                <Link to={'/read'}>
+                    <button>Consultar Equipo guia</button>
+                </Link>
+            </li>
+            
+            <li>
+                <Link to={'/read'}>
+                    <button>Consultar Estudiantes</button>
+                </Link>
+            </li>
+            <li>
+                <Link to={'/read'}>
+                    <button>Modificar Estudiantes</button>
+                </Link>
+            </li>
+            <li>
+            <Link to={'/read'}>
+                    <button>Planes de Trabajo</button>
+                </Link>
+            </li>
+          </ul>
+        </nav>
+            
+
+        </div>
         
         
         

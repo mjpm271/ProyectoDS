@@ -147,7 +147,7 @@ export const VerComentariosActividad = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('ID Actividad', sql.Int, IDactividad)
+            .input('IDactividad', sql.Int, IDactividad)
             .execute('ReadActividadPorID')
         console.log(result)
         res.json(result.recordset)

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ProfileUpdatePage = () => {
+const ActualizarInformacion = () => {
   const [profileData, setProfileData] = useState({
     name: '',
     email: '',
