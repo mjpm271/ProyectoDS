@@ -8,13 +8,12 @@ BEGIN
 END;
 GO
 CREATE PROCEDURE ReadResponsableActividadPorID 
-    @IDprofesor varchar(64), 
     @IDactividad int
 AS
 BEGIN
     SELECT * 
 	FROM responsableActividad
-    WHERE IDprofesor in (SELECT IDprofesor FROM persona WHERE Carnet = @IDprofesor) AND IDactividad = @IDactividad
+    WHERE IDactividad = @IDactividad
 END;
 GO
 

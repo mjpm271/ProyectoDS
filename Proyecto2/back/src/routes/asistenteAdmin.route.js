@@ -14,6 +14,7 @@ router.post('/AgregarProfesor',AgregarProfesor)
 router.post('/BuscarProfesor',BuscarProfesor)
 router.put('/ModificarProfesor',ModificarProfesor)
 router.delete('/InhabilitarProfesor',InhabilitarProfesor)
+router.post('/SiguienteActividad',SiguienteActividad)
 
 export default router
 
@@ -21,5 +22,5 @@ export default router
 GET -> Read (Sin parametros de busqueda)
 POST -> Create o Read(con parametros de entrada)
 PUT -> Update (con parametros de entrada)
-DELETE -> Delete(con parametros de entrada)
+DELETE -> Delete(con parameos de entrada)
 */
