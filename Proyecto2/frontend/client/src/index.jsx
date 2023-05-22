@@ -14,9 +14,11 @@ import reportWebVitals from './reportWebVitals';
 import ActivityList from './pages/actividades'
 import PlanList from './pages/plan';
 import Actividad from './pages/actividad';
-import CrearEquipoGuia from './pages/crearEquipoGuia'
-import ConsultarMiembros  from './pages/consultarMiembros'
+import CrearEquipoGuia from './pages/crearEquipoGuia';
+import ConsultarMiembros  from './pages/consultarMiembros';
 import InicioProfesor from './pages/inicioProfesor';
+import AgregarProfesor from './pages/agregarProfesor';
+import AgregarProfesorEquipo from './pages/agregarProfesorEquipo';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -35,7 +37,9 @@ function App() {
         
         {/*Asistente Administrativo */}
         <Route path="/crearEquipoGuia" element={<CrearEquipoGuia />}/>
-        <Route path="/DefinirCoordinador" element={<DefinirCoordinador />}/>
+        <Route path="/definirCoordinador" element={<DefinirCoordinador />}/>
+        <Route path="/agregarProfesorEquipo" element={<AgregarProfesorEquipo />}/>
+        <Route path="/agregarProfesor" element={<AgregarProfesor />}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />
