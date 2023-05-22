@@ -1,34 +1,40 @@
 CREATE PROCEDURE CreateObservacionActividad
 (
-    @observacion varchar(max),
+	@Fecha datetime,
+    @Observacion varchar(max),
     @IDactividad int
 )
 AS
 BEGIN
-    INSERT INTO observacionActividad (observacion, IDactividad)
-    VALUES (@observacion, @IDactividad)
+    INSERT INTO observacionActividad (Fecha, Observacion, IDactividad)
+    VALUES (@Fecha, @Observacion, @IDactividad)
 END;
 GO
 CREATE PROCEDURE ReadObservacionActividadPorID 
 (
-    @IDobservacion int
+    @IDactividad int
 )
 AS
 BEGIN
-    SELECT * FROM observacionActividad WHERE IDobservacion = @IDobservacion
+    SELECT * 
+	FROM observacionActividad 
+	WHERE IDactividad = @IDactividad
 END;
 GO
 
 CREATE PROCEDURE ReadObservacionActividades
 AS
 BEGIN
-    SELECT * FROM observacionActividad
+    SELECT * 
+	FROM observacionActividad
 END;
 GO
+
 CREATE PROCEDURE UpdateObservacionActividad 
 (
     @IDobservacion INT,
-    @observacion VARCHAR(MAX),
+	@Fecha datetime, 
+    @Observacion VARCHAR(MAX),
     @IDactividad INT,
     @Exito BIT OUTPUT
 )
@@ -39,7 +45,7 @@ BEGIN
     DECLARE @ActualizacionExitosa BIT;
 
     UPDATE observacionActividad 
-    SET observacion = @observacion, IDactividad = @IDactividad
+    SET Fecha = @Fecha, Observacion = @Observacion, IDactividad = @IDactividad
     WHERE IDobservacion = @IDobservacion;
 
     IF @@ROWCOUNT > 0

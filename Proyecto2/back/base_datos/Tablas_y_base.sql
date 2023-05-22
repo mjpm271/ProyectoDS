@@ -81,11 +81,14 @@ create table planTrabajo(
 
 create table actividad(
 	IDactividad int not null IDENTITY(1,1),
+	Nombre varchar(64),
 	Semana int,
 	Fecha datetime,
 	Cantidaddiasprevios int,
 	Cantidaddiasrequeridos int,
 	FechaPublicacion date,
+	Linkreunion varchar(max),
+	Afiche varchar(max),
 	IDmodalidad int not null,
 	IDtipoActividad int not null,
 	IDtipoAfiche int not null,
@@ -108,9 +111,19 @@ create table responsableActividad(
 
 create table observacionActividad(
 	IDobservacion int not null IDENTITY(1,1),
-	observacion varchar(max) not null,
+	Fecha datetime,
+	Observacion varchar(max) not null,
 	IDactividad int not null
 	primary key (IDobservacion) 
+	foreign key (IDactividad) references actividad(IDactividad)
+);
+
+create table evidenciaActividad(
+	IDevidencia int not null identity(1,1),
+	Fotoparticipantes varchar(max),
+	linkGrabacion varchar(max),
+	IDactividad int not null
+	primary key (IDevidencia)
 	foreign key (IDactividad) references actividad(IDactividad)
 );
 

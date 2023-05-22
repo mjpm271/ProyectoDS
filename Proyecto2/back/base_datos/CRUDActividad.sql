@@ -1,10 +1,13 @@
 CREATE PROCEDURE CreateActividad 
 (
+	@Nombre varchar(64),
     @Semana int,
     @Fecha datetime,
     @Cantidaddiasprevios int,
     @Cantidaddiasrequeridos int,
     @FechaPublicacion date,
+	@LinkReunion varchar(max),
+	@Afiche varchar(max),
     @IDmodalidad int,
     @IDtipoActividad int,
     @IDtipoAfiche int,
@@ -13,20 +16,21 @@ CREATE PROCEDURE CreateActividad
 )
 AS
 BEGIN
-    INSERT INTO actividad(Semana, Fecha,Cantidaddiasprevios, Cantidaddiasrequeridos, FechaPublicacion, IDmodalidad, IDtipoActividad, IDtipoAfiche, IDtipoEstado, IDplanTrabajo)
-    VALUES (@Semana, @Fecha, @Cantidaddiasprevios, @Cantidaddiasrequeridos, @FechaPublicacion, @IDmodalidad, @IDtipoActividad, @IDtipoAfiche, @IDtipoEstado, @IDplanTrabajo)
+    INSERT INTO actividad(Nombre, Semana, Fecha,Cantidaddiasprevios, Cantidaddiasrequeridos, FechaPublicacion, Linkreunion, Afiche, IDmodalidad, IDtipoActividad, IDtipoAfiche, IDtipoEstado, IDplanTrabajo)
+    VALUES (@Nombre, @Semana, @Fecha, @Cantidaddiasprevios, @Cantidaddiasrequeridos, @FechaPublicacion, @LinkReunion, @Afiche, @IDmodalidad, @IDtipoActividad, @IDtipoAfiche, @IDtipoEstado, @IDplanTrabajo)
 END;
 GO
 
-CREATE PROCEDURE ReadActividadPorID
+CREATE PROCEDURE ReadActividadPorID -- Tiene que ser nombre de actividad pero a su vez por plan 
 (
-    @IDactividad int
+    @Nombre varchar(64),
+	@IDplanTrabajo int
 )
 AS
 BEGIN
     SELECT * 
 	FROM actividad 
-	WHERE IDactividad = @IDactividad
+	WHERE Nombre = @Nombre and IDplanTrabajo = @IDplanTrabajo
 END;
 GO
 
@@ -62,11 +66,14 @@ GO
 CREATE PROCEDURE UpdateActividad2
 (
     @IDactividad int,
+	@Nombre varchar(64),
     @Semana int,
     @Fecha datetime,
     @Cantidaddiasprevios int,
     @Cantidaddiasrequeridos int,
     @FechaPublicacion date,
+	@Linkreunion varchar(64),
+	@Afiche varchar(64),
     @IDmodalidad int,
     @IDtipoActividad int,
     @IDtipoAfiche int,
@@ -81,11 +88,14 @@ BEGIN
     DECLARE @ActualizacionExitosa bit;
 
     UPDATE actividad 
-    SET Semana = @Semana,
+    SET Nombre = @Nombre,
+		Semana = @Semana,
         Fecha = @Fecha,
         Cantidaddiasprevios = @Cantidaddiasprevios,
         Cantidaddiasrequeridos = @Cantidaddiasrequeridos,
         FechaPublicacion = @FechaPublicacion,
+		Linkreunion = @Linkreunion,
+		Afiche = @Afiche,
         IDmodalidad = @IDmodalidad,
         IDtipoActividad = @IDtipoActividad,
         IDtipoAfiche = @IDtipoAfiche,
