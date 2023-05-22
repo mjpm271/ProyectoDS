@@ -21,18 +21,13 @@ export default function InicioProfesor() {
         <div className="container">
         
         <h1>Welcome!, {info.NombreCompleto}</h1>
-        {/* {info.map((infor) => (
-            <p>{infor.NombreCompleto}</p>
-        ))} */}
-        <p>{Persona}</p>
-        <p>{info.NombreCompleto}</p>
+        {/* <p>{Persona}</p>
+        <p>{info.NombreCompleto}</p> */}
         </div>
-        <div className='buttons'>
-            <div className='button'>
             <nav>
           <ul>
             <li>
-                <Link to={'/read'}>
+                <Link to={'/ConsultarMiembros'}>
                     <button>Consultar Equipo guia</button>
                 </Link>
             </li>
@@ -48,19 +43,12 @@ export default function InicioProfesor() {
                 </Link>
             </li>
             <li>
-            <Link to={'/read'}>
+            <Link to={'/planList'}>
                     <button>Planes de Trabajo</button>
                 </Link>
             </li>
           </ul>
         </nav>
-            
-
-        </div>
-        
-        
-        
-        </div>
         </section>
     </div>    
     );

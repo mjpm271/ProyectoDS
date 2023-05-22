@@ -104,9 +104,9 @@ export const Comentar = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
-    const { IDprofesor, IDemisor, IDactividad, IDcomentarioPadre, Hora, Fecha, Comentarios, Contenido } = req.body
+    const { IDpersona,  IDactividad, IDcomentarioPadre, Hora, Fecha, Comentarios, Contenido } = req.body
     console.log('valores:', req.body)
-    if (!IDprofesor || !IDemisor || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Comentarios || !Contenido) {
+    if (!IDpersona || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Contenido) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -115,14 +115,11 @@ export const Comentar = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .replaceInput('IDprofesor',)
-            .input('ID ', sql.Int, IDprofesor)
-            .input('Emisor ', sql.Int, IDemisor)
-            .input('ID Actividad ', sql.Int, IDactividad)
-            .input('ComentarioPadre', sql.Int, IDcomentarioPadre)
+            .input('IDpersona ', sql.Int, IDpersona)
+            .input('IDactividad ', sql.Int, IDactividad)
+            .input('IDcomentarioPadre', sql.Int, IDcomentarioPadre)
             .input('Hora', sql.Time, Hora)
             .input('Fecha', sql.Date, Fecha)
-            .input('Comentarios ', sql.VarChar, Comentarios)
             .input('Contenido', sql.VarChar, Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreatePersona')
         console.log(result)
