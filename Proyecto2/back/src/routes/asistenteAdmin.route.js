@@ -13,7 +13,7 @@ router.put('/DefinirCoordinador',DefinirCoordinador)
 router.post('/AgregarProfesor',AgregarProfesor)
 router.post('/BuscarProfesor',BuscarProfesor)
 router.put('/ModificarProfesor',ModificarProfesor)
-router.delete('/InhabilitarProfesor',InhabilitarProfesor)
+router.put('/InhabilitarProfesor',InhabilitarProfesor)
 //router.post('/SiguienteActividad',SiguienteActividad)
 
 export default router

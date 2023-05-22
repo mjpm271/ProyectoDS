@@ -117,7 +117,7 @@ END;
 GO
 
 CREATE PROCEDURE InhabilitarPersona
-    @Carnet INT
+    @Carnet varchar(64)
 AS
 BEGIN
 	UPDATE persona

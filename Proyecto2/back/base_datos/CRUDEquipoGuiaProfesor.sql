@@ -21,7 +21,7 @@ END;
 GO
 
 CREATE PROCEDURE ReadEquipoGuiaProfesorPorID -- ID del equipo no del profesor
-    @Nombre VARCHAR(32)
+    @Nombre VARCHAR(64)
 AS
 BEGIN
 	DECLARE @IDequipoGuia AS INT
@@ -33,7 +33,7 @@ END;
 GO
 
 CREATE PROCEDURE HabilitarProfesor
-    @Carnet varchar(32),
+    @Carnet varchar(64),
     @Exito BIT OUTPUT
 AS
 BEGIN
@@ -59,8 +59,8 @@ BEGIN
 END;
 GO
 
-CREATE PROCEDURE inhabilitarProfesor
-    @Carnet varchar(32)
+CREATE PROCEDURE InhabilitarProfesor
+    @Carnet varchar(64)
 AS
 BEGIN
 	declare @IDprofesor as int

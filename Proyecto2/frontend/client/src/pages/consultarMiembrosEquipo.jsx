@@ -2,15 +2,15 @@ import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
 
-export default function BuscarProfesor() {
+export default function ConsultarMiembrosEquipo() {
 
-    const [Carnet, setCarnet] = useState();
+    const [Nombre, setNombre] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
-          Carnet:Carnet
+      axios.post(`http://localhost:4000/asistente/ConsultarMiembrosEquipo`, {
+          Nombre:Nombre
         }
         , {
           headers: {
@@ -33,8 +33,8 @@ export default function BuscarProfesor() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>Carnet </label>
-                    <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
+                    <label>Nombre </label>
+                    <input placeholder='Nombre Equipo Guia' onChange={(e) => setNombre(e.target.value)}/>
                 </Form.Field>
 
                 <Button onClick={buscar} type='submit'>Submit</Button>
@@ -47,7 +47,6 @@ export default function BuscarProfesor() {
                         <Table.HeaderCell>Carnet </Table.HeaderCell>
                         <Table.HeaderCell>Nombre Completo </Table.HeaderCell>
                         <Table.HeaderCell>Correo </Table.HeaderCell>
-                        <Table.HeaderCell>Habilitado </Table.HeaderCell>
                         <Table.HeaderCell>Coordinador </Table.HeaderCell>
                         <Table.HeaderCell>Telefono </Table.HeaderCell>
                         <Table.HeaderCell>Telefono Oficina </Table.HeaderCell>
@@ -63,7 +62,6 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Correo}</Table.Cell>
-                                <Table.Cell>{item.Habilitado}</Table.Cell>
                                 <Table.Cell>{item.Coordinador}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>

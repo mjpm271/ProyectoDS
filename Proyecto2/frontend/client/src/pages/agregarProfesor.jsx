@@ -14,8 +14,8 @@ export default function AgregarProfesor() {
     const [Telefono, setTelefono] = useState();
     const [TelefonoOficina, setTelefonoOficina] = useState();
     const [Sede, setSede] = useState();
-    const [IDtipo, setIDtipo] = 1;
-    const [Foto, setFoto] = useState();
+    const [IDtipo, setIDtipo] = useState(1);
+    const [Foto, setFoto] = useState(null);
     const [Fecha, SetFecha] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
@@ -75,7 +75,7 @@ export default function AgregarProfesor() {
                 
                 <Form.Field>
                     <label>Carnet </label>
-                    <input placeholder='Carnet' onChange={(e) => setCarnet(parseInt( e.target.value))}/>
+                    <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>NombreCompleto </label>
@@ -100,10 +100,6 @@ export default function AgregarProfesor() {
                 <Form.Field>
                     <label>Sede</label>
                     <input placeholder='Sede' onChange={(e) => setSede(parseInt( e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipo</label>
-                    <input placeholder='IDtipo' onChange={(e) => setIDtipo(parseInt( e.target.value))}/>
                 </Form.Field>
                 <div>
                 <label>Foto</label>

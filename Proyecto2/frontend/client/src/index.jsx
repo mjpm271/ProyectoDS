@@ -19,6 +19,10 @@ import ConsultarMiembros  from './pages/consultarMiembros';
 import InicioProfesor from './pages/inicioProfesor';
 import AgregarProfesor from './pages/agregarProfesor';
 import AgregarProfesorEquipo from './pages/agregarProfesorEquipo';
+import ConsultarMiembrosEquipo from './pages/consultarMiembrosEquipo';
+import BuscarProfesor from './pages/buscarProfesor';
+import InhabilitarProfesor from './pages/inhabilitarProfesor';
+import ModificarProfesorEquipo from './pages/modificarProfesorEquipo'
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -40,6 +44,10 @@ function App() {
         <Route path="/definirCoordinador" element={<DefinirCoordinador />}/>
         <Route path="/agregarProfesorEquipo" element={<AgregarProfesorEquipo />}/>
         <Route path="/agregarProfesor" element={<AgregarProfesor />}/>
+        <Route path="/consultarMiembrosEquipo" element={<ConsultarMiembrosEquipo />}/>
+        <Route path="/buscarProfesor" element={<BuscarProfesor />}/>
+        <Route path="/inhabilitarProfesor" element={<InhabilitarProfesor />}/>
+        <Route path="/modificarProfesorEquipo" element={<ModificarProfesorEquipo />}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />

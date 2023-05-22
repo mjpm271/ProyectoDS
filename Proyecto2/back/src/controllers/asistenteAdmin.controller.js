@@ -115,9 +115,9 @@ export const ModificarProfesorEquipo = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDprofesor} = req.body
+    const { Carnet} = req.body
     console.log('valores:', req.body)
-    if (!IDprofesor) {
+    if (!Carnet) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -125,7 +125,7 @@ export const ModificarProfesorEquipo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('IDprofesor', sql.Int, IDprofesor)
+            .input('Carnet', sql.VarChar(64), Carnet)
             .output('Exito',sql.Bit)
             .execute('HabilitarProfesor')
         console.log(result)
@@ -153,9 +153,9 @@ export const InhabilitarProfesorEquipo= async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDprofesor} = req.body
+    const { Carnet} = req.body
     console.log('valores:', req.body)
-    if (!IDprofesor) {
+    if (! Carnet) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -163,8 +163,8 @@ export const InhabilitarProfesorEquipo= async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('IDprofesor', sql.Int, IDprofesor)
-            .execute('ReadPersonaPorID')
+            .input('Carnet', sql.VarChar(64), Carnet)
+            .execute('InhabilitarProfesor')
         console.log(result)
         res.json(result.recordset)
         
@@ -306,7 +306,7 @@ export const InhabilitarProfesor = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
     const { Carnet} = req.body
     console.log('valores:', req.body)
-    if (!IDprofesor) {
+    if (!Carnet) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -314,7 +314,7 @@ export const InhabilitarProfesor = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('Carnet', sql.Int, Carnet)
+            .input('Carnet', sql.VarChar(64), Carnet)
             .execute('InhabilitarPersona')
         console.log(result)
         res.json(result.recordset)
