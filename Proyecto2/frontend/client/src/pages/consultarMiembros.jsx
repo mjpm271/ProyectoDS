@@ -4,13 +4,13 @@ import { Button,  Form , Table} from 'semantic-ui-react'
 
 export default function ConsultarMiembros() {
 
-    const [IDequipoGuia, setIDequipoGuia] = useState();
+    const [Nombre, setNombre] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
       axios.post(`http://localhost:4000/asistente/ConsultarMiembrosEquipo`, {
-          IDequipoGuia:IDequipoGuia
+          Nombre:Nombre
         }
         , {
           headers: {
@@ -33,8 +33,8 @@ export default function ConsultarMiembros() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>IDequipoGuia </label>
-                    <input placeholder='IDequipoGuia' onChange={(e) => setIDequipoGuia(parseInt(e.target.value))}/>
+                    <label>Nombre </label>
+                    <input placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
                 </Form.Field>
 
                 <Button onClick={buscar} type='submit'>Submit</Button>

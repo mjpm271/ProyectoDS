@@ -35,9 +35,9 @@ export const AgregarProfesorEquipo = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDequipoGuia , IDprofesor} = req.body
+    const { Nombre , Carnet} = req.body
     console.log('valores:', req.body)
-    if (!IDequipoGuia || !IDprofesor) {
+    if (!Nombre || !Carnet) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -45,8 +45,8 @@ export const AgregarProfesorEquipo = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('IDequipoGuia', sql.Int, IDequipoGuia)
-            .input('IDprofesor', sql.Int, IDprofesor)
+            .input('Nombre', sql.VarChar(32), Nombre)
+            .input('Carnet', sql.VarChar(64), Carnet)
             .execute('CreateEquipoGuiaProfesor')
         console.log(result)
         res.json(result.recordset)
@@ -89,9 +89,9 @@ export const ConsultarMiembrosEquipoGuia= async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDequipoGuia } = req.body
+    const { Nombre } = req.body
     console.log('valores:', req.body)
-    if (!IDequipoGuia ) {
+    if (!Nombre ) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -99,7 +99,7 @@ export const ConsultarMiembrosEquipoGuia= async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('IDequipoGuia', sql.Int, IDequipoGuia)
+            .input('Nombre', sql.VarChar(32), Nombre)
             .execute('ReadEquipoGuiaProfesorPorID')
         console.log(result)
         res.json(result.recordset)
