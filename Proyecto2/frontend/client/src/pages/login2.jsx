@@ -19,6 +19,7 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
+    
     try {
       const response = await fetch('http://localhost:4000/index/login', {
         method: 'POST',
@@ -89,7 +90,7 @@ const Login = () => {
       {error && <Message negative>{error}</Message>}
 
       <div>
-        <label>Nombre de usuario:</label>
+        <label>Correo:</label>
         <input type="text" value={Correo} onChange={handleCorreoChange} />
       </div>
       <div>
