@@ -186,10 +186,10 @@ export const ModificarProfesorPerfil = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
     const { Carnet, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono, TelefonoOficina,Sede, IDtipo } = req.body
     console.log('valores:', req.body)
-    if (!Carnet || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
-        console.log('here')
-        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    // if (!Carnet || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    //     console.log('here')
+    //     return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    // }
     try {
         const pool = await getConnection();
         //console.log('whatever')
