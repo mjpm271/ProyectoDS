@@ -25,6 +25,7 @@ import InhabilitarProfesor from './pages/inhabilitarProfesor';
 import ModificarProfesorEquipo from './pages/modificarProfesorEquipo';
 import BuscarProfesorEquipo from './pages/buscarProfesorEquipo';
 import ModificarPerfil from './pages/actualizarPerfil';
+import InicioCoordinador from './pages/InicioCoordinador';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -59,6 +60,9 @@ function App() {
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
         <Route path="/modificarPerfil/:id" element={<ModificarPerfil />} />        
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
+
+        {/*Coordinador */}
+        <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
       </Routes>
     </BrowserRouter>
   )

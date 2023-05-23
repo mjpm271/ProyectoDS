@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation , Link} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-export default function InicioProfesor() {
+export default function InicioCoordinador() {
     const location = useLocation();
     const Persona = location.state;
 
@@ -28,7 +28,7 @@ export default function InicioProfesor() {
           <ul>
             <li>
                 <Link to={'/ConsultarMiembros'}>
-                    <button>Consultar Equipo guia</button>
+                    <button>Consultar Miembros de Equipo guia</button>
                 </Link>
             </li>
             
@@ -42,10 +42,24 @@ export default function InicioProfesor() {
                     <button>Modificar Estudiantes</button>
                 </Link>
             </li>
-            
+            <li>
+            <Link to={'/read'}>
+                    <button>Crear Plan de Trabajo</button>
+                </Link>
+            </li>
+            <li>
+            <Link to={'/read'}>
+                    <button>Modificar Plan de Trabajo</button>
+                </Link>
+            </li>
+            <li>
+            <Link to={'/read'}>
+                    <button>Crear Actividad </button>
+                </Link>
+            </li>
             <li>
             <Link to={'/planList'}>
-                    <button>Planes de Trabajo</button>
+                    <button>Ver Planes de Trabajo</button>
                 </Link>
             </li>
           </ul>
