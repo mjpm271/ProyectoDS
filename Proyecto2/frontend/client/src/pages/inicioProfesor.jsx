@@ -10,13 +10,13 @@ export default function InicioProfesor() {
 
     
     const info = JSON.parse(Persona)
-
-    console.log(Persona)
+    const id = info.Carnet
+    console.log('ID: ', id)
     
     
     return(
         <div>
-        <Navbar/>   
+        <Navbar id={id}/>   
         <section>
         <div className="container">
         

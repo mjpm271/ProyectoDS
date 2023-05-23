@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import "../index.css";
 
-function Navbar() {
+function Navbar(props) {
 	const navRef = useRef();
 
 	const showNavbar = () => {
@@ -15,7 +16,7 @@ function Navbar() {
 		<header>
 			<h3>LOGO</h3>
 			<nav ref={navRef}>
-				<a href="/#">Perfil</a>
+				<Link to={`/modificarPerfil/${props.id}`}>Perfil</Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>

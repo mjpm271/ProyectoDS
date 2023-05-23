@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
-import { useHistory } from 'react-router';
+import { useParams } from 'react-router-dom';
+// import { useHistory } from 'react-router';
 
-export default function Update() {
-    let history = useHistory();
+export default function ModificarPerfil() {
+    // let history = useHistory();
+    const { id } = useParams();
+    const [Perfil, setPerfil] = useState({
+        carnet:null,
+        nombreCompleto:null,
+        correo:null,
+        contra:null,
+        foto:null,
+        habilitado:null,
+        coordinador:null,
+        telefono:null,
+        telefonoOficina:null,
+        sede:null,
+        iDtipo:null
+      });
     const [Carnet, setCarnet] = useState();
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();
@@ -20,42 +35,78 @@ export default function Update() {
     const [Foto, setFoto] = useState();
 
     useEffect(() => {
-        setCarnet(localStorage.getItem('Carnet'))
-        setNombreCompleto(localStorage.getItem('NombreCompleto'))
-        setCorreo(localStorage.getItem('Correo'))
-        setContra(localStorage.getItem('Contra'))
-        setHabilitado(localStorage.getItem('Habilitado'))
-        setCoordinador(localStorage.getItem('Coordinador'))
-        setTelefono(localStorage.getItem('Telefono'))
-        setTelefonoOficina(localStorage.getItem('TelefonoOficina'))
-        setSede(localStorage.getItem('Sede'));
-        setIDtipo(localStorage.getItem('IDtipo'));
-        setFoto(localStorage.getItem('Foto'));
+        axios
+        .post(
+          'http://localhost:4000/profesor/VerPerfil',
+          { Carnet: id },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+        //   setPerfil(response.data);
+  
+          const informacion = response.data[0];
+          setPerfil({
+            carnet: informacion?.Carnet,
+            nombreCompleto: informacion?.NombreCompleto,
+            correo: informacion?.Correo,
+            contra: informacion?.Contra,
+            foto: informacion?.Foto,
+            habilitado: informacion?.Habilitado,
+            coordinador: informacion?.Coordinador,
+            telefono: informacion?.Telefono,
+            telefonoOficina: informacion?.TelefonoOficina,
+            sede: informacion?.Sede,
+            iDtipo: informacion?.IDtipo,
+          });
+
+
+
+          console.log(Perfil);
+        });
     }, []);
+
+    useEffect(() => {
+        setCarnet(Perfil?.carnet);
+        setNombreCompleto(Perfil?.nombreCompleto);
+        setContra(Perfil?.contra);
+        setCorreo(Perfil?.correo);
+        setFoto(Perfil?.foto);
+        setHabilitado(Perfil?.habilitado);
+        setCoordinador(Perfil?.coordinador);
+        setTelefono(Perfil?.telefono);
+        setTelefonoOficina(Perfil?.telefonoOficina);
+        setSede(Perfil?.sede);
+        setIDtipo(Perfil?.iDtipo);
+      }, [Perfil]);
 
     const updateAPIData = () => {
         axios.put('http://localhost:4000/profesor/ModificarPerfil', {
-            Carnet:Carnet,
-            NombreCompleto:NombreCompleto,
-            Correo:Correo,
-            Contra:Contra,
-            Habilitado:Habilitado,
-            Coordinador:Coordinador,
-            Telefono:Telefono,
-            TelefonoOficina:TelefonoOficina,
-            Sede:Sede,
-            IDtipo:IDtipo,
-            Foto:Foto
+            Carnet:Perfil?.carnet,
+            NombreCompleto:Perfil?.nombreCompleto,
+            Correo:Perfil?.correo,
+            Contra:Perfil?.contra,
+            Foto:Perfil?.foto,
+            Habilitado:Perfil?.habilitado,
+            Coordinador:Perfil?.coordinador,
+            Telefono:Perfil?.telefono,
+            TelefonoOficina:Perfil?.telefonoOficina,
+            Sede:Perfil?.sede,
+            IDtipo:Perfil?.iDtipo
+
         }          , {
             headers: {
               'Content-Type': 'application/json'
             }
-          }).then(() => {
+          }).then(response => {
             console.log(response.data);
-            // history.push('/read')
-        }).catch(error => {
-            console.log(error)
-        });
+          }).catch(error => {
+              console.log(error)
+          });
     }
     return (
         <div>
