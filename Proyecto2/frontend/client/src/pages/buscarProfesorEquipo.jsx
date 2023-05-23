@@ -51,6 +51,7 @@ export default function BuscarProfesorEquipo() {
 
             </Form>
             <div> 
+
             <Table class="ui blue table" singleLine>
                 <Table.Header>
                     <Table.Row>
@@ -84,13 +85,13 @@ export default function BuscarProfesorEquipo() {
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
-                                <Table.Cell>{item.IDtipo}</Table.Cell>
+                                <Table.Cell>Profesor</Table.Cell>
                             </Table.Row>
                         )
                     })}
                 </Table.Body>
-                </Table>
-                </div>
+            </Table>
+            </div>
         </div>
     )
 }

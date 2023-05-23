@@ -11,7 +11,8 @@ export default function BuscarProfesor() {
     const buscar = () => {
 
       axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
-          Carnet:Carnet
+          Carnet:Carnet,
+          Lugar:Lugar
         }
         , {
           headers: {
