@@ -20,7 +20,7 @@ export default function InicioProfesor() {
         <section>
         <div className="container">
         
-        <h1>Welcome!, {info.NombreCompleto}</h1>
+        <h1>Welcome! {info.NombreCompleto}</h1>
         {/* <p>{Persona}</p>
         <p>{info.NombreCompleto}</p> */}
         </div>

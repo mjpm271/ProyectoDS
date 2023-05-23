@@ -14,9 +14,11 @@ function Navbar(props) {
 
 	return (
 		<header>
-			<h3>LOGO</h3>
+			{/* <h3>LOGO</h3> */}
 			<nav ref={navRef}>
 				<Link to={`/modificarPerfil/${props.id}`}>Perfil</Link>
+				<Link to={`/`}>Cambiar Contraseña</Link>
+				<Link to={`/`}>Cerrar Sesion</Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
