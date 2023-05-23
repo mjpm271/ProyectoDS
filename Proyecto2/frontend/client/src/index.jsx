@@ -24,6 +24,10 @@ import BuscarProfesor from './pages/buscarProfesor';
 import InhabilitarProfesor from './pages/inhabilitarProfesor';
 import ModificarProfesorEquipo from './pages/modificarProfesorEquipo';
 import BuscarProfesorEquipo from './pages/buscarProfesorEquipo';
+import CrearEvidencia from './pages/crearEvidencia';
+import CrearObservacion from './pages/createObservacion';
+import RealizarActividad from './pages/realizarActividad';
+import CancelarActividad from './pages/cancelarActividad'
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -58,6 +62,12 @@ function App() {
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
         
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
+
+      {/*Profesor Coordinador*/}
+        <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
+        <Route path="/createObservacion" element={<CrearObservacion />}/>
+        <Route path="/realizarActividad" element={<RealizarActividad />}/>
+        <Route path="/cancelarActividad" element={<CancelarActividad />}/>
       </Routes>
     </BrowserRouter>
   )

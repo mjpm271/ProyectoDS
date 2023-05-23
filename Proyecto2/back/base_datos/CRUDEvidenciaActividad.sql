@@ -4,7 +4,7 @@ CREATE PROCEDURE CreateEvidenciaActividad
     @IDactividad int
 AS
 BEGIN
-    INSERT INTO evidenciaActividad (Fotoparticipantes, linkGrabacion, IDactividad)
+    INSERT INTO evidenciaActividad (Fotoparticipantes, Linkgrabacion, IDactividad)
     VALUES (@Fotoparticipantes, @linkGrabacion, @IDactividad)
 END;
 GO
@@ -37,7 +37,7 @@ AS
 BEGIN
     UPDATE evidenciaActividad
     SET Fotoparticipantes = @Fotoparticipantes,
-        linkGrabacion = @linkGrabacion
+        Linkgrabacion = @linkGrabacion
     where IDactividad = @IDactividad
 END
 GO

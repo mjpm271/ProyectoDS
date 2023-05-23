@@ -194,6 +194,112 @@ export const CrearActividad = async (req, res) => {  // TODO: agregar output
 
 }
 
+// Hace el update a la actividad realizada 
+export const RealizarActividad = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDactividad} = req.body
+    console.log('valores:', req.body)
+    if (!IDactividad) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .execute('RealizarActividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+}
+
+// Cancela la Actividad
+export const CancelarActividad = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDactividad} = req.body
+    console.log('valores:', req.body)
+    if (!IDactividad) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .execute('CancelarActividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+}
+
+// Crear Evidencia de que ser realizo la actividad
+export const CrearEvidencia = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { Fotoparticipantes, linkGrabacion, IDactividad} = req.body
+    console.log('valores:', req.body)
+    if (!Fotoparticipantes || !linkGrabacion || !IDactividad) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('Fotoparticipantes', sql.VarChar(sql.MAX), Fotoparticipantes)
+            .input('linkGrabacion', sql.VarChar(sql.MAX), linkGrabacion)
+            .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .execute('CreateEvidenciaActividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+}
+
+// Crea la observacion de la actividad
+export const CrearObservacion = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { Fecha, Observacion, IDactividad} = req.body
+    console.log('valores:', req.body)
+    if (!Fecha || !Observacion|| !IDactividad) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('Fecha', sql.DateTime, Fecha)
+            .input('Observacion', sql.VarChar(sql.MAX), Observacion)
+            .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .execute('CreateObservacionActividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+}
+
 // Definir el responsable(s) de la actividad
 export const DefinirResponsable = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
@@ -427,3 +533,5 @@ export const ModificarProfesorPerfil = async (req, res) => {  // TODO: ingresar 
     }
 
 }
+
+

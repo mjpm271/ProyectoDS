@@ -133,3 +133,27 @@ BEGIN
 	WHERE IDactividad = @IDactividad
 END;
 GO
+
+create procedure RealizarActividad
+(
+	@IDactividad int
+)
+as 
+begin 
+	update actividad
+	set IDtipoEstado = 3
+	where IDactividad = @IDactividad
+end;
+go
+
+create procedure CancelarActividad
+(
+	@IDactividad int
+)
+as 
+begin 
+	update actividad
+	set IDtipoEstado = 4
+	where IDactividad = @IDactividad
+end;
+go
