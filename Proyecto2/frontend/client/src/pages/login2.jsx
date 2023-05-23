@@ -40,7 +40,7 @@ const Login = () => {
 
           setError('');
           // Redirigir a la página deseada después del inicio de sesión exitoso
-          navigate('/read'); // Ruta a la página de dashboard o la que desees
+          navigate('/InicioCoordinador',{ state: Persona });  // Ruta a la página de dashboard o la que desees
           
         } else if (Status === 2)  {
           console.log("EXITOOOOO")

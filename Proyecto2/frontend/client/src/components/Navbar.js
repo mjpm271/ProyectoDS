@@ -1,8 +1,9 @@
 import { useRef } from "react";
-// import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import "../index.css";
 
-function Navbar() {
+function Navbar(props) {
 	const navRef = useRef();
 
 	const showNavbar = () => {
@@ -13,19 +14,21 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3>LOGO</h3>
+			{/* <h3>LOGO</h3> */}
 			<nav ref={navRef}>
-				<a href="/#">Perfil</a>
+				<Link to={`/modificarPerfil/${props.id}`}>Perfil</Link>
+				<Link to={`/`}>Cambiar Contraseña</Link>
+				<Link to={`/`}>Cerrar Sesion</Link>
 				<button
 					className="nav-btn nav-close-btn"
 					onClick={showNavbar}>
-					{/* <FaTimes /> */}
+					<FaTimes />
 				</button>
 			</nav>
 			<button
 				className="nav-btn"
 				onClick={showNavbar}>
-				{/* <FaBars /> */}
+				<FaBars />
 			</button>
 		</header>
 	);

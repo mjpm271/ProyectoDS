@@ -24,10 +24,15 @@ import BuscarProfesor from './pages/buscarProfesor';
 import InhabilitarProfesor from './pages/inhabilitarProfesor';
 import ModificarProfesorEquipo from './pages/modificarProfesorEquipo';
 import BuscarProfesorEquipo from './pages/buscarProfesorEquipo';
+<<<<<<< HEAD
 import CrearEvidencia from './pages/crearEvidencia';
 import CrearObservacion from './pages/createObservacion';
 import RealizarActividad from './pages/realizarActividad';
 import CancelarActividad from './pages/cancelarActividad'
+=======
+import ModificarPerfil from './pages/actualizarPerfil';
+import InicioCoordinador from './pages/InicioCoordinador';
+>>>>>>> 2153a646b374eeefc931c4d9704a0273e83aad46
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -60,14 +65,19 @@ function App() {
         <Route path="/planList" element={<PlanList />} />
         <Route path="/planList/plan/:planId" element={<ActivityList />} />
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
-        
+        <Route path="/modificarPerfil/:id" element={<ModificarPerfil />} />        
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
 
+<<<<<<< HEAD
       {/*Profesor Coordinador*/}
         <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
         <Route path="/createObservacion" element={<CrearObservacion />}/>
         <Route path="/realizarActividad" element={<RealizarActividad />}/>
         <Route path="/cancelarActividad" element={<CancelarActividad />}/>
+=======
+        {/*Coordinador */}
+        <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
+>>>>>>> 2153a646b374eeefc931c4d9704a0273e83aad46
       </Routes>
     </BrowserRouter>
   )
