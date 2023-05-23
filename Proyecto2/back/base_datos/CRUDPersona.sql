@@ -45,6 +45,16 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadProfesor
+    @Carnet varchar(64)
+AS
+BEGIN
+    SELECT Carnet, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono,TelefonoOficina, Sede, IDtipo  
+	FROM persona 
+	WHERE Carnet = @Carnet and IDtipo = 1;
+END;
+GO
+
 CREATE PROCEDURE ReadPersonaPorIDTipo
     @IDtipo INT
 AS

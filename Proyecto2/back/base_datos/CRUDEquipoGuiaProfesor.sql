@@ -7,6 +7,7 @@ BEGIN
 	declare @IDequipoGuia as int
 	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
 	set @IDequipoGuia = (select top 1 IDequipoGuia from equipoGuia where Nombre = @Nombre);
+
     INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor, Habilitado)
     VALUES (@IDequipoGuia, @IDprofesor, 1);
 END;
@@ -19,6 +20,23 @@ BEGIN
 	FROM EquipoGuia_Profesor 
 END;
 GO
+
+CREATE PROCEDURE ReadEquipoGuiaProfesorPorProfesor
+    @Nombre varchar(32),
+    @Carnet varchar(64)
+AS
+BEGIN
+	declare @IDprofesor as int 
+	declare @IDequipoGuia as int
+	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
+	set @IDequipoGuia = (select top 1 IDequipoGuia from equipoGuia where Nombre = @Nombre);
+
+    SELECT p.*  
+	FROM EquipoGuia_Profesor as eq, persona as p
+	WHERE p.IDpersona = @IDprofesor and IDequipoGuia = @IDequipoGuia 
+END;
+GO
+
 
 CREATE PROCEDURE ReadEquipoGuiaProfesorPorID -- ID del equipo no del profesor
     @Nombre VARCHAR(64)
