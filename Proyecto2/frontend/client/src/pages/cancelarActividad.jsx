@@ -10,7 +10,7 @@ export default function CancelarActividad() {
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
-        axios.put('http://localhost:4000/profesorCoordinador/CancelarActividad', {
+        axios.put('http://localhost:4000/coordinador/CancelarActividad', {
             IDactividad:IDactividad
           }
           , {

@@ -10,7 +10,7 @@ export default function RealizarActividad() {
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
-        axios.put('http://localhost:4000/profesorCoordinador/RealizarActividad', {
+        axios.put('http://localhost:4000/coordinador/RealizarActividad', {
             IDactividad:IDactividad
           }
           , {

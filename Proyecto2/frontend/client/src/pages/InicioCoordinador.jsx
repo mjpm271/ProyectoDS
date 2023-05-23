@@ -53,7 +53,7 @@ export default function InicioCoordinador() {
                 </Link>
             </li>
             <li>
-            <Link to={'/read'}>
+            <Link to={'/crearActividad'}>
                     <button>Crear Actividad </button>
                 </Link>
             </li>

@@ -5,13 +5,13 @@ import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function CrearObservacion() {
-    const [Fecha, setFecha] = useState();
+    const [Fecha, setFecha] = useState(new Date());
     const [Observacion, setObservacion] = useState();
     const [IDactividad, setIDactividad] = useState();
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
-        axios.post('http://localhost:4000/profesorCoordinador/CrearObservacion', {
+        axios.post('http://localhost:4000/coordinador/CrearObservacion', {
             Fecha:Fecha,
             Observacion:Observacion,
             IDactividad:IDactividad,
@@ -65,7 +65,7 @@ export default function CrearObservacion() {
                 </Form.Field>
                 <Form.Field>
                     <label>IDactividad </label>
-                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(e.target.value)}/>
+                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
