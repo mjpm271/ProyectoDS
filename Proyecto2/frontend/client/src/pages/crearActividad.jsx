@@ -15,6 +15,7 @@ export default function CrearActividad() {
     const [Afiche, setAfiche] = useState();
     const [IDmodalidad, setModalidad] = useState();
     const [IDtipoActividad, setIDtipoActividad] = useState();
+    const [IDtipoAfiche, setIDtipoAfiche] = useState();
     const [IDtipoEstado, setIDtipoEstado] = useState();
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     // const [APIData, setAPIData] = useState([]);
@@ -23,14 +24,15 @@ export default function CrearActividad() {
         axios.post('http://localhost:4000/coordinador/CrearActividad', {
             Nombre:Nombre,
             Semana:Semana,
-            Fecha:null,
+            Fecha:Fecha,
             Cantidaddiasprevios:Cantidaddiasprevios,
             Cantidaddiasrequeridos:Cantidaddiasrequeridos,
-            FechaPublicacion:null,
+            FechaPublicacion:FechaPublicacion,
             Linkreunion:Linkreunion,
             Afiche:Afiche,
             IDmodalidad:IDmodalidad,
             IDtipoActividad:IDtipoActividad,
+            IDtipoAfiche: IDtipoAfiche,
             IDtipoEstado:IDtipoEstado,
             IDplanTrabajo:IDplanTrabajo
           }
@@ -54,9 +56,9 @@ export default function CrearActividad() {
         // })
 
         //axios.post(`http://localhost:4000/ejemplo/asistente/CrearActividad`,{ID,Semana,Fecha,Cantidaddiasprevios,Cantidaddiasrequeridos,Fechapublicacion,IDmodalidad,IDtipoActividad})
-        console.log(typeof Nombre);
-        console.log(Semana);
         console.log(typeof Semana);
+        console.log(Semana);
+        console.log(typeof Nombre);
     }
 
 
@@ -80,20 +82,20 @@ export default function CrearActividad() {
                     <input placeholder='Fecha' onChange={(e) => setFecha(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Cantidaddiasprevios</label>
-                    <input placeholder='Cantidaddiasprevios' onChange={(e) => setCantidaddiasprevios(parseInt(e.target.value))}/>
+                    <label>Cantidad dias previos</label>
+                    <input placeholder='Cantidad dias previos' onChange={(e) => setCantidaddiasprevios(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Cantidaddiasrequeridos</label>
-                    <input placeholder='Cantidaddiasrequeridos' onChange={(e) => setCantidaddiasrequeridos(parseInt(e.target.value))}/>
+                    <label>Cantidad dias requeridos</label>
+                    <input placeholder='Cantidad dias requeridos' onChange={(e) => setCantidaddiasrequeridos(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Fechapublicacion</label>
-                    <input placeholder='FechaPublicacion' onChange={(e) => setFechaPublicacion(e.target.value)}/>
+                    <label>Fecha Publicacion</label>
+                    <input placeholder='Fecha Publicacion' onChange={(e) => setFechaPublicacion(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Linkreunion</label>
-                    <input placeholder='Linkreunion' onChange={(e) => setLinkreunion(e.target.value)}/>
+                    <label>Link reunion</label>
+                    <input placeholder='Link reunion' onChange={(e) => setLinkreunion(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Afiche</label>
@@ -106,6 +108,10 @@ export default function CrearActividad() {
                 <Form.Field>
                     <label>IDtipoActividad</label>
                     <input placeholder='IDtipoActividad' onChange={(e) => setIDtipoActividad(parseInt(e.target.value))}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>IDtipoAfiche</label>
+                    <input placeholder='IDtipoAfiche' onChange={(e) => setIDtipoAfiche(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Form.Field>
                     <label>IDtipoEstado</label>
