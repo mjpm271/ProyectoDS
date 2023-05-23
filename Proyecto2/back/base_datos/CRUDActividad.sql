@@ -12,16 +12,25 @@ CREATE PROCEDURE CreateActividad
     @IDtipoActividad int,
     @IDtipoAfiche int,
     @IDtipoEstado int,
-    @IDplanTrabajo int
+    @IDplanTrabajo int,
+	@Result int output
 )
 AS
 BEGIN
-    INSERT INTO actividad(Nombre, Semana, Fecha,Cantidaddiasprevios, Cantidaddiasrequeridos, FechaPublicacion, Linkreunion, Afiche, IDmodalidad, IDtipoActividad, IDtipoAfiche, IDtipoEstado, IDplanTrabajo)
-    VALUES (@Nombre, @Semana, @Fecha, @Cantidaddiasprevios, @Cantidaddiasrequeridos, @FechaPublicacion, @LinkReunion, @Afiche, @IDmodalidad, @IDtipoActividad, @IDtipoAfiche, @IDtipoEstado, @IDplanTrabajo)
+	IF (select count(*) from actividad where Nombre = @Nombre and IDplanTrabajo = @IDplanTrabajo) >= 1
+	BEGIN
+		set @Result = 0
+		select @Result
+	END
+	ELSE
+	BEGIN
+		INSERT INTO actividad(Nombre, Semana, Fecha,Cantidaddiasprevios, Cantidaddiasrequeridos, FechaPublicacion, Linkreunion, Afiche, IDmodalidad, IDtipoActividad, IDtipoAfiche, IDtipoEstado, IDplanTrabajo)
+		VALUES (@Nombre, @Semana, @Fecha, @Cantidaddiasprevios, @Cantidaddiasrequeridos, @FechaPublicacion, @LinkReunion, @Afiche, @IDmodalidad, @IDtipoActividad, @IDtipoAfiche, @IDtipoEstado, @IDplanTrabajo)
+	END
 END;
 GO
 
-CREATE PROCEDURE ReadActividadPorID -- Tiene que ser nombre de actividad pero a su vez por plan 
+CREATE PROCEDURE ReadActividadPorID -- Tiene que ser nombre de actividad pero a su vez por plan pues en diferentes planes pueden el mismo nombre ej: ac.1 plan 1 y ac.2 plan 2
 (
     @Nombre varchar(64),
 	@IDplanTrabajo int

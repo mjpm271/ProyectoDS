@@ -1,8 +1,11 @@
 CREATE PROCEDURE CreateResponsableActividad 
-    @IDprofesor int,
+    @Carnet varchar(64),
     @IDactividad int
 AS
 BEGIN
+	DECLARE @IDprofesor as int
+	SET @IDprofesor = (select IDpersona from persona where Carnet = @Carnet)
+
     INSERT INTO responsableActividad(IDprofesor, IDactividad)
     VALUES(@IDprofesor, @IDactividad)
 END;

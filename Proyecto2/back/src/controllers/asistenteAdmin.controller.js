@@ -85,7 +85,7 @@ export const BuscarProfesorEquipo = async (req, res) => {
 };
 
 //Consultar Integrantes del Equipo de Profesores
-export const ConsultarMiembrosEquipoGuia= async (req, res) => {
+export const ConsultarMiembrosEquipoGuia = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    

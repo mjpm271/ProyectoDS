@@ -128,21 +128,42 @@ export const EliminarPlanTrabajo = async (req, res) => {
 
 }    
 
+export const ConsultarMiembrosEquipoGuia= async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { Nombre } = req.body
+    console.log('valores:', req.body)
+    if (!Nombre ) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('Nombre', sql.VarChar(32), Nombre)
+            .execute('ReadEquipoGuiaProfesorPorID')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
 
-//Ver integrantes del Equipo Guia ---> Falta agregar procedure
-
+};
 
 
 
 //Crear actividad
-export const CrearActividad = async (req, res) => {
+export const CrearActividad = async (req, res) => {  // TODO: agregar output
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const {     
-        Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
+        Nombre, Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion, Linkreunion, Afiche, IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
     console.log('valores:', req.body)
-    if (!Semana || !Fecha || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
+    if (!Nombre || !Semana || !Fecha || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !Linkreunion || !Afiche|| !FechaPublicacion || !IDmodalidad || !IDtipoActividad
         || !IDtipoAfiche || !IDtipoEstado || !IDplanTrabajo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
@@ -152,11 +173,14 @@ export const CrearActividad = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
+            .input('Nombre', sql.VarChar(64), Nombre)
             .input('Semana', sql.Int, Semana)
             .input('Fecha', sql.DateTime, Fecha)
             .input('Cantidaddiasprevios', sql.Int, Cantidaddiasprevios)
             .input('Cantidaddiasrequeridos', sql.Int, Cantidaddiasrequeridos)
             .input('FechaPublicacion', sql.Date, FechaPublicacion)
+            .input('Linkreunion', sql.VarChar(sql.MAX), LinkReunion)
+            .input('Afiche', sql.VarChar(sql.MAX), Afiche)
             .input('IDmodalidad', sql.Int, IDmodalidad)
             .input('IDtipoActividad', sql.Int, IDtipoActividad)
             .input('IDtipoAfiche', sql.Int, IDtipoAfiche)
@@ -170,14 +194,14 @@ export const CrearActividad = async (req, res) => {
 
 }
 
-// Ver actividad 
-export const VerActividad = async (req, res) => {
+// Definir el responsable(s) de la actividad
+export const DefinirResponsable = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDactividad} = req.body
+    const { Carnet, IDactividad} = req.body
     console.log('valores:', req.body)
-    if (!IDactividad) {
+    if (!Carnet || !IDactividad) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -185,7 +209,34 @@ export const VerActividad = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
+            .input('Carnet', sql.VarChar(64), Carnet)
             .input('IDactividad', sql.Int, IDactividad)
+            .execute('CreateResponsableActividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+}   
+// Ver actividad 
+export const VerActividad = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { Nombre, IDplanTrabajo} = req.body
+    console.log('valores:', req.body)
+    if (!Nombre || !IDplanTrabajo) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('Nombre', sql.VarChar(64), Nombre)
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo)
             .execute('ReadActividadPorID')
         console.log(result)
         res.json(result.recordset)
@@ -226,9 +277,9 @@ export const ModificarActividad = async (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const {     
-        Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
+        Nombre, Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion, Linkreunion, Afiche ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
     console.log('valores:', req.body)
-    if (!Semana || !Fecha|| !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !IDmodalidad || !IDtipoActividad
+    if (!Nombre || !Semana || !Fecha|| !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !Linkreunion || Afiche || !IDmodalidad || !IDtipoActividad
         || !IDtipoAfiche || !IDtipoEstado || !IDplanTrabajo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
@@ -238,17 +289,20 @@ export const ModificarActividad = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
+            .input('Nombre', sql.VarChar(64), Nombre)
             .input('Semana', sql.Int, Semana)
             .input('Fecha', sql.DateTime, Fecha)
             .input('Cantidaddiasprevios', sql.Int, Cantidaddiasprevios)
             .input('Cantidaddiasrequeridos', sql.Int, Cantidaddiasrequeridos)
             .input('FechaPublicacion', sql.Date, FechaPublicacion)
+            .input('Linkreunion', sql.VarChar(sql.MAX), LinkReunion)
+            .input('Afiche', sql.VarChar(sql.MAX), Afiche)
             .input('IDmodalidad', sql.Int, IDmodalidad)
             .input('IDtipoActividad', sql.Int, IDtipoActividad)
             .input('IDtipoAfiche', sql.Int, IDtipoAfiche)
             .input('IDtipoEstado', sql.Int, IDtipoEstado)                        
             .input('IDplanTrabajo', sql.Int, IDplanTrabajo) 
-            .execute('UpdateActividad')
+            .execute('UpdateActividad2')
         console.log(result)
     } catch (err) {
         res.sendStatus(500, err.message)
@@ -283,22 +337,14 @@ export const EliminarActividad = async (req, res) => {
 }    
 
 
-
-// Ver actividad x Plan de trabajo --> Falta agregar procedure
-
-
-
-
-
-
 // Comentar
 export const Comentar = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
-    const { IDprofesor, IDemisor, IDactividad, IDcomentarioPadre, Hora, Fecha, Comentarios, Contenido } = req.body
+    const { IDpersona, IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido } = req.body
     console.log('valores:', req.body)
-    if (!IDprofesor || !IDemisor || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Comentarios || !Contenido) {
+    if (!IDpersona || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Contenido) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -307,13 +353,11 @@ export const Comentar = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('ID ', sql.Int, IDprofesor)
-            .input('Emisor ', sql.Int, IDemisor)
+            .input('IDpersona', sql.Int, IDpersona)
             .input('ID Actividad ', sql.Int, IDactividad)
             .input('ComentarioPadre', sql.Int, IDcomentarioPadre)
             .input('Hora', sql.Time, Hora)
             .input('Fecha', sql.Date, Fecha)
-            .input('Comentarios ', sql.VarChar, Comentarios)
             .input('Contenido', sql.VarChar, Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreateComentario')
         console.log(result)
@@ -323,18 +367,13 @@ export const Comentar = async (req, res) => {
 
 }
 
-// Ver comentarios x Actividad de un Plan especifico ---> Falta agregar procedure
-
-
+// TODO: Ver comentarios x Actividad de un Plan especifico ---> Falta agregar procedure
 
 
 
 //Responder comentarios
     // Preguntar como se maneja la columna comentarios en la base
     //Parece que el metodo de crear comentario es el de responder pero no estoy segura
-
-
-
 
 
 // Ver perfil profesor
@@ -361,10 +400,10 @@ export const VerProfesorPerfil = async (req, res) => {
 
 //Modificar informacion perfil de profesor
 // recuperar informacion una vez ingrese el usuario al sistema
-export const ModificarProfesorPerfil = async (req, res) => {
-    const { IDpersona, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDpersonatipo } = req.body
+export const ModificarProfesorPerfil = async (req, res) => {  // TODO: ingresar output
+    const { Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Sede, IDpersonatipo } = req.body
     console.log('valores:', req.body)
-    if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    if (!Carnet || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -373,7 +412,7 @@ export const ModificarProfesorPerfil = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('ID ', sql.Int, ID)
+            .input('Carnet', sql.VarChar(64), Carnet)
             .input('Nombre Completo', sql.VarChar, NombreCompleto)
             .input('Correo ', sql.VarChar, Correo)
             .input('Contraseña', sql.VarChar, Contra)

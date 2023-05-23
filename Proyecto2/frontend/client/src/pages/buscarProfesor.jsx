@@ -27,8 +27,10 @@ export default function BuscarProfesor() {
           });
        
   }
+        useEffect(() => {
+        definirSede();
+      });
 
-  
       const definirSede = () => {
         switch (items.Sede){
           case 1:
@@ -64,9 +66,7 @@ export default function BuscarProfesor() {
 
             </Form>
             <div> 
-      useEffect(() => {
-        definirSede();
-      });
+
             <Table class="ui blue table" singleLine>
                 <Table.Header>
                     <Table.Row>
