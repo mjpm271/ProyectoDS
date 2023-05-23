@@ -184,9 +184,9 @@ export const VerProfesorPerfil = async (req, res) => {
 export const ModificarProfesorPerfil = async (req, res) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono, TelefonoOficina,Sede, IDtipo } = req.body
+    const { Carnet, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono, TelefonoOficina,Sede, IDtipo } = req.body
     console.log('valores:', req.body)
-    if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    if (!Carnet || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }
@@ -195,7 +195,7 @@ export const ModificarProfesorPerfil = async (req, res) => {
         //console.log('whatever')
         const result = await pool
             .request()
-            .input('ID', sql.Int, IDpersona)
+            .input('Carnet', sql.Int, Carnet)
             .input('NombreCompleto', sql.VarChar(100), NombreCompleto)
             .input('Correo', sql.VarChar(100), Correo)
             .input('Contra', sql.VarChar(64), Contra)
