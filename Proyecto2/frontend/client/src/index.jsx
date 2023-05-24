@@ -34,6 +34,8 @@ import CrearActividad from './pages/crearActividad';
 import ModificarActividad from './pages/modificarActividad';
 import EliminarActividad from './pages/eliminarActividad';
 import SiguienteActividad from './pages/SiguienteActividad';
+import CambioContra from './pages/cambioContra';
+import CrearPlan from './pages/crearPlan';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -69,6 +71,8 @@ function App() {
         <Route path="/planList/plan/:planId/activity/:activityId" element={<Actividad />} />
         <Route path="/modificarPerfil/:id" element={<ModificarPerfil />} />        
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
+        <Route path="/cambiarContra/:id" element={<CambioContra />} />      
+        <Route path="/crearPlan" element={<CrearPlan />} /> 
 
        {/*Coordinador */}
         <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
@@ -79,7 +83,7 @@ function App() {
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
         <Route path="/modificarActividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>
-        
+
       </Routes>
     </BrowserRouter>
   )

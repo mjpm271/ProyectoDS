@@ -84,18 +84,18 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className='main'>
       <h1>Iniciar sesión</h1>
 
       {error && <Message negative>{error}</Message>}
 
       <div>
         <label>Correo:</label>
-        <input type="text" value={Correo} onChange={handleCorreoChange} />
+        <input value={Correo} onChange={handleCorreoChange} />
       </div>
       <div>
         <label>Contraseña:</label>
-        <input type="Contra" value={Contra} onChange={handleContraChange} />
+        <input value={Contra} onChange={handleContraChange} />
       </div>
       <button onClick={handleLogin}>Iniciar sesión</button>
     </div>

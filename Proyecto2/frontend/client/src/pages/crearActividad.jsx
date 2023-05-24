@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label, Confirm, Modal} from 'semantic-ui-react'
+import { Button,  Form, Header , Modal} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import DatePicker from 'react-date-picker';
@@ -136,13 +136,13 @@ export default function CrearActividad() {
                 </Form.Field>
                 </Form>
                 <Button onClick={togglePopup} type='Submit'>Siguiente</Button>
-                <Modal size='mini' open={isOpen} onClose={postData}>
-                        <Modal.Header>Popup Content</Modal.Header>
+                <Modal  closeIcon open={isOpen} onClose={() => setIsOpen(false)} onOpen={() => setIsOpen(true)}>
+                        <Header content='Archive Old Messages'/>
                         <Modal.Content>
                         <p>Se creo la actividad</p>
                         </Modal.Content>
                         <Modal.Actions>
-                        <Button onClick={postData}>Close</Button>
+                        <Button onClick={(postData=> setIsOpen(false))}>Close</Button>
                         </Modal.Actions>
                     </Modal>
     </div>

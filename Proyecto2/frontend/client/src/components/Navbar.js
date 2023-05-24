@@ -17,7 +17,7 @@ function Navbar(props) {
 			{/* <h3>LOGO</h3> */}
 			<nav ref={navRef}>
 				<Link to={`/modificarPerfil/${props.id}`}>Perfil</Link>
-				<Link to={`/`}>Cambiar Contraseña</Link>
+				<Link to={`/cambiarContra/${props.id}`}>Cambiar Contraseña</Link>
 				<Link to={`/`}>Cerrar Sesion</Link>
 				<button
 					className="nav-btn nav-close-btn"
