@@ -43,7 +43,7 @@ export default function InicioCoordinador() {
                 </Link>
             </li>
             <li>
-            <Link to={'/read'}>
+            <Link to={'/crearPlan'}>
                     <button>Crear Plan de Trabajo</button>
                 </Link>
             </li>
