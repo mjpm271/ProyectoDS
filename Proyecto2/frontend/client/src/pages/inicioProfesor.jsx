@@ -27,7 +27,7 @@ export default function InicioProfesor() {
             <nav>
           <ul>
             <li>
-                <Link to={'/ConsultarMiembros'}>
+                <Link to={'/ConsultarMiembros'} state= {Persona} >
                     <button>Consultar Equipo guia</button>
                 </Link>
             </li>

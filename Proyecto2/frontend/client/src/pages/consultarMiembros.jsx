@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
-
+import { useLocation } from 'react-router-dom';
 export default function ConsultarMiembros() {
-
+    const location = useLocation();
+    const Persona = location.state;
     const [Nombre, setNombre] = useState();
     const [items, setItems] = useState([]);
+    console.log(Persona)
 
     const buscar = () => {
 
@@ -21,6 +23,7 @@ export default function ConsultarMiembros() {
           .then(response => {
             const items = response.data
             setItems(items)
+            
           }).catch(error => {
               console.log(error)
           });

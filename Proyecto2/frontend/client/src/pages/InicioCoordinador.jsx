@@ -27,7 +27,7 @@ export default function InicioCoordinador() {
             <nav>
           <ul>
             <li>
-                <Link to={'/ConsultarMiembros'}>
+                <Link to={'/ConsultarMiembros'}state= {Persona}>
                     <button>Consultar Miembros de Equipo guia</button>
                 </Link>
             </li>
@@ -43,7 +43,7 @@ export default function InicioCoordinador() {
                 </Link>
             </li>
             <li>
-            <Link to={'/crearPlan'}>
+            <Link to={'/crearPlan'} state= {Persona}>
                     <button>Crear Plan de Trabajo</button>
                 </Link>
             </li>
