@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Button,  Form , Table} from 'semantic-ui-react'
+import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 
 export default function VerPlan() {
@@ -8,34 +8,41 @@ export default function VerPlan() {
     const Persona = location.state;
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
+    const [error, setError] = useState('');
+
     console.log(Persona)
 
     const buscar = () => {
-
-      axios.post(`http://localhost:4000/profesor/VerPlanTrabajo`, {
-        IDplanTrabajo:IDplanTrabajo
-        }
-        , {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        )
-          .then(response => {
-            const items = response.data
-            setItems(items)
-            
-          }).catch(error => {
-              console.log(error)
-          });
+        setError('')
+        axios.post(`http://localhost:4000/profesor/VerPlanTrabajo`, {
+            IDplanTrabajo:IDplanTrabajo
+            }
+            , {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+            )
+            .then(response => {
+                const items = response.data
+                setItems(items)
+                // console.log(response.data)
+                if(response.data.length === 0){
+                    setError('No existe registro del plan consultado')
+                }
+                
+            }).catch(error => {
+                console.log(error)
+            });
 
 
   }
 
-  const setData = (data) => {
-    let { IDplanTrabajo, Nombre, Abreviacion, IDcoordinador } = data;
+//   const setData = (item) => {
+//     let { IDplanTrabajo, Nombre, Abreviacion, IDcoordinador } = item;
+//     console.log('item',item)
 
-}
+// }
 
     return (
         <div>
@@ -49,7 +56,8 @@ export default function VerPlan() {
 
             </Form>
             <div> 
-            <Table class="ui blue table"  singleLine>
+            {error && <Message negative>{error}</Message>}
+            <Table textAlign='center'  singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>ID Plan Trabajo </Table.HeaderCell>
@@ -67,9 +75,9 @@ export default function VerPlan() {
                                 <Table.Cell>{item.IDplanTrabajo}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
                                 <Table.Cell>{item.Abreviacion}</Table.Cell>
-                                <Link to='/read'>
+                                <Link to={`/modificarPlan/${item.IDplanTrabajo}`}>
                                     <Table.Cell> 
-                                        <Button onClick={() => setData(item)} > Actualizar </Button>
+                                        <Button  > Modificar </Button>
                                     </Table.Cell>
                                 </Link>
                             </Table.Row>

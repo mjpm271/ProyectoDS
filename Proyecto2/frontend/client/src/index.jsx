@@ -37,6 +37,7 @@ import SiguienteActividad from './pages/SiguienteActividad';
 import CambioContra from './pages/cambioContra';
 import CrearPlan from './pages/crearPlan';
 import VerPlan from './pages/verPlan';
+import ModificarPlan from './pages/modificarPlan';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -85,6 +86,7 @@ function App() {
         <Route path="/modificarActividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>
         <Route path="/verPlan" element={<VerPlan />}/>
+        <Route path="/modificarPlan/:IDPlan" element={<ModificarPlan />}/>
 
       </Routes>
     </BrowserRouter>

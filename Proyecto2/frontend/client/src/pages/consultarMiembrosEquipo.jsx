@@ -41,7 +41,7 @@ export default function ConsultarMiembrosEquipo() {
 
             </Form>
             <div> 
-            <Table singleLine>
+            <Table textAlign='center' singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Foto </Table.HeaderCell>

@@ -44,7 +44,7 @@ export default function ConsultarMiembros() {
 
             </Form>
             <div> 
-            <Table class="ui blue table"  singleLine>
+            <Table class="ui blue table" textAlign='center' singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Carnet </Table.HeaderCell>
