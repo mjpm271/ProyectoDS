@@ -43,6 +43,18 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadActividadPorIDActividad -- Se agarra el id actividad entonces fresco
+(
+    @IDactividad int
+)
+AS
+BEGIN
+    SELECT * 
+	FROM actividad 
+	WHERE IDactividad = @IDactividad
+END;
+GO
+
 CREATE PROCEDURE ReadActividades
 AS
 BEGIN
