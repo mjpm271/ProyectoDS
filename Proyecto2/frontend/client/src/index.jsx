@@ -79,6 +79,7 @@ function App() {
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
         <Route path="/modificarActividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>
+        
       </Routes>
     </BrowserRouter>
   )
