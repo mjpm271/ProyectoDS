@@ -30,3 +30,29 @@ export const login = async (req, res) => {
         res.sendStatus(500, err.message)
     }
 };
+
+export const CambiarContraseña = async (req, res) => {
+    const { Carnet, Contra } = req.body
+    console.log("user login:", Carnet, Contra)
+    if (!Carnet || !Contra) {
+        return res.status(400).json({ msg: 'Bad Request. Please fill all fields' })
+    }
+    try {
+        const pool = await getConnection();
+        //console.log(pool);
+        const result = await pool
+            .request()
+            .input('Carnet', sql.VarChar(100), Carnet)
+            .input('NewPassword', sql.VarChar(64), Contra)
+
+            .execute('ChangePassword')
+
+
+        console.log(result.recordset)
+        res.json(result)
+        // res.status(200).json(outputValue.Exito);
+        // console.log(o utputValue);
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+};

@@ -1,5 +1,5 @@
 CREATE PROCEDURE ChangePassword
-    @Carnet int,
+    @Carnet varchar(64),
     @NewPassword varchar(64)
 AS
 BEGIN
