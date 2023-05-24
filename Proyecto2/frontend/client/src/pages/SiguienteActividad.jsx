@@ -6,7 +6,7 @@ export default function SiguienteActividad() {
     const [FechaActual, setFechaActual] = useState(new Date());
     const [items, setItems] = useState([]);
 
-    const buscar = () => { 
+    useEffect(() => { 
         axios.post('http://localhost:4000/asistente/SiguienteActividad', {
             FechaActual:FechaActual
           }
@@ -17,6 +17,7 @@ export default function SiguienteActividad() {
           }
           )
             .then(response => {
+              setItems(response.data);
               console.log(response.data);
             }).catch(error => {
                 console.log(error)
@@ -31,13 +32,12 @@ export default function SiguienteActividad() {
 
         //axios.post(`http://localhost:4000/ejemplo/asistente/AgregarProfesor`,{ID,FechaActual,Fecha,Contra,Cantidaddiasprevistos,Cantidaddiasrequeridos,Afiche,IDtipo})
 
-    }
+    },[]
+);
  
     return ( 
         <div>
-            <Form className="create-form">
-                <Button onClick={buscar} type='submit'>Buscar</Button>
-            </Form>
+
             <div> 
 
             <Table class="ui blue table" singleLine>
@@ -47,7 +47,7 @@ export default function SiguienteActividad() {
                         <Table.HeaderCell>Nombre </Table.HeaderCell>
                         <Table.HeaderCell>Semana </Table.HeaderCell>
                         <Table.HeaderCell>Fecha </Table.HeaderCell>
-                        <Table.HeaderCell>Cantidad dias previstos </Table.HeaderCell>
+                        <Table.HeaderCell>Cantidad dias previos </Table.HeaderCell>
                         <Table.HeaderCell>Cantidad dias requeridos </Table.HeaderCell>
                         <Table.HeaderCell>Fecha Publicacion </Table.HeaderCell>
                         <Table.HeaderCell>Link reunion </Table.HeaderCell>
@@ -68,7 +68,7 @@ export default function SiguienteActividad() {
                                 <Table.Cell>{item.Nombre}</Table.Cell>
                                 <Table.Cell>{item.Semana}</Table.Cell>
                                 <Table.Cell>{item.Fecha}</Table.Cell>
-                                <Table.Cell>{item.Cantidaddiasprevistos}</Table.Cell>
+                                <Table.Cell>{item.Cantidaddiasprevios}</Table.Cell>
                                 <Table.Cell>{item.Cantidaddiasrequeridos}</Table.Cell>
                                 <Table.Cell>{item.FechaPublicacion}</Table.Cell>
                                 <Table.Cell>{item.Linkreunion}</Table.Cell>

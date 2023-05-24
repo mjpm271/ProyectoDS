@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { useNavigate } from 'react-router-dom';
+import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label, Confirm, Modal} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import DatePicker from 'react-date-picker';
@@ -25,6 +26,9 @@ export default function CrearActividad() {
     const [IDtipoAfiche, setIDtipoAfiche] = useState();
     const [IDtipoEstado, setIDtipoEstado] = useState();
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
+    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -66,11 +70,11 @@ export default function CrearActividad() {
         console.log(typeof Semana);
         console.log(Semana);
         console.log(typeof Nombre);
+        navigate('/crearEvidencia')
     }
-
-
-
- 
+   const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
     return (
         <div>
             <Navbar />
@@ -130,10 +134,17 @@ export default function CrearActividad() {
                     <label>IDplanTrabajo</label>
                     <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(parseInt(e.target.value))}/>
                 </Form.Field>
-
-                <Button onClick={postData} type='submit'>Submit</Button>
-            </Form>
-            <Footer/>
-        </div>
+                </Form>
+                <Button onClick={togglePopup} type='Submit'>Siguiente</Button>
+                <Modal size='mini' open={isOpen} onClose={postData}>
+                        <Modal.Header>Popup Content</Modal.Header>
+                        <Modal.Content>
+                        <p>Se creo la actividad</p>
+                        </Modal.Content>
+                        <Modal.Actions>
+                        <Button onClick={postData}>Close</Button>
+                        </Modal.Actions>
+                    </Modal>
+    </div>
     )
 }

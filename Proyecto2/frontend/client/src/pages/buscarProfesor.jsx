@@ -90,7 +90,7 @@ export default function BuscarProfesor() {
                             <Table.Row>
                                 <Table.Cell>
                                 <Header as='h4' image>
-                                  <Image src="https://i.postimg.cc/tCZ8XhHm/alba-photo-003.png" rounded size='huge' /> 
+                                  <Image src={item.Foto} rounded size='huge' /> 
                                 </Header>
                                 </Table.Cell>
                                 <Table.Cell>{item.Carnet}</Table.Cell>
