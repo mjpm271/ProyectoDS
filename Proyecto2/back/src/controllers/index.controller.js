@@ -31,12 +31,12 @@ export const login = async (req, res) => {
     }
 };
 
-export const CambiarContraseña = async (req, res) => {
+export const CambiarContra = async (req, res) => {
     const { Carnet, Contra } = req.body
     console.log("user login:", Carnet, Contra)
-    if (!Carnet || !Contra) {
-        return res.status(400).json({ msg: 'Bad Request. Please fill all fields' })
-    }
+    // if (!Carnet || !Contra) {
+    //     return res.status(400).json({ msg: 'Bad Request. Please fill all fields' })
+    // }
     try {
         const pool = await getConnection();
         //console.log(pool);
