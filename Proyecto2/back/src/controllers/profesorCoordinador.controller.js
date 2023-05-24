@@ -156,7 +156,7 @@ export const ConsultarMiembrosEquipoGuia= async (req, res) => {
 
 
 //Crear actividad
-export const CrearActividad = async (req, res) => {  // TODO: agregar output
+export const CrearActividad = async (req, res) => {  
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
@@ -380,37 +380,40 @@ export const VerActividadxPlan = async (req, res) => {
 }  
 
 //Update Actividad
-export const ModificarActividad = async (req, res) => {
+export const ModificarActividad = async (req, res) => {  
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const {     
-        Nombre, Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion, Linkreunion, Afiche ,IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
+        IDactividad, Nombre, Semana ,Fecha ,Cantidaddiasprevios ,Cantidaddiasrequeridos ,FechaPublicacion, Linkreunion, Afiche, IDmodalidad ,IDtipoActividad ,IDtipoAfiche ,IDtipoEstado ,IDplanTrabajo } = req.body
     console.log('valores:', req.body)
-    if (!Nombre || !Semana || !Fecha|| !Cantidaddiasprevios || !Cantidaddiasrequeridos || !FechaPublicacion || !Linkreunion || Afiche || !IDmodalidad || !IDtipoActividad
+    /*if (!Nombre || !Semana || !Fecha || !Cantidaddiasprevios || !Cantidaddiasrequeridos || !Linkreunion || !Afiche|| !FechaPublicacion || !IDmodalidad || !IDtipoActividad
         || !IDtipoAfiche || !IDtipoEstado || !IDplanTrabajo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
         //console.log('whatever')
         const result = await pool
             .request()
+            .input('IDactividad', sql.Int, IDactividad)
             .input('Nombre', sql.VarChar(64), Nombre)
             .input('Semana', sql.Int, Semana)
             .input('Fecha', sql.DateTime, Fecha)
             .input('Cantidaddiasprevios', sql.Int, Cantidaddiasprevios)
             .input('Cantidaddiasrequeridos', sql.Int, Cantidaddiasrequeridos)
             .input('FechaPublicacion', sql.Date, FechaPublicacion)
-            .input('Linkreunion', sql.VarChar(sql.MAX), LinkReunion)
+            .input('Linkreunion', sql.VarChar(sql.MAX), Linkreunion)
             .input('Afiche', sql.VarChar(sql.MAX), Afiche)
             .input('IDmodalidad', sql.Int, IDmodalidad)
             .input('IDtipoActividad', sql.Int, IDtipoActividad)
             .input('IDtipoAfiche', sql.Int, IDtipoAfiche)
             .input('IDtipoEstado', sql.Int, IDtipoEstado)                        
-            .input('IDplanTrabajo', sql.Int, IDplanTrabajo) 
+            .input('IDplanTrabajo', sql.Int, IDplanTrabajo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .output('Exito',sql.Int)
             .execute('UpdateActividad2')
+        console.log(result.output)
         console.log(result)
     } catch (err) {
         res.sendStatus(500, err.message)
@@ -425,10 +428,10 @@ export const EliminarActividad = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
     const { IDactividad} = req.body
     console.log('valores:', req.body)
-    if (!IDactividad) {
+    /*if (!IDactividad) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
         const result = await pool

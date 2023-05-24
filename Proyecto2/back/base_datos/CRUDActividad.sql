@@ -62,12 +62,12 @@ END;
 GO
 
 CREATE PROCEDURE ReadActividadesporfecha
-	@Fecha DATETIME
+	@FechaActual DATETIME
 AS
 BEGIN
     SELECT TOP 1 * 
 	FROM actividad
-	WHERE Fecha >= @Fecha and (IDtipoEstado = 1 or IDtipoEstado = 2)
+	WHERE Fecha >= @FechaActual and (IDtipoEstado = 1 or IDtipoEstado = 2)
 	ORDER BY Fecha ASC
 END;
 GO

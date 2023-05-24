@@ -1,6 +1,6 @@
 import { Router } from "express"
 import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,DefinirCoordinador,AgregarProfesor,
-        BuscarProfesor,ModificarProfesor,InhabilitarProfesor, CrearEquipoGuia, ConsultarMiembrosEquipoGuia} from "../controllers/asistenteAdmin.controller"
+        BuscarProfesor,ModificarProfesor,InhabilitarProfesor, CrearEquipoGuia, ConsultarMiembrosEquipoGuia, SiguienteActividad} from "../controllers/asistenteAdmin.controller"
 
 const router = Router()
 
@@ -14,7 +14,7 @@ router.post('/AgregarProfesor',AgregarProfesor)
 router.post('/BuscarProfesor',BuscarProfesor)
 router.put('/ModificarProfesor',ModificarProfesor)
 router.put('/InhabilitarProfesor',InhabilitarProfesor)
-//router.post('/SiguienteActividad',SiguienteActividad)
+router.post('/SiguienteActividad',SiguienteActividad)
 
 export default router
 

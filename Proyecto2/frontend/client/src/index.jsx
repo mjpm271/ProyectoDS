@@ -31,6 +31,9 @@ import CancelarActividad from './pages/cancelarActividad';
 import ModificarPerfil from './pages/actualizarPerfil';
 import InicioCoordinador from './pages/InicioCoordinador';
 import CrearActividad from './pages/crearActividad';
+import ModificarActividad from './pages/modificarActividad';
+import EliminarActividad from './pages/eliminarActividad';
+import SiguienteActividad from './pages/SiguienteActividad';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -57,6 +60,7 @@ function App() {
         <Route path="/inhabilitarProfesor" element={<InhabilitarProfesor />}/>
         <Route path="/modificarProfesorEquipo" element={<ModificarProfesorEquipo />}/>
         <Route path="/buscarProfesorEquipo" element={<BuscarProfesorEquipo />}/>
+        <Route path="/SiguienteActividad" element={<SiguienteActividad />}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />
@@ -73,6 +77,8 @@ function App() {
         <Route path="/cancelarActividad" element={<CancelarActividad />}/>
         <Route path="/crearActividad" element={<CrearActividad />}/>
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
+        <Route path="/modificarActividad" element={<ModificarActividad />}/>
+        <Route path="/eliminarActividad" element={<EliminarActividad />}/>
       </Routes>
     </BrowserRouter>
   )
