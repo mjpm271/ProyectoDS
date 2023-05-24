@@ -2,7 +2,11 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
+import DateTimePicker from 'react-datetime-picker'
 import Footer from '../components/Footer';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
 
 export default function CrearObservacion() {
     const [Fecha, setFecha] = useState(new Date());
@@ -54,11 +58,12 @@ export default function CrearObservacion() {
     return (
         <div>
             <Navbar />
-            <Form className="create-form">
-                <Form.Field>
+                <div>
                     <label>Fecha</label>
-                    <input placeholder='Fecha' onChange={(e) => setFecha(e.target.value)}/>
-                </Form.Field>
+                    <DateTimePicker onChange={setFecha} value={Fecha} />
+                </div>
+            <Form className="create-form">
+
                 <Form.Field>
                     <label>Observacion </label>
                     <input placeholder='Observacion' onChange={(e) => setObservacion(e.target.value)}/>

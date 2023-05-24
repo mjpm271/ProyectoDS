@@ -3,6 +3,8 @@ import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
+import DateTimePicker from 'react-datetime-picker';
+import DatePicker from 'react-date-picker';
 
 export default function ModificarActividad() {
     const [IDactividad, setIDactividad] = useState();
@@ -69,6 +71,15 @@ export default function ModificarActividad() {
     return (
         <div>
             <Navbar />
+                <Form.Field>
+                    <label>Fecha</label>
+                    <DateTimePicker onChange={setFecha} value={Fecha} />
+                </Form.Field>
+                <Form.Field>
+                    <label>Fecha Publicacion</label>
+                    <DatePicker onChange={setFechaPublicacion} value={FechaPublicacion} />
+                </Form.Field>
+
             <Form className="create-form">
                 <Form.Field>
                     <label>IDactividad </label>
@@ -81,11 +92,7 @@ export default function ModificarActividad() {
                 <Form.Field>
                     <label>Semana </label>
                     <input placeholder='Semana' onChange={(e) => setSemana(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Fecha</label>
-                    <input placeholder='Fecha' onChange={(e) => setFecha(e.target.value)}/>
-                </Form.Field>
+                </Form.Field>               
                 <Form.Field>
                     <label>Cantidad dias previos</label>
                     <input placeholder='Cantidad dias previos' onChange={(e) => setCantidaddiasprevios(parseInt(e.target.value))}/>
@@ -93,10 +100,6 @@ export default function ModificarActividad() {
                 <Form.Field>
                     <label>Cantidad dias requeridos</label>
                     <input placeholder='Cantidad dias requeridos' onChange={(e) => setCantidaddiasrequeridos(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Fecha Publicacion</label>
-                    <input placeholder='Fecha Publicacion' onChange={(e) => setFechaPublicacion(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Link reunion</label>

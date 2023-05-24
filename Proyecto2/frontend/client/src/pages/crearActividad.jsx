@@ -2,6 +2,13 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
+import DateTimePicker from 'react-datetime-picker'
+import DatePicker from 'react-date-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 import Footer from '../components/Footer';
 
 export default function CrearActividad() {
@@ -67,6 +74,16 @@ export default function CrearActividad() {
     return (
         <div>
             <Navbar />
+            <div>
+                <label>Fecha </label>
+                <DateTimePicker onChange={setFecha} value={Fecha} />
+            </div>
+            
+            <div>
+                <label>Fecha Publicacion</label>
+                <DatePicker onChange={setFechaPublicacion} value={FechaPublicacion} />
+            </div>
+
             <Form className="create-form">
                 
                 <Form.Field>
@@ -78,20 +95,12 @@ export default function CrearActividad() {
                     <input placeholder='Semana' onChange={(e) => setSemana(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>Fecha</label>
-                    <input placeholder='Fecha' onChange={(e) => setFecha(e.target.value)}/>
-                </Form.Field>
-                <Form.Field>
                     <label>Cantidad dias previos</label>
                     <input placeholder='Cantidad dias previos' onChange={(e) => setCantidaddiasprevios(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Cantidad dias requeridos</label>
                     <input placeholder='Cantidad dias requeridos' onChange={(e) => setCantidaddiasrequeridos(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Fecha Publicacion</label>
-                    <input placeholder='Fecha Publicacion' onChange={(e) => setFechaPublicacion(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Link reunion</label>
