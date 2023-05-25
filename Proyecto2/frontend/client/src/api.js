@@ -35,14 +35,13 @@ export const getComments = async () => {
   ];
 };
 
-export const createComment = async (text, parentId = null) => {
+export const createComment = async (text, IDcomentarioPadre = null) => {
   return {
-    id: Math.random().toString(36).substr(2, 9),
-    body: text,
-    parentId,
-    userId: "1",
-    username: "John",
-    createdAt: new Date().toISOString(),
+    Contenido: text,
+    IDcomentarioPadre,
+    IDpersona: 1,
+    Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
+    Fecha: new Date().toLocaleDateString() // Obtén la fecha actual en el formato adecuado
   };
 };
 
