@@ -4,6 +4,9 @@ import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function SiguienteActividad() {
     const [FechaActual, setFechaActual] = useState(new Date());
+    const Modalidad = ['Presencial', 'Remoto'];
+    const TipoAct = ['Orientadora', 'Motivacional', 'Apoyo Vida Estudiantil', 'Orden Tecnico', 'Recreacion'];
+    const Estado = ['Planeada', 'Notificada', 'Realizada', 'Cancelada'];
     const [items, setItems] = useState([]);
 
     useEffect(() => { 
@@ -52,10 +55,9 @@ export default function SiguienteActividad() {
                         <Table.HeaderCell>Fecha Publicacion </Table.HeaderCell>
                         <Table.HeaderCell>Link reunion </Table.HeaderCell>
                         <Table.HeaderCell>Afiche </Table.HeaderCell>
-                        <Table.HeaderCell>ID Modalidad </Table.HeaderCell>
-                        <Table.HeaderCell>ID Tipo Actividad </Table.HeaderCell>
-                        <Table.HeaderCell>ID Tipo Afiche </Table.HeaderCell>
-                        <Table.HeaderCell>ID Tipo Estado </Table.HeaderCell>
+                        <Table.HeaderCell>Modalidad </Table.HeaderCell>
+                        <Table.HeaderCell>Tipo Actividad </Table.HeaderCell>
+                        <Table.HeaderCell>Tipo Estado </Table.HeaderCell>
                         <Table.HeaderCell>ID Plan de Trabajo </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
@@ -73,10 +75,9 @@ export default function SiguienteActividad() {
                                 <Table.Cell>{item.FechaPublicacion}</Table.Cell>
                                 <Table.Cell>{item.Linkreunion}</Table.Cell>
                                 <Table.Cell>{item.Afiche}</Table.Cell>
-                                <Table.Cell>{item.IDmodalidad}</Table.Cell>
-                                <Table.Cell>{item.IDtipoActividad}</Table.Cell>
-                                <Table.Cell>{item.IDtipoAfiche}</Table.Cell>
-                                <Table.Cell>{item.IDtipoEstado}</Table.Cell>
+                                <Table.Cell>{Modalidad[item.IDmodalidad]}</Table.Cell>
+                                <Table.Cell>{TipoAct[item.IDtipoActividad]}</Table.Cell>
+                                <Table.Cell>{Estado[item.IDtipoEstado]}</Table.Cell>
                                 <Table.Cell>{item.IDplanTrabajo}</Table.Cell>
                             </Table.Row>
                         )
