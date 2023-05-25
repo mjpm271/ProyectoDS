@@ -7,9 +7,10 @@ const Comment = ({
   activeComment,
   updateComment,
   deleteComment,
-  addComment,
-  parentId = null,
+  handleCommentSubmit,
+  IDcomentarioPadre = null,
   currentUserId,
+  IDpersona
 }) => {
   const isEditing =
     activeComment &&
@@ -20,18 +21,20 @@ const Comment = ({
     activeComment.IDcomentario === comment.IDcomentario &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
-  const timePassed = new Date() - new Date(comment.createdAt) > fiveMinutes;
+  const timePassed = new Date() - new Date(comment.Hora) > fiveMinutes;
   const canDelete =
-    currentUserId === comment.IDpersona && replies.length === 0 && !timePassed;
-  const canReply = Boolean(currentUserId);
-  const canEdit = currentUserId === comment.IDpersona && !timePassed;
-  const replyId = parentId ? parentId : comment.IDcomentario;
+    IDpersona === comment.IDpersona && replies.length === 0 && !timePassed;
+  const canReply = Boolean(IDpersona);
+  const canEdit = IDpersona === comment.IDpersona && !timePassed;
+  const replyId = IDcomentarioPadre ? IDcomentarioPadre : comment.IDcomentario;
   const createdAt = new Date(comment.createdAt).toLocaleDateString();
+  const Hora =  new Date(comment.Hora).toLocaleTimeString()// Obtén la hora actual en el formato adecuado
+  const Fecha= new Date(comment.Fecha).toLocaleDateString()// Obtén la fecha actual en el formato adecuado
   return (
     <div key={comment.IDcomentario} className="comment">
-      <div className="comment-image-container">
+      {/* <div className="comment-image-container">
         <img src="/user-icon.png" />
-      </div>
+      </div> */}
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{comment.IDpersona}</div>
@@ -82,7 +85,7 @@ const Comment = ({
         {isReplying && (
           <CommentForm
             submitLabel="Reply"
-            handleSubmit={(text) => addComment(text, replyId)}
+            handleSubmit={(text) => handleCommentSubmit(text, replyId)}
           />
         )}
         {replies.length > 0 && (
@@ -95,10 +98,10 @@ const Comment = ({
                 activeComment={activeComment}
                 updateComment={updateComment}
                 deleteComment={deleteComment}
-                addComment={addComment}
-                parentId={comment.IDcomentario}
+                handleCommentSubmit={handleCommentSubmit}
+                IDcomentarioPadre={comment.IDcomentario}
                 replies={[]}
-                currentUserId={currentUserId}
+                IDpersona={IDpersona}
               />
             ))}
           </div>
