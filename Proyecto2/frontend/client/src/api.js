@@ -40,8 +40,8 @@ export const createComment = async (text, IDcomentarioPadre = null) => {
     Contenido: text,
     IDcomentarioPadre,
     IDpersona: 1,
-    Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
-    Fecha: new Date().toLocaleDateString() // Obtén la fecha actual en el formato adecuado
+    // Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
+    Fecha: new Date().toISOString() // Obtén la fecha actual en el formato adecuado
   };
 };
 

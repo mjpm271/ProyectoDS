@@ -4,14 +4,13 @@ CREATE PROCEDURE CreateComentario
     @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
-    @Hora time,
-    @Fecha date,
+    @Fecha DateTime,
     @Contenido varchar(max)
 )
 AS
 BEGIN
-    INSERT INTO comentario (IDpersona, IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido)
-    VALUES (@IDpersona, @IDactividad, @IDcomentarioPadre, @Hora, @Fecha, @Contenido)
+    INSERT INTO comentario (IDpersona, IDactividad, IDcomentarioPadre,  Fecha, Contenido)
+    VALUES (@IDpersona, @IDactividad, @IDcomentarioPadre, @Fecha, @Contenido)
 END;
 GO
 
@@ -67,8 +66,7 @@ CREATE PROCEDURE UpdateComentario1
     @IDpersona int,
     @IDactividad int,
     @IDcomentarioPadre int,
-    @Hora time,
-    @Fecha date,
+    @Fecha DateTime,
     @Contenido varchar(max),
     @Exito bit OUTPUT
 )
@@ -82,7 +80,6 @@ BEGIN
     SET IDpersona = @IDpersona,
         IDactividad = @IDactividad,
         IDcomentarioPadre = @IDcomentarioPadre,
-        Hora = @Hora,
         Fecha = @Fecha,
         Contenido = @Contenido
     WHERE IDcomentario = @IDcomentario;
