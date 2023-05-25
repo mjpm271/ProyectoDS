@@ -61,7 +61,7 @@ export const VerActividad = async (req, res) => {
         const result = await pool
             .request()
             .input('IDactividad', sql.Int, IDactividad)
-            .execute('ReadActividadPorID')
+            .execute('ReadActividadPorIDActividad')
         console.log(result)
         res.json(result.recordset)
         
@@ -104,7 +104,7 @@ export const Comentar = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
-    const { IDpersona,  IDactividad, IDcomentarioPadre, Hora, Fecha, Comentarios, Contenido } = req.body
+    const { IDpersona,  IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido } = req.body
     console.log('valores:', req.body)
     if (!IDpersona || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Contenido) {
         console.log('here')
@@ -121,7 +121,7 @@ export const Comentar = async (req, res) => {
             .input('Hora', sql.Time, Hora)
             .input('Fecha', sql.Date, Fecha)
             .input('Contenido', sql.VarChar, Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
-            .execute('CreatePersona')
+            .execute('CreateComentario')
         console.log(result)
     } catch (err) {
         res.sendStatus(500, err.message)
@@ -145,7 +145,32 @@ export const VerComentariosActividad = async (req, res) => {
         const result = await pool
             .request()
             .input('IDactividad', sql.Int, IDactividad)
-            .execute('ReadActividadPorID')
+            .execute('ReadComentarioPorIDactividad')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+}    
+
+export const VerComentariosRespuesta = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDcomentarioPadre} = req.body
+    console.log('valores:', req.body)
+    if (!IDcomentarioPadre) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDcomentarioPadre', sql.Int, IDcomentarioPadre)
+            .execute('RReadComentarioPorIDpadre')
         console.log(result)
         res.json(result.recordset)
         

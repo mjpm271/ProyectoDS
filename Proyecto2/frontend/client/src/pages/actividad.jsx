@@ -149,7 +149,10 @@ export default function Actividad() {
           <Segment>Afiche</Segment>
         </Grid.Column>
         <Grid.Column>
-          <Segment>Historial de Comentarios</Segment>
+          <Segment>
+            Historial de Comentarios
+
+          </Segment>
           <Segment>Comentar</Segment>
         </Grid.Column>
       </Grid.Row>
