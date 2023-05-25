@@ -5,7 +5,7 @@ import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 export default function BuscarProfesor() {
 
     const [Carnet, setCarnet] = useState();
-    const [Lugar, setLugar] = useState([]);
+    const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
 
     const buscar = () => {
@@ -28,33 +28,11 @@ export default function BuscarProfesor() {
           });
        
   }
-        useEffect(() => {
-        definirSede();
-      });
 
-      const definirSede = () => {
-        switch (items.Sede){
-          case 1:
-            setLugar('Cartago');
-            break;
-          case 2:
-            setLugar('San Jose');
-            break;
-          case 3:
-            setLugar('Alajuela');
-            break;
-          case 4:
-            setLugar('San Carlos');
-            break;
-          case 5:
-            setLugar('Limon');
-            break;
-          default:
-            console.log(items.Sede)
-            setLugar('casa');
-            break;
-        }
-      };
+
+  const definirSede = () => {
+
+  }
     return (
         <div>
             <Form className="create-form">
@@ -100,7 +78,7 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{item.Coordinador}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
-                                <Table.Cell>{Lugar}</Table.Cell>
+                                <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                 <Table.Cell>Profesor</Table.Cell>
                             </Table.Row>
                         )

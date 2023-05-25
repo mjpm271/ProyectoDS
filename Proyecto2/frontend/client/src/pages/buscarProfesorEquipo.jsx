@@ -5,6 +5,7 @@ import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 export default function BuscarProfesorEquipo() {
     const [Nombre, setNombre] = useState();
     const [Carnet, setCarnet] = useState();
+    const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
 
     const buscar = () => { 
@@ -84,7 +85,7 @@ export default function BuscarProfesorEquipo() {
                                 <Table.Cell>{item.Coordinador}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
-                                <Table.Cell>{item.Sede}</Table.Cell>
+                                <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                 <Table.Cell>Profesor</Table.Cell>
                             </Table.Row>
                         )
