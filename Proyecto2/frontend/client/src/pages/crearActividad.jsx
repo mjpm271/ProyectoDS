@@ -26,12 +26,16 @@ export default function CrearActividad() {
     const [IDtipoAfiche, setIDtipoAfiche] = useState();
     const [IDtipoEstado, setIDtipoEstado] = useState();
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
+    const [selectedValues, setSelectedValues] = useState({});
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
-        
+        const dropdownOptionsModalidad = [
+            { id: 1, value: 1, label: 'PRESENCIAL' },
+            { id: 2, value: 2, label: 'Option 2' },
+        ];
         axios.post('http://localhost:4000/coordinador/CrearActividad', {
             Nombre:Nombre,
             Semana:Semana,
