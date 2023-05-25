@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState  } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button,  Form, Header , Modal} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
@@ -13,9 +13,10 @@ import 'react-calendar/dist/Calendar.css';
 import Footer from '../components/Footer';
 
 export default function CrearActividad() {
+    const utcTime = {timeZone: 'CST' };
     const [Nombre, setNombre] = useState();
     const [Semana, setSemana] = useState();
-    const [Fecha, setFecha] = useState(new Date().toISOString());
+    const [Fecha, setFecha] = useState(new Date().toLocaleString('en-US', utcTime));
     const [Cantidaddiasprevios, setCantidaddiasprevios] = useState();
     const [Cantidaddiasrequeridos, setCantidaddiasrequeridos] = useState();
     const [FechaPublicacion, setFechaPublicacion] = useState(new Date());
@@ -32,10 +33,7 @@ export default function CrearActividad() {
 
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
-        const dropdownOptionsModalidad = [
-            { id: 1, value: 1, label: 'PRESENCIAL' },
-            { id: 2, value: 2, label: 'Option 2' },
-        ];
+
         axios.post('http://localhost:4000/coordinador/CrearActividad', {
             Nombre:Nombre,
             Semana:Semana,
@@ -79,6 +77,50 @@ export default function CrearActividad() {
    const togglePopup = () => {
     setIsOpen(!isOpen);
   }
+    useEffect(() => {
+        const selectedDropdownValues = Object.values(selectedValues);
+        // Assign the selected values to a constant variable
+        const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
+        // Do something with the constant variable
+        setModalidad(selectedValuesConst[0]);
+        setIDtipoActividad(selectedValuesConst[1]);
+        setIDtipoAfiche(selectedValuesConst[2]);
+        setIDtipoEstado(selectedValuesConst[3]);
+        console.log(selectedValuesConst);
+    }, [selectedValues]);
+
+    const handleDropdownChange = (dropdownId, value) => {
+        setSelectedValues((prevState) => ({
+        ...prevState,
+        [dropdownId]: value,
+        }));
+    };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform any further processing here
+  };
+        const dropdownOptionsModalidad = [
+            { id: 1, value: 1, label: 'Presencial' },
+            { id: 2, value: 2, label: 'Remoto' },
+        ];
+        const dropdownOptionstipoActividad = [
+            { id: 1, value: 1, label: 'Orientadora' },
+            { id: 2, value: 2, label: 'Motivacional' },
+            { id: 3, value: 3, label: 'Apoyo vida estudiantil' },
+            { id: 4, value: 4, label: 'Orden tecnico' },
+            { id: 5, value: 5, label: 'Recreacion' },
+        ];
+        const dropdownOptionstipoAfiche = [
+            { id: 1, value: 1, label: 'PDF' },
+            { id: 2, value: 2, label: 'JPG' },
+        ];
+        const dropdownOptionstipoEstado = [
+            { id: 1, value: 1, label: 'Planeada' },
+            { id: 2, value: 2, label: 'Notificada' },
+            { id: 3, value: 3, label: 'Realizada' },
+            { id: 4, value: 4, label: 'Cancelada' },
+        ];
     return (
         <div>
             <Navbar />
@@ -118,22 +160,54 @@ export default function CrearActividad() {
                     <label>Afiche</label>
                     <input placeholder='Afiche' onChange={(e) => setAfiche(e.target.value)}/>
                 </Form.Field>
-                <Form.Field>
-                    <label>IDmodalidad</label>
-                    <input placeholder='IDmodalidad' onChange={(e) => setModalidad(parseInt( e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoActividad</label>
-                    <input placeholder='IDtipoActividad' onChange={(e) => setIDtipoActividad(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoAfiche</label>
-                    <input placeholder='IDtipoAfiche' onChange={(e) => setIDtipoAfiche(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoEstado</label>
-                    <input placeholder='IDtipoEstado' onChange={(e) => setIDtipoEstado(parseInt(e.target.value))}/>
-                </Form.Field>
+                <label htmlFor="Modalidad">Modalidad:</label>
+                <select
+                    id="Modalidad"
+                    value={selectedValues.Modalidad || ''}
+                    onChange={(e) => handleDropdownChange('Modalidad', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionsModalidad.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                <label htmlFor="TipoActividad">Tipo Actividad:</label>
+                <select
+                    id="TipoActividad"
+                    value={selectedValues.TipoActividad || ''}
+                    onChange={(e) => handleDropdownChange('TipoActividad', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionstipoActividad.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                <label htmlFor="TipoAfiche">Tipo Afiche:</label>
+                <select
+                    id="TipoAfiche"
+                    value={selectedValues.TipoAfiche || ''}
+                    onChange={(e) => handleDropdownChange('TipoAfiche', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionstipoAfiche.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+                <label htmlFor="TipoEstado">Tipo Estado:</label>
+                <select
+                    id="TipoEstado"
+                    value={selectedValues.TipoEstado || ''}
+                    onChange={(e) => handleDropdownChange('TipoEstado', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionstipoEstado.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
                 <Form.Field>
                     <label>IDplanTrabajo</label>
                     <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(parseInt(e.target.value))}/>

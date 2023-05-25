@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState  } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
@@ -16,6 +16,7 @@ export default function AgregarProfesor() {
     const [Sede, setSede] = useState();
     const [IDtipo, setIDtipo] = useState(1);
     const [Foto, setFoto] = useState();
+    const [selectedValues, setSelectedValues] = useState({});
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -56,7 +57,24 @@ export default function AgregarProfesor() {
         console.log(NombreCompleto);
         console.log(typeof Sede);
     }
-
+    useEffect(() => {
+        const selectedDropdownValues = Object.values(selectedValues);
+        // Assign the selected values to a constant variable
+        const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
+        // Do something with the constant variable
+        setSede(selectedValuesConst[0])
+        console.log(selectedValuesConst);
+    }, [selectedValues]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform any further processing here
+  };
+    const handleDropdownChange = (dropdownId, value) => {
+        setSelectedValues((prevState) => ({
+        ...prevState,
+        [dropdownId]: value,
+        }));
+    };
     const convert2base64 = e =>{
         const file = e.target.files[0]
         const reader = new FileReader();
@@ -65,7 +83,13 @@ export default function AgregarProfesor() {
         }
         reader.readAsDataURL(file);
     }
-
+    const dropdownOptionsSede = [
+        { id: 1, value: 1, label: 'Cartago' },
+        { id: 2, value: 2, label: 'San Jose' },
+        { id: 3, value: 3, label: 'Alajuela' },
+        { id: 4, value: 4, label: 'San Carlos' },
+        { id: 5, value: 5, label: 'Limon' },
+    ];
  
     return (
         <div>
@@ -80,8 +104,8 @@ export default function AgregarProfesor() {
                     <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>NombreCompleto </label>
-                    <input placeholder='NombreCompleto' onChange={(e) => setNombreCompleto(e.target.value)}/>
+                    <label>Nombre Completo </label>
+                    <input placeholder='Nombre Completo' onChange={(e) => setNombreCompleto(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Correo</label>
@@ -96,13 +120,21 @@ export default function AgregarProfesor() {
                     <input placeholder='Telefono' onChange={(e) => setTelefono(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>TelefonoOficina</label>
-                    <input placeholder='TelefonoOficina' onChange={(e) => setTelefonoOficina(e.target.value)}/>
+                    <label>Telefono Oficina</label>
+                    <input placeholder='Telefono Oficina' onChange={(e) => setTelefonoOficina(e.target.value)}/>
                 </Form.Field>
-                <Form.Field>
-                    <label>Sede</label>
-                    <input placeholder='Sede' onChange={(e) => setSede(parseInt( e.target.value))}/>
-                </Form.Field>
+                <label htmlFor="Sede">Sede:</label>
+                <select
+                    id="Sede"
+                    value={selectedValues.Sede || ''}
+                    onChange={(e) => handleDropdownChange('Sede', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionsSede.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
                 <Form.Field>
                     <label>Foto</label>
                     <input placeholder='Foto' onChange={(e) => setFoto(e.target.value)}/>
