@@ -45,7 +45,8 @@ export default function VerPlan() {
 // }
 
     return (
-        <div>
+        <div className="container">
+            <h1>Consultar Plan de Trabajo</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>IDplanTrabajo </label>

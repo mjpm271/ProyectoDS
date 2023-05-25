@@ -69,7 +69,10 @@ export default function AgregarProfesor() {
  
     return (
         <div>
+        <div>
             <Navbar />
+        </div>    
+        <div className="container">
             <Form className="create-form">
                 
                 <Form.Field>
@@ -107,6 +110,7 @@ export default function AgregarProfesor() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+        </div>
         </div>
     )
 }

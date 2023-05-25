@@ -38,6 +38,8 @@ import CambioContra from './pages/cambioContra';
 import CrearPlan from './pages/crearPlan';
 import VerPlan from './pages/verPlan';
 import ModificarPlan from './pages/modificarPlan';
+import VerEstudiantes from './pages/verEstudiantes';
+import ModificarEstudiante from './pages/modificarEstudiantes';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -75,6 +77,8 @@ function App() {
         <Route path="/ConsultarMiembros" element={<ConsultarMiembros />}/>
         <Route path="/cambiarContra/:id" element={<CambioContra />} />      
         <Route path="/crearPlan" element={<CrearPlan />} /> 
+        <Route path="/verEstudiante" element={<VerEstudiantes />}/>
+        <Route path="/modificarEstudiante/:IDEstudiante" element={<ModificarEstudiante />}/>
 
        {/*Coordinador */}
         <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
