@@ -63,6 +63,15 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadUltimaActividad
+AS
+BEGIN
+    SELECT top 1 * 
+	FROM actividad
+	ORDER BY IDactividad DESC
+END;
+GO
+
 CREATE PROCEDURE ReadActividadesporPlan
 	@IDplanTrabajo INT
 AS

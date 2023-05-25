@@ -307,18 +307,21 @@ export const DefinirResponsable = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { Carnet, IDactividad} = req.body
+    const { Carnet} = req.body
     console.log('valores:', req.body)
-    if (!Carnet || !IDactividad) {
+    /*if (!Carnet || !IDactividad) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
+        const resultado = await pool
+            .request()
+            .execute('ReadUltimaActividad')
         const result = await pool
             .request()
             .input('Carnet', sql.VarChar(64), Carnet)
-            .input('IDactividad', sql.Int, IDactividad)
+            .input('IDactividad', sql.Int, resultado.recordset[0].IDactividad)
             .execute('CreateResponsableActividad')
         console.log(result)
         res.json(result.recordset)

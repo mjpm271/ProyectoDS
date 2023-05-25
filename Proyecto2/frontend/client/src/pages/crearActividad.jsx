@@ -15,7 +15,7 @@ import Footer from '../components/Footer';
 export default function CrearActividad() {
     const [Nombre, setNombre] = useState();
     const [Semana, setSemana] = useState();
-    const [Fecha, setFecha] = useState(new Date());
+    const [Fecha, setFecha] = useState(new Date().toISOString());
     const [Cantidaddiasprevios, setCantidaddiasprevios] = useState();
     const [Cantidaddiasrequeridos, setCantidaddiasrequeridos] = useState();
     const [FechaPublicacion, setFechaPublicacion] = useState(new Date());
@@ -70,7 +70,7 @@ export default function CrearActividad() {
         console.log(typeof Semana);
         console.log(Semana);
         console.log(typeof Nombre);
-        navigate('/crearEvidencia')
+        navigate('/definirResponsable')
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -135,8 +135,8 @@ export default function CrearActividad() {
                     <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(parseInt(e.target.value))}/>
                 </Form.Field>
                 </Form>
-                <Button onClick={togglePopup} type='Submit'>Siguiente</Button>
-                <Modal  closeIcon open={isOpen} onClose={() => setIsOpen(false)} onOpen={() => setIsOpen(true)}>
+                <Button onClick={postData} type='Submit'>Siguiente</Button>
+            {/*<Modal  closeIcon open={isOpen} onClose={() => setIsOpen(false)} onOpen={() => setIsOpen(true)}>
                         <Header content='Archive Old Messages'/>
                         <Modal.Content>
                         <p>Se creo la actividad</p>
@@ -144,7 +144,7 @@ export default function CrearActividad() {
                         <Modal.Actions>
                         <Button onClick={(postData=> setIsOpen(false))}>Close</Button>
                         </Modal.Actions>
-                    </Modal>
+                    </Modal>*/}
     </div>
     )
 }
