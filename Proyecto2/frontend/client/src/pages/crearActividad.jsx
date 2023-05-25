@@ -68,7 +68,7 @@ export default function CrearActividad() {
 
         //axios.post(`http://localhost:4000/ejemplo/asistente/CrearActividad`,{ID,Semana,Fecha,Cantidaddiasprevios,Cantidaddiasrequeridos,Fechapublicacion,IDmodalidad,IDtipoActividad})
         console.log(typeof Semana);
-        console.log(Semana);
+        console.log(Fecha);
         console.log(typeof Nombre);
         navigate('/definirResponsable')
     }

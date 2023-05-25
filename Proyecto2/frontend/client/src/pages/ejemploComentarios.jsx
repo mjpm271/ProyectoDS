@@ -5,7 +5,7 @@ const EjemploComentario = () => {
     <div>
       <h1>Hello monsterlessons</h1>
       <Comments
-        commentsUrl="http://localhost:3000/comentario"
+        commentsUrl="http://localhost:300/comentario"
         currentUserId="1"
         IDpersona = {1}
       />

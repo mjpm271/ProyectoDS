@@ -21,14 +21,14 @@ const Comment = ({
     activeComment.IDcomentario === comment.IDcomentario &&
     activeComment.type === "replying";
   const fiveMinutes = 300000;
-  const timePassed = new Date() - new Date(comment.Hora) > fiveMinutes;
+  const timePassed = new Date() - new Date(comment.Fecha) > fiveMinutes;
   const canDelete =
     IDpersona === comment.IDpersona && replies.length === 0 && !timePassed;
   const canReply = Boolean(IDpersona);
   const canEdit = IDpersona === comment.IDpersona && !timePassed;
   const replyId = IDcomentarioPadre ? IDcomentarioPadre : comment.IDcomentario;
-  const createdAt = new Date(comment.createdAt).toLocaleDateString();
-  const Hora =  new Date(comment.Hora).toLocaleTimeString()// Obtén la hora actual en el formato adecuado
+  const createdAt = new Date(comment.Fecha).toLocaleDateString();
+  // const Fecha =  new Date(comment.Fecha).toLocaleTimeString()// Obtén la Fecha actual en el formato adecuado
   const Fecha= new Date(comment.Fecha).toLocaleDateString()// Obtén la fecha actual en el formato adecuado
   return (
     <div key={comment.IDcomentario} className="comment">

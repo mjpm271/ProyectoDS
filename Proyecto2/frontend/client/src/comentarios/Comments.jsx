@@ -42,7 +42,7 @@ const Comments = ({ commentsUrl, IDpersona }) => {
       .filter((backendComment) => backendComment.IDcomentarioPadre === IDcomentario)
       .sort(
         (a, b) =>
-          new Date(a.Hora).getTime() - new Date(b.Hora).getTime()
+          new Date(a.Fecha).getTime() - new Date(b.Fecha).getTime()
       );
   const addComment = (text, parentId) => {
     createCommentApi(text, parentId).then((comment) => {
@@ -62,8 +62,8 @@ const Comments = ({ commentsUrl, IDpersona }) => {
           IDpersona: 1, // Reemplaza con el ID de persona adecuado
           IDactividad: 8, // Reemplaza con el ID de actividad adecuado
           IDcomentarioPadre: IDcomentarioPadre, // Puedes establecer el ID de comentario padre si se está respondiendo a un comentario existente
-          Hora: null,//new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
-          Fecha: null,//new Date().toLocaleDateString(), // Obtén la fecha actual en el formato adecuado
+          // Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
+          Fecha: new Date().toISOString(),//new Date().toLocaleDateString(), // Obtén la fecha actual en el formato adecuado
           Contenido: newComment
         })
       });
@@ -115,9 +115,8 @@ const Comments = ({ commentsUrl, IDpersona }) => {
 
   return (
     <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
-      <CommentForm submitLabel="Write" handleSubmit={handleCommentSubmit} />
+      <div className="comment-form-title">Comentarios</div>
+      <CommentForm submitLabel="Comentar" handleSubmit={handleCommentSubmit} />
       <div className="comments-container">
         {rootComments2.map((rootComment) => (
           <Comment

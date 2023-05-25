@@ -132,8 +132,7 @@ create table comentario(
 	IDpersona int not null,
 	IDactividad int not null,
 	IDcomentarioPadre int,
-	Hora time,
-	Fecha date,
+	Fecha DateTime,
 	Contenido varchar(max)
 	primary key (IDcomentario),
 	foreign key (IDpersona) references persona(IDpersona),

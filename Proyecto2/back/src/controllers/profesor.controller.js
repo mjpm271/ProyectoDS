@@ -118,8 +118,7 @@ export const Comentar = async (req, res) => {
             .input('IDpersona', sql.Int, IDpersona)
             .input('IDactividad', sql.Int, IDactividad)
             .input('IDcomentarioPadre', sql.Int, IDcomentarioPadre)
-            .input('Hora', sql.Time, Hora)
-            .input('Fecha', sql.Date, Fecha)
+            .input('Fecha', sql.DateTime, Fecha)
             .input('Contenido', sql.VarChar(sql.MAX), Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreateComentario')
         console.log(result)

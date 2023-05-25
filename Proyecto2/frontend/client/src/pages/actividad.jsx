@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Grid, Segment } from 'semantic-ui-react';
+import Comments from "../comentarios/Comments";
 import Navbar from '../components/Navbar'
 import axios from 'axios';
 
@@ -133,7 +134,7 @@ export default function Actividad() {
     <Grid columns={3} divided>
       <Grid.Row stretched>
         <Grid.Column>
-          <Segment>
+          <Segment >
           <h4>Seccion 1</h4>
           <p>Fecha Actividad: {info.Fecha}  </p>
           <p>Dias Previos: {info.Cantidaddiasprevios} </p>
@@ -149,11 +150,16 @@ export default function Actividad() {
           <Segment>Afiche</Segment>
         </Grid.Column>
         <Grid.Column>
-          <Segment>
-            Historial de Comentarios
-
+          <Segment style={{ overflow: 'auto', maxHeight: '50vh' }}>
+            {/* <p>Historial de Comentarios</p> */}
+            <Comments
+        commentsUrl="http://localhost:300/comentario"
+        currentUserId="1"
+        IDpersona = {1}
+        IDactividad ={activityId}
+      />
           </Segment>
-          <Segment>Comentar</Segment>
+          
         </Grid.Column>
       </Grid.Row>
     </Grid>
