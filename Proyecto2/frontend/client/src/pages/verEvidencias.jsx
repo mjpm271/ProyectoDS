@@ -1,6 +1,6 @@
 // import axios from 'axios';
 // import React, { useState , useEffect } from 'react';
-// import { Button,  Form , Table} from 'semantic-ui-react'
+// import { Button,  Form , Table,Header, Image} from 'semantic-ui-react'
 
 // export default function readEvidencias() {
 

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ModificarEstudiante() {
     const navigate = useNavigate();
-    const { IDEstudiante } = useParams();
+    const { Carnet } = useParams();
     const [perfil, setPerfil] = useState({
         carnet: null,
         nombreCompleto: null,
@@ -25,7 +25,7 @@ export default function ModificarEstudiante() {
         axios
         .post(
             'http://localhost:4000/profesor/VerPerfil',
-            { Carnet: IDEstudiante },
+            { Carnet: Carnet },
             {
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ export default function ModificarEstudiante() {
             iDtipo: informacion?.IDtipo,
             });
         });
-    }, [IDEstudiante]);
+    }, [Carnet]);
 
     const updateAPIData = () => {
         axios

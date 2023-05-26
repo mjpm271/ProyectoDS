@@ -84,7 +84,7 @@ function App() {
         <Route path="/cambiarContra/:id" element={<CambioContra />} />      
         <Route path="/crearPlan" element={<CrearPlan />} /> 
         <Route path="/verEstudiante" element={<VerEstudiantes />}/>
-        <Route path="/modificarEstudiante/:IDEstudiante" element={<ModificarEstudiante />}/>
+        <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
 
        {/*Coordinador */}
         <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
@@ -93,7 +93,7 @@ function App() {
         <Route path="/cancelarActividad" element={<CancelarActividad />}/>
         <Route path="/crearActividad" element={<CrearActividad />}/>
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
-        <Route path="/modificarActividad" element={<ModificarActividad />}/>
+        <Route path="/modificarActividad/:IDactividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>
         <Route path="/verPlan" element={<VerPlan />}/>
         <Route path="/modificarPlan/:IDPlan" element={<ModificarPlan />}/>
