@@ -8,7 +8,8 @@ import {
   deleteComment as deleteCommentApi,
 } from "../api";
 
-const Comments = ({ commentsUrl, IDpersona }) => {
+const Comments = ({ commentsUrl, IDpersona, IDactividad }) => {
+  console.log(IDactividad)
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
   // const rootComments = backendComments.filter(
@@ -19,7 +20,8 @@ const Comments = ({ commentsUrl, IDpersona }) => {
   const [newComment, setNewComment] = useState('');
   const [replies, setReplies] = useState({});
   const rootComments2 = comments.filter(
-    (backendComment) => backendComment.IDcomentarioPadre === null
+    (backendComment) => backendComment.IDcomentarioPadre === null &&
+    backendComment.IDactividad == IDactividad
   );
     const fetchComments = async () => {
     try {
@@ -28,7 +30,7 @@ const Comments = ({ commentsUrl, IDpersona }) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        IDactividad: 8, // Reemplaza con el ID de actividad adecuado
+        IDactividad: IDactividad, // Reemplaza con el ID de actividad adecuado
       })});
       const data = await response.json();
       setComments(data);
@@ -44,12 +46,12 @@ const Comments = ({ commentsUrl, IDpersona }) => {
         (a, b) =>
           new Date(a.Fecha).getTime() - new Date(b.Fecha).getTime()
       );
-  const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
-      setActiveComment(null);
-    });
-  };
+  // const addComment = (text, parentId) => {
+  //   createCommentApi(text, parentId).then((comment) => {
+  //     setBackendComments([comment, ...backendComments]);
+  //     setActiveComment(null);
+  //   });
+  // };
   const handleCommentSubmit = async (newComment, IDcomentarioPadre) => {
     console.log(newComment)
     try {
@@ -59,8 +61,8 @@ const Comments = ({ commentsUrl, IDpersona }) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          IDpersona: 1, // Reemplaza con el ID de persona adecuado
-          IDactividad: 8, // Reemplaza con el ID de actividad adecuado
+          IDpersona: IDpersona, // Reemplaza con el ID de persona adecuado
+          IDactividad: IDactividad, // Reemplaza con el ID de actividad adecuado
           IDcomentarioPadre: IDcomentarioPadre, // Puedes establecer el ID de comentario padre si se está respondiendo a un comentario existente
           // Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
           Fecha: new Date().toISOString(),//new Date().toLocaleDateString(), // Obtén la fecha actual en el formato adecuado
@@ -71,7 +73,7 @@ const Comments = ({ commentsUrl, IDpersona }) => {
       if (response.ok) {
         // setBackendComments([comment, ...backendComments]);
         // setActiveComment(null);
-        createCommentApi(newComment, IDcomentarioPadre).then((comment) => {
+        createCommentApi(newComment, IDcomentarioPadre,IDactividad,IDpersona).then((comment) => {
           setBackendComments([comment, ...comments]);
           setActiveComment(null);});
         fetchComments();

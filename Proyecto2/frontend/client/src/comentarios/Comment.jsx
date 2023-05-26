@@ -10,7 +10,8 @@ const Comment = ({
   handleCommentSubmit,
   IDcomentarioPadre = null,
   currentUserId,
-  IDpersona
+  IDpersona,
+  IDactividad
 }) => {
   const isEditing =
     activeComment &&
@@ -102,6 +103,7 @@ const Comment = ({
                 IDcomentarioPadre={comment.IDcomentario}
                 replies={[]}
                 IDpersona={IDpersona}
+                IDactividad={IDactividad}
               />
             ))}
           </div>
