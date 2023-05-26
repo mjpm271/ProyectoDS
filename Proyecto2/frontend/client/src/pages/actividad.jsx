@@ -125,9 +125,7 @@ export default function Actividad() {
         <Grid.Column>
           <Segment>Fecha Publicacion: {info.FechaPublicacion} </Segment>
         </Grid.Column>
-        <Grid.Column>
-          <Segment>Coordinador:  </Segment>
-        </Grid.Column>
+        
 
       </Grid.Row>
       
