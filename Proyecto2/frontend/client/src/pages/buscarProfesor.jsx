@@ -37,7 +37,8 @@ export default function BuscarProfesor() {
 
   }
     return (
-        <div>
+        <div className="container">
+            <h1>Buscar Profesor</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>

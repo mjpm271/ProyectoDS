@@ -43,6 +43,7 @@ import VerEstudiantes from './pages/verEstudiantes';
 import ModificarEstudiante from './pages/modificarEstudiantes';
 import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
+// import readEvidencias from './pages/verEvidencias';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -97,6 +98,7 @@ function App() {
         <Route path="/verPlan" element={<VerPlan />}/>
         <Route path="/modificarPlan/:IDPlan" element={<ModificarPlan />}/>
         <Route path="/definirResponsable" element={<DefinirResponsable />}/>
+        {/* <Route path="/verEvidencias" element={<readEvidencias />}/> */}
 
       </Routes>
     </BrowserRouter>
