@@ -120,7 +120,7 @@ const handleOptionChange = (event, data) => {
                                 <Table.Cell>{item.Correo}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
-                                <Link to={`/modificarEstudiante/${item.IDplanTrabajo}`}>
+                                <Link to={`/modificarEstudiante/${item.Carnet}`}>
                                     <Table.Cell> 
                                         <Button  > Modificar </Button>
                                     </Table.Cell>
