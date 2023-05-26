@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button,  Form, Header , Modal} from 'semantic-ui-react'
+import { Button,  Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import DatePicker from 'react-date-picker';
@@ -124,7 +124,24 @@ export default function CrearActividad() {
     return (
         <div>
             <Navbar />
-            <div>
+            <div  className="container" >
+                <Grid columns='equal'>
+                <Grid.Row>
+                    <Grid.Column>
+                        <Segment>
+                        <label>Fecha </label>
+                        <DateTimePicker onChange={setFecha} value={Fecha} />
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Segment>
+                        <label>Fecha Publicacion</label>
+                        <DatePicker onChange={setFechaPublicacion} value={FechaPublicacion} />
+                        </Segment>
+                    </Grid.Column>
+                </Grid.Row>
+                </Grid>
+            {/* <div>
                 <label>Fecha </label>
                 <DateTimePicker onChange={setFecha} value={Fecha} />
             </div>
@@ -132,7 +149,7 @@ export default function CrearActividad() {
             <div>
                 <label>Fecha Publicacion</label>
                 <DatePicker onChange={setFechaPublicacion} value={FechaPublicacion} />
-            </div>
+            </div> */}
 
             <Form className="create-form">
                 
@@ -223,6 +240,7 @@ export default function CrearActividad() {
                         <Button onClick={(postData=> setIsOpen(false))}>Close</Button>
                         </Modal.Actions>
                     </Modal>*/}
+    </div>
     </div>
     )
 }

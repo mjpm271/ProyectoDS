@@ -35,11 +35,12 @@ export const getComments = async () => {
   ];
 };
 
-export const createComment = async (text, IDcomentarioPadre = null) => {
+export const createComment = async (text, IDcomentarioPadre = null,IDactividad,IDpersona) => {
   return {
     Contenido: text,
     IDcomentarioPadre,
-    IDpersona: 1,
+    IDactividad: IDactividad,
+    IDpersona: IDpersona,
     // Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
     Fecha: new Date().toISOString() // Obtén la fecha actual en el formato adecuado
   };

@@ -85,6 +85,7 @@ const handleOptionChange = (event, data) => {
 
     return (
         <div className="container">
+            <h1>Ver Estudiantes</h1>
             <Form className="create-form">
             <Form.Select
             fluid

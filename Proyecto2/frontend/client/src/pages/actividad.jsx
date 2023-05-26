@@ -125,9 +125,7 @@ export default function Actividad() {
         <Grid.Column>
           <Segment>Fecha Publicacion: {info.FechaPublicacion} </Segment>
         </Grid.Column>
-        <Grid.Column>
-          <Segment>Coordinador:  </Segment>
-        </Grid.Column>
+        
 
       </Grid.Row>
       
@@ -153,9 +151,9 @@ export default function Actividad() {
           <Segment style={{ overflow: 'auto', maxHeight: '50vh' }}>
             {/* <p>Historial de Comentarios</p> */}
             <Comments
-        commentsUrl="http://localhost:300/comentario"
+        commentsUrl="http://localhost:3000/comentario"
         currentUserId="1"
-        IDpersona = {1}
+        IDpersona = {2}
         IDactividad ={activityId}
       />
           </Segment>
