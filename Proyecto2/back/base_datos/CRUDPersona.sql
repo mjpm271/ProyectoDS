@@ -91,7 +91,7 @@ BEGIN
     SELECT Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
 	FROM persona 
 	WHERE IDtipo = 3
-	ORDER BY IDpersona ASC 
+	ORDER BY Carnet ASC 
 END;
 GO
 
