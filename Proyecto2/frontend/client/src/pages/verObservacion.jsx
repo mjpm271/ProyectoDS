@@ -9,7 +9,7 @@ export default function ReadObservacion() {
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/profesorCoordinador/readObservacion`, {
+      axios.post(`http://localhost:4000/coordinador/readObservacion`, {
           IDactividad:IDactividad
         }
         , {

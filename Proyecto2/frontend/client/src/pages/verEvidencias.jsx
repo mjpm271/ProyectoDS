@@ -1,71 +1,74 @@
-// import axios from 'axios';
-// import React, { useState , useEffect } from 'react';
-// import { Button,  Form , Table,Header, Image} from 'semantic-ui-react'
+import axios from 'axios';
+import React, { useState , useEffect } from 'react';
+import { Button,  Form , Table} from 'semantic-ui-react'
 
-// export default function readEvidencias() {
+export default function VerEvidencias() {
 
-//     const [IDactividad, setIDactividad] = useState();
-//     const [items, setItems] = useState([]);
+    const [IDactividad, setIDactividad] = useState();
+    const [items, setItems] = useState([]);
 
-//     const buscar = () => {
+    const buscar = () => {
 
-//       axios.post(`http://localhost:4000/coordinador/readEvidencias`, {
-//           IDactividad:IDactividad
-//         }
-//         , {
-//           headers: {
-//             'Content-Type': 'application/json'
-//           }
-//         }
-//         )
-//           .then(response => {
-//             const items = response.data
-//             setItems(items)
-//           }).catch(error => {
-//               console.log(error)
-//           });
-//   }
+      axios.post(`http://localhost:4000/coordinador/VerEvidencia`, {
+          IDactividad:IDactividad
+        }
+        , {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        )
+          .then(response => {
+            const items = response.data
+            setItems(items)
+          }).catch(error => {
+              console.log(error)
+          });
+  }
 
  
-//     return (
-//         <div>
-//             <Form className="create-form">
-//                 <Form.Field>
-//                     <label>IDactividad </label>
-//                     <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
-//                 </Form.Field>
+    return (
+        <div>
+            <Form className="create-form">
+                <Form.Field>
+                    <label>IDactividad </label>
+                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
+                </Form.Field>
 
-//                 <Button onClick={buscar} type='submit'>Submit</Button>
+                <Button onClick={buscar} type='submit'>Submit</Button>
 
-//             </Form>
-//             <div> 
-//             <Table color={"blue"} singleLine>
-//                 <Table.Header>
-//                     <Table.Row>
-//                         <Table.HeaderCell>IDevidencia</Table.HeaderCell>
-//                         <Table.HeaderCell>Fotos  </Table.HeaderCell>
-//                         <Table.HeaderCell>Link Grabacion </Table.HeaderCell>
-//                         <Table.HeaderCell>IDactividad </Table.HeaderCell>
-//                     </Table.Row>
-//                 </Table.Header>
+            </Form>
+            <div> 
+            <Table color={"blue"} singleLine>
+                <Table.Header>
+                    <Table.Row>
+                        <Table.HeaderCell>ID evidencia</Table.HeaderCell>
+                        <Table.HeaderCell>Foto participantes </Table.HeaderCell>
+                        <Table.HeaderCell>link de Grabacion </Table.HeaderCell>
+                        <Table.HeaderCell>ID actividad </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
 
-//             <Table.Body>
-//                     {items.map((item) => {
-//                         return (
-//                             <Table.Row>
-//                                 <Table.Cell>{item.IDevidencia}</Table.Cell>
-//                                 <Table.Cell>
-//                                 <Header as='h4' image>
-//                                   <Image src={item.Fotoparticipantes} rounded size='huge' /> 
-//                                 </Header>
-//                                 </Table.Cell>
-//                                 <Table.Cell>{item.Linkgrabacion}</Table.Cell>
-//                             </Table.Row>
-//                         )
-//                     })}
-//                 </Table.Body>
-//                 </Table>
-//                 </div>
-//         </div>
-//     )
-// }
+            <Table.Body>
+                    {items.map((item) => {
+                        return (
+                            <Table.Row>
+                                <Table.Cell>{item.IDevidencia}</Table.Cell>
+                                <Table.Cell>{item.Fecha}</Table.Cell>
+                                <Table.Cell>
+                                <Header as='h1' image>
+                                  <Image src={item.Fotoparticipantes} rounded size='huge' /> 
+                                </Header>
+                                </Table.Cell>
+                                <Table.Cell>{item.linkGrabacion}</Table.Cell>
+                                <Table.Cell>{item.IDactividad}</Table.Cell>
+                                
+                            </Table.Row>
+                        )
+                    })}
+                </Table.Body>
+                </Table>
+                </div>
+        </div>
+    )
+}

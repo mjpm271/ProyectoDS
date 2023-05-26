@@ -27,6 +27,17 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadResponsableActividadProfesor 
+  @IDactividad int
+AS
+BEGIN
+    SELECT p.* 
+    FROM responsableActividad as ra, persona as p
+	  WHERE ra.IDactividad = @IDactividad and eq.IDprofesor = p.IDpersona
+
+END;
+GO
+
 CREATE PROCEDURE UpdateResponsableActividad 
     @IDprofesor INT, 
     @IDactividad INT,
