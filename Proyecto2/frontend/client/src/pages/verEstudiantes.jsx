@@ -8,9 +8,9 @@ export default function VerEstudiantes() {
     const Persona = location.state;
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
-    const [seleccionSede,setSeleccionSede] = useState(' ')
+    const [seleccionSede,setSeleccionSede] = useState(false)
     const [selectedValues, setSelectedValues] = useState({});
-    const [Sede, setSede] = useState();
+    const [Sede, setSede] = useState([]);
     const options = [
         { key: 'A', text: 'Alfabetico', value: 'Alfabetico' },
         { key: 'S', text: 'Sede', value: 'Sede' },
@@ -32,6 +32,7 @@ export default function VerEstudiantes() {
         }));
         // setSede(value)
     };
+
     console.log(Persona)
 
     const EstudiantesAlf = () => {
@@ -109,9 +110,10 @@ const handleOptionChange = (event, data) => {
     // Assign the selected values to a constant variable
     const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
     // Do something with the constant variable
-    setSede(selectedValuesConst[0])
-    EstudiantesSede()
+    setSede(selectedDropdownValues.map((value) => parseInt(value)))
+    EstudiantesSede();
     console.log(selectedValuesConst);
+    console.log("SEDE",Sede)
 }, [selectedValues]);
 
     return (
@@ -125,6 +127,8 @@ const handleOptionChange = (event, data) => {
             onChange={handleOptionChange}
             placeholder='Contenido'
           />
+           
+            </Form>
             {seleccionSede && <select
                     id="Sede"
                     value={selectedValues.Sede || ''}
@@ -136,7 +140,6 @@ const handleOptionChange = (event, data) => {
                         </option>
                     ))}
                 </select>}
-            </Form>
             <div> 
             {error && <Message negative>{error}</Message>}
             <Table textAlign='center'  singleLine>

@@ -47,6 +47,7 @@ import VerEstudiantes from './pages/verEstudiantes';
 import ModificarEstudiante from './pages/modificarEstudiantes';
 import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
+import VerActividad from './pages/verActividad';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -91,6 +92,7 @@ function App() {
         <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
 
        {/*Coordinador */}
+       <Route path="/verActividad" element={<VerActividad />}/>
         <Route path="/realizarActividad" element={<RealizarActividad />}/>
         <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
         <Route path="/verEvidencias" element={<VerEvidencias />}/>
