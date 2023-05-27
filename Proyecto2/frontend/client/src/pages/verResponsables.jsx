@@ -3,8 +3,7 @@ import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function VerResponsables() {
-
-    const [Carnet, setCarnet] = useState();
+    const [IDactividad, setIDactividad] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
     const Bool = [true,false]
@@ -15,7 +14,7 @@ export default function VerResponsables() {
     const buscar = () => {
 
       axios.post('http://localhost:4000/coordinador/VerResponsables', {
-          Carnet:Carnet
+          IDactividad:IDactividad
         }
         , {
           headers: {
@@ -29,16 +28,14 @@ export default function VerResponsables() {
           }).catch(error => {
               console.log(error)
           });
-       
   }
-
     return (
         <div className="container">
-            <h1>Buscar Profesor</h1>
+            <h1>Buscar Actividad</h1>
             <Form className="create-form">
                 <Form.Field>
-                    <label>Carnet </label>
-                    <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
+                    <label>IDactividad </label>
+                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
 
                 <Button onClick={buscar} type='submit'>Submit</Button>
