@@ -333,7 +333,7 @@ export const VerObservacion = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { IDactividad} = req.body
+    const {IDactividad} = req.body
     console.log('valores:', req.body)
     /*if (!Fecha || !Observacion|| !IDactividad) {
         console.log('here')

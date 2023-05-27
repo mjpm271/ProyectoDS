@@ -1,20 +1,16 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image} from 'semantic-ui-react';
 
 export default function VerResponsables() {
     const [IDactividad, setIDactividad] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
-    const Bool = [true,false]
-    const MyEnum = {
-        true: 'Si',
-        false: 'No'
-      };
-    const buscar = () => {
 
-      axios.post('http://localhost:4000/coordinador/VerResponsables', {
-          IDactividad:IDactividad
+    const Responsable = () => {
+
+      axios.post(`http://localhost:4000/coordinador/VerResponsables`, {
+        IDactividad:IDactividad
         }
         , {
           headers: {
@@ -29,7 +25,9 @@ export default function VerResponsables() {
               console.log(error)
           });
   }
+
     return (
+        <div>
         <div className="container">
             <h1>Buscar Actividad</h1>
             <Form className="create-form">
@@ -38,12 +36,12 @@ export default function VerResponsables() {
                     <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
 
-                <Button onClick={buscar} type='submit'>Submit</Button>
+                <Button onClick={Responsable} type='submit'>Submit</Button>
 
             </Form>
             <div> 
 
-            <Table class="ui blue table" textAlign='center' singleLine>
+            <Table textAlign='center' singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Carnet </Table.HeaderCell>
@@ -67,6 +65,7 @@ export default function VerResponsables() {
                 </Table.Body>
                 </Table>
                 </div>
+        </div>
         </div>
     )
 }

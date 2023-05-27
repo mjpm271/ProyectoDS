@@ -100,7 +100,7 @@ function App() {
         <Route path="/createObservacion" element={<CrearObservacion />}/>
         <Route path="/verObservacion" element={<VerObservacion/>}/>
         <Route path="/crearActividad" element={<CrearActividad />}/>
-        <Route path="/verResponsables" elemnt={<VerResponsables/>}/>
+        <Route path="/verResponsables" element={<VerResponsables/>}/>
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
         <Route path="/modificarActividad/:IDactividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>

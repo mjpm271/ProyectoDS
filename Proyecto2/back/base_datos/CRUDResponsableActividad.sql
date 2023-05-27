@@ -33,7 +33,7 @@ AS
 BEGIN
     SELECT p.* 
     FROM responsableActividad as ra, persona as p
-	  WHERE ra.IDactividad = @IDactividad and eq.IDprofesor = p.IDpersona
+	  WHERE ra.IDactividad = @IDactividad and ra.IDprofesor = p.IDpersona
 
 END;
 GO
