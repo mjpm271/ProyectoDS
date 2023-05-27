@@ -273,7 +273,7 @@ export const VerEstudianteSede = async (req, res) => {
         const result = await pool
             .request()
             .input('Sede', sql.Int, Sede)
-            .execute('ReadActividadPorID')
+            .execute('ReadEstudianteporSede')
         console.log(result)
         res.json(result.recordset)
         
