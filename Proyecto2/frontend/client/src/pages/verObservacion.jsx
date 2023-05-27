@@ -2,14 +2,14 @@ import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
 
-export default function ReadObservacion() {
+export default function VerObservacion() {
 
     const [IDactividad, setIDactividad] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/coordinador/readObservacion`, {
+      axios.post('http://localhost:4000/coordinador/VerObservacion', {
           IDactividad:IDactividad
         }
         , {
@@ -57,7 +57,6 @@ export default function ReadObservacion() {
                                 <Table.Cell>{item.Fecha}</Table.Cell>
                                 <Table.Cell>{item.Observacion}</Table.Cell>
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
-                                
                             </Table.Row>
                         )
                     })}

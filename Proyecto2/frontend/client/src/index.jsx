@@ -18,6 +18,7 @@ import CrearEquipoGuia from './pages/crearEquipoGuia';
 import ConsultarMiembros  from './pages/consultarMiembros';
 import InicioProfesor from './pages/inicioProfesor';
 import AgregarProfesor from './pages/agregarProfesor';
+import ModificarProfesor from './pages/modificarProfesor';
 import AgregarProfesorEquipo from './pages/agregarProfesorEquipo';
 import ConsultarMiembrosEquipo from './pages/consultarMiembrosEquipo';
 import BuscarProfesor from './pages/buscarProfesor';
@@ -25,12 +26,15 @@ import InhabilitarProfesor from './pages/inhabilitarProfesor';
 import ModificarProfesorEquipo from './pages/modificarProfesorEquipo';
 import BuscarProfesorEquipo from './pages/buscarProfesorEquipo';
 import CrearEvidencia from './pages/crearEvidencia';
+import VerEvidencias from './pages/verEvidencias';
 import CrearObservacion from './pages/createObservacion';
+import VerObservacion from './pages/verObservacion';
 import RealizarActividad from './pages/realizarActividad';
 import CancelarActividad from './pages/cancelarActividad';
 import ModificarPerfil from './pages/actualizarPerfil';
 import InicioCoordinador from './pages/InicioCoordinador';
 import CrearActividad from './pages/crearActividad';
+import VerResponsables from './pages/verResponsables';
 import ModificarActividad from './pages/modificarActividad';
 import EliminarActividad from './pages/eliminarActividad';
 import SiguienteActividad from './pages/SiguienteActividad';
@@ -43,7 +47,6 @@ import VerEstudiantes from './pages/verEstudiantes';
 import ModificarEstudiante from './pages/modificarEstudiantes';
 import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
-// import readEvidencias from './pages/verEvidencias';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -71,6 +74,7 @@ function App() {
         <Route path="/modificarProfesorEquipo" element={<ModificarProfesorEquipo />}/>
         <Route path="/buscarProfesorEquipo" element={<BuscarProfesorEquipo />}/>
         <Route path="/SiguienteActividad" element={<SiguienteActividad />}/>
+        <Route path="/modificarProfesor/:Carnet" elemnt={<ModificarProfesor/>}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />
@@ -87,18 +91,20 @@ function App() {
         <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
 
        {/*Coordinador */}
-        <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
-        <Route path="/createObservacion" element={<CrearObservacion />}/>
         <Route path="/realizarActividad" element={<RealizarActividad />}/>
+        <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
+        <Route path="/verEvidencias" element={<VerEvidencias />}/>
         <Route path="/cancelarActividad" element={<CancelarActividad />}/>
+        <Route path="/createObservacion" element={<CrearObservacion />}/>
+        <Route path="/verObservacion" element={<VerObservacion/>}/>
         <Route path="/crearActividad" element={<CrearActividad />}/>
+        <Route path="/verResponsables" elemnt={<VerResponsables/>}/>
         <Route path="/InicioCoordinador" element={<InicioCoordinador />} />
         <Route path="/modificarActividad/:IDactividad" element={<ModificarActividad />}/>
         <Route path="/eliminarActividad" element={<EliminarActividad />}/>
         <Route path="/verPlan" element={<VerPlan />}/>
         <Route path="/modificarPlan/:IDPlan" element={<ModificarPlan />}/>
         <Route path="/definirResponsable" element={<DefinirResponsable />}/>
-        {/* <Route path="/verEvidencias" element={<readEvidencias />}/> */}
 
       </Routes>
     </BrowserRouter>

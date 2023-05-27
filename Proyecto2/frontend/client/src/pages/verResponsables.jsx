@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
-export default function VerResponsable() {
+export default function VerResponsables() {
 
     const [Carnet, setCarnet] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
@@ -14,7 +14,7 @@ export default function VerResponsable() {
       };
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/coordinador/VerResponsable`, {
+      axios.post('http://localhost:4000/coordinador/VerResponsables', {
           Carnet:Carnet
         }
         , {

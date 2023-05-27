@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function VerEvidencias() {
 
@@ -9,7 +9,7 @@ export default function VerEvidencias() {
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/coordinador/VerEvidencia`, {
+      axios.post('http://localhost:4000/coordinador/VerEvidencias', {
           IDactividad:IDactividad
         }
         , {
@@ -54,10 +54,9 @@ export default function VerEvidencias() {
                         return (
                             <Table.Row>
                                 <Table.Cell>{item.IDevidencia}</Table.Cell>
-                                <Table.Cell>{item.Fecha}</Table.Cell>
                                 <Table.Cell>
                                 <Header as='h1' image>
-                                  <Image src={item.Fotoparticipantes} rounded size='huge' /> 
+                                  <Image src={item.Fotoparticipantes} rounded size='tiny' /> 
                                 </Header>
                                 </Table.Cell>
                                 <Table.Cell>{item.linkGrabacion}</Table.Cell>

@@ -1,138 +1,205 @@
+import React, { useState, useEffect } from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
-import React, { useState  } from 'react';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
-import Footer from '../components/Footer';
-import DateTimePicker from 'react-datetime-picker';
-import DatePicker from 'react-date-picker';
+import { Navigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ModificarActividad() {
-    const [IDactividad, setIDactividad] = useState();
-    const [Nombre, setNombre] = useState();
-    const [Semana, setSemana] = useState();
-    const [Fecha, setFecha] = useState(new Date());
-    const [Cantidaddiasprevios, setCantidaddiasprevios] = useState();
-    const [Cantidaddiasrequeridos, setCantidaddiasrequeridos] = useState();
-    const [FechaPublicacion, setFechaPublicacion] = useState(new Date());
-    const [Linkreunion, setLinkreunion] = useState();
-    const [Afiche, setAfiche] = useState();
-    const [IDmodalidad, setModalidad] = useState();
-    const [IDtipoActividad, setIDtipoActividad] = useState();
-    const [IDtipoAfiche, setIDtipoAfiche] = useState();
-    const [IDtipoEstado, setIDtipoEstado] = useState();
-    const [IDplanTrabajo, setIDplanTrabajo] = useState();
-    // const [APIData, setAPIData] = useState([]);
-    const postData = () => {
-        
-        axios.post('http://localhost:4000/coordinador/ModificarActividad', {
-            IDactividad:IDactividad,
-            Nombre:Nombre,
-            Semana:Semana,
-            Fecha:Fecha,
-            Cantidaddiasprevios:Cantidaddiasprevios,
-            Cantidaddiasrequeridos:Cantidaddiasrequeridos,
-            FechaPublicacion:FechaPublicacion,
-            Linkreunion:Linkreunion,
-            Afiche:Afiche,
-            IDmodalidad:IDmodalidad,
-            IDtipoActividad:IDtipoActividad,
-            IDtipoAfiche: IDtipoAfiche,
-            IDtipoEstado:IDtipoEstado,
-            IDplanTrabajo:IDplanTrabajo
-          }
-          , {
+    const navigate = useNavigate();
+    const { IDactividad } = useParams();
+    const [actividad, setActividad] = useState({
+        nombre: null,
+        semana: null,
+        fecha: null,
+        cantidaddiasprevios: null,
+        cantidaddiasrequeridos: null,
+        fechaPublicacion: null,
+        linkReunion: null,
+        afiche: null,
+        iDmodalidad: null,
+        iDtipoActividad: null,
+        iDtipoAfiche: null,
+        iDtipoEstado: null,
+        idplanTrabajo: null
+    });
+
+    useEffect(() => {
+        axios
+        .post(
+            'http://localhost:4000/asistente/Actividad',
+            { IDactividad: IDactividad },
+            {
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
-          }
-          )
-            .then(response => {
-              console.log(response.data);
-            }).catch(error => {
-                console.log(error)
+            }
+        )
+        .then((response) => {
+            const informacion = response.data[0];
+            setActividad({
+            nombre: informacion?.Nombre,
+            semana: informacion?.Semana,
+            fecha: informacion?.Fecha,
+            cantidaddiasprevios: informacion?.Cantidaddiasprevios,
+            cantidaddiasrequeridos: informacion?.Cantidaddiasrequeridos,
+            fechaPublicacion: informacion?.FechaPublicacion,
+            linkReunion: informacion?.LinkReunion,
+            afiche: informacion?.Afiche,
+            iDmodalidad: informacion?.IDmodalidad,
+            iDtipoActividad: informacion?.IDtipoActividad,
+            iDtipoAfiche: informacion?.IDtipoAfiche,
+            iDtipoEstado: informacion?.IDtipoEstado,
+            iDtipoEstado: informacion?.IDplanTrabajo,
             });
+        });
+    }, [IDactividad]);
 
-        // fetch('http://localhost:4000/ejemplo/asistente/CrearActividad',{
-        //     method : 'post',
-        //     mode: 'cors',
-        //     body: formData,
-        //     headers: { "Content-Type": "multipart/form-data" }
-        // })
+    const updateAPIData = () => {
+        axios
+        .put(
+            'http://localhost:4000/asistente/ModificarActividad',
+            {
+            Nombre: actividad.nombre,
+            Semana: actividad.semana,
+            Fecha: actividad.fecha,
+            Cantidaddiasprevios: actividad.cantidaddiasprevios,
+            Cantidaddiasrequeridos: actividad.cantidaddiasrequeridos,
+            FechaPublicacion: actividad.fechaPublicacion,
+            LinkReunion: actividad.linkReunion,
+            Afiche: actividad.afiche,
+            IDmodalidad: actividad.iDmodalidad,
+            IDtipoActividad: actividad.iDtipoActividad,
+            IDtipoAfiche: actividad.iDtipoAfiche,
+            IDtipoEstado: actividad.iDtipoEstado
+            },
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+        .then(response => {
+            console.log(response.data);
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        navigate('/');
+    };
 
-        //axios.post(`http://localhost:4000/ejemplo/asistente/CrearActividad`,{ID,Semana,Fecha,Cantidaddiasprevios,Cantidaddiasrequeridos,Fechapublicacion,IDmodalidad,IDtipoActividad})
-        console.log(typeof Semana);
-        console.log(Semana);
-        console.log(typeof Nombre);
-    }
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setActividad(prevPerfil => ({
+        ...prevPerfil,
+        [name]: value
+        }));
+    };
 
-
-
- 
     return (
-        <div>
-            <Navbar />
-                <Form.Field>
-                    <label>Fecha</label>
-                    <DateTimePicker onChange={setFecha} value={Fecha} />
-                </Form.Field>
-                <Form.Field>
-                    <label>Fecha Publicacion</label>
-                    <DatePicker onChange={setFechaPublicacion} value={FechaPublicacion} />
-                </Form.Field>
-
-            <Form className="create-form">
-                <Form.Field>
-                    <label>IDactividad </label>
-                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Nombre </label>
-                    <input placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Semana </label>
-                    <input placeholder='Semana' onChange={(e) => setSemana(parseInt(e.target.value))}/>
-                </Form.Field>               
-                <Form.Field>
-                    <label>Cantidad dias previos</label>
-                    <input placeholder='Cantidad dias previos' onChange={(e) => setCantidaddiasprevios(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Cantidad dias requeridos</label>
-                    <input placeholder='Cantidad dias requeridos' onChange={(e) => setCantidaddiasrequeridos(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Link reunion</label>
-                    <input placeholder='Link reunion' onChange={(e) => setLinkreunion(e.target.value)}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>Afiche</label>
-                    <input placeholder='Afiche' onChange={(e) => setAfiche(e.target.value)}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDmodalidad</label>
-                    <input placeholder='IDmodalidad' onChange={(e) => setModalidad(parseInt( e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoActividad</label>
-                    <input placeholder='IDtipoActividad' onChange={(e) => setIDtipoActividad(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoAfiche</label>
-                    <input placeholder='IDtipoAfiche' onChange={(e) => setIDtipoAfiche(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDtipoEstado</label>
-                    <input placeholder='IDtipoEstado' onChange={(e) => setIDtipoEstado(parseInt(e.target.value))}/>
-                </Form.Field>
-                <Form.Field>
-                    <label>IDplanTrabajo</label>
-                    <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(parseInt(e.target.value))}/>
-                </Form.Field>
-
-                <Button onClick={postData} type='submit'>Submit</Button>
-            </Form>
-            <Footer/>
+        <div className="container">
+            
+            <h1 >Modificar Actividad</h1>
+        <Form className="create-form">
+            <Form.Field>
+            <label>Nombre</label>
+            <input
+                placeholder='Nombre'
+                name="nombre"
+                value={actividad.nombre || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>Semana</label>
+            <input
+                placeholder='Semana'
+                name="semana"
+                value={actividad.semana || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>Fecha</label>
+            <input
+                placeholder='Fecha'
+                name="fecha"
+                value={actividad.fecha || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <label>Cantidaddiasprevios</label>
+            <input
+                placeholder='Cantidaddiasprevios'
+                name="cantidaddiasprevios"
+                value={actividad.cantidaddiasprevios || ''}
+                onChange={handleInputChange}
+            />
+            <Form.Field>
+            <label>Cantidad dias requeridos</label>
+            <input
+                placeholder='Cantidad dias requeridos'
+                name="cantidaddiasrequeridos"
+                value={actividad.cantidaddiasrequeridos || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>IDmodalidad</label>
+            <input
+                placeholder='IDmodalidad'
+                name="iDmodalidad"
+                value={actividad.iDmodalidad || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>IDtipoActividad</label>
+            <input
+                placeholder='IDtipoActividad'
+                name="iDtipoActividad"
+                value={actividad.iDtipoActividad || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>FechaPublicacion</label>
+            <input
+                placeholder='FechaPublicacion'
+                name="fechaPublicacion"
+                value={actividad.fechaPublicacion || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>IDtipoAfiche</label>
+            <input
+                placeholder='IDtipoAfiche'
+                name="IDtipoAfiche"
+                value={actividad.IDtipoAfiche || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>IDtipoEstado</label>
+            <input
+                placeholder='IDtipoEstado'
+                name="IDtipoEstado"
+                value={actividad.IDtipoEstado || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>ID plan Trabajo</label>
+            <input
+                placeholder='IDplanTrabajo'
+                name="IDplanTrabajo"
+                value={actividad.IDplanTrabajo || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Button type='submit' onClick={updateAPIData}>Update</Button>
+        </Form>
         </div>
-    )
-}
+    );
+    }
