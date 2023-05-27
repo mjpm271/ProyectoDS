@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 import { Button,  Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
@@ -13,6 +13,13 @@ import 'react-calendar/dist/Calendar.css';
 import Footer from '../components/Footer';
 
 export default function CrearActividad() {
+        /* IMPORTANTE PASAR */
+        const location = useLocation();
+        const Persona = location.state;
+        const info = JSON.parse(Persona)
+        const id = info.Carnet
+        /* IMPORTANTE PASAR */
+        
     const utcTime = {timeZone: 'CST' };
     const [Nombre, setNombre] = useState();
     const [Semana, setSemana] = useState();
@@ -72,7 +79,7 @@ export default function CrearActividad() {
         console.log(typeof Semana);
         console.log(Fecha);
         console.log(typeof Nombre);
-        navigate('/definirResponsable')
+        navigate('/definirResponsable' )
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -123,8 +130,9 @@ export default function CrearActividad() {
         ];
     return (
         <div>
-            <Navbar />
+            <Navbar id={id}/>
             <div  className="container" >
+                <h1>Crear Actividad</h1>
                 <Grid columns='equal'>
                 <Grid.Row>
                     <Grid.Column>

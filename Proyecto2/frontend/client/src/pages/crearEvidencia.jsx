@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { useParams } from 'react-router-dom';
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function CrearEvidencia() {
     const [Fotoparticipantes, setFotoparticipantes] = useState();
+    const { actividad } = useParams();
     const [Linkgrabacion, setLinkgrabacion] = useState();
     const [IDactividad, setIDactividad] = useState();
     // const [APIData, setAPIData] = useState([]);
@@ -14,7 +16,7 @@ export default function CrearEvidencia() {
         axios.post('http://localhost:4000/coordinador/crearEvidencia', {
             Fotoparticipantes:Fotoparticipantes,
             Linkgrabacion:Linkgrabacion,
-            IDactividad:IDactividad
+            IDactividad:actividad
           }
           , {
             headers: {
@@ -53,6 +55,8 @@ export default function CrearEvidencia() {
     return (
         <div>
             <Navbar />
+            <div className='container'>
+                <h1>Crear Evidencia</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Foto participantes</label>
@@ -62,13 +66,11 @@ export default function CrearEvidencia() {
                     <label>Link Grabacion </label>
                     <input placeholder='Link Grabacion' onChange={(e) => setLinkgrabacion(e.target.value)}/>
                 </Form.Field>
-                <Form.Field>
-                    <label>IDactividad </label>
-                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
-                </Form.Field>
+
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+            </div>
         </div>
     )
 }

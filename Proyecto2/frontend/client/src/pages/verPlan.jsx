@@ -4,8 +4,10 @@ import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 
 export default function VerPlan() {
+    /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    /* IMPORTANTE PASAR */
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
@@ -46,7 +48,7 @@ export default function VerPlan() {
 
     return (
         <div className="container">
-            <h1>Consultar Plan de Trabajo</h1>
+            <h1>Modificacion Plan</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>IDplanTrabajo </label>

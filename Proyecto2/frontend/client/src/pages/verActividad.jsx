@@ -6,7 +6,7 @@ import { useLocation, Link } from 'react-router-dom';
 export default function VerActividad() {
     const location = useLocation();
     const Persona = location.state;
-    const Variable  = 3;
+    const Variable  = 5;
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
@@ -77,8 +77,8 @@ export default function VerActividad() {
 
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
-                                <Table.Cell>{Variable !== 3 && <Link to={`/crearEvidencia`}> <Button>Realizar</Button></Link>}</Table.Cell> 
-                                <Table.Cell>{Variable !== 4 && <Link to={`/createObservacion`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{Variable !== 3 && <Link to={`/crearEvidencia/${item.IDactividad}`}> <Button>Realizar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{Variable !== 4 && <Link to={`/createObservacion/${item.IDactividad}`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
                                 
 
                             </Table.Row>

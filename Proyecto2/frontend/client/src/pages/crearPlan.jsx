@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function CrearPlan() {
+        /* IMPORTANTE PASAR */
+        const location = useLocation();
+        const Persona = location.state;
+        /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const [Abreviacion, setAbreviacion] = useState();
     const [IDcoordinador, setIDcoordinador] = useState();

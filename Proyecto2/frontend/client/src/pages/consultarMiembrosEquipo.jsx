@@ -1,9 +1,13 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function ConsultarMiembrosEquipo() {
-
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
@@ -31,8 +35,9 @@ export default function ConsultarMiembrosEquipo() {
 
  
     return (
-        <div>
+        <div className='container'>
             <Form className="create-form">
+                <h1>Consultar Miembros de un Equipo Guia</h1>
                 <Form.Field>
                     <label>Nombre </label>
                     <input placeholder='Nombre Equipo Guia' onChange={(e) => setNombre(e.target.value)}/>

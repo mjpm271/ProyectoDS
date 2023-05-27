@@ -48,6 +48,7 @@ import ModificarEstudiante from './pages/modificarEstudiantes';
 import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
 import VerActividad from './pages/verActividad';
+import InicioAsistente from './pages/InicioAsistente';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -65,6 +66,7 @@ function App() {
         <Route path="/plantilla" element={<Plantilla />}/>
         
         {/*Asistente Administrativo */}
+        <Route path="/InicioAsistente" element={<InicioAsistente />}/>
         <Route path="/crearEquipoGuia" element={<CrearEquipoGuia />}/>
         <Route path="/definirCoordinador" element={<DefinirCoordinador />}/>
         <Route path="/agregarProfesorEquipo" element={<AgregarProfesorEquipo />}/>
@@ -94,10 +96,10 @@ function App() {
        {/*Coordinador */}
        <Route path="/verActividad" element={<VerActividad />}/>
         <Route path="/realizarActividad" element={<RealizarActividad />}/>
-        <Route path="/crearEvidencia" element={<CrearEvidencia />}/>
+        <Route path="/crearEvidencia/:actividad" element={<CrearEvidencia />}/>
         <Route path="/verEvidencias" element={<VerEvidencias />}/>
         <Route path="/cancelarActividad" element={<CancelarActividad />}/>
-        <Route path="/createObservacion" element={<CrearObservacion />}/>
+        <Route path="/createObservacion/:actividad" element={<CrearObservacion />}/>
         <Route path="/verObservacion" element={<VerObservacion/>}/>
         <Route path="/crearActividad" element={<CrearActividad />}/>
         <Route path="/verResponsables" element={<VerResponsables/>}/>

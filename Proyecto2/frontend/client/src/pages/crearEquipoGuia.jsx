@@ -35,6 +35,9 @@ export default function CrearEquipoGuia() {
     return (
         <div>
             <Navbar />
+            <div className='container'>
+            <h1>Crear Equipo Guia</h1>
+            
             <Form className="create-form">
                 <Form.Field>
                     <label>Nombre </label>
@@ -43,6 +46,7 @@ export default function CrearEquipoGuia() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+        </div>
         </div>
     )
 }

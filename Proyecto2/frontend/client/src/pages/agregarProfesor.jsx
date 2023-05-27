@@ -1,10 +1,15 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function AgregarProfesor() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+        /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();

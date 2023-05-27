@@ -1,9 +1,13 @@
 import React, { useState , useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate , useParams} from 'react-router-dom';
+import { useNavigate , useParams, useLocation} from 'react-router-dom';
 
 export default function PlanList() {
+      /* IMPORTANTE PASAR */
+      const location = useLocation();
+      const Persona = location.state;
+      /* IMPORTANTE PASAR */
   const navigate = useNavigate();  
   const [plans, setplans] = React.useState([])
   useEffect(() => {

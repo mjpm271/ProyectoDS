@@ -60,15 +60,16 @@ const Login = () => {
             setError('');
   
             // Redirigir a la página deseada después del inicio de sesión exitoso
-            navigate('/:IDpersona/IncioProfesor'); // Ruta a la página de dashboard o la que desees
+            navigate('/InicioAsistente',{ state: Persona }); // Ruta a la página de dashboard o la que desees
           }else if (Status === 4)  {
+            //ASISTENTE CARTAGO
             console.log("EXITOOOOO")
             // Inicio de sesión exitoso
   
             setError('');
   
             // Redirigir a la página deseada después del inicio de sesión exitoso
-            navigate('/read'); // Ruta a la página de dashboard o la que desees
+            navigate('/InicioAsistente',{ state: Persona });
           }else if (Status === 5)  {
             console.log("EXITOOOOO")
             // Inicio de sesión exitoso
