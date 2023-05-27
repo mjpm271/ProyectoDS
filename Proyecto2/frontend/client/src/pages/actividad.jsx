@@ -165,7 +165,6 @@ export default function Actividad() {
             <List>
             {Responsables.map((responsable)=>(
                 <ListItem>{responsable.IDpersona}</ListItem>
-
             ))}
             </List>
 
