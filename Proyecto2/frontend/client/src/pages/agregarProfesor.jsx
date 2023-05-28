@@ -11,6 +11,7 @@ export default function AgregarProfesor() {
     const Persona = location.state;
         /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
+    const [Error, setError] =  useState();
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();
     const [Contra, setContra] = useState();
@@ -29,7 +30,6 @@ export default function AgregarProfesor() {
           break 
         default:
           window.alert('ha Creado el profesor')
-          
     }};
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
@@ -55,7 +55,8 @@ export default function AgregarProfesor() {
           )
             .then(response => {
               console.log(response.data[0]);
-              showAlert(0)
+              setError(response.data[0])
+              showAlert(Error)
             }).catch(error => {
                 console.log(error)
             });
