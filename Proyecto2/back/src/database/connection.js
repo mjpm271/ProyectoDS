@@ -7,7 +7,8 @@ const dbSettings = {
     server: config.dbServer,
     database: config.dbDatabase,
     options: {
-        trustServerCertificate: true
+        trustServerCertificate: true,
+        trustedConnection: true
     }
 }
 

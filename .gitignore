@@ -7,3 +7,4 @@ requests
 prod
 **/.env
 .env/
+.vscode

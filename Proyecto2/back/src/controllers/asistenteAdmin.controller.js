@@ -1,5 +1,6 @@
 import {getConnection, sql} from '../database/connection'
-
+import xlsx from 'xlsx'
+import fs from 'fs'
 
 //-------C R U D ---- Equipo Guia-----------------//
 //Crear EquipoGuia
@@ -331,7 +332,7 @@ export const SiguienteActividad = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { FechaActual} = req.body
+    const { FechaActual } = req.body
     console.log('valores:', req.body)
     /*if (!Fecha) {
         console.log('here')
@@ -349,6 +350,150 @@ export const SiguienteActividad = async (req, res) => {
     } catch (err) {
         res.sendStatus(500, err.message)
     }
+};
+
+export const SubirInformacionEstudiantes = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    const { rutaExcel, sede} = req.body
+    console.log('ruta archivo:', rutaExcel)
+    console.log('Sede a insertar:', sede)
+    if (!rutaExcel || !sede) {
+        console.error('Error: no se encontró ruta al archivo')
+        return res.sendStatus(400, {msg: 'Bad Request. Please select file to upload'})
+    }
+    try {
+
+        // capturar filas del archivo excel y subirlo a un array
+        let workbook = xlsx.readFile(rutaExcel)
+        let worksheet = workbook.Sheets[workbook.SheetNames[0]]
+        let dataArray = xlsx.utils.sheet_to_json(worksheet)
+
+        //console.table(dataArray)
+        //console.log(dataArray)
+
+        // generar el SQL dinámico
+        let insertQuery = "INSERT INTO Persona (Carnet, NombreCompleto, Sede, Correo, Telefono, IDTipoPersona) VALUES "
+
+        dataArray.forEach((row) => {
+            // el 3 al final es hard-coded para que se ingrese como estudiante
+            insertQuery += `('${row["Carné"]}', '${row["Nombre"]}', ${sede}, '${row["Correo"]}', '${row["Numero Celular"]}', 3),`
+        })
+
+        insertQuery = insertQuery.substring(0, insertQuery.length - 1)
+        insertQuery += ";"
+        console.log(insertQuery)
+
+        // subir a la base
+        const pool = await getConnection();
+        const result = await pool.request().query(insertQuery, (err, res) => {
+            if(err) {
+                console.error(err)
+                res.sendStatus(500, err.message)
+            }
+            else {
+                console.log(res)
+            }
+        })
+        
+        //console.dir(result)
+        //res.json(result)
+        // mensaje exito
+        res.sendStatus(200)
 
 
-};  
+    } catch(err) {
+        return res.sendStatus(400, {msg: 'Bad Request. Could not open file'})
+    }
+}
+
+export const DescargarInformacionEstudiantes = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    // espero que si es TODAS las sedes me envíe un 0
+    const { sede, codSede, rutaGuardado } = req.body
+    console.log('valores:', sede, codSede)
+    // partes del SQL dinamico
+    let selectUnique = `select Carnet, NombreCompleto, Correo, Telefono from Persona where IDTipoPersona = 3`
+    let selectAll = `select P.Carnet, P.NombreCompleto, P.Correo, P.Telefono, P.Sede, S.Abreviacion from Persona P join Sede S on S.IDSede = P.Sede where IDTipoPersona = 3`
+    let conditionSede = `and Sede = ${sede}`
+    let conditionOrder = `order by P.Sede`
+
+    // partes para el path de la descarga
+    // está un poco trillado porque la función writeFile por alguna razón no recibe tokens de windows
+    //let downloadPath = `%USERPROFILE%\\Downloads`
+    //let downloadPath2 = `C:\\Users\\Adrián\\Downloads`
+    // todas las sedes, separadas por página
+    if (sede == 0) {
+        try {
+            console.log('llego a global')
+            let allQuery = `${selectAll} ${conditionOrder}`
+            // pedir info de la BD
+            const pool = await getConnection();
+            const result = await pool
+                .request()
+                .query(allQuery)
+            //console.log(result.recordset)
+
+            // necesito esta funcion auxiliar para poder separar el recordset por cada sede
+            const groupBy = (arr, property) => {
+                return arr.reduce((acc, cur) => {
+                    acc[cur[property]] = [...acc[cur[property]] || [], cur];
+                    return acc;
+                }, {});
+            }
+
+            // objeto con la informacion separada por sedes
+            let groupedRecords = groupBy(result.recordset, 'Sede')
+
+            // crear el excel
+            let filename = `${rutaGuardado}\\Estudiantes_${codSede}.xlsx`
+            let workbook = xlsx.utils.book_new()
+            // este for loop esconde conocimientos esotéricos que solo algunos bodhisattvas lograron entender
+            for (let [k, v] of Object.entries(groupedRecords)) {
+                console.log("iterando sedes")
+                let ws = xlsx.utils.json_to_sheet(v)
+                xlsx.utils.book_append_sheet(workbook, ws, `Sede_${v[0]['Sede']}_${v[0]['Abreviacion']}`)
+            }
+            console.log(workbook)
+            //console.log('Attempting', filename)
+            //console.log('lets resolve HOME', fs.existsSync(downloadPath2))
+            xlsx.writeFileXLSX(workbook, filename)
+            return res.sendStatus(200)
+
+        } catch (err) {
+            console.error(err)
+            res.sendStatus(500, err.message)
+        }
+    }
+    else {
+    // una sede en especifico
+        try {
+            // pedir info de la BD
+            console.log('llego a especifico para sede', sede)
+            let conditionedQuery = `${selectUnique} ${conditionSede}`
+            console.log(conditionedQuery)
+            const pool = await getConnection();
+            const result = await pool
+                .request()
+                .query(conditionedQuery)
+            //console.log(result.recordset)
+            
+            // crear el excel
+            let filename = `${rutaGuardado}\\Estudiantes_${codSede}.xlsx`
+            let workbook = xlsx.utils.book_new()
+            let worksheet = xlsx.utils.json_to_sheet(result.recordset)
+            console.log(worksheet)
+            xlsx.utils.book_append_sheet(workbook, worksheet, `Sede_${sede}_${codSede}`)
+            console.log(workbook)
+            console.log('Attempting', filename)
+            //console.log('lets resolve HOME', fs.existsSync(downloadPath2))
+            xlsx.writeFileXLSX(workbook, filename)
+            return res.sendStatus(200)
+
+        } catch (err) {
+            res.sendStatus(500, err.message)
+        }
+    }
+
+}

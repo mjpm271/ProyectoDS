@@ -1,20 +1,26 @@
 import { Router } from "express"
 import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,DefinirCoordinador,AgregarProfesor,
-        BuscarProfesor,ModificarProfesor,InhabilitarProfesor, CrearEquipoGuia, ConsultarMiembrosEquipoGuia, SiguienteActividad} from "../controllers/asistenteAdmin.controller"
+        BuscarProfesor, ModificarProfesor, InhabilitarProfesor, CrearEquipoGuia, ConsultarMiembrosEquipoGuia,
+        SiguienteActividad, SubirInformacionEstudiantes, DescargarInformacionEstudiantes
+} from "../controllers/asistenteAdmin.controller"
 
 const router = Router()
 
-router.post('/CrearEquipoGuia',CrearEquipoGuia)
-router.post('/AgregarProfesorEquipo',AgregarProfesorEquipo)
-router.post('/BuscarProfesorEquipo',BuscarProfesorEquipo) //No estoy segura de que deberia hacer xd
-router.post('/ConsultarMiembrosEquipo',ConsultarMiembrosEquipoGuia) //Miembros de un equipo
-router.put('/ModificarProfesorEquipo',ModificarProfesorEquipo)
-router.put('/DefinirCoordinador',DefinirCoordinador)
-router.post('/AgregarProfesor',AgregarProfesor)
-router.post('/BuscarProfesor',BuscarProfesor)
-router.put('/ModificarProfesor',ModificarProfesor)
-router.put('/InhabilitarProfesor',InhabilitarProfesor)
-router.post('/SiguienteActividad',SiguienteActividad)
+router.post('/CrearEquipoGuia', CrearEquipoGuia)
+router.post('/AgregarProfesorEquipo', AgregarProfesorEquipo)
+router.post('/BuscarProfesorEquipo', BuscarProfesorEquipo) //No estoy segura de que deberia hacer xd
+router.post('/ConsultarMiembrosEquipo', ConsultarMiembrosEquipoGuia) //Miembros de un equipo
+router.put('/ModificarProfesorEquipo', ModificarProfesorEquipo)
+router.put('/DefinirCoordinador', DefinirCoordinador)
+router.post('/AgregarProfesor', AgregarProfesor)
+router.post('/BuscarProfesor', BuscarProfesor)
+router.put('/ModificarProfesor', ModificarProfesor)
+router.put('/InhabilitarProfesor', InhabilitarProfesor)
+router.post('/SiguienteActividad', SiguienteActividad)
+
+// pruebas excel
+router.post('/SubirInformacionEstudiantes', SubirInformacionEstudiantes)
+router.post('/DescargarInformacionEstudiantes', DescargarInformacionEstudiantes)
 
 export default router
 
