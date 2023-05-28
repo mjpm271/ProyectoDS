@@ -5,13 +5,17 @@ AS
 BEGIN
 	IF (select count(*) from equipoGuia where Nombre = @Nombre) >= 1
 	BEGIN
-		set @Result = 0
+		set @Result = 1
 		select @Result
+		return @Result
 	END
 	ELSE 
 	BEGIN
 		INSERT INTO equipoGuia (Nombre)
 		VALUES (@Nombre);
+		set @Result = 0
+		select @Result
+		return @Result
 	END
 END;
 GO

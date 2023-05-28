@@ -7,19 +7,19 @@ export const CrearPlanTrabajo = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { Nombre , Abreviacion, IDcoordinador} = req.body
+    const { Nombre , Abreviacion, IDequipoGuia} = req.body
     console.log('valores:', req.body)
-    if (!Nombre || !Abreviacion || ! IDcoordinador) {
+    /*if (!Nombre || !Abreviacion || ! IDcoordinador) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
             .input('Nombre', sql.VarChar(32), Nombre)
             .input('Abreviacion', sql.VarChar(32), Abreviacion)
-            .input('IDcoordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
+            .input('IDequipoGuia', sql.Int, IDequipoGuia) //Revisar como recuperar informacion desde login
             .output('Result', sql.Int)
             .execute('CreatePlanTrabajo')
         console.log(result)

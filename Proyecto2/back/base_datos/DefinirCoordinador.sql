@@ -26,4 +26,7 @@ BEGIN
     UPDATE persona
     SET Coordinador = 1
     WHERE Carnet = @Carnet and Habilitado = 1
+	set @Result = 0
+	select @Result
+	return @Result
 END

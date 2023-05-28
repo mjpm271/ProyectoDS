@@ -37,6 +37,21 @@ export default function CrearActividad() {
     const [selectedValues, setSelectedValues] = useState({});
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const showAlert = (Result) => {
+      switch (Result){
+        case 1:
+          window.alert('Seleccione alguien que no sea Coordinador');
+          break 
+        case 2:
+          window.alert('El equipo ya se encuentra completo');
+          break 
+        case 3:
+          window.alert('Inserte de Sede Distinta');
+          break
+        default:
+          window.alert('ha insertado al profesor en el equipo')
+          
+    }};
 
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
@@ -64,6 +79,7 @@ export default function CrearActividad() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });

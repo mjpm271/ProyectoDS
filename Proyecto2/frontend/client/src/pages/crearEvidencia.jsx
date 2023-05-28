@@ -10,6 +10,9 @@ export default function CrearEvidencia() {
     const { actividad } = useParams();
     const [Linkgrabacion, setLinkgrabacion] = useState();
     const [IDactividad, setIDactividad] = useState();
+    const showAlert = (Result) => {
+        window.alert('ha insertado la evidencia con exito')
+    };
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -26,6 +29,7 @@ export default function CrearEvidencia() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });

@@ -14,15 +14,19 @@ CREATE PROCEDURE CreatePersona
 	@Result int output
 AS
 BEGIN
-	IF (select count(*) from persona where Carnet = @ID) >= 1
+	IF (select count(*) from persona where Carnet = @ID) = 1
 	BEGIN 
-		set @Result = 0;
-		select @result;
+		set @Result = 1;
+		select @Result;
+		return @Result
 	END
 	ELSE
 	BEGIN
 		INSERT INTO persona (Carnet, NombreCompleto, Correo, Contra, Foto, Habilitado, Coordinador, Telefono, TelefonoOficina, Sede, IDtipo)
 		VALUES (@ID, @NombreCompleto, @Correo, @Contra,@Foto, @Habilitado, @Coordinador, @Telefono,@TelefonoOficina ,@Sede, @IDtipo)
+		set @Result = 0;
+		select @Result
+		return @Result
 	END	
 END;
 GO

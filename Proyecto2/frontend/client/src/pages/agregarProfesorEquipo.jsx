@@ -8,6 +8,21 @@ export default function AgregarProfesorEquipo() {
     const [Nombre, setNombre] = useState();
     const [Carnet, setCarnet] = useState();
     const Habilitado = true;
+    const showAlert = (Result) => {
+      switch (Result){
+        case 1:
+          window.alert('Seleccione alguien que no sea Coordinador');
+          break 
+        case 2:
+          window.alert('El equipo ya se encuentra completo');
+          break 
+        case 3:
+          window.alert('Inserte de Sede Distinta');
+          break
+        default:
+          window.alert('ha insertado al profesor en el equipo')
+          
+    }};
     const postData = () => { 
         axios.post('http://localhost:4000/asistente/AgregarProfesorEquipo', {
             Nombre:Nombre,
@@ -21,7 +36,8 @@ export default function AgregarProfesorEquipo() {
           }
           )
             .then(response => {
-              console.log(response.data);
+              console.log(response.data[0][""]);
+              showAlert(response.data[0][""])
             }).catch(error => {
                 console.log(error)
             });

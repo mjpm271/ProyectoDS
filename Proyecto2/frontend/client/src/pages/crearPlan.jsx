@@ -12,14 +12,14 @@ export default function CrearPlan() {
         /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const [Abreviacion, setAbreviacion] = useState();
-    const [IDcoordinador, setIDcoordinador] = useState();
+    const [IDequipoGuia, setIDequipoGuia] = useState();
     const navigate = useNavigate();
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/CrearPlan', {
             Nombre:Nombre,
             Abreviacion:Abreviacion,
-            IDcoordinador:IDcoordinador
+            IDequipoGuia:IDequipoGuia
           }
           , {
             headers: {
@@ -49,8 +49,8 @@ export default function CrearPlan() {
                     <input placeholder='Abreviacion' onChange={(e) => setAbreviacion(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <label>IDcoordinador </label>
-                    <input placeholder='IDcoordinador' onChange={(e) => setIDcoordinador(parseInt(e.target.value))}/>
+                    <label>IDequipoGuia </label>
+                    <input placeholder='IDequipoGuia' onChange={(e) => setIDequipoGuia(parseInt(e.target.value))}/>
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>

@@ -15,6 +15,9 @@ BEGIN
 	end
     INSERT INTO planTrabajo(Nombre, Abreviacion, IDequipoGuia)
     VALUES (@Nombre, @Abreviacion, @IDequipoGuia)
+		set @Result = 0
+		select @Result
+		return @Result
 END;
 GO
 

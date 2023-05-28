@@ -13,6 +13,9 @@ export default function DefinirResponsable() {
     // const id = info.Carnet
     /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
+    const showAlert = (Result) => {
+          window.alert('ha asignado responsable con exito')
+    };
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/DefinirResponsable', {
@@ -26,6 +29,7 @@ export default function DefinirResponsable() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });

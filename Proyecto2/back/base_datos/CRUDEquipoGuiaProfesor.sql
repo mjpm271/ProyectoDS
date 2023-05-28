@@ -32,6 +32,9 @@ BEGIN
 	
     INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor, Habilitado)
     VALUES (@IDequipoGuia, @IDprofesor, 1);
+	set @Result = 0
+	select @Result
+	return @Result
 END;
 GO 
 

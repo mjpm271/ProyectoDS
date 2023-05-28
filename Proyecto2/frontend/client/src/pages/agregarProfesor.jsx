@@ -22,6 +22,15 @@ export default function AgregarProfesor() {
     const [IDtipo, setIDtipo] = useState(1);
     const [Foto, setFoto] = useState();
     const [selectedValues, setSelectedValues] = useState({});
+    const showAlert = (Result) => {
+      switch (Result){
+        case 1:
+          window.alert('El carnet ya existe');
+          break 
+        default:
+          window.alert('ha Creado el profesor')
+          
+    }};
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -45,7 +54,8 @@ export default function AgregarProfesor() {
           }
           )
             .then(response => {
-              console.log(response.data);
+              console.log(response.data[0]);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });
@@ -58,9 +68,9 @@ export default function AgregarProfesor() {
         // })
 
         //axios.post(`http://localhost:4000/ejemplo/asistente/AgregarProfesor`,{ID,NombreCompleto,Correo,Contra,Habilitado,Coordinador,Sede,IDtipo})
-        console.log(typeof Carnet);
-        console.log(NombreCompleto);
-        console.log(typeof Sede);
+        //console.log(typeof Carnet);
+        //console.log(NombreCompleto);
+        //console.log(typeof Sede);
     }
     useEffect(() => {
         const selectedDropdownValues = Object.values(selectedValues);
@@ -68,12 +78,13 @@ export default function AgregarProfesor() {
         const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
         // Do something with the constant variable
         setSede(selectedValuesConst[0])
-        console.log(selectedValuesConst);
+        //console.log(selectedValuesConst);
     }, [selectedValues]);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform any further processing here
-  };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Perform any further processing here
+    };
     const handleDropdownChange = (dropdownId, value) => {
         setSelectedValues((prevState) => ({
         ...prevState,

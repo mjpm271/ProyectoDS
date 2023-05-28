@@ -14,6 +14,9 @@ export default function CrearObservacion() {
     const [Fecha, setFecha] = useState(new Date());
     const [Observacion, setObservacion] = useState();
     const [IDactividad, setIDactividad] = useState();
+    const showAlert = (Result) => {
+        window.alert('ha insertado la observacion con exito')
+    };
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -30,6 +33,7 @@ export default function CrearObservacion() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });
@@ -46,16 +50,6 @@ export default function CrearObservacion() {
         console.log(IDactividad);
         console.log(typeof Sede);
     }
-
-    const convert2base64 = e =>{
-        const file = e.target.files[0]
-        const reader = new FileReader();
-        reader.onloadend =() =>{
-            setFecha(reader.result.toString())
-        }
-        reader.readAsDataURL(file);
-    }
-
  
     return (
         <div>
