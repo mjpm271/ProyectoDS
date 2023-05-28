@@ -20,6 +20,9 @@ export default function CrearPlan() {
         case 1:
           window.alert('El equipo ya existe');
           break 
+        case 2:
+          window.alert('El equipo no existe');
+          break 
         default:
           window.alert('ha Creado el equipo')
     }};

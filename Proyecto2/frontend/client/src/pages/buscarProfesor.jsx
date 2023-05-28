@@ -9,7 +9,6 @@ export default function BuscarProfesor() {
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [Error, setError] = useState('');
     const [items, setItems] = useState([]);
-    const Bool = [true,false]
     const MyEnum = {
         true: 'Si',
         false: 'No'

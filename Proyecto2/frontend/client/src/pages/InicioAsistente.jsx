@@ -54,15 +54,14 @@ export default function InicioAsistente() {
             </li>
             
             <li>
-            /*Conditional rendering */
                 <Link to={'/definirCoordinador'}state= {Persona}>
-                    <button>Definir Coordinador</button>
+                  {info.Sede === 1 && <button>Definir Coordinador</button>}
                 </Link>
             </li>
             
             <li>
             <Link to={'/crearPlan'} state= {Persona}>
-                    <button>Crear Plan de Trabajo</button>
+              <button>Crear Plan de Trabajo</button>
                 </Link>
             </li>
             <li>

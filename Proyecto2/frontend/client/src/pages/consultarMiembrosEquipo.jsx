@@ -12,6 +12,10 @@ export default function ConsultarMiembrosEquipo() {
     /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
+    const MyEnum = {
+        true: 'Si',
+        false: 'No'
+      };
     const [items, setItems] = useState([]);
 
     const buscar = () => {
@@ -80,7 +84,7 @@ export default function ConsultarMiembrosEquipo() {
                                 <Table.Cell>{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Correo}</Table.Cell>
-                                <Table.Cell>{item.Coordinador}</Table.Cell>
+                                <Table.Cell>{MyEnum[item.Coordinador]}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>

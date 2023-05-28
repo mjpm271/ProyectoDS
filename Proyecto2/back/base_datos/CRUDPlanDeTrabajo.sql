@@ -13,6 +13,12 @@ BEGIN
 		select @Result
 		return @Result
 	end
+	if ((select count(*) from equipoGuia where IDequipoGuia = @IDequipoGuia) = 0)
+	begin
+		set @Result = 2
+		select @Result
+		return @Result
+	end
     INSERT INTO planTrabajo(Nombre, Abreviacion, IDequipoGuia)
     VALUES (@Nombre, @Abreviacion, @IDequipoGuia)
 		set @Result = 0
