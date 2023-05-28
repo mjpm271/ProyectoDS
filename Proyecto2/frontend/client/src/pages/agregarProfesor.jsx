@@ -23,6 +23,16 @@ export default function AgregarProfesor() {
     const [IDtipo, setIDtipo] = useState(1);
     const [Foto, setFoto] = useState();
     const [selectedValues, setSelectedValues] = useState({});
+
+    useEffect(() => {
+        const selectedDropdownValues = Object.values(selectedValues);
+        // Assign the selected values to a constant variable
+        const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
+        // Do something with the constant variable
+        setSede(selectedValuesConst[0])
+        //console.log(selectedValuesConst);
+    }, [selectedValues]);
+    
     const showAlert = (Result) => {
       switch (Result){
         case 1:
@@ -32,11 +42,11 @@ export default function AgregarProfesor() {
           window.alert('ha Creado el profesor')
     }};
     const verificacion = () =>{
-        console.log(Carnet.length)
-        console.log(NombreCompleto.length)
-        console.log(Correo.length)
-        console.log(Contra.length)
-        console.log(Telefono.length)
+        // console.log(Carnet.length)
+        // console.log(NombreCompleto.length)
+        // console.log(Correo.length)
+        // console.log(Contra.length)
+        // console.log(Telefono.length)
         
         if(!Carnet){
             setError('Tiene que ingresar datos al Carnet')
@@ -51,7 +61,7 @@ export default function AgregarProfesor() {
             setError('Tiene que ingresar datos a la contrasena')
         }
         else if(Contra.length < 8){
-            setError('Tiene que ingresar datos a la contrasena')
+            setError('La contrasena tiene que ser de 8 digitos')
         }
         else if(!Telefono){
             setError('Tiene que ingresar datos al Telefeno')
@@ -85,36 +95,20 @@ export default function AgregarProfesor() {
               'Content-Type': 'application/json'
             }
           }
-          )
-            .then(response => {
-              console.log()
+          ).then(response => {
+            const result = response.json();
+            const Status = parseInt(result.output.Result); // Leer el valor del output recibido
+              console.log(Status)
               console.log(response.data[0]);
-              showAlert((response.data[0]))
+            //   showAlert((response.data[0]))
             }).catch(Error => {
                 console.log('hay Error')
                 console.log(Error)
             });
 
-        // fetch('http://localhost:4000/ejemplo/asistente/AgregarProfesor',{
-        //     method : 'post',
-        //     mode: 'cors',
-        //     body: formData,
-        //     headers: { "Content-Type": "multipart/form-data" }
-        // })
-
-        //axios.post(`http://localhost:4000/ejemplo/asistente/AgregarProfesor`,{ID,NombreCompleto,Correo,Contra,Habilitado,Coordinador,Sede,IDtipo})
-        //console.log(typeof Carnet);
-        //console.log(NombreCompleto);
-        //console.log(typeof Sede);
     }
-    useEffect(() => {
-        const selectedDropdownValues = Object.values(selectedValues);
-        // Assign the selected values to a constant variable
-        const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
-        // Do something with the constant variable
-        setSede(selectedValuesConst[0])
-        //console.log(selectedValuesConst);
-    }, [selectedValues]);
+
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
