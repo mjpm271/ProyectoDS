@@ -39,7 +39,7 @@ export default function Actividad() {
           IDtipoActividad: informacion?.IDtipoActividad,
           IDestado: informacion?.IDtipoEstado
         });
-
+        buscarResponsables();
         console.log(actividadInfo);
       });
   }, []);
@@ -48,7 +48,7 @@ export default function Actividad() {
     definirModalidad();
     definirTipoActividad();
     definirEstado();
-    buscarResponsables();
+    
   }, [actividadInfo]);
 
   const buscarResponsables = () => {

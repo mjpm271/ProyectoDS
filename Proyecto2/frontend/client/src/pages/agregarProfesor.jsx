@@ -96,9 +96,8 @@ export default function AgregarProfesor() {
             }
           }
           ).then(response => {
-            const result = response.json();
-            const Status = parseInt(result.output.Result); // Leer el valor del output recibido
-              console.log(Status)
+              console.log(response.data[0][""]); // Leer el valor del output recibido
+              
               console.log(response.data[0]);
             //   showAlert((response.data[0]))
             }).catch(Error => {
