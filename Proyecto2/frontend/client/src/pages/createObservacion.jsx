@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import {  useParams } from 'react-router-dom';
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import Footer from '../components/Footer';
@@ -9,16 +10,20 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 export default function CrearObservacion() {
+    const { actividad } = useParams();
     const [Fecha, setFecha] = useState(new Date());
     const [Observacion, setObservacion] = useState();
     const [IDactividad, setIDactividad] = useState();
+    const showAlert = (Result) => {
+        window.alert('ha insertado la observacion con exito')
+    };
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/CrearObservacion', {
             Fecha:Fecha,
             Observacion:Observacion,
-            IDactividad:IDactividad,
+            IDactividad:actividad,
           }
           , {
             headers: {
@@ -28,6 +33,7 @@ export default function CrearObservacion() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });
@@ -44,20 +50,12 @@ export default function CrearObservacion() {
         console.log(IDactividad);
         console.log(typeof Sede);
     }
-
-    const convert2base64 = e =>{
-        const file = e.target.files[0]
-        const reader = new FileReader();
-        reader.onloadend =() =>{
-            setFecha(reader.result.toString())
-        }
-        reader.readAsDataURL(file);
-    }
-
  
     return (
         <div>
             <Navbar />
+            <div className='container'>
+                <h1>Crear Observacion</h1>
                 <div>
                     <label>Fecha</label>
                     <DateTimePicker onChange={setFecha} value={Fecha} />
@@ -68,13 +66,11 @@ export default function CrearObservacion() {
                     <label>Observacion </label>
                     <input placeholder='Observacion' onChange={(e) => setObservacion(e.target.value)}/>
                 </Form.Field>
-                <Form.Field>
-                    <label>IDactividad </label>
-                    <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
-                </Form.Field>
+                
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+        </div>
         </div>
     )
 }

@@ -2,12 +2,22 @@ CREATE PROCEDURE CreatePlanTrabajo
 (
     @Nombre varchar(32),
     @Abreviacion varchar(32),
-    @IDcoordinador int
+    @IDequipoGuia int,
+	@Result int output
 )
 AS
 BEGIN
-    INSERT INTO planTrabajo(Nombre, Abreviacion, IDcoordinador)
-    VALUES (@Nombre, @Abreviacion, @IDcoordinador)
+	if ((select count(*) from planTrabajo where Nombre = @Nombre) > 0)
+	begin
+		set @Result = 1
+		select @Result
+		return @Result
+	end
+    INSERT INTO planTrabajo(Nombre, Abreviacion, IDequipoGuia)
+    VALUES (@Nombre, @Abreviacion, @IDequipoGuia)
+		set @Result = 0
+		select @Result
+		return @Result
 END;
 GO
 
@@ -17,7 +27,8 @@ CREATE PROCEDURE ReadPlanTrabajoPorID
 )
 AS
 BEGIN
-    SELECT * FROM planTrabajo WHERE IDplanTrabajo = @IDplanTrabajo
+    SELECT * FROM planTrabajo 
+	WHERE IDplanTrabajo = @IDplanTrabajo
 END;
 GO
 
@@ -32,7 +43,7 @@ CREATE PROCEDURE UpdatePlanTrabajo
     @IDplanTrabajo INT,
     @Nombre VARCHAR(32),
     @Abreviacion VARCHAR(32),
-    @IDcoordinador INT,
+    @IDequipoGuia INT,
     @Exito BIT OUTPUT
 )
 AS
@@ -42,7 +53,7 @@ BEGIN
     DECLARE @ActualizacionExitosa BIT;
 
     UPDATE planTrabajo 
-    SET Nombre = @Nombre, Abreviacion = @Abreviacion, IDcoordinador = @IDcoordinador
+    SET Nombre = @Nombre, Abreviacion = @Abreviacion, IDequipoGuia = @IDequipoGuia
     WHERE IDplanTrabajo = @IDplanTrabajo;
 
     IF @@ROWCOUNT > 0

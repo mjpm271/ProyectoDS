@@ -2,14 +2,14 @@ import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
 
-export default function ReadObservacion() {
+export default function VerObservacion() {
 
     const [IDactividad, setIDactividad] = useState();
     const [items, setItems] = useState([]);
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/profesorCoordinador/readObservacion`, {
+      axios.post(`http://localhost:4000/coordinador/VerObservacion`, {
           IDactividad:IDactividad
         }
         , {
@@ -31,7 +31,7 @@ export default function ReadObservacion() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>IDactividad </label>
+                    <label>IDactividad</label>
                     <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
 
@@ -57,7 +57,6 @@ export default function ReadObservacion() {
                                 <Table.Cell>{item.Fecha}</Table.Cell>
                                 <Table.Cell>{item.Observacion}</Table.Cell>
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
-                                
                             </Table.Row>
                         )
                     })}

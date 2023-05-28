@@ -72,7 +72,8 @@ export default function ModificarPlan() {
     };
 
     return (
-        <div>
+        <div className='container'>
+            <h1>Modificar Plan de Trabajo</h1>
         <Form className="create-form">
             {/* <Form.Field>
             <label>IDplanTrabajo</label>

@@ -7,12 +7,15 @@ export default function BuscarProfesor() {
     const [Carnet, setCarnet] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
-
+    const Bool = [true,false]
+    const MyEnum = {
+        true: 'Si',
+        false: 'No'
+      };
     const buscar = () => {
 
       axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
-          Carnet:Carnet,
-          Lugar:Lugar
+          Carnet:Carnet
         }
         , {
           headers: {
@@ -34,7 +37,8 @@ export default function BuscarProfesor() {
 
   }
     return (
-        <div>
+        <div className="container">
+            <h1>Buscar Profesor</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>
@@ -74,8 +78,8 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Correo}</Table.Cell>
-                                <Table.Cell>{item.Habilitado}</Table.Cell>
-                                <Table.Cell>{item.Coordinador}</Table.Cell>
+                                <Table.Cell>{MyEnum[item.Habilitado]}</Table.Cell>
+                                <Table.Cell>{MyEnum[item.Coordinador]}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>

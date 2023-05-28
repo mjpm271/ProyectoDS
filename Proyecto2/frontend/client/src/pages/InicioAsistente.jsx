@@ -4,7 +4,7 @@ import React from 'react';
 import { useLocation , Link} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-export default function InicioCoordinador() {
+export default function InicioAsistente() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
@@ -28,14 +28,35 @@ export default function InicioCoordinador() {
             <nav>
           <ul>
             <li>
+                <Link to={'/agregarProfesor'}state= {Persona}>
+                    <button>Agregar Profesor</button>
+                </Link>
+            </li>
+            <li>
+                <Link to={'/buscarProfesor'}state= {Persona}>
+                    <button>Buscar Profesor</button>
+                </Link>
+            </li>
+            <li>
+                <Link to={'/crearEquipoGuia'}state= {Persona}>
+                    <button>Crear Equipo Guia</button>
+                </Link>
+            </li>
+            <li>
+                <Link to={'/agregarProfesorEquipo'}state= {Persona}>
+                    <button>Agregar Profesor al Equipo</button>
+                </Link>
+            </li>
+            <li>
                 <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
                     <button>Consultar Miembros de Equipo guia</button>
                 </Link>
             </li>
             
             <li>
-                <Link to={'/verEstudiante'}state= {Persona}>
-                    <button>Estudiantes</button>
+            /*Conditional rendering */
+                <Link to={'/definirCoordinador'}state= {Persona}>
+                    <button>Definir Coordinador</button>
                 </Link>
             </li>
             
@@ -49,19 +70,10 @@ export default function InicioCoordinador() {
                     <button>Ver Planes de Trabajo</button>
                 </Link>
             </li>
+           
             <li>
-            <Link to={'/verPlan'}state= {Persona}>
-                    <button>Modificar Plan de Trabajo</button>
-                </Link>
-            </li>
-            <li>
-            <Link to={'/crearActividad'}state= {Persona}>
-                    <button>Crear Actividad </button>
-                </Link>
-            </li>
-            <li>
-            <Link to={'/verActividad'}state= {Persona}>
-                    <button>Modificar Actividad </button>
+            <Link to={'/SiguienteActividad'}state= {Persona}>
+                    <button>Siguiente Actividad </button>
                 </Link>
             </li>
           </ul>

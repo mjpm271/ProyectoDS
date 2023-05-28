@@ -6,6 +6,15 @@ import Footer from '../components/Footer';
 
 export default function CrearEquipoGuia() {
     const [Nombre, setNombre] = useState();
+    const showAlert = (Result) => {
+      switch (Result){
+        case 1:
+          window.alert('El nombre ya existe');
+          break 
+        default:
+          window.alert('ha Creado el equipo Guia')
+          
+    }};
     const postData = () => {
         
         axios.post('http://localhost:4000/asistente/CrearEquipoGuia', {
@@ -19,6 +28,7 @@ export default function CrearEquipoGuia() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(response.data[0][""])
             }).catch(error => {
                 console.log(error)
             });
@@ -35,6 +45,9 @@ export default function CrearEquipoGuia() {
     return (
         <div>
             <Navbar />
+            <div className='container'>
+            <h1>Crear Equipo Guia</h1>
+            
             <Form className="create-form">
                 <Form.Field>
                     <label>Nombre </label>
@@ -43,6 +56,7 @@ export default function CrearEquipoGuia() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+        </div>
         </div>
     )
 }

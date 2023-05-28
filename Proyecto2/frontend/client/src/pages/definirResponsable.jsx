@@ -1,12 +1,21 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function DefinirResponsable() {
+    /* IMPORTANTE PASAR */
+    // const location = useLocation();
+    // const Persona = location.state;
+    // const info = JSON.parse(Persona)
+    // const id = info.Carnet
+    /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
+    const showAlert = (Result) => {
+          window.alert('ha asignado responsable con exito')
+    };
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/DefinirResponsable', {
@@ -20,6 +29,7 @@ export default function DefinirResponsable() {
           )
             .then(response => {
               console.log(response.data);
+              showAlert(0)
             }).catch(error => {
                 console.log(error)
             });
@@ -29,6 +39,9 @@ export default function DefinirResponsable() {
     return (
         <div>
             <Navbar />
+            <div className='container'>
+              <h1>Definir Responsable</h1>
+              <p></p>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>
@@ -37,6 +50,7 @@ export default function DefinirResponsable() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+            </div>
         </div>
     )
 }

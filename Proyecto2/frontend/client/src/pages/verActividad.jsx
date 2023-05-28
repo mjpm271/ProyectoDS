@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 
-export default function VerPlan() {
-    /* IMPORTANTE PASAR */
+export default function VerActividad() {
     const location = useLocation();
     const Persona = location.state;
-    /* IMPORTANTE PASAR */
+    const Variable  = 5;
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
@@ -16,7 +15,7 @@ export default function VerPlan() {
 
     const buscar = () => {
         setError('')
-        axios.post(`http://localhost:4000/profesor/VerPlanTrabajo`, {
+        axios.post(`http://localhost:4000/profesor/VerActividadxPlan`, {
             IDplanTrabajo:IDplanTrabajo
             }
             , {
@@ -48,10 +47,10 @@ export default function VerPlan() {
 
     return (
         <div className="container">
-            <h1>Modificacion Plan</h1>
+            <h1>Consultar Actividades</h1>
             <Form className="create-form">
                 <Form.Field>
-                    <label>IDplanTrabajo </label>
+                    <label>Ingrese un plan de trabajo</label>
                     <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(e.target.value)}/>
                 </Form.Field>
 
@@ -60,13 +59,14 @@ export default function VerPlan() {
             </Form>
             <div> 
             {error && <Message negative>{error}</Message>}
-            <Table textAlign='center'  singleLine>
+            <Table textAlign='center' singleLine>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>ID Plan Trabajo </Table.HeaderCell>
+                        <Table.HeaderCell>ID Actividad</Table.HeaderCell>
                         <Table.HeaderCell>Nombre </Table.HeaderCell>
-                        <Table.HeaderCell>Abreviacion </Table.HeaderCell>
-                        <Table.HeaderCell>Modificar</Table.HeaderCell>
+
+                        <Table.HeaderCell>Realizar</Table.HeaderCell>
+                        <Table.HeaderCell>Cancelar</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -75,14 +75,12 @@ export default function VerPlan() {
                         return (
                             <Table.Row>
 
-                                <Table.Cell>{item.IDplanTrabajo}</Table.Cell>
+                                <Table.Cell>{item.IDactividad}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
-                                <Table.Cell>{item.Abreviacion}</Table.Cell>
-                                <Link to={`/modificarPlan/${item.IDplanTrabajo}`}>
-                                    <Table.Cell> 
-                                        <Button  > Modificar </Button>
-                                    </Table.Cell>
-                                </Link>
+                                <Table.Cell>{Variable !== 3 && <Link to={`/crearEvidencia/${item.IDactividad}`}> <Button>Realizar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{Variable !== 4 && <Link to={`/createObservacion/${item.IDactividad}`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
+                                
+
                             </Table.Row>
                         )
                     })}

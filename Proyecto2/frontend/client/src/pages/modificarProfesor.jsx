@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Navigate, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export default function ModificarEstudiante() {
+export default function ModificarProfesor() {
     const navigate = useNavigate();
     const { Carnet } = useParams();
     const [perfil, setPerfil] = useState({
@@ -53,7 +53,7 @@ export default function ModificarEstudiante() {
     const updateAPIData = () => {
         axios
         .put(
-            'http://localhost:4000/profesor/ModificarProfesorPerfil',
+            'http://localhost:4000/asistente/ModificarProfesor',
             {
             Carnet: perfil.carnet,
             NombreCompleto: perfil.nombreCompleto,
@@ -94,7 +94,7 @@ export default function ModificarEstudiante() {
     return (
         <div className="container">
             
-            <h1 >Modificar Estudiante</h1>
+            <h1 >Modificar Profesor</h1>
         <Form className="create-form">
             <Form.Field>
             <label>Carnet</label>
@@ -124,6 +124,15 @@ export default function ModificarEstudiante() {
             />
             </Form.Field>
             <Form.Field>
+            <label>Contrasena</label>
+            <input
+                placeholder='Contrasena'
+                name="contrasena"
+                value={perfil.contra || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
             <label>Telefono</label>
             <input
                 placeholder='Telefono'
@@ -147,6 +156,15 @@ export default function ModificarEstudiante() {
                 placeholder='Foto'
                 name="foto"
                 value={perfil.foto || ''}
+                onChange={handleInputChange}
+            />
+            </Form.Field>
+            <Form.Field>
+            <label>Sede</label>
+            <input
+                placeholder='Sede'
+                name="Sede"
+                value={perfil.Sede || ''}
                 onChange={handleInputChange}
             />
             </Form.Field>

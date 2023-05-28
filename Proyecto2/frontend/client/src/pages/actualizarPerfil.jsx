@@ -92,7 +92,8 @@ export default function ModificarPerfil() {
     };
 
     return (
-        <div>
+        <div className="container">
+            <h1>Modificar Perfil</h1>
         <Form className="create-form">
             <Form.Field>
             <label>Carnet</label>

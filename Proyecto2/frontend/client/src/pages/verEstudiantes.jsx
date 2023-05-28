@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 
@@ -8,11 +8,31 @@ export default function VerEstudiantes() {
     const Persona = location.state;
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
+    const [seleccionSede,setSeleccionSede] = useState(false)
+    const [selectedValues, setSelectedValues] = useState({});
+    const [Sede, setSede] = useState([]);
     const options = [
         { key: 'A', text: 'Alfabetico', value: 'Alfabetico' },
         { key: 'S', text: 'Sede', value: 'Sede' },
         { key: 'C', text: 'Carnet', value: 'Carnet' },
       ]
+      const dropdownOptionsSede = [
+        { id: 1, value: 1, label: 'Cartago' },
+        { id: 2, value: 2, label: 'San Jose' },
+        { id: 3, value: 3, label: 'Alajuela' },
+        { id: 4, value: 4, label: 'San Carlos' },
+        { id: 5, value: 5, label: 'Limon' },
+    ];
+
+    
+    const handleDropdownChange = (dropdownId, value) => {
+        setSelectedValues((prevState) => ({
+        ...prevState,
+        [dropdownId]: value,
+        }));
+        // setSede(value)
+    };
+
     console.log(Persona)
 
     const EstudiantesAlf = () => {
@@ -23,7 +43,7 @@ export default function VerEstudiantes() {
                 setItems(items)
                 // console.log(response.data)
                 if(response.data.length === 0){
-                    setError('No existe registro del plan consultado')
+                    setError('')
                 }
                 
             }).catch(error => {
@@ -33,13 +53,13 @@ export default function VerEstudiantes() {
 
   const EstudiantesSede = () => {
     setError('')
-    axios.post(`http://localhost:4000/profesor/VerEstudiantesSede`)
+    axios.post(`http://localhost:4000/profesor/VerEstudiantesSede`,{Sede:Sede})
         .then(response => {
             const items = response.data
             setItems(items)
             // console.log(response.data)
             if(response.data.length === 0){
-                setError('No existe registro del plan consultado')
+                setError('No hay estudiantes de esta Sede')
             }
             
         }).catch(error => {
@@ -74,17 +94,31 @@ const handleOptionChange = (event, data) => {
     console.log(data.value);
 
     if(data.value === 'Alfabetico'){
+        setSeleccionSede(false)
         EstudiantesAlf()
     }if(data.value === 'Sede'){
-        EstudiantesSede()
+        setSeleccionSede(true)
+        // EstudiantesSede()
     }if(data.value ==='Carnet'){
+        setSeleccionSede(false)
         EstudiantesCarnet()
     }
     // ...
   };
+  useEffect(() => {
+    const selectedDropdownValues = Object.values(selectedValues);
+    // Assign the selected values to a constant variable
+    const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
+    // Do something with the constant variable
+    setSede(selectedDropdownValues.map((value) => parseInt(value)))
+    EstudiantesSede();
+    console.log(selectedValuesConst);
+    console.log("SEDE",Sede)
+}, [selectedValues]);
 
     return (
         <div className="container">
+            <h1>Ver Estudiantes</h1>
             <Form className="create-form">
             <Form.Select
             fluid
@@ -93,7 +127,19 @@ const handleOptionChange = (event, data) => {
             onChange={handleOptionChange}
             placeholder='Contenido'
           />
+           
             </Form>
+            {seleccionSede && <select
+                    id="Sede"
+                    value={selectedValues.Sede || ''}
+                    onChange={(e) => handleDropdownChange('Sede', e.target.value)}>
+                    <option value="">Seleccione una Sede</option>
+                    {dropdownOptionsSede.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>}
             <div> 
             {error && <Message negative>{error}</Message>}
             <Table textAlign='center'  singleLine>
@@ -119,11 +165,11 @@ const handleOptionChange = (event, data) => {
                                 <Table.Cell>{item.Correo}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
-                                <Link to={`/modificarEstudiante/${item.IDplanTrabajo}`}>
+                                {/* <Link to={`/modificarEstudiante/${item.Carnet}`}></Link> */}
                                     <Table.Cell> 
                                         <Button  > Modificar </Button>
                                     </Table.Cell>
-                                </Link>
+                                
                             </Table.Row>
                         )
                     })}

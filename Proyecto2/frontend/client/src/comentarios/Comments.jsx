@@ -8,18 +8,20 @@ import {
   deleteComment as deleteCommentApi,
 } from "../api";
 
-const Comments = ({ commentsUrl, currentUserId }) => {
+const Comments = ({ commentsUrl, IDpersona, IDactividad }) => {
+  console.log(IDactividad)
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
-  const rootComments = backendComments.filter(
-    (backendComment) => backendComment.parentId === null
-  );
+  // const rootComments = backendComments.filter(
+  //   (backendComment) => backendComment.parentId === null
+  // );
 
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [replies, setReplies] = useState({});
   const rootComments2 = comments.filter(
-    (backendComment) => backendComment.IDcomentarioPadre === null
+    (backendComment) => backendComment.IDcomentarioPadre === null &&
+    backendComment.IDactividad == IDactividad
   );
     const fetchComments = async () => {
     try {
@@ -28,7 +30,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        IDactividad: 8, // Reemplaza con el ID de actividad adecuado
+        IDactividad: IDactividad, // Reemplaza con el ID de actividad adecuado
       })});
       const data = await response.json();
       setComments(data);
@@ -37,25 +39,57 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       console.log(error);
     }
   };
-  const getReplies = (commentId) =>
-    backendComments
-      .filter((backendComment) => backendComment.parentId === commentId)
+  const getReplies = (IDcomentario) =>
+    comments
+      .filter((backendComment) => backendComment.IDcomentarioPadre === IDcomentario)
       .sort(
         (a, b) =>
-          new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          new Date(a.Fecha).getTime() - new Date(b.Fecha).getTime()
       );
-  const addComment = (text, parentId) => {
-    createCommentApi(text, parentId).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
-      setActiveComment(null);
-    });
-  };
+  // const addComment = (text, parentId) => {
+  //   createCommentApi(text, parentId).then((comment) => {
+  //     setBackendComments([comment, ...backendComments]);
+  //     setActiveComment(null);
+  //   });
+  // };
+  const handleCommentSubmit = async (newComment, IDcomentarioPadre) => {
+    console.log(newComment)
+    try {
+      const response = await fetch(`http://localhost:4000/profesor/Comentar`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          IDpersona: IDpersona, // Reemplaza con el ID de persona adecuado
+          IDactividad: IDactividad, // Reemplaza con el ID de actividad adecuado
+          IDcomentarioPadre: IDcomentarioPadre, // Puedes establecer el ID de comentario padre si se está respondiendo a un comentario existente
+          // Hora: new Date().toLocaleTimeString(), // Obtén la hora actual en el formato adecuado
+          Fecha: new Date().toISOString(),//new Date().toLocaleDateString(), // Obtén la fecha actual en el formato adecuado
+          Contenido: newComment
+        })
+      });
 
-  const updateComment = (text, commentId) => {
+      if (response.ok) {
+        // setBackendComments([comment, ...backendComments]);
+        // setActiveComment(null);
+        createCommentApi(newComment, IDcomentarioPadre,IDactividad,IDpersona).then((comment) => {
+          setBackendComments([comment, ...comments]);
+          setActiveComment(null);});
+        fetchComments();
+        setNewComment('');
+      } else {
+        console.log('Error al enviar el comentario');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateComment = (text, IDcomentario) => {
     updateCommentApi(text).then(() => {
-      const updatedBackendComments = backendComments.map((backendComment) => {
-        if (backendComment.id === commentId) {
-          return { ...backendComment, body: text };
+      const updatedBackendComments = comments.map((backendComment) => {
+        if (backendComment.IDcomentario === IDcomentario) {
+          return { ...backendComment, Contenido: text };
         }
         return backendComment;
       });
@@ -63,11 +97,11 @@ const Comments = ({ commentsUrl, currentUserId }) => {
       setActiveComment(null);
     });
   };
-  const deleteComment = (commentId) => {
+  const deleteComment = (IDcomentario) => {
     if (window.confirm("Are you sure you want to remove comment?")) {
       deleteCommentApi().then(() => {
-        const updatedBackendComments = backendComments.filter(
-          (backendComment) => backendComment.id !== commentId
+        const updatedBackendComments = comments.filter(
+          (backendComment) => backendComment.IDcomentario !== IDcomentario
         );
         setBackendComments(updatedBackendComments);
       });
@@ -75,7 +109,7 @@ const Comments = ({ commentsUrl, currentUserId }) => {
   };
 
   useEffect(() => {
-    fetchComments()
+    fetchComments();
     getCommentsApi().then((data) => {
       setBackendComments(data);
     });
@@ -83,9 +117,8 @@ const Comments = ({ commentsUrl, currentUserId }) => {
 
   return (
     <div className="comments">
-      <h3 className="comments-title">Comments</h3>
-      <div className="comment-form-title">Write comment</div>
-      <CommentForm submitLabel="Write" handleSubmit={addComment} />
+      <div className="comment-form-title">Comentarios</div>
+      <CommentForm submitLabel="Comentar" handleSubmit={handleCommentSubmit} />
       <div className="comments-container">
         {rootComments2.map((rootComment) => (
           <Comment
@@ -94,10 +127,10 @@ const Comments = ({ commentsUrl, currentUserId }) => {
             replies={getReplies(rootComment.IDcomentario)}
             activeComment={activeComment}
             setActiveComment={setActiveComment}
-            addComment={addComment}
+            handleCommentSubmit={handleCommentSubmit}
             deleteComment={deleteComment}
             updateComment={updateComment}
-            currentUserId={currentUserId}
+            IDpersona={IDpersona}
           />
         ))}
       </div>

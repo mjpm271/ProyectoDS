@@ -1,16 +1,16 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image} from 'semantic-ui-react';
 
-export default function VerEvidencias() {
-
+export default function VerResponsables() {
     const [IDactividad, setIDactividad] = useState();
+    const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
 
-    const buscar = () => {
+    const Responsable = () => {
 
-      axios.post('http://localhost:4000/coordinador/VerEvidencias', {
-          IDactividad:IDactividad
+      axios.post(`http://localhost:4000/coordinador/VerResponsables`, {
+        IDactividad:IDactividad
         }
         , {
           headers: {
@@ -26,26 +26,28 @@ export default function VerEvidencias() {
           });
   }
 
- 
     return (
         <div>
+        <div className="container">
+            <h1>Buscar Actividad</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>IDactividad </label>
                     <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
 
-                <Button onClick={buscar} type='submit'>Submit</Button>
+                <Button onClick={Responsable} type='submit'>Submit</Button>
 
             </Form>
             <div> 
-            <Table color={"blue"} singleLine>
+
+            <Table textAlign='center' singleLine>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>ID evidencia</Table.HeaderCell>
-                        <Table.HeaderCell>Foto participantes </Table.HeaderCell>
-                        <Table.HeaderCell>link de Grabacion </Table.HeaderCell>
-                        <Table.HeaderCell>ID actividad </Table.HeaderCell>
+                        <Table.HeaderCell>Carnet </Table.HeaderCell>
+                        <Table.HeaderCell>Nombre Completo </Table.HeaderCell>
+                        <Table.HeaderCell>Correo </Table.HeaderCell>
+                        <Table.HeaderCell>Sede </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -53,21 +55,17 @@ export default function VerEvidencias() {
                     {items.map((item) => {
                         return (
                             <Table.Row>
-                                <Table.Cell>{item.IDevidencia}</Table.Cell>
-                                <Table.Cell>
-                                <Header as='h1' image>
-                                  <Image src={item.Fotoparticipantes} rounded size='tiny' /> 
-                                </Header>
-                                </Table.Cell>
-                                <Table.Cell>{item.linkGrabacion}</Table.Cell>
-                                <Table.Cell>{item.IDactividad}</Table.Cell>
-                                
+                                <Table.Cell>{item.Carnet}</Table.Cell>
+                                <Table.Cell>{item.NombreCompleto}</Table.Cell>
+                                <Table.Cell>{item.Correo}</Table.Cell>
+                                <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                             </Table.Row>
                         )
                     })}
                 </Table.Body>
                 </Table>
                 </div>
+        </div>
         </div>
     )
 }

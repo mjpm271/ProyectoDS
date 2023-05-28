@@ -157,24 +157,32 @@ GO
 
 create procedure RealizarActividad
 (
-	@IDactividad int
+	@IDactividad int,
+	@Result int output
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 3
 	where IDactividad = @IDactividad
+	set @Result = 0
+	select @Result
+	return @Result
 end;
 go
 
 create procedure CancelarActividad
 (
-	@IDactividad int
+	@IDactividad int,
+	@Result int output
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 4
 	where IDactividad = @IDactividad
+	set @Result = 0
+	select @Result
+	return @Result
 end;
 go

@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 export default function RealizarActividad() {
     const [IDactividad, setIDactividad] = useState();
     const Exito = useState(3)
+
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         

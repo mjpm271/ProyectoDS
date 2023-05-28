@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
+import { Grid, Segment} from 'semantic-ui-react'
+import Navbar from '../components/Navbar'
 
 export default function SiguienteActividad() {
     const [FechaActual, setFechaActual] = useState(new Date());
+    const Actividad = null
     const Modalidad = ['Presencial', 'Remoto'];
     const TipoAct = ['Orientadora', 'Motivacional', 'Apoyo Vida Estudiantil', 'Orden Tecnico', 'Recreacion'];
     const Estado = ['Planeada', 'Notificada', 'Realizada', 'Cancelada'];
@@ -21,7 +23,8 @@ export default function SiguienteActividad() {
           )
             .then(response => {
               setItems(response.data);
-              console.log(response.data);
+              Actividad = response.data[0].IDactividad
+              console.log(response.data[0].IDactividad);
             }).catch(error => {
                 console.log(error)
             });
@@ -37,13 +40,81 @@ export default function SiguienteActividad() {
 
     },[]
 );
+
+/*RESPONSABLES */
+// useEffect(() => {
+//     axios
+//       .post(
+//         'http://localhost:4000/profesor/ResponsableActividad',
+//         { IDactividad: Actividad },
+//         {
+//           headers: {
+//             'Content-Type': 'application/json'
+//           }
+//         }
+//       )
+//       .then((response) => {
+//         console.log(response.data);
+//         setActividad(response.data);
+
+//         const informacion = response.data[0];
+//         setActividadInfo({
+//           IDmodalidad: informacion?.IDmodalidad,
+//           IDtipoActividad: informacion?.IDtipoActividad,
+//           IDestado: informacion?.IDtipoEstado
+//         });
+
+//         console.log(actividadInfo);
+//       });
+//   }, []);
  
     return ( 
         <div>
-
+            <Navbar/>
             <div> 
+            {items.map((item)=>(
 
-            <Table class="ui blue table" singleLine>
+            <Grid columns='equal'>
+    <Grid.Row>
+        <Grid.Column>
+          <Segment>Numero Actividad: {item.IDactividad} </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Semana: {item.Semana} </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Fecha Publicacion: {item.FechaPublicacion} </Segment>
+        </Grid.Column>
+        
+
+      </Grid.Row>
+      
+    <Grid columns={3} divided>
+      <Grid.Row stretched>
+        <Grid.Column>
+          <Segment >
+          <h4>Seccion 1</h4>
+          <p>Fecha Actividad: {item.Fecha}  </p>
+          <p>Dias Previos: {item.Cantidaddiasprevios} </p>
+          <p>Dias requeridos: {item.Cantidaddiasrequeridos}  </p>
+          <p>Tipo Actividad: {TipoAct[item.IDtipoActividad]} </p>
+          <p> Modalidad: {Modalidad[item.IDmodalidad]}  </p>
+          <p>Lugar o enlace: </p>
+          <p> Estado: {Estado[item.IDtipoEstado]} </p>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment>Responsables</Segment>
+          <Segment>Afiche</Segment>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+    </Grid>
+    ))}
+            {/* <Table class="ui blue table" singleLine>
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>IDactividad </Table.HeaderCell>
@@ -83,7 +154,7 @@ export default function SiguienteActividad() {
                         )
                     })}
                 </Table.Body>
-            </Table>
+            </Table> */}
             </div>
         </div>
     )

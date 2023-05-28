@@ -106,21 +106,20 @@ export const Comentar = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');        
     const { IDpersona,  IDactividad, IDcomentarioPadre, Hora, Fecha, Contenido } = req.body
     console.log('valores:', req.body)
-    if (!IDpersona || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Contenido) {
-        console.log('here')
-        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    // if (!IDpersona || !IDactividad || !IDcomentarioPadre || !Hora || !Fecha || !Contenido) {
+    //     console.log('here')
+    //     return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    // }
     try {
         const pool = await getConnection();
-        //console.log('whatever')
+        console.log('whatever')
         const result = await pool
             .request()
-            .input('IDpersona ', sql.Int, IDpersona)
-            .input('IDactividad ', sql.Int, IDactividad)
+            .input('IDpersona', sql.Int, IDpersona)
+            .input('IDactividad', sql.Int, IDactividad)
             .input('IDcomentarioPadre', sql.Int, IDcomentarioPadre)
-            .input('Hora', sql.Time, Hora)
-            .input('Fecha', sql.Date, Fecha)
-            .input('Contenido', sql.VarChar, Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .input('Fecha', sql.DateTime, Fecha)
+            .input('Contenido', sql.VarChar(sql.MAX), Contenido) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .execute('CreateComentario')
         console.log(result)
     } catch (err) {
@@ -274,7 +273,7 @@ export const VerEstudianteSede = async (req, res) => {
         const result = await pool
             .request()
             .input('Sede', sql.Int, Sede)
-            .execute('ReadActividadPorID')
+            .execute('ReadEstudianteporSede')
         console.log(result)
         res.json(result.recordset)
         

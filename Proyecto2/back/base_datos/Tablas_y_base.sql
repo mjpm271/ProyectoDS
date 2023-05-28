@@ -74,9 +74,9 @@ create table planTrabajo(
 	IDplanTrabajo int not null IDENTITY(1,1),
 	Nombre varchar(32) not null,
 	Abreviacion varchar(32) not null,
-	IDcoordinador int not null
+	IDequipoGuia int not null
 	primary key (IDplanTrabajo)
-	foreign key (IDcoordinador) references persona(IDpersona)
+	foreign key (IDequipoGuia) references equipoGuia(IDequipoGuia)
 );
 
 create table actividad(
@@ -132,8 +132,7 @@ create table comentario(
 	IDpersona int not null,
 	IDactividad int not null,
 	IDcomentarioPadre int,
-	Hora time,
-	Fecha date,
+	Fecha DateTime,
 	Contenido varchar(max)
 	primary key (IDcomentario),
 	foreign key (IDpersona) references persona(IDpersona),

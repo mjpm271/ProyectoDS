@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Grid, Segment } from 'semantic-ui-react';
+import { Link, useParams } from 'react-router-dom';
+import { Grid, ListItem, Segment , List, Button} from 'semantic-ui-react';
+import Comments from "../comentarios/Comments";
 import Navbar from '../components/Navbar'
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ export default function Actividad() {
   const [Modalidad, setModalidad] = useState([]);
   const [TipoActividad, setTipoActividad] = useState([]);
   const [Estado, setEstado] = useState([]);
+  const [Responsables, setResponsables] = useState([]);
 
   useEffect(() => {
     axios
@@ -46,7 +48,22 @@ export default function Actividad() {
     definirModalidad();
     definirTipoActividad();
     definirEstado();
+    buscarResponsables();
   }, [actividadInfo]);
+
+  const buscarResponsables = () => {
+
+    axios.post(`http://localhost:4000/coordinador/VerResponsables`,{IDactividad:activityId})
+        .then(response => {
+            const items = response.data
+            setResponsables(items)
+            // console.log(response.data)
+            
+            
+        }).catch(error => {
+            console.log(error)
+        });
+}
 
   const definirModalidad = () => {
     switch (actividadInfo?.IDmodalidad) {
@@ -113,7 +130,7 @@ export default function Actividad() {
     <Grid columns='equal'>
     <Grid.Row>
         <Grid.Column>
-          <Segment>Numero Actividad: {info.IDactividad} </Segment>
+          <Segment>Nombre Actividad: {info.Nombre} </Segment>
         </Grid.Column>
         <Grid.Column>
           
@@ -124,16 +141,14 @@ export default function Actividad() {
         <Grid.Column>
           <Segment>Fecha Publicacion: {info.FechaPublicacion} </Segment>
         </Grid.Column>
-        <Grid.Column>
-          <Segment>Coordinador:  </Segment>
-        </Grid.Column>
+        
 
       </Grid.Row>
       
     <Grid columns={3} divided>
       <Grid.Row stretched>
         <Grid.Column>
-          <Segment>
+          <Segment >
           <h4>Seccion 1</h4>
           <p>Fecha Actividad: {info.Fecha}  </p>
           <p>Dias Previos: {info.Cantidaddiasprevios} </p>
@@ -145,15 +160,31 @@ export default function Actividad() {
           </Segment>
         </Grid.Column>
         <Grid.Column>
-          <Segment>Responsables</Segment>
-          <Segment>Afiche</Segment>
-        </Grid.Column>
-        <Grid.Column>
           <Segment>
-            Historial de Comentarios
+            <h2>Responsables</h2>
+            <List>
+            {Responsables.map((responsable)=>(
+                <ListItem>{responsable.IDpersona}</ListItem>
+            ))}
+            </List>
 
           </Segment>
-          <Segment>Comentar</Segment>
+          <Segment>
+              {{Estado} === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}
+              {{Estado} === 'CANCELADA' && <Link to='/verObservacion'><Button>Observaciones</Button></Link>}
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment style={{ overflow: 'auto', maxHeight: '50vh' }}>
+            {/* <p>Historial de Comentarios</p> */}
+            <Comments
+        commentsUrl="http://localhost:3000/comentario"
+        currentUserId="1"
+        IDpersona = {2}
+        IDactividad ={activityId}
+      />
+          </Segment>
+          
         </Grid.Column>
       </Grid.Row>
     </Grid>

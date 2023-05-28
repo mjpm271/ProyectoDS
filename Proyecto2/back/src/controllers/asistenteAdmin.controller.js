@@ -19,6 +19,7 @@ export const CrearEquipoGuia = async (req, res) => {
         const result = await pool
             .request()
             .input('Nombre', sql.VarChar(32), Nombre)
+            .output('Result', sql.Int)
             .execute('CreateEquipoGuia')
         console.log(result)
         res.json(result.recordset)
@@ -48,6 +49,7 @@ export const AgregarProfesorEquipo = async (req, res) => {
             .request()
             .input('Nombre', sql.VarChar(32), Nombre)
             .input('Carnet', sql.VarChar(64), Carnet)
+            .output('Result', sql.Int)
             .execute('CreateEquipoGuiaProfesor')
         console.log(result)
         res.json(result.recordset)
@@ -180,17 +182,19 @@ export const DefinirCoordinador = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
-    const { Carnet} = req.body
+    const { Carnet, Nombre} = req.body
     console.log('valores:', req.body)
-    if ( !Carnet) {
+    /*if ( !Carnet) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection()
         const result = await pool
             .request()
             .input('Carnet', sql.VarChar(64) , Carnet)
+            .input('Nombre', sql.VarChar(64), Nombre)
+            .output('Result', sql.Int)
             .execute('DefinirCoordinador')
         console.log(result)
         res.json(result.recordset)
@@ -231,6 +235,7 @@ export const AgregarProfesor = async (req, res) => {
             .input('TelefonoOficina',sql.VarChar(64),TelefonoOficina)
             .input('Sede', sql.Int, Sede)
             .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
+            .output('Result',sql.Bit)
             .execute('CreatePersona')
         console.log(result) 
         
@@ -272,10 +277,10 @@ export const ModificarProfesor = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
     const { IDpersona, NombreCompleto, Correo, Contra,Foto,Habilitado, Coordinador, Telefono, TelefonoOficina,Sede, IDtipo } = req.body
     console.log('valores:', req.body)
-    if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
+    /*if (!IDpersona || !NombreCompleto || !Correo || !Contra || !Habilitado || !Coordinador || !Sede || !IDtipo) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
         //console.log('whatever')

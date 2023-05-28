@@ -26,28 +26,23 @@ export default function InicioProfesor() {
         </div>
             <nav>
           <ul>
-            <li>
-                <Link to={'/ConsultarMiembros'} state= {Persona} >
-                    <button>Consultar Equipo guia</button>
+          <li>
+                <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
+                    <button>Consultar Miembros de Equipo guia</button>
                 </Link>
             </li>
             
             <li>
-                <Link to={'/read'}>
-                    <button>Consultar Estudiantes</button>
+                <Link to={'/verEstudiante'}state= {Persona}>
+                    <button>Estudiantes</button>
                 </Link>
             </li>
             <li>
-                <Link to={'/read'}>
-                    <button>Modificar Estudiantes</button>
+            <Link to={'/planList'}state= {Persona}>
+                    <button>Ver Planes de Trabajo</button>
                 </Link>
             </li>
             
-            <li>
-            <Link to={'/planList'}>
-                    <button>Planes de Trabajo</button>
-                </Link>
-            </li>
           </ul>
         </nav>
         </section>
