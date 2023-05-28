@@ -96,12 +96,15 @@ const Login = () => {
 
       <div>
         <label>Correo:</label>
+        <p></p>
         <input value={Correo} onChange={handleCorreoChange} />
       </div>
       <div>
         <label>Contraseña:</label>
+        <p></p>
         <input value={Contra} onChange={handleContraChange} />
       </div>
+      <p></p>
       <button onClick={handleLogin}>Iniciar sesión</button>
     </div>
   );
