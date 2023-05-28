@@ -23,6 +23,13 @@ BEGIN
 		return @Result
 	end
 
+	if (@IDprofesor not in (select IDprofesor from equipoGuia_Profesor where IDequipoGuia = @IDequipoGuia))
+	begin
+		set @Result = 3
+		select @Result
+		return @Result
+	end
+
     UPDATE persona
     SET Coordinador = 1
     WHERE Carnet = @Carnet and Habilitado = 1
