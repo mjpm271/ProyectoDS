@@ -6,6 +6,10 @@ import { useLocation, Link } from 'react-router-dom';
 export default function VerEstudiantes() {
     const location = useLocation();
     const Persona = location.state;
+
+    const info = JSON.parse(Persona)
+    const sede = info.Sede
+    
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
     const [seleccionSede,setSeleccionSede] = useState(false)
@@ -165,11 +169,11 @@ const handleOptionChange = (event, data) => {
                                 <Table.Cell>{item.Correo}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
-                                {/* <Link to={`/modificarEstudiante/${item.Carnet}`}></Link> */}
+                                {item.Sede === sede && <Link to={`/modificarEstudiante/${item.Carnet}`}>
                                     <Table.Cell> 
                                         <Button  > Modificar </Button>
                                     </Table.Cell>
-                                
+                                </Link> }
                             </Table.Row>
                         )
                     })}
