@@ -1,6 +1,7 @@
 CREATE PROCEDURE CreateEquipoGuiaProfesor
     @Nombre varchar(32),
-    @Carnet varchar(64)
+    @Carnet varchar(64),
+	@Result int output
 AS
 BEGIN
 	declare @IDprofesor as int 
@@ -8,6 +9,27 @@ BEGIN
 	set @IDprofesor = (select top 1 IDpersona from persona where Carnet = @Carnet);
 	set @IDequipoGuia = (select top 1 IDequipoGuia from equipoGuia where Nombre = @Nombre);
 
+	if ((select count(*) from persona where @IDprofesor in (select IDpersona from persona where Coordinador = 1)) > 0)
+	begin
+		set @Result = 1
+		select @Result
+		return @Result
+	end
+
+	if ((select count(*) from equipoGuia_Profesor where IDequipoGuia = @IDequipoGuia) = 5)
+	begin
+		set @Result = 2
+		select @Result
+		return @Result
+	end
+
+	if ((select count(*) from persona where IDpersona = @IDprofesor and Sede in (select Sede from persona where IDpersona in (select IDprofesor from equipoGuia_Profesor where IDequipoGuia = @IDequipoGuia))) > 0)
+	begin
+		set @Result = 3
+		select @Result
+		return @Result
+	end
+	
     INSERT INTO EquipoGuia_Profesor (IDequipoGuia, IDprofesor, Habilitado)
     VALUES (@IDequipoGuia, @IDprofesor, 1);
 END;

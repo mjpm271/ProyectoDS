@@ -74,9 +74,9 @@ create table planTrabajo(
 	IDplanTrabajo int not null IDENTITY(1,1),
 	Nombre varchar(32) not null,
 	Abreviacion varchar(32) not null,
-	IDcoordinador int not null
+	IDequipoGuia int not null
 	primary key (IDplanTrabajo)
-	foreign key (IDcoordinador) references persona(IDpersona)
+	foreign key (IDequipoGuia) references equipoGuia(IDequipoGuia)
 );
 
 create table actividad(
