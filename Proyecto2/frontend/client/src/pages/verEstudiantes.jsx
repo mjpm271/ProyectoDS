@@ -10,7 +10,7 @@ export default function VerEstudiantes() {
     const [error, setError] = useState('');
     const [seleccionSede,setSeleccionSede] = useState(false)
     const [selectedValues, setSelectedValues] = useState({});
-    const [Sede, setSede] = useState([]);
+    const [Sede, setSede] = useState(0);
     const options = [
         { key: 'A', text: 'Alfabetico', value: 'Alfabetico' },
         { key: 'S', text: 'Sede', value: 'Sede' },
@@ -30,7 +30,7 @@ export default function VerEstudiantes() {
         ...prevState,
         [dropdownId]: value,
         }));
-        // setSede(value)
+        setSede(value)
     };
 
     console.log(Persona)

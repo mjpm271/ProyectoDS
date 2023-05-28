@@ -60,11 +60,6 @@ export default function InicioAsistente() {
             </li>
             
             <li>
-            <Link to={'/crearPlan'} state= {Persona}>
-              <button>Crear Plan de Trabajo</button>
-                </Link>
-            </li>
-            <li>
             <Link to={'/planList'}state= {Persona}>
                     <button>Ver Planes de Trabajo</button>
                 </Link>

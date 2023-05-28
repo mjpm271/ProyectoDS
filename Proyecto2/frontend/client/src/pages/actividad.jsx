@@ -39,7 +39,7 @@ export default function Actividad() {
           IDtipoActividad: informacion?.IDtipoActividad,
           IDestado: informacion?.IDtipoEstado
         });
-
+        buscarResponsables();
         console.log(actividadInfo);
       });
   }, []);
@@ -48,7 +48,7 @@ export default function Actividad() {
     definirModalidad();
     definirTipoActividad();
     definirEstado();
-    buscarResponsables();
+    
   }, [actividadInfo]);
 
   const buscarResponsables = () => {
@@ -162,12 +162,13 @@ export default function Actividad() {
         <Grid.Column>
           <Segment>
             <h2>Responsables</h2>
-            <List>
             {Responsables.map((responsable)=>(
+            <List>
+            
                 <ListItem>{responsable.IDpersona}</ListItem>
-            ))}
+            
             </List>
-
+            ))}
           </Segment>
           <Segment>
               {{Estado} === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}

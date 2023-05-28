@@ -14,7 +14,7 @@ export default function BuscarProfesor() {
         false: 'No'
       };
     const buscar = () => {
-
+      setError('')
       axios.post(`http://localhost:4000/asistente/BuscarProfesor`, {
           Carnet:Carnet
         }

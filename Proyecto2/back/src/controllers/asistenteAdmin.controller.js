@@ -235,7 +235,7 @@ export const AgregarProfesor = async (req, res) => {
             .input('TelefonoOficina',sql.VarChar(64),TelefonoOficina)
             .input('Sede', sql.Int, Sede)
             .input('IDtipo', sql.Int, IDtipo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
-            .output('Result',sql.Bit)
+            .output('Result',sql.Int)
             .execute('CreatePersona')
         console.log(result) 
         
