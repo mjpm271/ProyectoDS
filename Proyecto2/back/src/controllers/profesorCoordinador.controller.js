@@ -20,6 +20,7 @@ export const CrearPlanTrabajo = async (req, res) => {
             .input('Nombre', sql.VarChar(32), Nombre)
             .input('Abreviacion', sql.VarChar(32), Abreviacion)
             .input('IDcoordinador', sql.Int, IDcoordinador) //Revisar como recuperar informacion desde login
+            .output('Result', sql.Int)
             .execute('CreatePlanTrabajo')
         console.log(result)
         res.json(result.recordset)

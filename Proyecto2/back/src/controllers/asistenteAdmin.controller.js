@@ -47,6 +47,7 @@ export const AgregarProfesorEquipo = async (req, res) => {
             .request()
             .input('Nombre', sql.VarChar(32), Nombre)
             .input('Carnet', sql.VarChar(64), Carnet)
+            .output('Result', sql.Int)
             .execute('CreateEquipoGuiaProfesor')
         console.log(result)
         res.json(result.recordset)
@@ -190,6 +191,7 @@ export const DefinirCoordinador = async (req, res) => {
         const result = await pool
             .request()
             .input('Carnet', sql.VarChar(64) , Carnet)
+            .output('Result', sql.Int)
             .execute('DefinirCoordinador')
         console.log(result)
         res.json(result.recordset)
