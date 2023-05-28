@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label, Message} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
@@ -11,7 +11,7 @@ export default function AgregarProfesor() {
     const Persona = location.state;
         /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
-    const [Error, setError] =  useState();
+    const [Error, setError] =  useState('');
     const [NombreCompleto, setNombreCompleto] = useState();
     const [Correo, setCorreo] = useState();
     const [Contra, setContra] = useState();
@@ -31,6 +31,39 @@ export default function AgregarProfesor() {
         default:
           window.alert('ha Creado el profesor')
     }};
+    const verificacion = () =>{
+        console.log(Carnet.length)
+        console.log(NombreCompleto.length)
+        console.log(Correo.length)
+        console.log(Contra.length)
+        console.log(Telefono.length)
+        
+        if(!Carnet){
+            setError('Tiene que ingresar datos al Carnet')
+        }   
+        else if(!NombreCompleto){
+            setError('Tiene que ingresar datos al nombre')
+        }
+        else if(!Correo){
+            setError('Tiene que ingresar datos al correo')
+        }
+        else if(!Contra){
+            setError('Tiene que ingresar datos a la contrasena')
+        }
+        else if(Contra.length < 8){
+            setError('Tiene que ingresar datos a la contrasena')
+        }
+        else if(!Telefono){
+            setError('Tiene que ingresar datos al Telefeno')
+        }
+        else if(!TelefonoOficina){
+            setError('Tiene que ingresar datos al Telefeno de oficina')
+        }
+        else{
+            postData()
+
+        }    
+    }
     // const [APIData, setAPIData] = useState([]);
     const postData = () => {
         
@@ -54,11 +87,12 @@ export default function AgregarProfesor() {
           }
           )
             .then(response => {
+              console.log()
               console.log(response.data[0]);
-              setError(response.data[0])
-              showAlert(Error)
-            }).catch(error => {
-                console.log(error)
+              showAlert((response.data[0]))
+            }).catch(Error => {
+                console.log('hay Error')
+                console.log(Error)
             });
 
         // fetch('http://localhost:4000/ejemplo/asistente/AgregarProfesor',{
@@ -110,10 +144,11 @@ export default function AgregarProfesor() {
  
     return (
         <div>
-        <div>
             <Navbar />
-        </div>    
+          {Error && <Message negative>{Error}</Message>}
+
         <div className="container">
+            <h1> Agregar Profesor</h1>
             <Form className="create-form">
                 
                 <Form.Field>
@@ -156,7 +191,7 @@ export default function AgregarProfesor() {
                     <label>Foto</label>
                     <input placeholder='Foto' onChange={(e) => setFoto(e.target.value)}/>
                 </Form.Field>
-                <Button onClick={postData} type='submit'>Submit</Button>
+                <Button onClick={verificacion} type='submit'>Submit</Button>
             </Form>
             <Footer/>
         </div>

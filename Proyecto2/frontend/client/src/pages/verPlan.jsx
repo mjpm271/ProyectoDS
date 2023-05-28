@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
+import Navbar from "../components/Navbar";
 
 export default function VerPlan() {
     /* IMPORTANTE PASAR */
@@ -47,6 +48,8 @@ export default function VerPlan() {
 // }
 
     return (
+        <div>
+            <Navbar />
         <div className="container">
             <h1>Modificacion Plan</h1>
             <Form className="create-form">
@@ -89,6 +92,7 @@ export default function VerPlan() {
                 </Table.Body>
                 </Table>
                 </div>
+            </div>
         </div>
     )
 }

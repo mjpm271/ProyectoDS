@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label, Message} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
@@ -12,8 +12,18 @@ export default function CrearPlan() {
         /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const [Abreviacion, setAbreviacion] = useState();
+    const [Error, setError] = useState('')
     const [IDequipoGuia, setIDequipoGuia] = useState();
     const navigate = useNavigate();
+    const showAlert = (Result) => {
+      switch (Result){
+        case 1:
+          window.alert('El equipo ya existe');
+          break 
+        default:
+          window.alert('ha Creado el equipo')
+    }};
+
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/CrearPlan', {
@@ -28,8 +38,9 @@ export default function CrearPlan() {
           }
           )
             .then(response => {
-              console.log(response.data);
-              navigate('/InicioCoordinador')
+              console.log(response.data[0][""]);
+              showAlert((response.data[0][""]))
+              //navigate('/InicioCoordinador')
             }).catch(error => {
                 console.log(error)
             });
@@ -39,6 +50,8 @@ export default function CrearPlan() {
     return (
         <div>
             <Navbar />
+        <div className="container">
+              <h1>Crear plan de Trabajo</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Nombre </label>
@@ -55,6 +68,7 @@ export default function CrearPlan() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+          </div>
         </div>
     )
 }

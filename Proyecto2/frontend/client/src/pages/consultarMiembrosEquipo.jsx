@@ -1,12 +1,14 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react';
+import Navbar from "../components/Navbar";
 
 export default function ConsultarMiembrosEquipo() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    const [Error, setError] = useState('')
     /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
@@ -25,6 +27,9 @@ export default function ConsultarMiembrosEquipo() {
         )
           .then(response => {
             const items = response.data
+            if(!response.data[0]){
+              setError('No existe ese equipo')
+            }
             setItems(items)
           }).catch(error => {
               console.log(error)
@@ -35,6 +40,9 @@ export default function ConsultarMiembrosEquipo() {
 
  
     return (
+        <div>
+            <Navbar />
+          {Error && <Message negative>{Error}</Message>}
         <div className='container'>
             <Form className="create-form">
                 <h1>Consultar Miembros de un Equipo Guia</h1>
@@ -83,6 +91,7 @@ export default function ConsultarMiembrosEquipo() {
                 </Table.Body>
                 </Table>
                 </div>
+            </div>
         </div>
     )
 }

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react'
+import Navbar from "../components/Navbar"
 
 export default function BuscarProfesor() {
 
     const [Carnet, setCarnet] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
+    const [Error, setError] = useState('');
     const [items, setItems] = useState([]);
     const Bool = [true,false]
     const MyEnum = {
@@ -25,20 +27,21 @@ export default function BuscarProfesor() {
         )
           .then(response => {
             const items = response.data
+            if(!response.data[0]){
+              setError('No existe ese profesor')
+            }
             setItems(items)
           }).catch(error => {
               console.log(error)
           });
        
   }
-
-
-  const definirSede = () => {
-
-  }
     return (
-        <div className="container">
-            <h1>Buscar Profesor</h1>
+        <div>
+            <Navbar />
+          {Error && <Message negative>{Error}</Message>}
+            <div className="container">
+                <h1>Buscar Profesor</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>
@@ -90,6 +93,7 @@ export default function BuscarProfesor() {
                 </Table.Body>
                 </Table>
                 </div>
+             </div>
         </div>
     )
 }

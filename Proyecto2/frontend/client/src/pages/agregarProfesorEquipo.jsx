@@ -56,8 +56,9 @@ export default function AgregarProfesorEquipo() {
     return (
         <div>
             <Navbar />
+          <div className="container">
+                <h1>Agregar profesor a un equipo</h1>
             <Form className="create-form">
-                
                 <Form.Field>
                     <label>Nombre </label>
                     <input placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
@@ -69,6 +70,7 @@ export default function AgregarProfesorEquipo() {
               <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+          </div>
         </div>
     )
 }

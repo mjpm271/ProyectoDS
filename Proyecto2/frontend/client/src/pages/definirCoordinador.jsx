@@ -15,6 +15,9 @@ export default function DefinirCoordinador() {
         case 2:
           window.alert('Solo puede existir un coordinador por equipo');
           break 
+        case 3:
+          window.alert('El profesor debe estar en el equipo elegido');
+          break 
         default:
           window.alert('Se ha asignado un coordinador')
           
@@ -51,6 +54,8 @@ export default function DefinirCoordinador() {
     return (
         <div>
             <Navbar />
+          <div className="container">
+                <h1>Definir Coordinador</h1>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>
@@ -63,6 +68,7 @@ export default function DefinirCoordinador() {
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>
             <Footer/>
+          </div>
         </div>
     )
 }

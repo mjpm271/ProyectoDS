@@ -3,6 +3,7 @@ import { Button, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import { Navigate, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar"
 
 export default function ModificarPlan() {
     const navigate = useNavigate();
@@ -72,6 +73,8 @@ export default function ModificarPlan() {
     };
 
     return (
+        <div>
+            <Navbar />
         <div className='container'>
             <h1>Modificar Plan de Trabajo</h1>
         <Form className="create-form">
@@ -105,6 +108,7 @@ export default function ModificarPlan() {
             
             <Button type='submit' onClick={updateAPIData}>Update</Button>
         </Form>
+        </div>
         </div>
     );
     }

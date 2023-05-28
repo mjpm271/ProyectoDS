@@ -20,6 +20,12 @@ BEGIN
 		select @Result;
 		return @Result
 	END
+		IF (select count(*) from persona where Correo = @Correo) = 1
+	BEGIN 
+		set @Result = 2;
+		select @Result;
+		return @Result
+	END
 	ELSE
 	BEGIN
 		INSERT INTO persona (Carnet, NombreCompleto, Correo, Contra, Foto, Habilitado, Coordinador, Telefono, TelefonoOficina, Sede, IDtipo)

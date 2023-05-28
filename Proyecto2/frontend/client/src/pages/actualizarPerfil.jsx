@@ -96,15 +96,6 @@ export default function ModificarPerfil() {
             <h1>Modificar Perfil</h1>
         <Form className="create-form">
             <Form.Field>
-            <label>Carnet</label>
-            <input
-                placeholder='Carnet'
-                name="carnet"
-                value={perfil.carnet || ''}
-                onChange={handleInputChange}
-            />
-            </Form.Field>
-            <Form.Field>
             <label>NombreCompleto</label>
             <input
                 placeholder='NombreCompleto'
