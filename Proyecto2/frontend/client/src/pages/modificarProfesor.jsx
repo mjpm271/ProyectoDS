@@ -20,6 +20,9 @@ export default function ModificarProfesor() {
         sede: null,
         iDtipo: null
     });
+    const showAlert = (Result) => {
+        window.alert('Se modifica al profesor con exito');
+    };
 
     useEffect(() => {
         axios
@@ -74,13 +77,14 @@ export default function ModificarProfesor() {
             }
         )
         .then(response => {
+            console.log('adentro')
             console.log(response.data);
+            showAlert(0);
             
         })
         .catch(error => {
             console.log(error);
         });
-        navigate('/');
     };
 
     const handleInputChange = (event) => {
@@ -93,7 +97,7 @@ export default function ModificarProfesor() {
 
     return (
         <div className="container">
-            <h1>Modificar Perfil</h1>
+            <h1>Modificar Profesor</h1>
         <Form className="create-form">
             <Form.Field>
             <label>NombreCompleto</label>
