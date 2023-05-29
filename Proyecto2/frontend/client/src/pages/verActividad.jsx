@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 
 export default function VerActividad() {
     const location = useLocation();
     const Persona = location.state;
-    const Variable  = 5;
+    const [Variable,setVariable]  = useState([]);
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
@@ -39,6 +39,10 @@ export default function VerActividad() {
 
   }
 
+  useEffect(() => {
+    
+    
+  }, []);
 //   const setData = (item) => {
 //     let { IDplanTrabajo, Nombre, Abreviacion, IDcoordinador } = item;
 //     console.log('item',item)
@@ -72,13 +76,15 @@ export default function VerActividad() {
 
             <Table.Body>
                     {items.map((item) => {
+                        
                         return (
+                            
                             <Table.Row>
 
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
-                                <Table.Cell>{Variable !== 3 && <Link to={`/crearEvidencia/${item.IDactividad}`}> <Button>Realizar</Button></Link>}</Table.Cell> 
-                                <Table.Cell>{Variable !== 4 && <Link to={`/createObservacion/${item.IDactividad}`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{item.IDtipoEstado !== 3 && item.IDtipoEstado !== 4 && <Link to={`/crearEvidencia/${item.IDactividad}`}> <Button>Realizar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/createObservacion/${item.IDactividad}`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
                                 
 
                             </Table.Row>

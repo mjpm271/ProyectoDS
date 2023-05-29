@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Grid, ListItem, Segment , List, Button} from 'semantic-ui-react';
+import { Grid, ListItem, Segment , List, Button, ListContent} from 'semantic-ui-react';
 import Comments from "../comentarios/Comments";
 import Navbar from '../components/Navbar'
 import axios from 'axios';
@@ -39,7 +39,7 @@ export default function Actividad() {
           IDtipoActividad: informacion?.IDtipoActividad,
           IDestado: informacion?.IDtipoEstado
         });
-
+        buscarResponsables();
         console.log(actividadInfo);
       });
   }, []);
@@ -48,7 +48,7 @@ export default function Actividad() {
     definirModalidad();
     definirTipoActividad();
     definirEstado();
-    buscarResponsables();
+    
   }, [actividadInfo]);
 
   const buscarResponsables = () => {
@@ -162,12 +162,14 @@ export default function Actividad() {
         <Grid.Column>
           <Segment>
             <h2>Responsables</h2>
-            <List>
             {Responsables.map((responsable)=>(
-                <ListItem>{responsable.IDpersona}</ListItem>
-            ))}
+            <List>
+              <List.Item>
+                <List.Icon name='circle'/>
+                <List.Content >{responsable.Carnet}-{responsable.NombreCompleto}</List.Content>
+              </List.Item>
             </List>
-
+            ))}
           </Segment>
           <Segment>
               {{Estado} === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}

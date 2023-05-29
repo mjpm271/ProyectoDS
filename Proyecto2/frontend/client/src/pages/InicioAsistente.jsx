@@ -31,8 +31,7 @@ export default function InicioAsistente() {
                 <Link to={'/agregarProfesor'}state= {Persona}>
                     <button>Agregar Profesor</button>
                 </Link>
-            </li>
-            <li>
+
                 <Link to={'/buscarProfesor'}state= {Persona}>
                     <button>Buscar Profesor</button>
                 </Link>
@@ -54,17 +53,11 @@ export default function InicioAsistente() {
             </li>
             
             <li>
-            /*Conditional rendering */
                 <Link to={'/definirCoordinador'}state= {Persona}>
-                    <button>Definir Coordinador</button>
+                  {info.Sede === 1 && <button>Definir Coordinador</button>}
                 </Link>
             </li>
             
-            <li>
-            <Link to={'/crearPlan'} state= {Persona}>
-                    <button>Crear Plan de Trabajo</button>
-                </Link>
-            </li>
             <li>
             <Link to={'/planList'}state= {Persona}>
                     <button>Ver Planes de Trabajo</button>

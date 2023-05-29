@@ -154,3 +154,13 @@ BEGIN
 	WHERE Carnet = @Carnet;
 END;
 GO
+
+CREATE PROCEDURE HabilitarPersona
+    @Carnet varchar(64)
+AS
+BEGIN
+	UPDATE persona
+    SET Habilitado = 1
+	WHERE Carnet = @Carnet;
+END;
+GO

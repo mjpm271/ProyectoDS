@@ -77,7 +77,7 @@ function App() {
         <Route path="/modificarProfesorEquipo" element={<ModificarProfesorEquipo />}/>
         <Route path="/buscarProfesorEquipo" element={<BuscarProfesorEquipo />}/>
         <Route path="/SiguienteActividad" element={<SiguienteActividad />}/>
-        <Route path="/modificarProfesor/:Carnet" elemnt={<ModificarProfesor/>}/>
+        <Route path="/modificarProfesor/:id" element={<ModificarProfesor/>}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />
