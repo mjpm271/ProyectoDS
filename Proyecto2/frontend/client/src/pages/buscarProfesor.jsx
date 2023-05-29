@@ -1,9 +1,17 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react'
+import { useLocation , Link } from 'react-router-dom';
 import Navbar from "../components/Navbar"
 
 export default function BuscarProfesor() {
+    const location = useLocation();
+    const Persona = location.state;
+
+    const info = JSON.parse(Persona)
+    const tipo = info.IDtipo
+    const sede = info.Sede
+    const [AsistenteCartago, setAsistenteCartago] = useState(false);
 
     const [Carnet, setCarnet] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
@@ -30,13 +38,17 @@ export default function BuscarProfesor() {
               setError('No existe ese profesor')
             }
             setItems(items)
+            if(sede===1 && tipo===2){
+              setAsistenteCartago(true)
+            }
+
           }).catch(error => {
               console.log(error)
           });
        
   }
     return (
-        <div>
+        <div >
             <Navbar />
           {Error && <Message negative>{Error}</Message>}
             <div className="container">
@@ -47,7 +59,7 @@ export default function BuscarProfesor() {
                     <input placeholder='Carnet' onChange={(e) => setCarnet(e.target.value)}/>
                 </Form.Field>
 
-                <Button onClick={buscar} type='submit'>Submit</Button>
+                <Button className='button1' onClick={buscar} type='submit'>Buscar</Button>
 
             </Form>
             <div> 
@@ -64,7 +76,10 @@ export default function BuscarProfesor() {
                         <Table.HeaderCell>Telefono </Table.HeaderCell>
                         <Table.HeaderCell>Telefono Oficina </Table.HeaderCell>
                         <Table.HeaderCell>Sede </Table.HeaderCell>
-                        <Table.HeaderCell>Tipo </Table.HeaderCell>
+                        <Table.HeaderCell>Inhabilitar</Table.HeaderCell> 
+                        <Table.HeaderCell>Habilitar</Table.HeaderCell> 
+                        <Table.HeaderCell>Modificar</Table.HeaderCell> 
+
                     </Table.Row>
                 </Table.Header>
 
@@ -85,7 +100,20 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
-                                <Table.Cell>Profesor</Table.Cell>
+                               
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                    <Button  className='button1'> Inhabilitar </Button></Link> ):null}
+                                </Table.Cell>
+                                
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                    <Button  > Habilitar </Button></Link> ):null}
+                                </Table.Cell>
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}>
+                                    <Button  > Modifcar </Button></Link> ):null}
+                                </Table.Cell>
                             </Table.Row>
                         )
                     })}
