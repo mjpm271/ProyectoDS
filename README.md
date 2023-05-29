@@ -11,7 +11,7 @@
 
 Enlace de acceso : https://docs.google.com/document/d/11u25nmgTEFXUJUhwhHgtjGMZMWVZTHEgK8G0ghsfsBY/edit?usp=sharing
 
-### Documentación Proyecto 1
+### Documentación Proyecto 2
 
 Enlace de acceso : https://docs.google.com/document/d/1y4x6MdS4Lko5u9519i3nYDw_TpropayZdieUk5FI-Fk/edit?usp=sharing
 
