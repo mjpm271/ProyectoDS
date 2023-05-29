@@ -404,7 +404,7 @@ export const SubirInformacionEstudiantes = async (req, res) => {
         //console.log(dataArray)
 
         // generar el SQL dinámico
-        let insertQuery = "INSERT INTO Persona (Carnet, NombreCompleto, Sede, Correo, Telefono, IDTipoPersona) VALUES "
+        let insertQuery = "INSERT INTO Persona (Carnet, NombreCompleto, Sede, Correo, Telefono, IDtipo) VALUES "
 
         dataArray.forEach((row) => {
             // el 3 al final es hard-coded para que se ingrese como estudiante

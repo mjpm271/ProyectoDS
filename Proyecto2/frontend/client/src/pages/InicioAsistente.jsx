@@ -57,7 +57,11 @@ export default function InicioAsistente() {
                   {info.Sede === 1 && <button>Definir Coordinador</button>}
                 </Link>
             </li>
-            
+            <li>
+                <Link to={'/cargarEstudiantes'}state= {Persona}>
+                  {info.Sede === 1 && <button>Cargar Estudiantes</button>}
+                </Link>
+            </li>
             <li>
             <Link to={'/planList'}state= {Persona}>
                     <button>Ver Planes de Trabajo</button>

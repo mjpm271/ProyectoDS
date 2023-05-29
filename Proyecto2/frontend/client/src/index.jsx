@@ -49,6 +49,7 @@ import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
 import VerActividad from './pages/verActividad';
 import InicioAsistente from './pages/InicioAsistente';
+import CargarEstudiantes from './pages/cargarEstudiantes';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -78,6 +79,7 @@ function App() {
         <Route path="/buscarProfesorEquipo" element={<BuscarProfesorEquipo />}/>
         <Route path="/SiguienteActividad" element={<SiguienteActividad />}/>
         <Route path="/modificarProfesor/:id" element={<ModificarProfesor/>}/>
+        <Route path="/cargarEstudiantes" element={<CargarEstudiantes/>}/>
 
         {/*PROFESOR */}
         <Route path="/IncioProfesor" element={<InicioProfesor />} />

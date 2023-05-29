@@ -165,15 +165,15 @@ export default function Actividad() {
             {Responsables.map((responsable)=>(
             <List>
               <List.Item>
-                <List.Icon name='circle'/>
+                <List.Icon name='angle right'/>
                 <List.Content >{responsable.Carnet}-{responsable.NombreCompleto}</List.Content>
               </List.Item>
             </List>
             ))}
           </Segment>
           <Segment>
-              {{Estado} === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}
-              {{Estado} === 'CANCELADA' && <Link to='/verObservacion'><Button>Observaciones</Button></Link>}
+              {Estado === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}
+              {Estado === 'CANCELADA' && <Link to='/verObservacion'><Button>Observaciones</Button></Link>}
           </Segment>
         </Grid.Column>
         <Grid.Column>
