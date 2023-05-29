@@ -168,6 +168,8 @@ const handleOptionChange = (event, data) => {
 }, [selectedValues]);
 
     return (
+        <div>
+        <NavBar Persona={{Persona}}/>
         <div className="container">
             
             <h1>Ver Estudiantes</h1>
@@ -235,7 +237,7 @@ const handleOptionChange = (event, data) => {
                                 <Table.Cell>{item.Correo}</Table.Cell>
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.Sede}</Table.Cell>
-                                {item.Sede === sede && <Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                {item.Sede === sede && <Link to={`/modificarEstudiante/${item.Carnet}`} state= {Persona}>
                                     <Table.Cell> 
                                         <Button  > Modificar </Button>
                                     </Table.Cell>
@@ -246,6 +248,7 @@ const handleOptionChange = (event, data) => {
                 </Table.Body>
                 </Table>
                 </div>
+        </div>
         </div>
     )
 }

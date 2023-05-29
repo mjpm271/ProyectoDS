@@ -4,7 +4,10 @@ import { Button,  Form} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar2';
+import { useLocation } from 'react-router-dom';
 export default function CancelarActividad() {
+  const location = useLocation();
+  const Persona = location.state;
     const [IDactividad, setIDactividad] = useState();
     const Exito = useState(4)
     // const [APIData, setAPIData] = useState([]);
@@ -36,8 +39,8 @@ export default function CancelarActividad() {
         console.log(typeof IDactividad);
     }
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
             <Form className="create-form">
                 <Form.Field>
                     <label>IDactividad </label>

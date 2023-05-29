@@ -2,8 +2,13 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react'
 import NavBar from '../components/NavBar2';
-export default function VerObservacion() {
+import { useLocation } from 'react-router-dom';
 
+export default function VerObservacion() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    /* IMPORTANTE PASAR */ 
     const [IDactividad, setIDactividad] = useState();
     const [items, setItems] = useState([]);
 
@@ -29,6 +34,7 @@ export default function VerObservacion() {
  
     return (
         <div>
+        <NavBar Persona={{Persona}}/>
             <Form className="create-form">
                 <Form.Field>
                     <label>IDactividad </label>

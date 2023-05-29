@@ -1,11 +1,16 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function DefinirCoordinador() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+        /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
     const [Nombre, setNombre] = useState();
     const showAlert = (Result) => {
@@ -54,8 +59,8 @@ export default function DefinirCoordinador() {
         console.log(typeof Carnet);
     }
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
           <div className="container">
                 <h1>Definir Coordinador</h1>
             <Form className="create-form">
@@ -67,7 +72,7 @@ export default function DefinirCoordinador() {
                     <label>Nombre de equipo </label>
                     <input placeholder='Nombre' onChange={(e) => setNombre(e.target.value)}/>
                 </Form.Field>
-                <Button onClick={postData} type='submit'>Submit</Button>
+                <Button onClick={postData} type='submit'>Definir</Button>
             </Form>
             <Footer/>
           </div>

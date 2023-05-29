@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar2';
 
 export default function ModificarProfesor() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    console.log('p',Persona)
+    /* IMPORTANTE PASAR */    
     const navigate = useNavigate();
     const { id } = useParams();
     const [perfil, setPerfil] = useState({
@@ -97,6 +102,8 @@ export default function ModificarProfesor() {
     };
 
     return (
+        <div>
+            <NavBar Persona={{Persona}}/>
         <div className="container">
             <h1>Modificar Profesor</h1>
         <Form className="create-form">
@@ -147,6 +154,7 @@ export default function ModificarProfesor() {
             </Form.Field>
             <Button type='submit' onClick={updateAPIData}>Update</Button>
         </Form>
+        </div>
         </div>
     );
     }

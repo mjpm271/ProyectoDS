@@ -2,7 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react';
 import NavBar from '../components/NavBar2';
+import { useLocation } from 'react-router-dom';
 export default function VerResponsables() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    /* IMPORTANTE PASAR */     
     const [IDactividad, setIDactividad] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
     const [items, setItems] = useState([]);
@@ -28,6 +33,7 @@ export default function VerResponsables() {
 
     return (
         <div>
+        <NavBar Persona={{Persona}}/>
         <div className="container">
             <h1>Buscar Actividad</h1>
             <Form className="create-form">

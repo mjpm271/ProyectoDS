@@ -1,12 +1,16 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { Button,  Form} from 'semantic-ui-react'
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function CrearEvidencia() {
+        /* IMPORTANTE PASAR */
+        const location = useLocation();
+        const Persona = location.state;
+            /* IMPORTANTE PASAR */
     const [Fotoparticipantes, setFotoparticipantes] = useState();
     const { actividad } = useParams();
     const [Linkgrabacion, setLinkgrabacion] = useState();
@@ -79,7 +83,7 @@ export default function CrearEvidencia() {
  
     return (
         <div>
-            <Navbar />
+            <NavBar Persona={{Persona}}/>
             <div className='container'>
                 <h1>Crear Evidencia</h1>
             <Form className="create-form">

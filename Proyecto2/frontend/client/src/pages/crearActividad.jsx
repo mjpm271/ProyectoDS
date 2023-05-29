@@ -96,7 +96,7 @@ export default function CrearActividad() {
         console.log(typeof Semana);
         console.log(Fecha);
         console.log(typeof Nombre);
-        navigate('/definirResponsable' )
+        navigate('/definirResponsable',{ state: Persona } )
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -147,7 +147,7 @@ export default function CrearActividad() {
         ];
     return (
         <div>
-            <Navbar id={id}/>
+        <NavBar Persona={{Persona}}/>
             <div  className="container" >
                 <h1>Crear Actividad</h1>
                 <Grid columns='equal'>

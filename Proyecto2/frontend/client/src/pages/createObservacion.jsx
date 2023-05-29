@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
-import {  useParams } from 'react-router-dom';
+import {  useParams , useLocation} from 'react-router-dom';
 import NavBar from '../components/NavBar2';
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
@@ -11,6 +11,10 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 export default function CrearObservacion() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+        /* IMPORTANTE PASAR */    
     const { actividad } = useParams();
     const [Fecha, setFecha] = useState(new Date());
     const [Observacion, setObservacion] = useState();
@@ -74,7 +78,7 @@ export default function CrearObservacion() {
  
     return (
         <div>
-            <Navbar />
+        <NavBar Persona={{Persona}}/>
             <div className='container'>
                 <h1>Crear Observacion</h1>
                 <div>

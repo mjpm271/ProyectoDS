@@ -3,7 +3,7 @@ import React from 'react';
 // import axios from 'axios';
 import { useLocation , Link} from 'react-router-dom';
 import { Button} from 'semantic-ui-react'
-import Navbar from '../components/Navbar';
+
 import NavBar from '../components/NavBar2';
 
 export default function InicioProfesor() {

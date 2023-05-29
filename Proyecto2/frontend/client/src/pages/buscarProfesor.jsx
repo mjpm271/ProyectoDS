@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react'
 import { useLocation , Link } from 'react-router-dom';
-import Navbar from "../components/Navbar"
+
 import NavBar from '../components/NavBar2';
 export default function BuscarProfesor() {
     const location = useLocation();
@@ -48,8 +48,8 @@ export default function BuscarProfesor() {
        
   }
     return (
-        <div >
-            <Navbar />
+        <div>
+        <NavBar Persona={{Persona}}/>
           {Error && <Message negative>{Error}</Message>}
             <div className="container">
                 <h1>Buscar Profesor</h1>
@@ -102,16 +102,16 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
                                     <Button  className='button1'> Inhabilitar </Button></Link> ):null}
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
                                     <Button  > Habilitar </Button></Link> ):null}
                                 </Table.Cell>
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}state= {Persona}>
                                     <Button  > Modifcar </Button></Link> ):null}
                                 </Table.Cell>
                             </Table.Row>

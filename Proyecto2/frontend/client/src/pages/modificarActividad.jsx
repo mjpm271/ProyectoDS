@@ -6,6 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar2';
 
 export default function ModificarActividad() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+     /* IMPORTANTE PASAR */    
     const navigate = useNavigate();
     const { IDactividad } = useParams();
     const [actividad, setActividad] = useState({
@@ -98,6 +102,8 @@ export default function ModificarActividad() {
     };
 
     return (
+        <div>
+        <NavBar Persona={{Persona}}/>
         <div className="container">
             
             <h1 >Modificar Actividad</h1>
@@ -201,6 +207,7 @@ export default function ModificarActividad() {
             </Form.Field>
             <Button type='submit' onClick={updateAPIData}>Update</Button>
         </Form>
+        </div>
         </div>
     );
     }

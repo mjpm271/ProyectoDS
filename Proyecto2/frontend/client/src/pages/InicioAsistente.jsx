@@ -18,7 +18,7 @@ export default function InicioAsistente() {
     
     return(
         <div>
-        <Navbar id={id}/>   
+        <NavBar Persona={{Persona}}/>   
         <section>
         <div className="container">
         

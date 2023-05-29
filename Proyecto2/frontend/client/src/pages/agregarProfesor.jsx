@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button,  Form, Message} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
@@ -10,7 +10,7 @@ export default function AgregarProfesor() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
-        /* IMPORTANTE PASAR */
+    /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
     const [Error, setError] =  useState('');
     const [NombreCompleto, setNombreCompleto] = useState();
@@ -137,7 +137,7 @@ export default function AgregarProfesor() {
  
     return (
         <div>
-            <Navbar />
+            <NavBar Persona={{Persona}}/>
           {Error && <Message negative>{Error}</Message>}
 
         <div className="container">

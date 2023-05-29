@@ -4,8 +4,11 @@ import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar2';
 export default function VerActividad() {
+    /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    /* IMPORTANTE PASAR */    
+
     const [Variable,setVariable]  = useState([]);
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [items, setItems] = useState([]);
@@ -50,6 +53,8 @@ export default function VerActividad() {
 // }
 
     return (
+        <div>
+        <NavBar Persona={{Persona}}/>
         <div className="container">
             <h1>Consultar Actividades</h1>
             <Form className="create-form">
@@ -71,6 +76,7 @@ export default function VerActividad() {
 
                         <Table.HeaderCell>Realizar</Table.HeaderCell>
                         <Table.HeaderCell>Cancelar</Table.HeaderCell>
+                        <Table.HeaderCell>Modificar</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -83,9 +89,9 @@ export default function VerActividad() {
 
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
-                                <Table.Cell>{item.IDtipoEstado !== 3 && item.IDtipoEstado !== 4 && <Link to={`/crearEvidencia/${item.IDactividad}`}> <Button>Realizar</Button></Link>}</Table.Cell> 
-                                <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/createObservacion/${item.IDactividad}`}> <Button>Cancelar</Button></Link>}</Table.Cell> 
-                                
+                                <Table.Cell>{item.IDtipoEstado !== 3 && item.IDtipoEstado !== 4 && <Link to={`/crearEvidencia/${item.IDactividad}`}state= {Persona}> <Button>Realizar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/createObservacion/${item.IDactividad}`}state= {Persona}> <Button>Cancelar</Button></Link>}</Table.Cell> 
+                                <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/modificarActividad/${item.IDactividad}`}state= {Persona}> <Button>Modifcar</Button></Link>}</Table.Cell> 
 
                             </Table.Row>
                         )
@@ -93,6 +99,7 @@ export default function VerActividad() {
                 </Table.Body>
                 </Table>
                 </div>
+        </div>
         </div>
     )
 }

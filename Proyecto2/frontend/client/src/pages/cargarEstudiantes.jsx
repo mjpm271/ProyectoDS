@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button,  Form} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
@@ -72,8 +72,7 @@ export default function CargarEstudiantes() {
  
     return (
         <div>
-            <Navbar />
-          
+        <NavBar Persona={{Persona}}/>
 
         <div className="container">
             <h1> Cargar Estudiantes</h1>

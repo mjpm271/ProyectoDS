@@ -2,11 +2,15 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button,  Form} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar2';
 
 export default function ModificarProfesorEquipo() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    console.log('Persona',Persona)
+    /* IMPORTANTE PASAR */     
     const [Carnet, setCarnet] = useState();
     const Exito = useState(1)
     // const [APIData, setAPIData] = useState([]);
@@ -39,7 +43,7 @@ export default function ModificarProfesorEquipo() {
     }
     return (
         <div>
-            <Navbar />
+            <NavBar Persona={{Persona}}/>
             <Form className="create-form">
                 <Form.Field>
                     <label>Carnet </label>

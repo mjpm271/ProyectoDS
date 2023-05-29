@@ -136,7 +136,7 @@ export default function Actividad() {
   return (
     
     <div>
-      <Navbar/>
+      <NavBar Persona={{Persona}}/>
       {actividad.map((info)=>(
 
       

@@ -49,7 +49,7 @@ export default function VerPlan() {
 
     return (
         <div>
-            <Navbar />
+        <NavBar Persona={{Persona}}/>
         <div className="container">
             <h1>Modificacion Plan</h1>
             <Form className="create-form">
@@ -81,7 +81,7 @@ export default function VerPlan() {
                                 <Table.Cell>{item.IDplanTrabajo}</Table.Cell>
                                 <Table.Cell>{item.Nombre}</Table.Cell>
                                 <Table.Cell>{item.Abreviacion}</Table.Cell>
-                                <Link to={`/modificarPlan/${item.IDplanTrabajo}`}>
+                                <Link to={`/modificarPlan/${item.IDplanTrabajo}`}state= {Persona}>
                                     <Table.Cell> 
                                         <Button  > Modificar </Button>
                                     </Table.Cell>

@@ -9,6 +9,7 @@ export default function ConsultarMiembrosEquipo() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    console.log('p1',Persona)
     const [Error, setError] = useState('')
     const info = JSON.parse(Persona)
     const tipo = info.IDtipo
@@ -53,7 +54,7 @@ export default function ConsultarMiembrosEquipo() {
  
     return (
         <div>
-            <Navbar />
+        <NavBar Persona={{Persona}}/>
           {Error && <Message negative>{Error}</Message>}
         <div className='container'>
             <Form className="create-form">
@@ -99,16 +100,16 @@ export default function ConsultarMiembrosEquipo() {
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
                                     <Button  className='button1'> Inhabilitar </Button></Link> ):null}
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
                                     <Button  > Habilitar </Button></Link> ):null}
                                 </Table.Cell>
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}>
+                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}state= {Persona}>
                                     <Button  > Modifcar </Button></Link> ):null}
                                 </Table.Cell>
                             </Table.Row>

@@ -3,7 +3,7 @@ import React from 'react';
 // import axios from 'axios';
 import { Button} from 'semantic-ui-react'
 import { useLocation , Link} from 'react-router-dom';
-import Navbar from '../components/Navbar';
+
 import NavBar from '../components/NavBar2';
 
 export default function InicioCoordinador() {
@@ -19,7 +19,7 @@ export default function InicioCoordinador() {
     
     return(
         <div>
-        <Navbar id={id}/>   
+        <NavBar Persona={{Persona}}/>    
         <section>
         <div className="container">
         

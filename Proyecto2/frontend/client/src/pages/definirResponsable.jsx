@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-// import { useNavigate , useLocation} from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import { Button,  Form} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
@@ -8,8 +8,8 @@ import Footer from '../components/Footer';
 
 export default function DefinirResponsable() {
     /* IMPORTANTE PASAR */
-    // const location = useLocation();
-    // const Persona = location.state;
+    const location = useLocation();
+    const Persona = location.state;
     // const info = JSON.parse(Persona)
     // const id = info.Carnet
     /* IMPORTANTE PASAR */
@@ -38,8 +38,8 @@ export default function DefinirResponsable() {
 
     }
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
             <div className='container'>
               <h1>Definir Responsable</h1>
               <p></p>

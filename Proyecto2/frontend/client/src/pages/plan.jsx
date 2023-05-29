@@ -35,6 +35,7 @@ export default function PlanList() {
   // </div> */}
   return (
     <div>
+      <NavBar Persona={{Persona}}/>
     <section>
       <div className="container">
         <h1>Planes de Trabajo</h1>

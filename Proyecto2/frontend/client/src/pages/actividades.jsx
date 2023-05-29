@@ -32,6 +32,7 @@ export default function ActivityList(){
   return (
 
     <div>
+      <NavBar Persona={{Persona}}/>
     <section>
       <div className="container">
         <h1>Actividades del Plan {planId}</h1>

@@ -2,7 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 import NavBar from '../components/NavBar2';
+import { useLocation } from 'react-router-dom';
 export default function BuscarProfesorEquipo() {
+    const location = useLocation();
+    const Persona = location.state;
     const [Nombre, setNombre] = useState();
     const [Carnet, setCarnet] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
@@ -38,6 +41,7 @@ export default function BuscarProfesorEquipo() {
  
     return (
         <div>
+        <NavBar Persona={{Persona}}/>
             <Form className="create-form">
                 <Form.Field>
                     <label>Nombre </label>

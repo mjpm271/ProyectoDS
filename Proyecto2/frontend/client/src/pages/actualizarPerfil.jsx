@@ -9,6 +9,10 @@ export default function ModificarPerfil() {
     /* IMPORTANTE PASAR */
    const location = useLocation();
    const Persona = location.state;
+   const info = JSON.parse(Persona);
+   const tipo = info.IDtipo;
+   const coordinador = info.Coordinador
+   console.log("co", typeof coordinador)
   //  const info = JSON.parse(Persona)
    console.log(Persona)
     const navigate = useNavigate();
@@ -86,7 +90,15 @@ export default function ModificarPerfil() {
         .catch(error => {
             console.log(error);
         });
-        navigate('/IncioProfesor',{ state: Persona });
+        if(tipo === 1 && coordinador===true){
+            console.log('coordinador')
+            navigate('/InicioCoordinador',{ state: Persona }); 
+        }if(tipo === 1 && coordinador===false){
+            navigate('/IncioProfesor',{ state: Persona });
+        }if(tipo === 2 ){
+            navigate('/InicioAsistente',{ state: Persona })
+        }
+        
     };
 
     const handleInputChange = (event) => {
@@ -98,6 +110,9 @@ export default function ModificarPerfil() {
     };
 
     return (
+        <div>
+            <NavBar Persona={{Persona}}/>
+        
         <div className="container">
             <h1>Modificar Perfil</h1>
         <Form className="create-form">
@@ -148,6 +163,7 @@ export default function ModificarPerfil() {
             </Form.Field>
             <Button type='submit' onClick={updateAPIData}>Update</Button>
         </Form>
+        </div>
         </div>
     );
     }

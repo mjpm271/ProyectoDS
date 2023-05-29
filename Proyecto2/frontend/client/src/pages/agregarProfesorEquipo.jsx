@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+import { useLocation } from 'react-router-dom';
+
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function AgregarProfesorEquipo() {
+  const location = useLocation();
+   const Persona = location.state;
     const [Nombre, setNombre] = useState();
     const [Carnet, setCarnet] = useState();
     const Habilitado = true;
@@ -55,8 +58,8 @@ export default function AgregarProfesorEquipo() {
     }
  
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
           <div className="container">
                 <h1>Agregar profesor a un equipo</h1>
             <Form className="create-form">

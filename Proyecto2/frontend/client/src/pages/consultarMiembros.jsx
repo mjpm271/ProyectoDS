@@ -39,7 +39,8 @@ export default function ConsultarMiembros() {
 
  
     return (
-        <div>
+      <div>
+      <NavBar Persona={{Persona}}/>
             <Form className="create-form">
                 <Form.Field>
                     <label>Nombre </label>

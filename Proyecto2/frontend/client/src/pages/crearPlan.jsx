@@ -52,8 +52,8 @@ export default function CrearPlan() {
 
     }
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
         <div className="container">
               <h1>Crear plan de Trabajo</h1>
             <Form className="create-form">

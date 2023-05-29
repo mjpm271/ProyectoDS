@@ -7,6 +7,10 @@ import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
 
 export default function ModificarPlan() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    /* IMPORTANTE PASAR */    
     const navigate = useNavigate();
     const { IDPlan } = useParams();
     const [PlanTrabajo, setPlanTrabajo] = useState({
@@ -75,7 +79,7 @@ export default function ModificarPlan() {
 
     return (
         <div>
-            <Navbar />
+            <NavBar Persona={{Persona}}/>
         <div className='container'>
             <h1>Modificar Plan de Trabajo</h1>
         <Form className="create-form">

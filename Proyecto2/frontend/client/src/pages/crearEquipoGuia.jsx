@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form} from 'semantic-ui-react'
+import { useLocation } from 'react-router-dom';
 import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function CrearEquipoGuia() {
+  const location = useLocation();
+  const Persona = location.state;
     const [Nombre, setNombre] = useState();
     const showAlert = (Result) => {
       switch (Result){
@@ -44,8 +47,8 @@ export default function CrearEquipoGuia() {
         //axios.post(`http://localhost:4000/ejemplo/asistente/AgregarProfesor`,{ID,Nombre,Correo,Contra,Habilitado,Coordinador,Sede,IDtipo})
     }
     return (
-        <div>
-            <Navbar />
+      <div>
+      <NavBar Persona={{Persona}}/>
             <div className='container'>
             <h1>Crear Equipo Guia</h1>
             
