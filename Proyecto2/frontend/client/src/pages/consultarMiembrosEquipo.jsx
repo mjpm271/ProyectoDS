@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react';
 import Navbar from "../components/Navbar";
 
@@ -9,6 +9,10 @@ export default function ConsultarMiembrosEquipo() {
     const location = useLocation();
     const Persona = location.state;
     const [Error, setError] = useState('')
+    const info = JSON.parse(Persona)
+    const tipo = info.IDtipo
+    const sede = info.Sede
+    const [AsistenteCartago, setAsistenteCartago] = useState(false);
     /* IMPORTANTE PASAR */
     const [Nombre, setNombre] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];
@@ -35,6 +39,9 @@ export default function ConsultarMiembrosEquipo() {
               setError('No existe ese equipo')
             }
             setItems(items)
+            if(sede===1 && tipo===2){
+              setAsistenteCartago(true)
+            }
           }).catch(error => {
               console.log(error)
           });
@@ -70,7 +77,9 @@ export default function ConsultarMiembrosEquipo() {
                         <Table.HeaderCell>Telefono </Table.HeaderCell>
                         <Table.HeaderCell>Telefono Oficina </Table.HeaderCell>
                         <Table.HeaderCell>Sede </Table.HeaderCell>
-                        <Table.HeaderCell>Tipo </Table.HeaderCell>
+                        <Table.HeaderCell>Inhabilitar</Table.HeaderCell> 
+                        <Table.HeaderCell>Habilitar</Table.HeaderCell> 
+                        <Table.HeaderCell>Modificar</Table.HeaderCell> 
                     </Table.Row>
                 </Table.Header>
 
@@ -88,7 +97,19 @@ export default function ConsultarMiembrosEquipo() {
                                 <Table.Cell>{item.Telefono}</Table.Cell>
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
-                                <Table.Cell>{item.IDtipo}</Table.Cell>
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                    <Button  className='button1'> Inhabilitar </Button></Link> ):null}
+                                </Table.Cell>
+                                
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}>
+                                    <Button  > Habilitar </Button></Link> ):null}
+                                </Table.Cell>
+                                <Table.Cell> 
+                                {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}>
+                                    <Button  > Modifcar </Button></Link> ):null}
+                                </Table.Cell>
                             </Table.Row>
                         )
                     })}
