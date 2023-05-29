@@ -1,14 +1,16 @@
-import React, { useState , useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useNavigate , useParams, useLocation} from 'react-router-dom';
+import {  useLocation} from 'react-router-dom';
 
 export default function PlanList() {
       /* IMPORTANTE PASAR */
-      const location = useLocation();
-      const Persona = location.state;
+      let { state } = useLocation();
+
+      const Persona = state;
+      console.log(Persona)
       /* IMPORTANTE PASAR */
-  const navigate = useNavigate();  
+ 
   const [plans, setplans] = React.useState([])
   useEffect(() => {
     axios.get(`http://localhost:4000/profesor/VerPlanesTrabajo`)
@@ -38,7 +40,7 @@ export default function PlanList() {
         <div className="cards">
           {plans.map((plan) => (
             <div key={plan.IDplanTrabajo} className="card">
-              <Link className={"link-styles"} to={`/planList/plan/${plan.IDplanTrabajo}`}>{plan.Nombre}</Link>
+              <Link className={"link-styles"} to={`/planList/plan/${plan.IDplanTrabajo}`} state={Persona}>{plan.Nombre}</Link>
               
               <h3> Abreviacion:</h3>
               <p>{plan.Abreviacion}</p>

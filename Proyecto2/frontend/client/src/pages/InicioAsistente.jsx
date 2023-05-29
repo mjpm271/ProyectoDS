@@ -26,7 +26,7 @@ export default function InicioAsistente() {
         <p>{info.NombreCompleto}</p> */}
         </div>
         <div className="button-container">
-        <div className="column">
+        <div className="column1">
             <Link to={'/agregarProfesor'}state= {Persona}>
                 <Button type='button' size='large'>Agregar Profesor</Button>
             </Link>

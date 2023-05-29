@@ -1,11 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { Grid, ListItem, Segment , List, Button, ListContent} from 'semantic-ui-react';
 import Comments from "../comentarios/Comments";
 import Navbar from '../components/Navbar'
 import axios from 'axios';
 
 export default function Actividad() {
+    /* IMPORTANTE PASAR */
+    const location = useLocation();
+    const Persona = location.state;
+    const info = JSON.parse(Persona)
+    // const id = info.IDpersona
+    const ID = info.IDpersona
+    const tipo = info.IDtipo
+    console.log("Persona",info.IDpersona)
+    /* IMPORTANTE PASAR */
+  const [habilitarComentarios, sethabilitarComentarios]= useState(false)  
   const { planId, activityId } = useParams();
   const [actividad, setActividad] = useState([]);
   const [actividadInfo, setActividadInfo] = useState({
@@ -119,7 +129,9 @@ export default function Actividad() {
     }
   };
 
-
+  const Comentarios = () => {
+    sethabilitarComentarios(true)
+  };
   return (
     
     <div>
@@ -172,36 +184,29 @@ export default function Actividad() {
             ))}
           </Segment>
           <Segment>
-              {Estado === 'REALIZADA' && <Link to='/verEvidencias'><Button>Evidencias</Button></Link>}
-              {Estado === 'CANCELADA' && <Link to='/verObservacion'><Button>Observaciones</Button></Link>}
+              {Estado === 'REALIZADA' && <Link to='/verEvidencias'state={Persona}><Button>Evidencias</Button></Link>}
+              {Estado === 'CANCELADA' && <Link to='/verObservacion'state={Persona}><Button>Observaciones</Button></Link>}
           </Segment>
         </Grid.Column>
+        {tipo !== 2 && 
         <Grid.Column>
           <Segment style={{ overflow: 'auto', maxHeight: '50vh' }}>
-            {/* <p>Historial de Comentarios</p> */}
+            <Button color='blue' onClick={Comentarios}>Ver Comentarios</Button>
+            {habilitarComentarios === true &&
             <Comments
         commentsUrl="http://localhost:3000/comentario"
         currentUserId="1"
-        IDpersona = {2}
+        IDpersona = {ID}
         IDactividad ={activityId}
-      />
+      />}
           </Segment>
           
-        </Grid.Column>
+        </Grid.Column>}
       </Grid.Row>
     </Grid>
     </Grid>
     ))}
-    {/* // ESTO ES PARA LOS COMENTARIOS
-    // <div>
-    //   <h1>Actividad: {activity.name}</h1>
-    //   <h2>Comentarios:</h2>
-    //   <ul>
-    //     {filteredComments.map((comment) => (
-    //       <li key={comment.id}>{comment.text}</li>
-    //     ))}
-    //   </ul>
-    // </div> */}
+
 
     </div>
   );

@@ -25,7 +25,7 @@ export default function InicioProfesor() {
         <h1></h1>
         </div>
         <div className="button-container">
-            <div className="column">
+            <div className="column1">
                 <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
                     <Button type='button' size='large'>Consultar Miembros de Equipo guia</Button>
                 </Link>

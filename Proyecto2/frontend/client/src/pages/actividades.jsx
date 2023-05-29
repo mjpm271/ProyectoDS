@@ -1,7 +1,13 @@
 import React, { useState , useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams , useLocation} from 'react-router-dom';
 import axios from 'axios';
 export default function ActivityList(){
+  /* IMPORTANTE PASAR */
+  let { state } = useLocation();
+
+  const Persona = state;
+  console.log(Persona)
+  /* IMPORTANTE PASAR */
   const { planId } = useParams();
   const [activities, setactivities] = useState([])
     useEffect(() => {
@@ -31,7 +37,7 @@ export default function ActivityList(){
         <div className="cards">
           {activities.map((activity) => (
             <div key={activity.IDplanTrabajo} className="card">
-              <Link className={"link-styles"} to={`/planList/plan/${planId}/activity/${activity.IDactividad}`}>Actividad . {activity.IDactividad}</Link>
+              <Link className={"link-styles"} to={`/planList/plan/${planId}/activity/${activity.IDactividad}`} state={Persona}>Actividad . {activity.IDactividad}</Link>
               
               <h3> Semana:</h3>
               <p>{activity.Semana}</p>
