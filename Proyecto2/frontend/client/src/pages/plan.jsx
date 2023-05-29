@@ -45,9 +45,9 @@ export default function PlanList() {
               <Link className={"link-styles"} to={`/planList/plan/${plan.IDplanTrabajo}`} state={Persona}>{plan.Nombre}</Link>
               
               <h3> Abreviacion:</h3>
-              <p>{plan.Abreviacion}</p>
-              <h3>Coordinador: </h3>
-              <h4>{plan.IDcoordinador}</h4>
+              <h4>{plan.Abreviacion}</h4>
+              <h3>ID Equipo Guia: </h3>
+              <h4>{plan.IDequipoGuia}</h4>
               
               {/* <button className="btn" onClick={navegar(plan.IDplanTrabajo)}>Explore</button> */}
               

@@ -76,7 +76,7 @@ export default function VerActividad() {
 
                         <Table.HeaderCell>Realizar</Table.HeaderCell>
                         <Table.HeaderCell>Cancelar</Table.HeaderCell>
-                        <Table.HeaderCell>Modificar</Table.HeaderCell>
+                        {/* <Table.HeaderCell>Modificar</Table.HeaderCell> */}
                     </Table.Row>
                 </Table.Header>
 
@@ -91,7 +91,7 @@ export default function VerActividad() {
                                 <Table.Cell>{item.Nombre}</Table.Cell>
                                 <Table.Cell>{item.IDtipoEstado !== 3 && item.IDtipoEstado !== 4 && <Link to={`/crearEvidencia/${item.IDactividad}`}state= {Persona}> <Button>Realizar</Button></Link>}</Table.Cell> 
                                 <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/createObservacion/${item.IDactividad}`}state= {Persona}> <Button>Cancelar</Button></Link>}</Table.Cell> 
-                                <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/modificarActividad/${item.IDactividad}`}state= {Persona}> <Button>Modifcar</Button></Link>}</Table.Cell> 
+                                {/* <Table.Cell>{item.IDtipoEstado !== 4 && item.IDtipoEstado !== 3 &&<Link to={`/modificarActividad/${item.IDactividad}`}state= {Persona}> <Button>Modifcar</Button></Link>}</Table.Cell>  */}
 
                             </Table.Row>
                         )
