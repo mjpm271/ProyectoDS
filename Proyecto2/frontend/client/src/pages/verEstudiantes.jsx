@@ -9,23 +9,25 @@ export default function VerEstudiantes() {
 
     const info = JSON.parse(Persona)
     const sede = info.Sede
-    
+
+    const [rutaGuardado, setrutaGuardado] = useState();
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
     const [seleccionSede,setSeleccionSede] = useState(false)
     const [selectedValues, setSelectedValues] = useState({});
     const [Sede, setSede] = useState(0);
+    const [codSede, setcodSede] = useState()
     const options = [
         { key: 'A', text: 'Alfabetico', value: 'Alfabetico' },
         { key: 'S', text: 'Sede', value: 'Sede' },
         { key: 'C', text: 'Carnet', value: 'Carnet' },
       ]
       const dropdownOptionsSede = [
-        { id: 1, value: 1, label: 'Cartago' },
-        { id: 2, value: 2, label: 'San Jose' },
-        { id: 3, value: 3, label: 'Alajuela' },
-        { id: 4, value: 4, label: 'San Carlos' },
-        { id: 5, value: 5, label: 'Limon' },
+        { id: 1, value: 1, label: 'Cartago', abreviacion: 'CA' },
+        { id: 2, value: 2, label: 'San Jose', abreviacion: 'SJ' },
+        { id: 3, value: 3, label: 'Alajuela', abreviacion: 'AL' },
+        { id: 4, value: 4, label: 'San Carlos', abreviacion: 'SC' },
+        { id: 5, value: 5, label: 'Limon', abreviacion: 'LM' },
     ];
 
     
@@ -35,9 +37,10 @@ export default function VerEstudiantes() {
         [dropdownId]: value,
         }));
         setSede(value)
+        
     };
 
-    console.log(Persona)
+
 
     const EstudiantesAlf = () => {
         setError('')
@@ -87,7 +90,42 @@ const EstudiantesCarnet = () => {
         });
 }
 
-
+const DescargarExcelSede = () => {
+    setError('')
+    axios.post(`http://localhost:4000/asistente//DescargarInformacionEstudiantes`,
+        {sede:sede, 
+        codSede: dropdownOptionsSede[sede - 1]['abreviacion'], 
+        rutaGuardado: rutaGuardado})
+        .then(response => {
+            const items = response.data
+            setItems(items)
+            // console.log(response.data)
+            if(response.data.length === 0){
+                setError('No hay estudiantes de esta Sede')
+            }
+            
+        }).catch(error => {
+            console.log(error)
+        });
+}
+const DescargarExcelTodos = () => {
+    setError('')
+    axios.post(`http://localhost:4000/asistente//DescargarInformacionEstudiantes`,
+        {sede:0, 
+        codSede: 'Todas_las_Sedes', 
+        rutaGuardado: rutaGuardado})
+        .then(response => {
+            const items = response.data
+            setItems(items)
+            // console.log(response.data)
+            if(response.data.length === 0){
+                setError('No hay estudiantes de esta Sede')
+            }
+            
+        }).catch(error => {
+            console.log(error)
+        });
+}
 //   const setData = (item) => {
 //     let { IDplanTrabajo, Nombre, Abreviacion, IDcoordinador } = item;
 //     console.log('item',item)
@@ -122,15 +160,32 @@ const handleOptionChange = (event, data) => {
 
     return (
         <div className="container">
+            
             <h1>Ver Estudiantes</h1>
+            <div>
+            <Button.Group>
+            <Button  onClick={DescargarExcelSede} > Descargar por Sede</Button>    
+            <p></p>
+            
+            <Button  onClick={DescargarExcelTodos} > Descargar Todos</Button>    
+            <p></p>
+            </Button.Group>{' '}
+            <Form>
+                <Form.Field>
+                <label>Ruta </label>
+                <input placeholder='Ruta' onChange={(e) => setrutaGuardado(e.target.value)}/>
+                </Form.Field>
+            </Form>
+
+            </div>
             <Form className="create-form">
-            <Form.Select
-            fluid
-            label='MostrarContenido'
-            options={options}
-            onChange={handleOptionChange}
-            placeholder='Contenido'
-          />
+                <Form.Select
+                fluid
+                label='MostrarContenido'
+                options={options}
+                onChange={handleOptionChange}
+                placeholder='Contenido'
+            />
            
             </Form>
             {seleccionSede && <select
@@ -144,6 +199,7 @@ const handleOptionChange = (event, data) => {
                         </option>
                     ))}
                 </select>}
+            
             <div> 
             {error && <Message negative>{error}</Message>}
             <Table textAlign='center'  singleLine>

@@ -445,8 +445,8 @@ export const DescargarInformacionEstudiantes = async (req, res) => {
     const { sede, codSede, rutaGuardado } = req.body
     console.log('valores:', sede, codSede)
     // partes del SQL dinamico
-    let selectUnique = `select Carnet, NombreCompleto, Correo, Telefono from Persona where IDTipoPersona = 3`
-    let selectAll = `select P.Carnet, P.NombreCompleto, P.Correo, P.Telefono, P.Sede, S.Abreviacion from Persona P join Sede S on S.IDSede = P.Sede where IDTipoPersona = 3`
+    let selectUnique = `select Carnet, NombreCompleto, Correo, Telefono from Persona where IDtipo = 3`
+    let selectAll = `select P.Carnet, P.NombreCompleto, P.Correo, P.Telefono, P.Sede, S.Abreviacion from Persona P join Sede S on S.IDSede = P.Sede where IDtipo = 3`
     let conditionSede = `and Sede = ${sede}`
     let conditionOrder = `order by P.Sede`
 
@@ -523,6 +523,7 @@ export const DescargarInformacionEstudiantes = async (req, res) => {
             return res.sendStatus(200)
 
         } catch (err) {
+            console.error(err)
             res.sendStatus(500, err.message)
         }
     }
