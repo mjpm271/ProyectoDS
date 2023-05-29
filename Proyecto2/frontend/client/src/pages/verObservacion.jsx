@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table} from 'semantic-ui-react'
+import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
 
 export default function VerObservacion() {
 
@@ -42,10 +42,10 @@ export default function VerObservacion() {
             <Table color={"blue"} singleLine>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>IDobservacion</Table.HeaderCell>
+                        <Table.HeaderCell>ID observacion</Table.HeaderCell>
                         <Table.HeaderCell>Fecha </Table.HeaderCell>
-                        <Table.HeaderCell>Observacion </Table.HeaderCell>
-                        <Table.HeaderCell>IDactividad </Table.HeaderCell>
+                        <Table.HeaderCell>Observacion</Table.HeaderCell>
+                        <Table.HeaderCell>ID actividad </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -57,6 +57,7 @@ export default function VerObservacion() {
                                 <Table.Cell>{item.Fecha}</Table.Cell>
                                 <Table.Cell>{item.Observacion}</Table.Cell>
                                 <Table.Cell>{item.IDactividad}</Table.Cell>
+                                
                             </Table.Row>
                         )
                     })}
