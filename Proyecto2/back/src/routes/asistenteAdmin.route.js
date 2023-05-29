@@ -1,7 +1,7 @@
 import { Router } from "express"
 import {AgregarProfesorEquipo,BuscarProfesorEquipo,ModificarProfesorEquipo,DefinirCoordinador,AgregarProfesor,
         BuscarProfesor, ModificarProfesor, InhabilitarProfesor, CrearEquipoGuia, ConsultarMiembrosEquipoGuia,
-        SiguienteActividad, SubirInformacionEstudiantes, DescargarInformacionEstudiantes, HabilitarProfesor, HabilitarProfesorEquipo
+        SiguienteActividad, SubirInformacionEstudiantes, DescargarInformacionEstudiantes, HabilitarProfesor, HabilitarProfesorEquipo, InhabilitarProfesorEquipo
 } from "../controllers/asistenteAdmin.controller"
 
 const router = Router()
@@ -12,7 +12,7 @@ router.post('/BuscarProfesorEquipo', BuscarProfesorEquipo) //No estoy segura de 
 router.post('/ConsultarMiembrosEquipo', ConsultarMiembrosEquipoGuia) //Miembros de un equipo
 router.put('/ModificarProfesorEquipo', ModificarProfesorEquipo)
 router.put('/HabilitarProfesorEquipo',HabilitarProfesorEquipo)
-router.put('/InhabilitarProfesor',InhabilitarProfesor)
+router.put('/InhabilitarProfesorEquipo',InhabilitarProfesorEquipo)
 router.put('/DefinirCoordinador', DefinirCoordinador)
 router.post('/AgregarProfesor', AgregarProfesor)
 router.post('/BuscarProfesor', BuscarProfesor)

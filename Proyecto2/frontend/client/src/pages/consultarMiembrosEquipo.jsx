@@ -149,7 +149,7 @@ const Inhabilitar = () => {
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
-                                {AsistenteCartago && item.Habilitado === false &&
+                                {AsistenteCartago && item.Habilitado === false  &&
                                     (<Link to={`/inhabilitarProfesor/${item.Carnet}`}state= {Persona}>
                                     <Button  > Habilitar </Button></Link> )}
                                 </Table.Cell>

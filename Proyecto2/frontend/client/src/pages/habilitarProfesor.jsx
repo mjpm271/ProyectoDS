@@ -13,7 +13,7 @@ export default function HabilitarProfesor() {
     const navigate = useNavigate();
     // const [APIData, setAPIData] = useState([]);
     useEffect(() => {
-      axios.put('http://localhost:4000/asistente/InhabilitarProfesorEquipo', {
+      axios.put('http://localhost:4000/asistente/HabilitarProfesorEquipo', {
             Carnet:Carnet
           }
           , {
