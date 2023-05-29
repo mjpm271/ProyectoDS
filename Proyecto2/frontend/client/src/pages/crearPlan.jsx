@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label, Message} from 'semantic-ui-react'
+import { Button,  Form} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
+import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function CrearPlan() {

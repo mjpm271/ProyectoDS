@@ -3,6 +3,7 @@ import React, { useState, useEffect  } from 'react';
 import { useNavigate , useLocation} from 'react-router-dom';
 import { Button,  Form, Grid, Segment} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
+import NavBar from '../components/NavBar2';
 import DateTimePicker from 'react-datetime-picker'
 import DatePicker from 'react-date-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';

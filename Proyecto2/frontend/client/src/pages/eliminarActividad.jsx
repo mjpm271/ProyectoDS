@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState , useEffect } from 'react';
-import { Button,  Form , Table, Header, Image} from 'semantic-ui-react'
-
+import React, { useState} from 'react';
+import { Button,  Form } from 'semantic-ui-react'
+import NavBar from '../components/NavBar2';
 export default function EliminarActividad() {
     const [IDactividad, setIDactividad] = useState();
 

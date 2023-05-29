@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { useLocation } from 'react-router-dom';
+import { Button,  Form} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
+import NavBar from '../components/NavBar2';
 
 export default function ModificarProfesorEquipo() {
     const [Carnet, setCarnet] = useState();

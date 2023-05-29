@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table} from 'semantic-ui-react';
-
+import NavBar from '../components/NavBar2';
 export default function VerResponsables() {
     const [IDactividad, setIDactividad] = useState();
     const Lugar = ['Cartago', 'San Jose', 'Alajuela', 'San Carlos', 'Limon'];

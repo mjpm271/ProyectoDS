@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button,  Form } from 'semantic-ui-react';
 import axios from 'axios';
-import { Navigate, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar2';
 
 export default function ModificarProfesor() {
     const navigate = useNavigate();

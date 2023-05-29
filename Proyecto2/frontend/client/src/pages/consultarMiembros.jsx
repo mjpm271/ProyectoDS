@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table,Header, Image} from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom';
+import NavBar from '../components/NavBar2';
 export default function ConsultarMiembros() {
     const location = useLocation();
     const Persona = location.state;

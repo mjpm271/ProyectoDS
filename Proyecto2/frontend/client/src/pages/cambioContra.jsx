@@ -1,13 +1,19 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
-import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
+import { Button,  Form} from 'semantic-ui-react'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
-import { Navigate, useParams } from 'react-router-dom';
+import {useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Message } from 'semantic-ui-react';
 
 export default function CambioContra() {
+   /* IMPORTANTE PASAR */
+   const location = useLocation();
+   const Persona = location.state;
+  //  const info = JSON.parse(Persona)
+   console.log(Persona)
+   // const id = info.IDpersona
   const { id } = useParams();
   const [Contra, setContra] = useState();
   const [error, setError] = useState('');
@@ -37,7 +43,7 @@ export default function CambioContra() {
         )
           .then(response => {
             console.log(response.data);
-            navigate('/')
+            navigate('/IncioProfesor',{ state: Persona })
           }).catch(error => {
               console.log(error)
           });

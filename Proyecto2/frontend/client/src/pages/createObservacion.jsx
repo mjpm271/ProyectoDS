@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import {  useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar2';
 import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import Footer from '../components/Footer';

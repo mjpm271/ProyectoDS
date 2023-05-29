@@ -4,6 +4,7 @@ import React from 'react';
 import { useLocation , Link} from 'react-router-dom';
 import { Button} from 'semantic-ui-react'
 import Navbar from '../components/Navbar';
+import NavBar from '../components/NavBar2';
 
 export default function InicioProfesor() {
     const location = useLocation();
@@ -12,12 +13,12 @@ export default function InicioProfesor() {
     
     const info = JSON.parse(Persona)
     const id = info.Carnet
-    console.log('ID: ', id)
+    console.log('Persona: ', Persona)
     
     
     return(
         <div>
-        <Navbar id={id}/>   
+        <NavBar Persona={{Persona}}/>   
         <section>
         <div className="container">
         

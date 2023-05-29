@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
-
+import NavBar from '../components/NavBar2';
 export default function VerEstudiantes() {
     const location = useLocation();
     const Persona = location.state;

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState , useEffect } from 'react';
 import { Grid, Segment} from 'semantic-ui-react'
 import Navbar from '../components/Navbar'
-
+import NavBar from '../components/NavBar2';
 export default function SiguienteActividad() {
     const [FechaActual, setFechaActual] = useState(new Date());
     const Actividad = null

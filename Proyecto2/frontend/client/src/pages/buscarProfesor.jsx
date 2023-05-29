@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState , useEffect } from 'react';
+import React, { useState  } from 'react';
 import { Button,  Form , Table, Header, Image, Message} from 'semantic-ui-react'
 import { useLocation , Link } from 'react-router-dom';
 import Navbar from "../components/Navbar"
-
+import NavBar from '../components/NavBar2';
 export default function BuscarProfesor() {
     const location = useLocation();
     const Persona = location.state;
