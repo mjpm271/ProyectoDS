@@ -9,7 +9,7 @@ export default function VerObservacion() {
 
     const buscar = () => {
 
-      axios.post(`http://localhost:4000/coordinador/VerObservacion`, {
+      axios.post('http://localhost:4000/coordinador/VerObservacion', {
           IDactividad:IDactividad
         }
         , {
@@ -31,7 +31,7 @@ export default function VerObservacion() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>IDactividad</label>
+                    <label>IDactividad </label>
                     <input placeholder='IDactividad' onChange={(e) => setIDactividad(parseInt(e.target.value))}/>
                 </Form.Field>
 

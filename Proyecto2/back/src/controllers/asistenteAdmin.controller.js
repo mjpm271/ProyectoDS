@@ -238,7 +238,7 @@ export const AgregarProfesor = async (req, res) => {
             .output('Result',sql.Int)
             .execute('CreatePersona')
         console.log(result) 
-        
+        res.json(result.recordset)
     } catch (err) {
         res.sendStatus(500, err.message)
     }
@@ -300,7 +300,7 @@ export const ModificarProfesor = async (req, res) => {
             .output('Exito',sql.Int)
             .execute('UpdatePersona')
         console.log(result)
-
+        res.json(result.recordset)
     } catch (err) {
         res.sendStatus(500, err.message)
     }

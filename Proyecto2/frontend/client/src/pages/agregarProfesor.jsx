@@ -97,9 +97,8 @@ export default function AgregarProfesor() {
           }
           ).then(response => {
               console.log(response.data[0][""]); // Leer el valor del output recibido
-              
               console.log(response.data[0]);
-            //   showAlert((response.data[0]))
+              showAlert((response.data[0]))
             }).catch(Error => {
                 console.log('hay Error')
                 console.log(Error)
