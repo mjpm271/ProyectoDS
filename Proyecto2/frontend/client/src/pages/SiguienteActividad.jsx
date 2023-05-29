@@ -88,10 +88,10 @@ const buscarResponsables = () => {
               <p>Fecha Actividad: {item.Fecha}  </p>
               <p>Dias Previos: {item.Cantidaddiasprevios} </p>
               <p>Dias requeridos: {item.Cantidaddiasrequeridos}  </p>
-              <p>Tipo Actividad: {TipoAct[item.IDtipoActividad]} </p>
-              <p> Modalidad: {Modalidad[item.IDmodalidad]}  </p>
-              <p>Lugar o enlace: </p>
-              <p> Estado: {Estado[item.IDtipoEstado]} </p>
+              <p>Tipo Actividad: {TipoAct[item.IDtipoActividad - 1]} </p>
+              <p>Modalidad: {Modalidad[item.IDmodalidad - 1]}  </p>
+              <p>Lugar o enlace: <a href={item.Linkreunion}>Link</a></p>
+              <p>Estado: {Estado[item.IDtipoEstado - 1]} </p>
               </Segment>
             </Grid.Column>
             <Grid.Column>
@@ -106,7 +106,10 @@ const buscarResponsables = () => {
               </List>
               ))}
             </Segment>
-              <Segment>Afiche</Segment>
+                <Segment>
+                    <h2>Afiche</h2>
+                    <a href={item.Afiche}>Enlace afiche</a>
+                </Segment>
             </Grid.Column>
           </Grid.Row>
         </Grid>
