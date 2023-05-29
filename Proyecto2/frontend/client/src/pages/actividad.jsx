@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Grid, ListItem, Segment , List, Button} from 'semantic-ui-react';
+import { Grid, ListItem, Segment , List, Button, ListContent} from 'semantic-ui-react';
 import Comments from "../comentarios/Comments";
 import Navbar from '../components/Navbar'
 import axios from 'axios';
@@ -164,9 +164,10 @@ export default function Actividad() {
             <h2>Responsables</h2>
             {Responsables.map((responsable)=>(
             <List>
-            
-                <ListItem>{responsable.IDpersona}</ListItem>
-            
+              <List.Item>
+                <List.Icon name='circle'/>
+                <List.Content >{responsable.Carnet}-{responsable.NombreCompleto}</List.Content>
+              </List.Item>
             </List>
             ))}
           </Segment>

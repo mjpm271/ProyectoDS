@@ -399,6 +399,7 @@ export const VerResponsables = async (req, res) => {
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
     }*/
     try {
+        const pool = await getConnection();
         const result = await pool
             .request()
             .input('IDactividad', sql.Int, IDactividad)
