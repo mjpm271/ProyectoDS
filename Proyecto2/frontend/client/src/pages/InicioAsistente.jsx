@@ -31,8 +31,7 @@ export default function InicioAsistente() {
                 <Link to={'/agregarProfesor'}state= {Persona}>
                     <button>Agregar Profesor</button>
                 </Link>
-            </li>
-            <li>
+
                 <Link to={'/buscarProfesor'}state= {Persona}>
                     <button>Buscar Profesor</button>
                 </Link>

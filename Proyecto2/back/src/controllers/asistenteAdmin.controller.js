@@ -454,8 +454,8 @@ export const DescargarInformacionEstudiantes = async (req, res) => {
     // está un poco trillado porque la función writeFile por alguna razón no recibe tokens de windows
     //let downloadPath = `%USERPROFILE%\\Downloads`
     //let downloadPath2 = `C:\\Users\\Adrián\\Downloads`
-    // todas las sedes, separadas por página
     if (sede == 0) {
+        // todas las sedes, separadas por página
         try {
             console.log('llego a global')
             let allQuery = `${selectAll} ${conditionOrder}`
@@ -482,7 +482,7 @@ export const DescargarInformacionEstudiantes = async (req, res) => {
             let workbook = xlsx.utils.book_new()
             // este for loop esconde conocimientos esotéricos que solo algunos bodhisattvas lograron entender
             for (let [k, v] of Object.entries(groupedRecords)) {
-                console.log("iterando sedes")
+                //console.log("iterando sedes")
                 let ws = xlsx.utils.json_to_sheet(v)
                 xlsx.utils.book_append_sheet(workbook, ws, `Sede_${v[0]['Sede']}_${v[0]['Abreviacion']}`)
             }
