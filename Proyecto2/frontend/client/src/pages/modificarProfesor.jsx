@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ModificarProfesor() {
     const navigate = useNavigate();
-    const { Carnet } = useParams();
+    const { id } = useParams();
     const [perfil, setPerfil] = useState({
         carnet: null,
         nombreCompleto: null,
@@ -25,7 +25,7 @@ export default function ModificarProfesor() {
         axios
         .post(
             'http://localhost:4000/profesor/VerPerfil',
-            { Carnet: Carnet },
+            { Carnet: id },
             {
             headers: {
                 'Content-Type': 'application/json'
@@ -48,12 +48,12 @@ export default function ModificarProfesor() {
             iDtipo: informacion?.IDtipo,
             });
         });
-    }, [Carnet]);
+    }, [id]);
 
     const updateAPIData = () => {
         axios
         .put(
-            'http://localhost:4000/asistente/ModificarProfesor',
+            'http://localhost:4000/asistente/modificarProfesor',
             {
             Carnet: perfil.carnet,
             NombreCompleto: perfil.nombreCompleto,
@@ -93,18 +93,8 @@ export default function ModificarProfesor() {
 
     return (
         <div className="container">
-            
-            <h1 >Modificar Profesor</h1>
+            <h1>Modificar Perfil</h1>
         <Form className="create-form">
-            <Form.Field>
-            <label>Carnet</label>
-            <input
-                placeholder='Carnet'
-                name="carnet"
-                value={perfil.carnet || ''}
-                onChange={handleInputChange}
-            />
-            </Form.Field>
             <Form.Field>
             <label>NombreCompleto</label>
             <input
@@ -120,15 +110,6 @@ export default function ModificarProfesor() {
                 placeholder='Correo'
                 name="correo"
                 value={perfil.correo || ''}
-                onChange={handleInputChange}
-            />
-            </Form.Field>
-            <Form.Field>
-            <label>Contrasena</label>
-            <input
-                placeholder='Contrasena'
-                name="contrasena"
-                value={perfil.contra || ''}
                 onChange={handleInputChange}
             />
             </Form.Field>
@@ -156,15 +137,6 @@ export default function ModificarProfesor() {
                 placeholder='Foto'
                 name="foto"
                 value={perfil.foto || ''}
-                onChange={handleInputChange}
-            />
-            </Form.Field>
-            <Form.Field>
-            <label>Sede</label>
-            <input
-                placeholder='Sede'
-                name="Sede"
-                value={perfil.Sede || ''}
                 onChange={handleInputChange}
             />
             </Form.Field>
