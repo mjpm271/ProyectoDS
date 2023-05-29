@@ -213,6 +213,7 @@ export const RealizarActividad = async (req, res) => {
         const result = await pool
             .request()
             .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .output('Result', sql.Int)
             .execute('RealizarActividad')
         console.log(result)
         res.json(result.recordset)
@@ -229,15 +230,16 @@ export const CancelarActividad = async (req, res) => {
     res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
     const { IDactividad} = req.body
     console.log('valores:', req.body)
-    if (!IDactividad) {
+    /*if (!IDactividad) {
         console.log('here')
         return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
-    }
+    }*/
     try {
         const pool = await getConnection();
         const result = await pool
             .request()
             .input('IDactividad', sql.Int, IDactividad) //Revisar como recuperar informacion desde login
+            .output('Result', sql.Int)
             .execute('CancelarActividad')
         console.log(result)
         res.json(result.recordset)
