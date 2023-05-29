@@ -91,7 +91,7 @@ AS
 BEGIN
     SELECT Carnet, NombreCompleto, Correo, Contra, Habilitado, Coordinador, Telefono, Sede, IDtipo  
 	FROM persona 
-	WHERE Sede = @Sede
+	WHERE Sede = @Sede and IDtipo = 3
 END;
 GO
 
@@ -135,7 +135,7 @@ BEGIN
         IDtipo = @IDtipo
     WHERE Carnet = @Carnet;
     IF @@ROWCOUNT > 0
-        SET @ActualizacionExitosa = 1; -- Éxito
+        SET @ActualizacionExitosa = 1; -- Ã‰xito
     ELSE
         SET @ActualizacionExitosa = 0; -- Falla
 
