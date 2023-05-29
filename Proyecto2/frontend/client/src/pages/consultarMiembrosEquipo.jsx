@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button,  Form , Table, Image, Message} from 'semantic-ui-react';
 import Navbar from "../components/Navbar";
 import NavBar from '../components/NavBar2';
@@ -23,6 +23,8 @@ export default function ConsultarMiembrosEquipo() {
         false: 'No'
       };
     const [items, setItems] = useState([]);
+    const [Carnet, setCarnet] = useState([])
+    const navigate = useNavigate();
 
     const buscar = () => {
 
@@ -41,6 +43,7 @@ export default function ConsultarMiembrosEquipo() {
               setError('No existe ese equipo')
             }
             setItems(items)
+            console.log(items)
             if(sede===1 && tipo===2){
               setAsistenteCartago(true)
             }
@@ -50,7 +53,44 @@ export default function ConsultarMiembrosEquipo() {
 
 
   }
+  const Habilitar = () => {
+    setError('')
+    axios.put(`http://localhost:4000/asistente/HabilitarProfesor`, {
+        Carnet:Carnet
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+        .then(response => {
+          console.log(response)
 
+        }).catch(error => {
+            console.log(error)
+        });
+     
+}
+const Inhabilitar = () => {
+  setError('')
+  axios.put(`http://localhost:4000/asistente/InhabilitarProfesor`, {
+      Carnet:Carnet
+    }
+    , {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    )
+      .then(response => {
+        console.log(response)
+
+      }).catch(error => {
+          console.log(error)
+      });
+   
+}  
  
     return (
         <div>
@@ -60,7 +100,7 @@ export default function ConsultarMiembrosEquipo() {
             <Form className="create-form">
                 <h1>Consultar Miembros de un Equipo Guia</h1>
                 <Form.Field>
-                    <label>Nombre </label>
+                    <label>Nombre Equipo Guia</label>
                     <input placeholder='Nombre Equipo Guia' onChange={(e) => setNombre(e.target.value)}/>
                 </Form.Field>
 
@@ -87,12 +127,15 @@ export default function ConsultarMiembrosEquipo() {
 
             <Table.Body>
                     {items.map((item) => {
+                        
                         return (
+                          
                             <Table.Row>
                                 <Table.Cell>
                                     <Image src={item.Foto} rounded size='medium' /> 
                                 </Table.Cell>
-                                <Table.Cell>{item.Carnet}</Table.Cell>
+                                
+                              <Table.Cell >{item.Carnet}</Table.Cell>
                                 <Table.Cell>{item.NombreCompleto}</Table.Cell>
                                 <Table.Cell>{item.Correo}</Table.Cell>
                                 <Table.Cell>{MyEnum[item.Coordinador]}</Table.Cell>
@@ -100,13 +143,15 @@ export default function ConsultarMiembrosEquipo() {
                                 <Table.Cell>{item.TelefonoOficina}</Table.Cell>
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
-                                    <Button  className='button1'> Inhabilitar </Button></Link> ):null}
+                                {AsistenteCartago && item.Habilitado === true &&
+                                    (<Link to={`/habilitarProfesor/${item.Carnet}`}state= {Persona}>
+                                    <Button  > Inhabilitar </Button></Link> )}
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
-                                    <Button  > Habilitar </Button></Link> ):null}
+                                {AsistenteCartago && item.Habilitado === false &&
+                                    (<Link to={`/inhabilitarProfesor/${item.Carnet}`}state= {Persona}>
+                                    <Button  > Habilitar </Button></Link> )}
                                 </Table.Cell>
                                 <Table.Cell> 
                                 {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}state= {Persona}>

@@ -47,6 +47,45 @@ export default function BuscarProfesor() {
           });
        
   }
+
+  const Habilitar = () => {
+    setError('')
+    axios.put(`http://localhost:4000/asistente/HabilitarProfesor`, {
+        Carnet:Carnet
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+        .then(response => {
+          console.log(response)
+
+        }).catch(error => {
+            console.log(error)
+        });
+     
+}
+const Inhabilitar = () => {
+  setError('')
+  axios.put(`http://localhost:4000/asistente/InhabilitarProfesor`, {
+      Carnet:Carnet
+    }
+    , {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    )
+      .then(response => {
+        console.log(response)
+
+      }).catch(error => {
+          console.log(error)
+      });
+   
+}  
     return (
         <div>
         <NavBar Persona={{Persona}}/>
@@ -102,13 +141,13 @@ export default function BuscarProfesor() {
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
-                                    <Button  className='button1'> Inhabilitar </Button></Link> ):null}
+                                {AsistenteCartago && item.Habilitado === true &&(
+                                    <Button onClick={Inhabilitar} className='button1'> Inhabilitar </Button> )}
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
-                                {AsistenteCartago ? (<Link to={`/modificarEstudiante/${item.Carnet}`}state= {Persona}>
-                                    <Button  > Habilitar </Button></Link> ):null}
+                                {AsistenteCartago && item.Habilitado === false &&
+                                    <Button onClick={Habilitar} > Habilitar </Button>}
                                 </Table.Cell>
                                 <Table.Cell> 
                                 {AsistenteCartago ? (<Link to={`/modificarProfesor/${item.Carnet}`}state= {Persona}>

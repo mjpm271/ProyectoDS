@@ -23,6 +23,7 @@ import AgregarProfesorEquipo from './pages/agregarProfesorEquipo';
 import ConsultarMiembrosEquipo from './pages/consultarMiembrosEquipo';
 import BuscarProfesor from './pages/buscarProfesor';
 import InhabilitarProfesor from './pages/inhabilitarProfesor';
+import HabilitarProfesor from './pages/habilitarProfesor';
 import ModificarProfesorEquipo from './pages/modificarProfesorEquipo';
 import BuscarProfesorEquipo from './pages/buscarProfesorEquipo';
 import CrearEvidencia from './pages/crearEvidencia';
@@ -52,6 +53,7 @@ import InicioAsistente from './pages/InicioAsistente';
 import CargarEstudiantes from './pages/cargarEstudiantes';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import InhabilitarProfesorEquipo from './pages/inhabilitarProfesor';
 
 
 function App() {
@@ -74,7 +76,8 @@ function App() {
         <Route path="/agregarProfesor" element={<AgregarProfesor />}/>
         <Route path="/consultarMiembrosEquipo" element={<ConsultarMiembrosEquipo />}/>
         <Route path="/buscarProfesor" element={<BuscarProfesor />}/>
-        <Route path="/inhabilitarProfesor" element={<InhabilitarProfesor />}/>
+        <Route path="/inhabilitarProfesor/:Carnet" element={<InhabilitarProfesor/>}/>
+        <Route path="/habilitarProfesor/:Carnet" element={<HabilitarProfesor/>}/>
         <Route path="/modificarProfesorEquipo" element={<ModificarProfesorEquipo />}/>
         <Route path="/buscarProfesorEquipo" element={<BuscarProfesorEquipo />}/>
         <Route path="/SiguienteActividad" element={<SiguienteActividad />}/>

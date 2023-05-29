@@ -3,7 +3,7 @@ import React, { useState ,useEffect } from 'react';
 import { useLocation, useParams, useNavigate} from 'react-router-dom';
 
 
-export default function InhabilitarProfesor() {
+export default function HabilitarProfesor() {
       /* IMPORTANTE PASAR */
       const location = useLocation();
       const Persona = location.state;
