@@ -26,7 +26,8 @@ export default function DefinirCoordinador() {
     const postData = () => {
         
         axios.put('http://localhost:4000/asistente/DefinirCoordinador', {
-            Carnet:Carnet
+            Carnet:Carnet,
+            Nombre:Nombre
           }
           , {
             headers: {
