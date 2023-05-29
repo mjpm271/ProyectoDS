@@ -42,7 +42,7 @@ const Comment = ({
           <div>{createdAt}</div>
         </div>
         {!isEditing && <div className="comment-text">{comment.Contenido}</div>}
-        {isEditing && (
+        {/* {isEditing && (
           <CommentForm
             submitLabel="Update"
             hasCancelButton
@@ -52,7 +52,7 @@ const Comment = ({
               setActiveComment(null);
             }}
           />
-        )}
+        )} */}
         <div className="comment-actions">
           {canReply && (
             <div
@@ -64,7 +64,7 @@ const Comment = ({
               Reply
             </div>
           )}
-          {canEdit && (
+          {/* {canEdit && (
             <div
               className="comment-action"
               onClick={() =>
@@ -81,7 +81,7 @@ const Comment = ({
             >
               Delete
             </div>
-          )}
+          )} */}
         </div>
         {isReplying && (
           <CommentForm

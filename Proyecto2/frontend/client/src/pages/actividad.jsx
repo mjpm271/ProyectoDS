@@ -168,7 +168,10 @@ export default function Actividad() {
           <p>Dias requeridos: {info.Cantidaddiasrequeridos}  </p>
           <p>Tipo Actividad: {TipoActividad}  </p>
           <p> Modalidad: {Modalidad}  </p>
-          <p>Lugar o enlace: </p>
+          <p>Lugar o enlace:  
+          <a href={info.Linkreunion}>Enlace</a>
+          </p>
+          
           <p> Estado: {Estado}  </p>
           </Segment>
         </Grid.Column>
@@ -184,7 +187,10 @@ export default function Actividad() {
             </List>
             ))}
           </Segment>
-          <Segment>
+          <Segment>'
+              <h2>Afiche</h2>
+              <a href={info.Afiche}>Enlace Afiche</a>
+              <p></p>
               {Estado === 'REALIZADA' && <Link to='/verEvidencias'state={Persona}><Button>Evidencias</Button></Link>}
               {Estado === 'CANCELADA' && <Link to='/verObservacion'state={Persona}><Button>Observaciones</Button></Link>}
           </Segment>

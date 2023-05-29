@@ -139,15 +139,15 @@ export default function ModificarEstudiante() {
                 onChange={handleInputChange}
             />
             </Form.Field>
-            <Form.Field>
+            {/* <Form.Field>
             <label>TelefonoOficina</label>
             <input
                 placeholder='TelefonoOficina'
                 name="telefonoOficina"
                 value={perfil.telefonoOficina || ''}
                 onChange={handleInputChange}
-            />
-            </Form.Field>
+            /> 
+            </Form.Field>*/}
             <Form.Field>
             <label>Foto</label>
             <input
