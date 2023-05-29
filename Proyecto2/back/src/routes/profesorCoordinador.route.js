@@ -20,7 +20,7 @@ router.post('/ModificarPerfil',ModificarProfesorPerfil)
 router.post('/CrearEvidencia',CrearEvidencia)
 router.post('/VerEvidencias',VerEvidencias)
 router.post('/CrearObservacion',CrearObservacion)
-router.post('VerObservacion', VerObservacion)
+router.post('/VerObservacion',VerObservacion)
 router.put('/RealizarActividad',RealizarActividad)
 router.put('/CancelarActividad',CancelarActividad)
 
