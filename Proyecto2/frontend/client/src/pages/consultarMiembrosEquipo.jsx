@@ -144,13 +144,13 @@ const Inhabilitar = () => {
                                 <Table.Cell>{Lugar[item.Sede - 1]}</Table.Cell>
                                 <Table.Cell> 
                                 {AsistenteCartago && item.Habilitado === true &&
-                                    (<Link to={`/habilitarProfesor/${item.Carnet}`}state= {Persona}>
+                                    (<Link to={`/inhabilitarProfesor/${item.Carnet}`}state= {Persona}>
                                     <Button  > Inhabilitar </Button></Link> )}
                                 </Table.Cell>
                                 
                                 <Table.Cell> 
                                 {AsistenteCartago && item.Habilitado === false  &&
-                                    (<Link to={`/inhabilitarProfesor/${item.Carnet}`}state= {Persona}>
+                                    (<Link to={`/habilitarProfesor/${item.Carnet}`}state= {Persona}>
                                     <Button  > Habilitar </Button></Link> )}
                                 </Table.Cell>
                                 <Table.Cell> 

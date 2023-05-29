@@ -192,6 +192,7 @@ export const HabilitarProfesorEquipo= async (req, res) => {
         const result = await pool
             .request()
             .input('Carnet', sql.VarChar(64), Carnet)
+            .output('Exito',sql.Bit)
             .execute('HabilitarProfesor')
         console.log(result)
         res.json(result.recordset)
@@ -373,6 +374,7 @@ export const HabilitarProfesor = async (req, res) => {
         const result = await pool
             .request()
             .input('Carnet', sql.VarChar(64), Carnet)
+            
             .execute('HabilitarPersona')
         console.log(result)
         res.json(result.recordset)
