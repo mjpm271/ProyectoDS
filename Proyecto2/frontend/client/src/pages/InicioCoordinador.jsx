@@ -1,6 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
+import { Button} from 'semantic-ui-react'
 import { useLocation , Link} from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -21,51 +22,42 @@ export default function InicioCoordinador() {
         <section>
         <div className="container">
         
-        <h1>Welcome! {info.NombreCompleto}</h1>
+        <h1>Bienvenido! {info.NombreCompleto}</h1>
         {/* <p>{Persona}</p>
         <p>{info.NombreCompleto}</p> */}
         </div>
-            <nav>
-          <ul>
-            <li>
-                <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
-                    <button>Consultar Miembros de Equipo guia</button>
-                </Link>
-            </li>
-            
-            <li>
-                <Link to={'/verEstudiante'}state= {Persona}>
-                    <button>Estudiantes</button>
-                </Link>
-            </li>
-            
-            <li>
+
+        <div className="button-container">
+        <div className="column">
+            <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
+                <Button type='button' size='large'>Consultar Miembros de Equipo guia</Button>
+            </Link>
+            <Link to={'/verEstudiante'}state= {Persona}>
+                <Button type='button' size='large'>Estudiantes</Button>
+            </Link>
             <Link to={'/crearPlan'} state= {Persona}>
-                    <button>Crear Plan de Trabajo</button>
-                </Link>
-            </li>
-            <li>
+                <Button type='button' size='large'>Crear Plan de Trabajo</Button>
+            </Link>
+            
             <Link to={'/planList'}state= {Persona}>
-                    <button>Ver Planes de Trabajo</button>
-                </Link>
-            </li>
-            <li>
+                <Button type='button' size='large'>Ver Planes de Trabajo</Button>
+            </Link>
+            
             <Link to={'/verPlan'}state= {Persona}>
-                    <button>Modificar Plan de Trabajo</button>
-                </Link>
-            </li>
-            <li>
+                <Button type='button' size='large'>Modificar Plan de Trabajo</Button>
+            </Link>
+            
             <Link to={'/crearActividad'}state= {Persona}>
-                    <button>Crear Actividad </button>
-                </Link>
-            </li>
-            <li>
+                <Button type='button' size='large'>Crear Actividad </Button>
+            </Link>
+            
             <Link to={'/verActividad'}state= {Persona}>
-                    <button>Modificar Actividad </button>
-                </Link>
-            </li>
-          </ul>
-        </nav>
+                <Button type='button' size='large'>Modificar Actividad </Button>
+            </Link>
+            
+          </div>
+        </div>
+            
         </section>
     </div>    
     );

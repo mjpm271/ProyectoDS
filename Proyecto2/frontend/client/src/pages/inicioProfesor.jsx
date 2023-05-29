@@ -2,6 +2,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import { useLocation , Link} from 'react-router-dom';
+import { Button} from 'semantic-ui-react'
 import Navbar from '../components/Navbar';
 
 export default function InicioProfesor() {
@@ -21,30 +22,23 @@ export default function InicioProfesor() {
         <div className="container">
         
         <h1>Welcome! {info.NombreCompleto}</h1>
-        {/* <p>{Persona}</p>
-        <p>{info.NombreCompleto}</p> */}
+        <h1></h1>
         </div>
-            <nav>
-          <ul>
-          <li>
+        <div className="button-container">
+            <div className="column">
                 <Link to={'/consultarMiembrosEquipo'}state= {Persona}>
-                    <button>Consultar Miembros de Equipo guia</button>
+                    <Button type='button' size='large'>Consultar Miembros de Equipo guia</Button>
                 </Link>
-            </li>
-            
-            <li>
+                
                 <Link to={'/verEstudiante'}state= {Persona}>
-                    <button>Estudiantes</button>
+                    <Button type='button' size='large'>Estudiantes</Button>
                 </Link>
-            </li>
-            <li>
-            <Link to={'/planList'}state= {Persona}>
-                    <button>Ver Planes de Trabajo</button>
+                <Link to={'/planList'}state= {Persona}>
+                    <Button type='button' size='large'>Ver Planes de Trabajo</Button>
                 </Link>
-            </li>
-            
-          </ul>
-        </nav>
+            </div>
+        </div>    
+
         </section>
     </div>    
     );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Message } from 'semantic-ui-react';
+import { Message ,Button} from 'semantic-ui-react';
 
 const Login = () => {
   const [Correo, setCorreo] = useState('');
@@ -105,7 +105,7 @@ const Login = () => {
         <input value={Contra} onChange={handleContraChange} />
       </div>
       <p></p>
-      <button onClick={handleLogin}>Iniciar sesión</button>
+      <Button onClick={handleLogin}>Iniciar sesión</Button>
     </div>
   );
 };

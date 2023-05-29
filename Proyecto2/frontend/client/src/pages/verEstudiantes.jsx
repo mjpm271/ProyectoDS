@@ -10,7 +10,7 @@ export default function VerEstudiantes() {
     const info = JSON.parse(Persona)
     const sede = info.Sede
 
-    const [rutaGuardado, setrutaGuardado] = useState();
+    const [rutaGuardado, setrutaGuardado] = useState('');
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
     const [seleccionSede,setSeleccionSede] = useState(false)
@@ -92,7 +92,10 @@ const EstudiantesCarnet = () => {
 
 const DescargarExcelSede = () => {
     setError('')
-    axios.post(`http://localhost:4000/asistente//DescargarInformacionEstudiantes`,
+    if(rutaGuardado === ''){
+        setError('Debe de ingresar una ruta para la descarga del archivo')
+    }else{
+        axios.post(`http://localhost:4000/asistente//DescargarInformacionEstudiantes`,
         {sede:sede, 
         codSede: dropdownOptionsSede[sede - 1]['abreviacion'], 
         rutaGuardado: rutaGuardado})
@@ -107,9 +110,14 @@ const DescargarExcelSede = () => {
         }).catch(error => {
             console.log(error)
         });
+    }
+    
 }
 const DescargarExcelTodos = () => {
     setError('')
+    if(rutaGuardado === ''){
+        setError('Debe de ingresar una ruta para la descarga del archivo')
+    }else{
     axios.post(`http://localhost:4000/asistente//DescargarInformacionEstudiantes`,
         {sede:0, 
         codSede: 'Todas_las_Sedes', 
@@ -125,6 +133,7 @@ const DescargarExcelTodos = () => {
         }).catch(error => {
             console.log(error)
         });
+    }
 }
 //   const setData = (item) => {
 //     let { IDplanTrabajo, Nombre, Abreviacion, IDcoordinador } = item;
@@ -165,11 +174,11 @@ const handleOptionChange = (event, data) => {
             <div>
             <Button.Group>
             <Button  onClick={DescargarExcelSede} > Descargar por Sede</Button>    
-            <p></p>
-            
+            </Button.Group>{'        '}
+            <Button.Group>
             <Button  onClick={DescargarExcelTodos} > Descargar Todos</Button>    
-            <p></p>
-            </Button.Group>{' '}
+            
+            </Button.Group>
             <Form>
                 <Form.Field>
                 <label>Ruta </label>
@@ -178,6 +187,7 @@ const handleOptionChange = (event, data) => {
             </Form>
 
             </div>
+            {error && <Message negative>{error}</Message>}
             <Form className="create-form">
                 <Form.Select
                 fluid
@@ -201,7 +211,7 @@ const handleOptionChange = (event, data) => {
                 </select>}
             
             <div> 
-            {error && <Message negative>{error}</Message>}
+            
             <Table textAlign='center'  singleLine>
                 <Table.Header>
                     <Table.Row>
