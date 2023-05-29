@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState  } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import { useParams } from 'react-router-dom';
 import Navbar from "../components/Navbar"
@@ -11,9 +11,29 @@ export default function CrearEvidencia() {
     const [Linkgrabacion, setLinkgrabacion] = useState();
     const [IDactividad, setIDactividad] = useState();
     const showAlert = (Result) => {
-        window.alert('ha insertado la evidencia con exito')
+        switch (Result){
+            case 1: 
+                window.alert('ha insertado la evidencia con exito')
+                break
+            case 2:
+                window.alert('Se ha realizado la actividad con exito')
+        }
     };
     // const [APIData, setAPIData] = useState([]);
+    useEffect(() => {
+        axios.put('http://localhost:4000/coordinador/RealizarActividad',
+            {IDactividad: actividad},
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+            .then((response) => {
+                console.log('funciona')
+                showAlert(2)
+            })
+    }, [actividad]);
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/crearEvidencia', {
@@ -29,7 +49,7 @@ export default function CrearEvidencia() {
           )
             .then(response => {
               console.log(response.data);
-              showAlert(0)
+              showAlert(1)
             }).catch(error => {
                 console.log(error)
             });
