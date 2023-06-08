@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation} from 'react-router-dom';
 import { Button,  Form} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 

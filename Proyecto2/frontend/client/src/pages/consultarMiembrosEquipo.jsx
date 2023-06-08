@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button,  Form , Table, Image, Message} from 'semantic-ui-react';
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import NavBar from '../components/NavBar2';
 
 export default function ConsultarMiembrosEquipo() {

@@ -3,7 +3,7 @@ import { Button, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import NavBar from '../components/NavBar2';
 
 export default function ModificarPlan() {

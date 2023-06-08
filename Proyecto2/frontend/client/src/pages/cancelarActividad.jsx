@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar2';
 import { useLocation } from 'react-router-dom';

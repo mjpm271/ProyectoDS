@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Button,  Form , Table, Message} from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import NavBar from '../components/NavBar2';
 export default function VerPlan() {
     /* IMPORTANTE PASAR */
