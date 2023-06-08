@@ -31,9 +31,9 @@ export default function CrearActividad() {
     const [Linkreunion, setLinkreunion] = useState();
     const [Afiche, setAfiche] = useState();
     const [IDmodalidad, setModalidad] = useState();
-    const [IDtipoActividad, setIDtipoActividad] = useState(1);
+    const [IDtipoActividad, setIDtipoActividad] = useState();
     const [IDtipoAfiche, setIDtipoAfiche] = useState();
-    const [IDtipoEstado, setIDtipoEstado] = useState();
+    const [IDtipoEstado, setIDtipoEstado] = useState(1);
     const [IDplanTrabajo, setIDplanTrabajo] = useState();
     const [selectedValues, setSelectedValues] = useState({});
     const [isOpen, setIsOpen] = useState(false);
@@ -107,9 +107,9 @@ export default function CrearActividad() {
         const selectedValuesConst = selectedDropdownValues.map((value) => parseInt(value));
         // Do something with the constant variable
         setModalidad(selectedValuesConst[0]);
-        //setIDtipoActividad(selectedValuesConst[1]);
+        setIDtipoActividad(selectedValuesConst[1]);
         setIDtipoAfiche(selectedValuesConst[2]);
-        setIDtipoEstado(selectedValuesConst[3]);
+        //setIDtipoEstado(selectedValuesConst[3]);
         console.log(selectedValuesConst);
     }, [selectedValues]);
 
@@ -207,6 +207,18 @@ export default function CrearActividad() {
                             {option.label}
                         </option>
                     ))}
+                <label htmlFor="TipoActividad">Tipo Actividad:</label>
+                <select
+                    id="TipoActividad"
+                    value={selectedValues.TipoActividad || ''}
+                    onChange={(e) => handleDropdownChange('TipoActividad', e.target.value)}>
+                    <option value="">Select an option</option>
+                    {dropdownOptionstipoActividad.map((option) => (
+                        <option key={option.id} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
                 </select>
                 <label htmlFor="TipoAfiche">Tipo Afiche:</label>
                 <select
@@ -215,18 +227,6 @@ export default function CrearActividad() {
                     onChange={(e) => handleDropdownChange('TipoAfiche', e.target.value)}>
                     <option value="">Select an option</option>
                     {dropdownOptionstipoAfiche.map((option) => (
-                        <option key={option.id} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-                <label htmlFor="TipoEstado">Tipo Estado:</label>
-                <select
-                    id="TipoEstado"
-                    value={selectedValues.TipoEstado || ''}
-                    onChange={(e) => handleDropdownChange('TipoEstado', e.target.value)}>
-                    <option value="">Select an option</option>
-                    {dropdownOptionstipoEstado.map((option) => (
                         <option key={option.id} value={option.value}>
                             {option.label}
                         </option>
