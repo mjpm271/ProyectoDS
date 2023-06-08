@@ -10,17 +10,8 @@
 :root {
 	--mainColor: #4E5485;
 	--mainColorLight: #fff;
-	--secondaryColor: #c7b9ba;
+	--secondaryColor: #db2b39;
 	--textColor: #eee;
-}
-.main{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* background-color: #212121; */
-  color: #7b7f99;
-  flex-direction: column;
 }
 body {
   background: #fff;
@@ -153,6 +144,26 @@ nav {
   background: transparent;
 }
 
+/* @media (max-width: 969px) {
+  section{
+    padding: 30px 0px;
+  }
+  section h1 {
+    font-size: 40px;
+  }
+  .card {
+    flex: 0 0 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+@media (max-width: 767px) {
+  
+  .card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+} */
+
 
 .card-list-container {
   padding-inline: 23px;
@@ -189,6 +200,43 @@ nav {
   cursor: pointer;
 }
 
+/* 
+
+@media only screen and (max-width: 1024px) {
+	header .nav-btn {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	header nav {
+		position: fixed;
+		top: -100vh;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: var(--mainColor);
+		transition: 1s;
+	}
+
+	header .responsive_nav {
+		transform: translateY(100vh);
+	}
+
+	nav .nav-close-btn {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+
+	nav a {
+		font-size: 1.5rem;
+	}
+} */
 
 .button-container {
   display: flex;
@@ -205,14 +253,35 @@ nav {
   margin: 15px;
 }
 
+/* .button {
+  flex: 0 0 calc(33.33% - 20px);
+  max-width: calc(33.33% - 20px);
+  width: 100%;
+  background: #ffffffcc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  transition: 0.3s;
+  box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
+
+  
+} */
 .button:hover {
   border-color: #4E5485;
   border-width: 4px;
   border-radius: 0 4px 0 32px;
   box-shadow: 5px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);
 }
-
-
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: #212121; */
+  color: #7b7f99;
+  flex-direction: column;
+}
 .create-form label{
   color: #4E5485 !important;
   font-family: 'Montserrat', sans-serif;
