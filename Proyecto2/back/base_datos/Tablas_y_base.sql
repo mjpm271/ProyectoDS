@@ -139,3 +139,32 @@ create table comentario(
 	foreign key (IDactividad) references actividad(IDactividad),
 	foreign key (IDcomentarioPadre) references comentario(IDcomentario)
 );
+
+create table notificacion (
+	IDnotificacion int not null identity(1,1),
+	Titulo varchar(max),
+	Fecha datetime,
+	Emisor int not null,
+	Contenido varchar(max),
+	IDactividad int
+	--IDchat int,
+	primary key (IDnotificacion),
+	foreign key (IDactividad) references actividad(IDactividad)
+);
+
+create table notificacionUsuario(
+	IDnotificacion int not null,
+	IDpersona int not null,
+	visto bit not null,
+	foreign key (IDnotificacion) references notificacion(IDnotificacion),
+	foreign key (IDpersona) references persona(IDpersona)
+);
+
+create table grupoUsuario( -- Es la tabla que habilita o deshabilita el recibir notificacion TODO:  Cambiar nombre a uno mas significativo
+	IDactividad int,
+	--IDchat int,
+	Habilitado bit not null,
+	IDpersona int not null
+	foreign key (IDpersona) references persona(IDpersona),
+	foreign key (IDactividad) references actividad(IDactividad)
+);

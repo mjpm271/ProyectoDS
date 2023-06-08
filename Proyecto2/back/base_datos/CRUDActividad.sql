@@ -186,3 +186,19 @@ begin
 	return @Result
 end;
 go
+
+create procedure ActivarActividad
+(
+	@IDactividad int,
+	@Result int output
+)
+as 
+begin 
+	update actividad
+	set IDtipoEstado = 2
+	where IDactividad = @IDactividad
+	set @Result = 0
+	select @Result
+	return @Result
+end;
+go
