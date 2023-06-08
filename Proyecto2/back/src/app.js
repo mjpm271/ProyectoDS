@@ -2,7 +2,7 @@ import express from 'express';
 import config from './config';
 import cors from "cors";
 import morgan from "morgan";
-import ejemploRoutes from './routes/ejemplo.route';
+// import ejemploRoutes from './routes/ejemplo.route';
 import AsistenteRoutes from './routes/asistenteAdmin.route';
 // import ProfesorRoutes from './routes/profesor.route';
 // import ProfesorCoordinador from './routes/profesorCoordinador.route'
@@ -29,7 +29,7 @@ app.use(express.json());
 //   });
 
  
-  app.use(ejemploRoutes);
+  // app.use(ejemploRoutes);
   app.use(AsistenteRoutes);
   // app.use(ProfesorRoutes);
   // app.use(ProfesorCoordinador);
