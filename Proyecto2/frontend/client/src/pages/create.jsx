@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function Create() {
@@ -68,7 +68,7 @@ export default function Create() {
  
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <Form className="create-form">
                 
                 <Form.Field>

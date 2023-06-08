@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState  } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Button,  Form } from 'semantic-ui-react'
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import Footer from '../components/Footer';
 
 export default function Login() {

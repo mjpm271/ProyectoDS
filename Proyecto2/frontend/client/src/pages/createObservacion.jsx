@@ -3,7 +3,7 @@ import React, { useState, useEffect  } from 'react';
 import { Button,  Form, Dropdown, DropdownItem, DropdownMenu, Label} from 'semantic-ui-react'
 import {  useParams , useLocation} from 'react-router-dom';
 import NavBar from '../components/NavBar2';
-import Navbar from "../components/Navbar"
+// import Navbar from "../components/Navbar"
 import DateTimePicker from 'react-datetime-picker'
 import Footer from '../components/Footer';
 import 'react-datetime-picker/dist/DateTimePicker.css';
