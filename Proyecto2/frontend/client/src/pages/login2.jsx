@@ -77,7 +77,7 @@ const Login = () => {
             setError('');
   
             // Redirigir a la página deseada después del inicio de sesión exitoso
-            navigate('/read'); // Ruta a la página de dashboard o la que deseeselse {
+            navigate('/InicioEstudiante',{ state: Persona }); // Ruta a la página de dashboard o la que deseeselse {
             // Error de inicio de sesión, el procedimiento almacenado devolvió un valor diferente de 0
           }
       } catch (error) {

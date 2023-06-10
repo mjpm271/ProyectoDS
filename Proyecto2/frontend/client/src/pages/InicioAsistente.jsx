@@ -57,36 +57,7 @@ export default function InicioAsistente() {
             </Link>
         </div>
         </div>
-            {/* <nav>
-          <ul>
-            <li>
-                
-            </li>
-            <li>
 
-            </li>
-            <li>
-
-            </li>
-            <li>
-                
-            </li>
-            
-            <li>
-                
-            </li>
-            <li>
-                
-            </li>
-            <li>
-
-            </li>
-           
-            <li>
-
-            </li>
-          </ul>
-        </nav> */}
         </section>
     </div>    
     );

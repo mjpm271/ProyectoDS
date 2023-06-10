@@ -16,6 +16,8 @@ function NavBar(props) {
 			setTipo(2)
 		}if(Persona1.IDtipo === 2 ){
 			setTipo(3)
+		}if(Persona1.IDtipo === 3 ){
+			setTipo(4)
 		}
 	})
 	const showNavbar = () => {
@@ -36,7 +38,7 @@ function NavBar(props) {
 				{Tipo===1 && <Link to={`/InicioCoordinador`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===2 && <Link to={`/IncioProfesor`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===3  && <Link to={`/InicioAsistente`}state= {props.Persona.Persona}>Inicio</Link>}
-				
+				{Tipo===4  && <Link to={`/InicioEstudiante`}state= {props.Persona.Persona}>Inicio</Link>}
 				<Link to={`/`}>Cerrar Sesion</Link>
 
 				

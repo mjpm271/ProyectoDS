@@ -51,6 +51,7 @@ import Comments from './comentarios/Comments';
 import VerActividad from './pages/verActividad';
 import InicioAsistente from './pages/InicioAsistente';
 import CargarEstudiantes from './pages/cargarEstudiantes';
+import InicioEstudiante from './pages/InicioEstudiante';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import InhabilitarProfesorEquipo from './pages/inhabilitarProfesor';
@@ -114,6 +115,9 @@ function App() {
         <Route path="/verPlan" element={<VerPlan />}/>
         <Route path="/modificarPlan/:IDPlan" element={<ModificarPlan />}/>
         <Route path="/definirResponsable" element={<DefinirResponsable />}/>
+
+        {/*Coordinador */}
+        <Route path="/InicioEstudiante" element={<InicioEstudiante />}/>
 
       </Routes>
     </BrowserRouter>

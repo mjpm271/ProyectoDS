@@ -11,6 +11,7 @@ export default function ModificarPerfil() {
    const Persona = location.state;
    const info = JSON.parse(Persona);
    const tipo = info.IDtipo;
+   
    const coordinador = info.Coordinador
    console.log("co", typeof coordinador)
   //  const info = JSON.parse(Persona)
@@ -118,21 +119,43 @@ export default function ModificarPerfil() {
         <Form className="create-form">
             <Form.Field>
             <label>NombreCompleto</label>
-            <input
+            {(tipo === 3 )?
+                <input
+                placeholder='NombreCompleto'
+                name="nombreCompleto"
+                readOnly = {true}
+                value={perfil.nombreCompleto || ''}
+                onChange={handleInputChange}
+            /> : <input
+            placeholder='NombreCompleto'
+            name="nombreCompleto"
+            value={perfil.nombreCompleto || ''}
+            onChange={handleInputChange}
+        />
+            }
+            {/* <input
                 placeholder='NombreCompleto'
                 name="nombreCompleto"
                 value={perfil.nombreCompleto || ''}
                 onChange={handleInputChange}
-            />
+            /> */}
             </Form.Field>
             <Form.Field>
             <label>Correo</label>
+            {(tipo === 3 )?
+            <input
+                placeholder='Correo'
+                name="correo"
+                readOnly = {true}
+                value={perfil.correo || ''}
+                onChange={handleInputChange}
+            />:
             <input
                 placeholder='Correo'
                 name="correo"
                 value={perfil.correo || ''}
                 onChange={handleInputChange}
-            />
+             />}
             </Form.Field>
             <Form.Field>
             <label>Telefono</label>
@@ -144,13 +167,14 @@ export default function ModificarPerfil() {
             />
             </Form.Field>
             <Form.Field>
-            <label>TelefonoOficina</label>
+            {(tipo !== 3 )? <label>TelefonoOficina</label> :null}
+            {(tipo !== 3 )?
             <input
                 placeholder='TelefonoOficina'
                 name="telefonoOficina"
                 value={perfil.telefonoOficina || ''}
                 onChange={handleInputChange}
-            />
+            />:null}
             </Form.Field>
             <Form.Field>
             <label>Foto</label>

@@ -195,7 +195,7 @@ export default function Actividad() {
               {Estado === 'CANCELADA' && <Link to='/verObservacion'state={Persona}><Button>Observaciones</Button></Link>}
           </Segment>
         </Grid.Column>
-        {tipo !== 2 && 
+        {(tipo !== 2 && tipo !==3 )&& 
         <Grid.Column>
           <Segment style={{ overflow: 'auto', maxHeight: '50vh' }}>
             <Button color='blue' onClick={Comentarios}>Ver Comentarios</Button>
