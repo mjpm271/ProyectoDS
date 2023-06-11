@@ -39,6 +39,7 @@ function NavBar(props) {
 				{Tipo===2 && <Link to={`/IncioProfesor`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===3  && <Link to={`/InicioAsistente`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===4  && <Link to={`/InicioEstudiante`}state= {props.Persona.Persona}>Inicio</Link>}
+				
 				<Link to={`/`}>Cerrar Sesion</Link>
 
 				

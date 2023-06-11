@@ -118,7 +118,7 @@ function App() {
 
         {/*Coordinador */}
         <Route path="/InicioEstudiante" element={<InicioEstudiante />}/>
-
+        
       </Routes>
     </BrowserRouter>
   )

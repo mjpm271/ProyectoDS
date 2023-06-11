@@ -53,14 +53,13 @@ export default function Actividad() {
         buscarResponsables();
         console.log(actividadInfo);
       });
-  }, []);
+  }, [actividadInfo]);
 
   useEffect(() => {
     definirModalidad();
     definirTipoActividad();
     definirEstado();
-    
-  }, [actividadInfo]);
+  }, [actividadInfo, activityId]);
 
   const buscarResponsables = () => {
 
@@ -73,7 +72,7 @@ export default function Actividad() {
             
         }).catch(error => {
             console.log(error)
-        });
+        })
 }
 
   const definirModalidad = () => {
