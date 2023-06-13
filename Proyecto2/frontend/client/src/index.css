@@ -10,7 +10,7 @@
 :root {
 	--mainColor: #4E5485;
 	--mainColorLight: #fff;
-	--secondaryColor: #db2b39;
+	--secondaryColor: #bdbdbd;
 	--textColor: #eee;
 }
 body {
@@ -268,7 +268,7 @@ nav {
   
 } */
 .button:hover {
-  border-color: #4E5485;
+  border-color: #636ebe;
   border-width: 4px;
   border-radius: 0 4px 0 32px;
   box-shadow: 5px 2.98256px 7.4564px rgba(0, 0, 0, 0.1);

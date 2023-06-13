@@ -1,6 +1,6 @@
 import NavBar from '../components/NavBar2';
 import { useLocation} from 'react-router-dom';
-export default function Notificacion() {
+export default function Configuracion() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;

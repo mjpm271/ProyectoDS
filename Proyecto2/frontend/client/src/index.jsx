@@ -52,9 +52,13 @@ import VerActividad from './pages/verActividad';
 import InicioAsistente from './pages/InicioAsistente';
 import CargarEstudiantes from './pages/cargarEstudiantes';
 import InicioEstudiante from './pages/InicioEstudiante';
+import InhabilitarProfesorEquipo from './pages/inhabilitarProfesor';
+import Notificacion from './pages/notificacion';
+import Notificaciones from './pages/notificaciones';
+import Configuracion from './pages/Configuracion';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import InhabilitarProfesorEquipo from './pages/inhabilitarProfesor';
+
 
 
 function App() {
@@ -118,6 +122,9 @@ function App() {
 
         {/*Coordinador */}
         <Route path="/InicioEstudiante" element={<InicioEstudiante />}/>
+        <Route path="/Notificaciones" element={<Notificaciones />}/>
+        <Route path="/Notificacion" element={<Notificacion />}/>
+        <Route path="/Configuracion" element={<Configuracion />}/>
         
       </Routes>
     </BrowserRouter>
