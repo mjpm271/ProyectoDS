@@ -56,6 +56,7 @@ import InhabilitarProfesorEquipo from './pages/inhabilitarProfesor';
 import Notificacion from './pages/notificacion';
 import Notificaciones from './pages/notificaciones';
 import Configuracion from './pages/Configuracion';
+import ActividadesPublicadas from './pages/actividadesPublicadas';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -125,6 +126,7 @@ function App() {
         <Route path="/Notificaciones" element={<Notificaciones />}/>
         <Route path="/Notificacion" element={<Notificacion />}/>
         <Route path="/Configuracion" element={<Configuracion />}/>
+        <Route path="/ActividadesPublicadas" element={<ActividadesPublicadas />}/>
         
       </Routes>
     </BrowserRouter>

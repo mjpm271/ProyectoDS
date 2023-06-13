@@ -27,6 +27,13 @@ body {
   margin: auto;
   padding:  20px;
 }
+
+.con{
+  max-width: 100%;
+
+  margin: auto;
+  padding:  20px;
+}
 section {
   min-height: 100vh;
   display: flex;

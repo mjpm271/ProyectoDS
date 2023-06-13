@@ -29,7 +29,7 @@ export default function InicioEstudiante() {
         <div className="button-container">
         <div className="column1">
             
-            <Link to={'/planList'}state= {Persona}>
+            <Link to={'/ActividadesPublicadas'}state= {Persona}>
                 <Button type='button' size='large'>Calendario de Actividades</Button>
             </Link>
             <Link to={'/SiguienteActividad'}state= {Persona}>

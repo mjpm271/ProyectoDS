@@ -93,6 +93,15 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadActividadesPublicadas
+AS
+BEGIN
+    SELECT * 
+	FROM actividad
+	WHERE IDtipoEstado = 2
+END;
+GO
+
 CREATE PROCEDURE UpdateActividad2
 (
     @IDactividad int,
