@@ -29,12 +29,13 @@ function NavBar(props) {
 		<h1></h1>
 			{/* <h3>LOGO</h3> */}
 			<nav ref={navRef}>
-				<Link to={`/modificarPerfil/${Persona1.Carnet}` }state= {props.Persona.Persona}>Perfil</Link>
-				<Link to={`/cambiarContra/${Persona1.Carnet}`}state= {props.Persona.Persona}>Cambiar Contraseña</Link>
 				{Tipo===1 && <Link to={`/InicioCoordinador`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===2 && <Link to={`/IncioProfesor`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===3  && <Link to={`/InicioAsistente`}state= {props.Persona.Persona}>Inicio</Link>}
 				{Tipo===4  && <Link to={`/InicioEstudiante`}state= {props.Persona.Persona}>Inicio</Link>}
+				<Link to={`/modificarPerfil/${Persona1.Carnet}` }state= {props.Persona.Persona}>Perfil</Link>
+				<Link to={`/cambiarContra/${Persona1.Carnet}`}state= {props.Persona.Persona}>Cambiar Contraseña</Link>
+				
 				<Link to={`/Notificaciones`}state= {props.Persona.Persona}>Notificaciones</Link>
 				<Link to={`/Configuracion`}state= {props.Persona.Persona}>Configuracion</Link>
 				<Link to={`/`}>Cerrar Sesion</Link>
