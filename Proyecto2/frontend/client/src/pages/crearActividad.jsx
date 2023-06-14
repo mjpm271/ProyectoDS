@@ -40,13 +40,13 @@ export default function CrearActividad() {
     const navigate = useNavigate();
     const showAlert = (Result) => {
       switch (Result){
-        case 1:
+        case 0:
           window.alert('Ese nombre ya esta en uso');
           break 
-        case 2:
+        case 1:
           window.alert('La fecha de publicacion tiene que ser menor a la de ejecucion');
           break 
-        case 3:
+        case 2:
           window.alert('la cantidad de recordatorios no puede ser mayor a la diferencia entre las fechas');
           break
         default:
@@ -81,6 +81,9 @@ export default function CrearActividad() {
             .then(response => {
               console.log(response.data[0][""]);
               showAlert(response.data[0][""])
+              if (response.data[0][""] === 3){
+                navigate('/definirResponsable',{ state: Persona } )
+              }
             }).catch(error => {
                 console.log(error)
             });
@@ -96,7 +99,6 @@ export default function CrearActividad() {
         //console.log(typeof Semana);
         //console.log(Fecha);
         //console.log(typeof Nombre);
-        navigate('/definirResponsable',{ state: Persona } )
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);

@@ -13,8 +13,8 @@ BEGIN
     INSERT INTO notificacion (Titulo, Fecha, Emisor,NombreEmisor, Contenido, IDactividad)
     VALUES (@Titulo, @Fecha, @Emisor,@NombreEmisor, @Contenido, @IDactividad)
 END
-
 GO
+
 --Drop procedure CreateNotificacion
 CREATE PROCEDURE dbo.ReadNotificacion
 (
