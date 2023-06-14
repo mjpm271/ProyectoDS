@@ -22,6 +22,16 @@ BEGIN
 		set @Result = 0
 		select @Result
 	END
+	ELSE IF  (DATEDIFF(day, @FechaPublicacion, @Fecha) < 0)
+	BEGIN 
+		set @Result = 1
+		select @Result
+	END
+	ELSE IF (DATEDIFF(day, @FechaPublicacion, @Fecha) < @Cantidaddiasrequeridos)
+	BEGIN 
+		set @Result = 2
+		select @Result
+	END
 	ELSE
 	BEGIN
 		INSERT INTO actividad(Nombre, Semana, Fecha,Cantidaddiasprevios, Cantidaddiasrequeridos, FechaPublicacion, Linkreunion, Afiche, IDmodalidad, IDtipoActividad, IDtipoAfiche, IDtipoEstado, IDplanTrabajo)
@@ -60,6 +70,18 @@ AS
 BEGIN
     SELECT * 
 	FROM actividad
+END;
+GO
+
+CREATE PROCEDURE ReadActividadesUpdate
+(
+	@Fecha date
+)
+AS
+BEGIN
+    SELECT IDactividad, IDtipoEstado
+	FROM actividad
+	WHERE DATEDIFF(day, Fecha, @Fecha) >= 0 and (IDtipoEstado = 1 or IDtipoEstado = 2)
 END;
 GO
 
@@ -196,16 +218,16 @@ begin
 end;
 go
 
-create procedure ActivarActividad
+create procedure ActivarActividades
 (
-	@IDactividad int,
+	@FechaSistema date,
 	@Result int output
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 2
-	where IDactividad = @IDactividad
+	where DATEDIFF(day, FechaPublicacion, @FechaSistema) >= 0
 	set @Result = 0
 	select @Result
 	return @Result
