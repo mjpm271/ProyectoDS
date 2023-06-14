@@ -45,7 +45,7 @@ export default function Notificacion() {
                         <List.Header >
                         {item.Titulo}
                         </List.Header>
-                        <ListDescription>{item.Fecha} - {item.Emisor}</ListDescription>
+                        <ListDescription>- {item.Fecha} - </ListDescription>
                         <List.Content>
                             {item.Contenido}
                             

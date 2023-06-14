@@ -30,7 +30,7 @@ export default function Notificaciones() {
 
 
   const getIconName = (Visto) => {
-    if (Visto === 1) {
+    if (Visto === false) {
       return 'bell';
     } else {
       return 'bell outline';
@@ -47,7 +47,7 @@ export default function Notificaciones() {
                 {items.map((item, index) => (
                     <List.Item key={index}>
                     <List.Icon
-                        name={getIconName(item.Visto)} // Cambiar por visto
+                        name={getIconName(item.visto)} // Cambiar por visto
                         size="large"
                         verticalAlign="middle"
                     />

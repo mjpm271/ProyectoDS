@@ -19,7 +19,26 @@ export default function Configuracion() {
     /* IMPORTANTE PASAR */
     const utcTime = {timeZone: 'CST' };
     const [Fecha, setFecha] = useState(new Date().toLocaleString('en-US', utcTime));
+    const postData = () => {
 
+        axios.post('http://localhost:4000/coordinador/CrearActividad', {
+
+          }
+          , {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+          )
+            .then(response => {
+              console.log(response.data);
+              
+            }).catch(error => {
+                console.log(error)
+            });
+
+
+    }
 
     return (
         <div>

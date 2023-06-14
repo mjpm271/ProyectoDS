@@ -144,7 +144,8 @@ create table notificacion (
 	IDnotificacion int not null identity(1,1),
 	Titulo varchar(max),
 	Fecha datetime,
-	Emisor int not null,
+	Emisor int,
+	NombreEmisor varchar(100),
 	Contenido varchar(max),
 	IDactividad int
 	--IDchat int,
@@ -152,6 +153,7 @@ create table notificacion (
 	foreign key (IDactividad) references actividad(IDactividad)
 );
 
+--drop table notificacion
 create table notificacionUsuario(
 	IDnotificacion int not null,
 	IDpersona int not null,
@@ -159,7 +161,7 @@ create table notificacionUsuario(
 	foreign key (IDnotificacion) references notificacion(IDnotificacion),
 	foreign key (IDpersona) references persona(IDpersona)
 );
-
+--drop table notificacionUsuario
 create table grupoUsuario( -- Es la tabla que habilita o deshabilita el recibir notificacion TODO:  Cambiar nombre a uno mas significativo
 	IDactividad int,
 	--IDchat int,

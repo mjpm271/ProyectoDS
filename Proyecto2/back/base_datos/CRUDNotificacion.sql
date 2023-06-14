@@ -3,18 +3,19 @@ CREATE PROCEDURE dbo.CreateNotificacion
     @Titulo VARCHAR(MAX),
     @Fecha DATETIME,
     @Emisor INT,
+	@NombreEmisor VARCHAR(100),
     @Contenido VARCHAR(MAX),
     @IDactividad INT
 	--@IDchat
 )
 AS
 BEGIN
-    INSERT INTO notificacion (Titulo, Fecha, Emisor, Contenido, IDactividad)
-    VALUES (@Titulo, @Fecha, @Emisor, @Contenido, @IDactividad)
+    INSERT INTO notificacion (Titulo, Fecha, Emisor,NombreEmisor, Contenido, IDactividad)
+    VALUES (@Titulo, @Fecha, @Emisor,@NombreEmisor, @Contenido, @IDactividad)
 END
 
 GO
-
+--Drop procedure CreateNotificacion
 CREATE PROCEDURE dbo.ReadNotificacion
 (
     @IDnotificacion INT
