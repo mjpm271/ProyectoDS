@@ -66,3 +66,13 @@ BEGIN
     DELETE FROM notificacion
     WHERE IDnotificacion = @IDnotificacion
 END
+GO
+
+CREATE PROCEDURE ReadUltimaNotificacion
+AS
+BEGIN
+    SELECT top 1 * 
+	FROM Notificacion
+	ORDER BY IDnotificacion DESC
+END;
+GO

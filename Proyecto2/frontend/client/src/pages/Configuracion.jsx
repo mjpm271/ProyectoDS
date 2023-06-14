@@ -32,11 +32,12 @@ export default function Configuracion() {
                         <Segment>
                         <label>Fecha del Sistema </label>
                         <p></p>
-                        <DateTimePicker onChange={setFecha} value={Fecha} />
+                        <DatePicker onChange={setFecha} value={Fecha} />
                         </Segment>
                     </Grid.Column>
                     </Grid.Row>
                 </Grid>    
+                <Button onClick={postData} type='Submit'>Siguiente</Button>
         </div>    
         </div> 
     )

@@ -70,6 +70,32 @@ export const VerNotificaciones = async (req, res) => {
   
     }  
 
+export const VerNotificacionesUsuario = async (req, res) => {
+    
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const { IDpersona} = req.body
+    console.log('valores:', req.body)
+    if (!IDpersona) {
+        console.log('here')
+        return res.sendStatus(400, {msg: 'Bad Request. Please fill all fields'})
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDpersona', sql.Int, IDpersona)
+            .execute('ReadNotificacionesUsuarioPorTitulo')
+        console.log(result)
+        res.json(result.recordset)
+        
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+    
+    }   
+
 export const VerNotificacion = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene

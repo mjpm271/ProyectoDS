@@ -124,7 +124,7 @@ function App() {
         {/*Coordinador */}
         <Route path="/InicioEstudiante" element={<InicioEstudiante />}/>
         <Route path="/Notificaciones" element={<Notificaciones />}/>
-        <Route path="/Notificacion" element={<Notificacion />}/>
+        <Route path="/Notificacion/:IDnotificacion" element={<Notificacion />}/>
         <Route path="/Configuracion" element={<Configuracion />}/>
         <Route path="/ActividadesPublicadas" element={<ActividadesPublicadas />}/>
         

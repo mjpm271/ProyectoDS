@@ -13,10 +13,11 @@ GO
 CREATE PROCEDURE dbo.ReadNotificacionesUsuarioPorTitulo
 (
     @IDpersona INT
+
 )
 AS
 BEGIN
-    SELECT N.Titulo
+    SELECT N.Titulo , N.IDnotificacion
     FROM notificacionUsuario as NU 
     INNER JOIN notificacion as N
     ON NU.IDnotificacion = N.IDnotificacion

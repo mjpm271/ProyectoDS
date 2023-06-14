@@ -233,3 +233,28 @@ begin
 	return @Result
 end;
 go
+
+
+create procedure NumeroRecordatorio
+	@FechaSistema DATE,
+	@FechaActividad DATETIME,
+	@DiasRequeridos INT,
+	@Result INT OUTPUT --Numero de Recordatorio
+AS
+BEGIN
+	DECLARE @FechaPrimerRecordatorio DATE
+	SET @FechaPrimerRecordatorio =  CONVERT(DATE, DATEADD(DAY, -@DiasRequeridos, @FechaActividad))
+	--Se determina si la fecha de sistema corresponde a una de las fechas para recordatorio
+	IF @FechaSistema >= @FechaPrimerRecordatorio AND @FechaSistema <= CONVERT(DATE,@FechaActividad)
+		--Si la fecha coincide con una fecha de recordatorio entonces:
+			--Determina numero de recordatorio a notificar (X)
+		SET @Result = DATEDIFF(day, @FechaSistema, @FechaActividad) 
+		
+	ELSE
+		
+		SET @Result = 0
+	
+	SELECT @Result 
+	RETURN @Result
+END
+GO
