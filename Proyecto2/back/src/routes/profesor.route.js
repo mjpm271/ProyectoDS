@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { VerPlanTrabajo , VerPlanesTrabajo ,VerActividad , Comentar, VerProfesorPerfil, ModificarProfesorPerfil, VerActividadxPlan, VerComentariosActividad, VerEstudiantesAlf, VerEstudianteSede, VerEstudianteCarnet, VerComentariosRespuesta} from "../controllers/profesor.controller"
+import { VerPlanTrabajo, VerPlanesTrabajo, VerActividad, Comentar, VerProfesorPerfil, ModificarProfesorPerfil, VerActividadxPlan, VerComentariosActividad, VerEstudiantesAlf, VerEstudianteSede, VerPersonaPorID, VerEstudianteCarnet, VerComentariosRespuesta} from "../controllers/profesor.controller"
 
 const router = Router()
 
@@ -14,6 +14,7 @@ router.post('/VerPerfil',VerProfesorPerfil)
 router.put('/ModificarProfesorPerfil',ModificarProfesorPerfil)
 router.get('/VerEstudiantesAlf',VerEstudiantesAlf)
 router.post('/VerEstudiantesSede',VerEstudianteSede)
-router.get('/VerEstudianteCarnet',VerEstudianteCarnet)
+router.get('/VerEstudianteCarnet', VerEstudianteCarnet)
+router.post('/VerPersonaPorID', VerPersonaPorID)
 
 export default router

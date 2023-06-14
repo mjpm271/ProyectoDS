@@ -45,6 +45,7 @@ import VerPlan from './pages/verPlan';
 import ModificarPlan from './pages/modificarPlan';
 import DefinirResponsable from './pages/definirResponsable';
 import VerEstudiantes from './pages/verEstudiantes';
+import IniciarChat from './pages/IniciarChat';
 import ModificarEstudiante from './pages/modificarEstudiantes';
 import EjemploComentario from './pages/ejemploComentarios';
 import Comments from './comentarios/Comments';
@@ -103,6 +104,7 @@ function App() {
         <Route path="/crearPlan" element={<CrearPlan />} /> 
         <Route path="/verEstudiante" element={<VerEstudiantes />}/>
         <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
+        <Route path="/IniciarChat" element={<IniciarChat />} />
 
        {/*Coordinador */}
        <Route path="/verActividad" element={<VerActividad />}/>

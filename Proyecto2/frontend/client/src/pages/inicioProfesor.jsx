@@ -37,6 +37,9 @@ export default function InicioProfesor() {
                 <Link to={'/planList'}state= {Persona}>
                     <Button type='button' size='large'>Ver Planes de Trabajo</Button>
                 </Link>
+                <Link to={'/IniciarChat'} state={Persona}>
+                     <Button type='button' size='large'>Mensajeria instantanea</Button>
+                </Link>
             </div>
         </div>    
 
