@@ -79,7 +79,7 @@ export default function CrearActividad() {
           }
           )
             .then(response => {
-              console.log(response.data);
+              //console.log(response.data);
               showAlert(0)
             }).catch(error => {
                 console.log(error)
@@ -93,10 +93,10 @@ export default function CrearActividad() {
         // })
 
         //axios.post(`http://localhost:4000/ejemplo/asistente/CrearActividad`,{ID,Semana,Fecha,Cantidaddiasprevios,Cantidaddiasrequeridos,Fechapublicacion,IDmodalidad,IDtipoActividad})
-        console.log(typeof Semana);
-        console.log(Fecha);
-        console.log(typeof Nombre);
-        navigate('/definirResponsable',{ state: Persona } )
+        //console.log(typeof Semana);
+        //console.log(Fecha);
+        //console.log(typeof Nombre);
+        //navigate('/definirResponsable',{ state: Persona } )
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -110,7 +110,7 @@ export default function CrearActividad() {
         setIDtipoActividad(selectedValuesConst[1]);
         setIDtipoAfiche(selectedValuesConst[2]);
         //setIDtipoEstado(selectedValuesConst[3]);
-        console.log(selectedValuesConst);
+        //console.log(selectedValuesConst);
     }, [selectedValues]);
 
     const handleDropdownChange = (dropdownId, value) => {

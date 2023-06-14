@@ -189,14 +189,36 @@ export const CrearActividad = async (req, res) => {
             .input('IDplanTrabajo', sql.Int, IDplanTrabajo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .output('Result',sql.Int)
             .execute('CreateActividad')
-        console.log(result.output)
-        console.log(result)
+        //console.log(result.output)
+        //console.log(result)
+        const ultima = await pool
+            .request()
+            .execute('ReadUltimaActividad')
+        LlenarGrupoUsuario(ultima.recordset[0].IDactividad, res)
+        //console.log(ultima.recordset[0].IDactividad)
     } catch (err) {
         res.sendStatus(500, err.message)
     }
 
 }
 
+const LlenarGrupoUsuario = async function(IDactividad, res){
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');   
+    try{
+        const pool = await getConnection()
+        const cantidad = await pool
+            .request()
+            .execute('ReadPersonasSoloID')  
+        console.log(cantidad.recordset)
+        //const jsonObject = JSON.parse(cantidad)
+        /*jsonObject.arrayName.forEach(item => {
+            cosnole.log(item)
+        })*/
+    }catch (err){
+        res.sendStatus(500, err.message)
+    }
+}
 // Hace el update a la actividad realizada 
 export const RealizarActividad = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
@@ -524,7 +546,7 @@ export const EliminarActividad = async (req, res) => {
             .input('IDactividad', sql.Int, IDactividad)
             .execute('DeleteActividad')
         console.log(result)
-        res.json(result.recordset)
+        res.json(result.recordset.IDactividad)
         
     } catch (err) {
         res.sendStatus(500, err.message)

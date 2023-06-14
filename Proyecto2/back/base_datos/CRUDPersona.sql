@@ -45,6 +45,14 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadPersonasSoloID
+AS
+BEGIN
+    SELECT IDpersona
+	FROM persona;
+END;
+GO
+
 CREATE PROCEDURE ReadPersonaPorID
     @Carnet varchar(64)
 AS

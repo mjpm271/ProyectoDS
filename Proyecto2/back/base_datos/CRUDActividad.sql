@@ -88,7 +88,7 @@ GO
 CREATE PROCEDURE ReadUltimaActividad
 AS
 BEGIN
-    SELECT top 1 * 
+    SELECT top 1 IDactividad
 	FROM actividad
 	ORDER BY IDactividad DESC
 END;
