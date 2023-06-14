@@ -210,11 +210,11 @@ const LlenarGrupoUsuario = async function(IDactividad, res){
         const cantidad = await pool
             .request()
             .execute('ReadPersonasSoloID')  
-        console.log(cantidad.recordset)
+        console.log(cantidad)
         //const jsonObject = JSON.parse(cantidad)
-        /*jsonObject.arrayName.forEach(item => {
+        cantidad.forEach(item => {
             cosnole.log(item)
-        })*/
+        })
     }catch (err){
         res.sendStatus(500, err.message)
     }
