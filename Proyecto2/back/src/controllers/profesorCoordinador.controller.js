@@ -211,7 +211,8 @@ const LlenarGrupoUsuario = async function(IDactividad, res){
             .request()
             .execute('ReadPersonasSoloID')  
         console.log(cantidad.recordset)
-        //const jsonObject = JSON.parse(cantidad)
+        const jsonObject = JSON.parse(res.json(cantidad.recordset))
+        console.log(jsonObject)
         /*jsonObject.arrayName.forEach(item => {
             cosnole.log(item)
         })*/
