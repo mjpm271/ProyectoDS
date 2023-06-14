@@ -194,7 +194,7 @@ export const CrearActividad = async (req, res) => {
         const ultima = await pool
             .request()
             .execute('ReadUltimaActividad')
-        LlenarGrupoUsuario(ultima.recordset[0].IDactividad, res)
+        LlenarGrupoUsuario(ultima.recordset[0].IDactividad)
         //console.log(ultima.recordset[0].IDactividad)
     } catch (err) {
         res.sendStatus(500, err.message)
@@ -202,19 +202,17 @@ export const CrearActividad = async (req, res) => {
 
 }
 
-const LlenarGrupoUsuario = async function(IDactividad, res){
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
-    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');   
+const LlenarGrupoUsuario = async function(IDactividad){
     try{
         const pool = await getConnection()
         const cantidad = await pool
             .request()
             .execute('ReadPersonasSoloID')  
-        console.log(cantidad)
-        //const jsonObject = JSON.parse(cantidad)
-        cantidad.forEach(item => {
-            cosnole.log(item)
+        console.log(cantidad.recordset)
+        cantidad.recordset.forEach(item =>{
+            console.log(item);
         })
+        //console.log(jsonObject)
     }catch (err){
         res.sendStatus(500, err.message)
     }
