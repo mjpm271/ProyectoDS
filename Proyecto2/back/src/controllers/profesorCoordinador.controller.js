@@ -189,13 +189,17 @@ export const CrearActividad = async (req, res) => {
             .input('IDplanTrabajo', sql.Int, IDplanTrabajo) //Preguntar si sería bueno setear desde el inicio a 1 como profesor
             .output('Result',sql.Int)
             .execute('CreateActividad')
+        res.json(result.recordset)
         //console.log(result.output)
         //console.log(result)
         // Obtiene la ultima actividad
-        const ultima = await pool
-            .request()
-            .execute('ReadUltimaActividad')
-        LlenarGrupoUsuario(ultima.recordset[0].IDactividad)
+        console.log(result.output.Result)
+        if (result.output.Result === 3){
+            const ultima = await pool
+                .request()
+                .execute('ReadUltimaActividad')
+            LlenarGrupoUsuario(ultima.recordset[0].IDactividad)
+        }
         //console.log(ultima.recordset[0].IDactividad)
     } catch (err) {
         res.sendStatus(500, err.message)

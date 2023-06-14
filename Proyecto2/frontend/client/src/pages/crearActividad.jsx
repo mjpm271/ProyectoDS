@@ -41,16 +41,16 @@ export default function CrearActividad() {
     const showAlert = (Result) => {
       switch (Result){
         case 1:
-          window.alert('Seleccione alguien que no sea Coordinador');
+          window.alert('Ese nombre ya esta en uso');
           break 
         case 2:
-          window.alert('El equipo ya se encuentra completo');
+          window.alert('La fecha de publicacion tiene que ser menor a la de ejecucion');
           break 
         case 3:
-          window.alert('Inserte de Sede Distinta');
+          window.alert('la cantidad de recordatorios no puede ser mayor a la diferencia entre las fechas');
           break
         default:
-          window.alert('ha insertado al profesor en el equipo')
+          window.alert('ha creado la actividad')
           
     }};
 
@@ -79,8 +79,8 @@ export default function CrearActividad() {
           }
           )
             .then(response => {
-              //console.log(response.data);
-              showAlert(0)
+              console.log(response.data[0][""]);
+              showAlert(response.data[0][""])
             }).catch(error => {
                 console.log(error)
             });
@@ -96,7 +96,7 @@ export default function CrearActividad() {
         //console.log(typeof Semana);
         //console.log(Fecha);
         //console.log(typeof Nombre);
-        //navigate('/definirResponsable',{ state: Persona } )
+        navigate('/definirResponsable',{ state: Persona } )
     }
    const togglePopup = () => {
     setIsOpen(!isOpen);
