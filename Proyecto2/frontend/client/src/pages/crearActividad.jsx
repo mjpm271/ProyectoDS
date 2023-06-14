@@ -196,6 +196,7 @@ export default function CrearActividad() {
                     <label>Afiche</label>
                     <input placeholder='Afiche' onChange={(e) => setAfiche(e.target.value)}/>
                 </Form.Field>
+                <Form.Field>
                 <label htmlFor="Modalidad">Modalidad:</label>
                 <select
                     id="Modalidad"
@@ -207,6 +208,9 @@ export default function CrearActividad() {
                             {option.label}
                         </option>
                     ))}
+                </select>
+                </Form.Field>
+                <Form.Field>
                 <label htmlFor="TipoActividad">Tipo Actividad:</label>
                 <select
                     id="TipoActividad"
@@ -219,7 +223,8 @@ export default function CrearActividad() {
                         </option>
                     ))}
                 </select>
-                </select>
+                </Form.Field>
+                <Form.Field>
                 <label htmlFor="TipoAfiche">Tipo Afiche:</label>
                 <select
                     id="TipoAfiche"
@@ -232,6 +237,7 @@ export default function CrearActividad() {
                         </option>
                     ))}
                 </select>
+                </Form.Field>
                 <Form.Field>
                     <label>IDplanTrabajo</label>
                     <input placeholder='IDplanTrabajo' onChange={(e) => setIDplanTrabajo(parseInt(e.target.value))}/>

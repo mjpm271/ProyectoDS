@@ -79,7 +79,7 @@ CREATE PROCEDURE ReadActividadesUpdate
 )
 AS
 BEGIN
-    SELECT IDactividad, IDtipoEstado
+    SELECT IDactividad, IDtipoEstado, Fecha, Cantidaddiasrequeridos
 	FROM actividad
 	WHERE DATEDIFF(day, Fecha, @Fecha) >= 0 and (IDtipoEstado = 1 or IDtipoEstado = 2)
 END;

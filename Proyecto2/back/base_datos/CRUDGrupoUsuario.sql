@@ -25,6 +25,18 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE dbo.ReadGrupoUsuarioporID
+(
+    @IDactividad INT
+)
+AS
+BEGIN
+    SELECT IDpersona
+    FROM grupoUsuario
+    WHERE IDactividad = @IDactividad AND Habilitado = 1
+END
+GO
+
 CREATE PROCEDURE dbo.ActivarGrupoUsuario
 (
     @IDactividad INT,
