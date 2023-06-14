@@ -252,7 +252,7 @@ BEGIN
 		
 	ELSE
 		
-		SET @Result = 0
+		SET @Result = -1
 	
 	SELECT @Result 
 	RETURN @Result

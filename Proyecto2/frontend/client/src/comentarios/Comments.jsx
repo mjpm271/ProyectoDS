@@ -110,7 +110,7 @@ const Comments = ({ commentsUrl, IDpersona, IDactividad }) => {
 
   useEffect(() => {
     fetchComments()
-    getCommentsApi.then((data) => {
+    getCommentsApi().then((data) => {
       setBackendComments(data);
     });
   }, []);
