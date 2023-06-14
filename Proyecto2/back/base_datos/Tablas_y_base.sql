@@ -170,3 +170,29 @@ create table grupoUsuario( -- Es la tabla que habilita o deshabilita el recibir 
 	foreign key (IDpersona) references persona(IDpersona),
 	foreign key (IDactividad) references actividad(IDactividad)
 );
+--Tabla de Chats
+CREATE TABLE Chats (
+  IDchat int not null IDENTITY(1,1),
+  nombre VARCHAR(255) NOT NULL
+  primary key (IDchat)
+);
+
+CREATE TABLE ParticipantesChat (
+  IDParticipantesChat int not null IDENTITY(1,1),
+  IDchats INT NOT NULL,
+  IDpersona INT NOT NULL,
+  primary key (IDParticipantesChat),
+  FOREIGN KEY (IDchats) REFERENCES Chats(IDchat),
+  FOREIGN KEY (IDpersona) REFERENCES persona(IDpersona)
+);
+
+CREATE TABLE Mensajes (
+  IDMensajes int not null,
+  IDchat INT NOT NULL,
+  Emisor INT NOT NULL,
+  Mensaje TEXT NOT NULL,
+  Fecha datetime,
+  primary key (IDMensajes),
+  FOREIGN KEY (IDchat) REFERENCES Chats(IDchat),
+  FOREIGN KEY (Emisor) REFERENCES persona(IDpersona)
+);
