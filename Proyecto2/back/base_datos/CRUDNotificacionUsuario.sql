@@ -77,3 +77,27 @@ BEGIN
 	select @Result
 	return @Result
 END
+GO
+
+CREATE PROCEDURE dbo.DeleteBuzon
+(
+    @IDpersona INT
+)
+AS
+BEGIN
+    DELETE FROM notificacionUsuario
+    WHERE IDpersona = @IDpersona
+END
+GO
+
+CREATE PROCEDURE dbo.DeleteNotificacionUsuarioID
+(
+    @IDnotificacion INT,
+	@IDpersona INT
+)
+AS
+BEGIN
+    DELETE FROM notificacionUsuario
+    WHERE IDnotificacion = @IDnotificacion AND IDpersona = @IDpersona
+END
+GO
