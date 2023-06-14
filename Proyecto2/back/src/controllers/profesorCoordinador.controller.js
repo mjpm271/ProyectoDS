@@ -191,6 +191,7 @@ export const CrearActividad = async (req, res) => {
             .execute('CreateActividad')
         //console.log(result.output)
         //console.log(result)
+        // Obtiene la ultima actividad
         const ultima = await pool
             .request()
             .execute('ReadUltimaActividad')
@@ -202,6 +203,7 @@ export const CrearActividad = async (req, res) => {
 
 }
 
+// Llena el grupo usuario con el id de la ultima actividad y de los usarios 
 const LlenarGrupoUsuario = async function(IDactividad){
     try{
         const pool = await getConnection()
@@ -209,10 +211,17 @@ const LlenarGrupoUsuario = async function(IDactividad){
             .request()
             .execute('ReadPersonasSoloID')  
         console.log(cantidad.recordset)
-        cantidad.recordset.forEach(item =>{
+        // Forma de hacer un for para tener cada persona
+        for (const item of cantidad.recordset){
+            const create = await pool
+                .request()
+                .input('IDactividad', sql.Int, IDactividad)
+                .input('Habilitado', sql.Bit, true)
+                .input('IDpersona', sql.Int, item.IDpersona)
+                .execute('CreateGrupoUsuario')
             console.log(item);
-        })
         //console.log(jsonObject)
+        }
     }catch (err){
         res.sendStatus(500, err.message)
     }
