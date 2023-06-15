@@ -131,7 +131,6 @@ go
 
 CREATE PROCEDURE CreateMensaje
 (
-    @IDMensajes int,
     @IDchat int,
     @CarnetEmisor int,
     @Mensaje text,
@@ -141,8 +140,8 @@ AS
 BEGIN
 	declare @IDpersona as int 
 	set @IDpersona = (select top 1 IDpersona from persona where Carnet = @CarnetEmisor);
-    INSERT INTO Mensajes (IDMensajes, IDchat, Emisor, Mensaje, Fecha)
-    VALUES (@IDMensajes, @IDchat, @IDpersona, @Mensaje, @Fecha);
+    INSERT INTO Mensajes (IDchat, Emisor, Mensaje, Fecha)
+    VALUES ( @IDchat, @IDpersona, @Mensaje, @Fecha);
 END;
 Go
 
