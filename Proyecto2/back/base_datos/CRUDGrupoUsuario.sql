@@ -70,3 +70,17 @@ BEGIN
 	select @Result
 	return @Result
 END
+GO
+
+CREATE PROCEDURE dbo.ReadHabilitadoGrupoUsuario
+(
+    @IDactividad INT,
+    @IDpersona INT
+)
+AS
+BEGIN
+    SELECT Habilitado
+    FROM grupoUsuario
+    WHERE IDactividad = @IDactividad AND IDpersona = @IDpersona
+END
+GO
