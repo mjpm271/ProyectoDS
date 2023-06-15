@@ -15,6 +15,10 @@ Enlace de acceso : https://docs.google.com/document/d/11u25nmgTEFXUJUhwhHgtjGMZM
 
 Enlace de acceso : https://docs.google.com/document/d/1y4x6MdS4Lko5u9519i3nYDw_TpropayZdieUk5FI-Fk/edit?usp=sharing
 
+### Documentación Proyecto Fase III
+
+Enlace de acceso : https://docs.google.com/document/d/1SrKIvPXeD730JAw24fUzplyqe1DzNZfWUBA-8dNMnzY/edit?usp=sharing
+
 ### Prototipo
 
 Enlace de acceso : https://www.figma.com/file/4yvAgIu0X93hqsqoyQ8VMQ/Plataforma--Dise%C3%B1o?node-id=1%3A12&t=IUrKzElxReZwGiXB-1
