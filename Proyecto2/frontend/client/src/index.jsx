@@ -59,6 +59,7 @@ import Notificaciones from './pages/notificaciones';
 import Configuracion from './pages/Configuracion';
 import ActividadesPublicadas from './pages/actividadesPublicadas';
 import Chats from './pages/chats';
+import Chat from './pages/chat';
 import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -107,6 +108,7 @@ function App() {
         <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
         <Route path="/IniciarChat" element={<IniciarChat />} />
         <Route path="/Chats" element={<Chats />} />
+        <Route path="/Chat" element={<Chat />} />
 
        {/*Coordinador */}
        <Route path="/verActividad" element={<VerActividad />}/>
