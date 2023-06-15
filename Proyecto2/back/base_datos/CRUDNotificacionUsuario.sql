@@ -17,7 +17,7 @@ CREATE PROCEDURE dbo.ReadNotificacionesUsuarioPorTitulo
 )
 AS
 BEGIN
-    SELECT N.Titulo , N.IDnotificacion
+    SELECT N.Titulo , N.IDnotificacion, NU.visto
     FROM notificacionUsuario as NU 
     INNER JOIN notificacion as N
     ON NU.IDnotificacion = N.IDnotificacion
@@ -27,7 +27,7 @@ BEGIN
     ORDER BY N.Fecha DESC
 END
 GO
-
+--DROP PROCEDURE ReadNotificacionesUsuarioPorTitulo
 CREATE PROCEDURE dbo.ReadNotificacionesUsuario
 (
     @IDpersona INT
