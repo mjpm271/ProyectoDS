@@ -9,7 +9,6 @@ function Chat() {
     return (
         <div>
             <h1>Chat</h1>
-            <ChatBoxReceiver user='{IDtipo:1, name:}'></ChatBoxReceiver>
         </div>
     )
 }

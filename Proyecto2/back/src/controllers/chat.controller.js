@@ -37,6 +37,16 @@ export const LeerSalasChat = async (req, res) => {
     }
 }
 
+export const LeerSalasChatPorID = async (req, res) => {
+    try {
+        const pool = await getConnection()
+        const result = await pool
+            .request()
+            .execute()
+            
+    }
+}
+
 export const ActualizarSalaChat = async (req, res) => {
     const {IDSalaChat, NombreChat} = req.body
     console.log('Chatroom:', IDSalaChat, 'New name:', NombreChat)
@@ -82,6 +92,5 @@ export const EnviarMensaje = async (req, res) => {
     } catch (err) {
         res.sendStatus(500, err.message)
     }
-
-
 }
+
