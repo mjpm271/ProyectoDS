@@ -250,12 +250,13 @@ BEGIN
 	IF @FechaSistema >= @FechaPrimerRecordatorio AND @FechaSistema <= CONVERT(DATE,@FechaActividad)
 		--Si la fecha coincide con una fecha de recordatorio entonces:
 			--Determina numero de recordatorio a notificar (X)
+		BEGIN
 		SET @Result = DATEDIFF(day, @FechaSistema, @FechaActividad) 
-		
+		END
 	ELSE
-		
+		BEGIN
 		SET @Result = -1
-	
+		END
 	SELECT @Result 
 	RETURN @Result
 END
