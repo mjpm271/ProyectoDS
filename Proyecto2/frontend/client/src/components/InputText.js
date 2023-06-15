@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const styles = {
     button: {
@@ -41,7 +41,7 @@ export default function InputText({addMessage}) {
             <textarea
                 style={styles.textarea}
                 rows={6}
-                placeholder="Write something..."
+                placeholder="Escribir Mensaje..."
                 value={message}
                 onChange={e => setMessage(e.target.value)}
             >
@@ -50,7 +50,7 @@ export default function InputText({addMessage}) {
                 onClick={() => addAMessage()}
                 style={styles.button}
             >
-                ENTER
+                ENVIAR
             </button>
         </div>
     )
