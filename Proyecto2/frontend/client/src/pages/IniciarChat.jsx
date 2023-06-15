@@ -57,7 +57,7 @@ export default function IniciarChat() {
         axios.post(`http://localhost:4000/profesor/CrearSala`, { numSala:numSala ,SalaChat: SalaChat })
             .then(response => {
                 // console.log(response.data)
-               {AgregarAlChat()}
+               AgregarAlChat()
                 
             }).catch(error => {
                 alert('Un error ha ocurrido');
