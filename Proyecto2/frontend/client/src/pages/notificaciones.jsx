@@ -1,12 +1,13 @@
 import NavBar from '../components/NavBar2';
-import { useLocation, Link} from 'react-router-dom';
+import { useLocation, Link, useNavigate} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { List } from 'semantic-ui-react';
+import { List, Button } from 'semantic-ui-react';
 
 export default function Notificaciones() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
+    const navigate = useNavigate();
     const Persona = location.state;
     const info = JSON.parse(Persona)
     const id = info.IDpersona
@@ -26,8 +27,26 @@ export default function Notificaciones() {
                 console.log(response.data)
                 setitems(response.data);
             })
-    }, []);
+    }, [id]);
 
+const postData = () => {
+
+        axios.post('http://localhost:4000/notificacion/BorrarBuzon', {
+          IDpersona:id
+
+          }
+          , {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+          )
+            .then(response => {
+              console.log('entre');
+            }).catch(error => {
+                console.log(error)
+            });
+}
 
   const getIconName = (Visto) => {
     if (Visto === false) {
@@ -60,6 +79,7 @@ export default function Notificaciones() {
                     </List.Item>
                 ))}
                 </List>
+                <Button onClick={postData} type='Submit'>Borrar Buzon</Button>
             </div>
     </div>  
   );
