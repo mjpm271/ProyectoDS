@@ -220,16 +220,16 @@ begin
 end;
 go
 
-create procedure ActivarActividades
+create procedure ActivarActividad
 (
-	@FechaSistema date,
+	@IDactividad int,
 	@Result int output
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 2
-	where DATEDIFF(day, FechaPublicacion, @FechaSistema) >= 0
+	where IDactividad = @IDactividad and IDtipoEstado = 1
 	set @Result = 0
 	select @Result
 	return @Result
