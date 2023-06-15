@@ -1,10 +1,11 @@
-use proyecto;
-CREATE  PROCEDURE CreateChats
+
+CREATE PROCEDURE CreateChats
+    @IDchat int,
     @nombre varchar(255)
 AS
 BEGIN
-    INSERT INTO Chats (nombre)
-    VALUES (@nombre)
+    INSERT INTO Chats (IDchat, nombre)
+    VALUES (@IDchat, @nombre)
 END;
 go
 
@@ -31,17 +32,6 @@ BEGIN
     SELECT * FROM Chats WHERE IDchat = @IDchat;
 END;
 go
-
-CREATE PROCEDURE ReadChatPorNombre
-(
-    @nombre varchar(255)
-)
-AS
-BEGIN
-    SELECT * FROM Chats WHERE nombre = @nombre;
-END;
-go
-
 
 CREATE PROCEDURE UpdateChat
 (
@@ -143,16 +133,6 @@ BEGIN
     SELECT * FROM Mensajes;
 END;
 go
-
-CREATE PROCEDURE ReadMensajeByID
-(
-    @IDMensajes int
-)
-AS
-BEGIN
-    SELECT * FROM Mensajes WHERE IDMensajes = @IDMensajes;
-END;
-Go
 
 CREATE PROCEDURE UpdateMensaje
 (
