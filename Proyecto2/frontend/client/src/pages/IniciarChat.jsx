@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form, Table, Message } from 'semantic-ui-react'
 import { useLocation, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar2';
+import { Alert } from 'bootstrap';
 export default function IniciarChat() {
     const location = useLocation();
     const Persona = location.state;
@@ -12,7 +13,9 @@ export default function IniciarChat() {
     const [items, setItems] = useState([]);
     const [error, setError] = useState('');
     const [Carnet, setCarnet] = useState(0);
+    const [numSalaChat, setnumSalaChat] = useState(0);
     const [SalaChat, setSalaChat] = useState(0);
+    const [IDAgregado, setIDAgregado] = useState(0);
     const VerPersonaID = () => {
         setError('')
         axios.post(`http://localhost:4000/profesor/VerPersonaPorID`, { Carnet: Carnet })
@@ -27,7 +30,37 @@ export default function IniciarChat() {
             }).catch(error => {
                 console.log(error)
             });
-    }
+    };
+    const CrearSala = () => {
+        setError('')
+        axios.post(`http://localhost:4000/profesor/CrearSala`, { SalaChat: SalaChat })
+            .then(response => {
+                // console.log(response.data)
+                alert('Agregado con Exito');
+                
+            }).catch(error => {
+                console.log(error)
+            });
+    };
+
+    const AgregarAlChat = () => {
+        setError('')
+        axios.post(`http://localhost:4000/profesor/VerPersonaPorID`, { Carnet: Carnet })
+            .then(response => {
+                const items = response.data
+                setItems(items)
+                // console.log(response.data)
+                if (response.data.length === 0) {
+                    setError('No existe ')
+                }
+                else {
+                    alert('Agregado con Exito');
+                }
+            }).catch(error => {
+                console.log(error)
+            });
+    };
+
     return (
         <div>
             <NavBar Persona={{ Persona }} />
@@ -63,7 +96,7 @@ export default function IniciarChat() {
                                 <Table.HeaderCell>Telefono</Table.HeaderCell>
                                 <Table.HeaderCell>Sede</Table.HeaderCell>
 
-                                <Table.HeaderCell>Modificar</Table.HeaderCell>
+                                <Table.HeaderCell>Agregar</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -77,11 +110,14 @@ export default function IniciarChat() {
                                         <Table.Cell>{item.Correo}</Table.Cell>
                                         <Table.Cell>{item.Telefono}</Table.Cell>
                                         <Table.Cell>{item.Sede}</Table.Cell>
-                                        {item.Sede === sede && <Link to={`/modificarEstudiante/${item.Carnet}`} state={Persona}>
+                                        {item.Sede === sede && 
                                             <Table.Cell>
-                                                <Button  > Agregar </Button>
+                                                <Button onClick={() => {
+                                                    setIDAgregado(item.Carnet)
+                                                    CrearSala()
+                                                }}> Agregar </Button>
                                             </Table.Cell>
-                                        </Link>}
+                                        }
                                     </Table.Row>
                                 )
                             })}

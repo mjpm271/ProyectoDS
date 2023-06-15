@@ -1,23 +1,13 @@
 
 CREATE PROCEDURE CreateChats
-    @IDchat INT,
-    @nombre VARCHAR(255),
-    @resultado INT OUTPUT
+    @IDchat int,
+    @nombre varchar(255)
 AS
 BEGIN
-    SET NOCOUNT ON;
-    
-    BEGIN TRY
-        INSERT INTO Chats (IDchat, nombre)
-        VALUES (@IDchat, @nombre);
-        
-        SET @resultado = 1; -- Éxito
-    END TRY
-    BEGIN CATCH
-        SET @resultado = 0; -- Error
-    END CATCH
+    INSERT INTO Chats (IDchat, nombre)
+    VALUES (@IDchat, @nombre)
 END;
-GO
+go
 
 CREATE PROCEDURE ReadChats
 AS
@@ -143,16 +133,6 @@ BEGIN
     SELECT * FROM Mensajes;
 END;
 go
-
-CREATE PROCEDURE ReadMensajeByID
-(
-    @IDMensajes int
-)
-AS
-BEGIN
-    SELECT * FROM Mensajes WHERE IDMensajes = @IDMensajes;
-END;
-Go
 
 CREATE PROCEDURE UpdateMensaje
 (
