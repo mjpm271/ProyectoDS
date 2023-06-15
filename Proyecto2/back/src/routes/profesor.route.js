@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { VerPlanTrabajo, VerPlanesTrabajo, VerActividad, Comentar, VerProfesorPerfil, ModificarProfesorPerfil, VerActividadxPlan, VerComentariosActividad, VerEstudiantesAlf, VerEstudianteSede, VerPersonaPorID, CrearSala, VerEstudianteCarnet, VerComentariosRespuesta} from "../controllers/profesor.controller"
+import { VerPlanTrabajo, VerPlanesTrabajo, VerActividad, Comentar, VerProfesorPerfil, ModificarProfesorPerfil, VerActividadxPlan, VerComentariosActividad, VerEstudiantesAlf, VerEstudianteSede, VerPersonaPorID, CrearSala, AgragarAlChat, ChatPorID, VerEstudianteCarnet, VerComentariosRespuesta} from "../controllers/profesor.controller"
 
 const router = Router()
 
@@ -17,5 +17,6 @@ router.post('/VerEstudiantesSede',VerEstudianteSede)
 router.get('/VerEstudianteCarnet', VerEstudianteCarnet)
 router.post('/VerPersonaPorID', VerPersonaPorID)
 router.post('/CrearSala', CrearSala)
-
+router.post('/AgragarAlChat', AgragarAlChat)
+router.post('/ChatPorID', ChatPorID)
 export default router

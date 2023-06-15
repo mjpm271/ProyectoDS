@@ -178,7 +178,7 @@ CREATE TABLE Chats (
 );
 
 CREATE TABLE ParticipantesChat (
-  IDParticipantesChat int not null,
+  IDParticipantesChat int not null identity(1,1),
   IDchats INT NOT NULL,
   IDpersona INT NOT NULL,
   primary key (IDParticipantesChat),

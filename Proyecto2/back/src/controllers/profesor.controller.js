@@ -332,9 +332,9 @@ export const CrearSala = async (req, res) => {
     //Los headers deben habilitarse para que el frontend pueda recuperar los datos
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    const {SalaChat} = req.body
+    const {numSala,SalaChat} = req.body
     console.log('valores:', req.body)
-    if (!SalaChat) {
+    if (!numSala) {
         console.log('here')
         return res.sendStatus(400, { msg: 'Bad Request. Please fill all fields' })
     }
@@ -342,8 +342,59 @@ export const CrearSala = async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
+            .input('IDchat', sql.Int, numSala)
             .input('nombre', sql.VarChar(255), SalaChat)
             .execute('CreateChats')
+        console.log(result)
+        res.json(result.recordset)
+
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+} 
+export const AgragarAlChat = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    const { numSala, IDAgregado} = req.body
+    console.log('valores 2 :', req.body)
+    if (!numSala) {
+        console.log('here')
+        return res.sendStatus(400, { msg: 'Bad Request. Please fill all fields' })
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDchats', sql.Int, numSala)
+            .input('Carnet', sql.VarChar(64), IDAgregado)
+            .execute('CreateParticipanteChat')
+        console.log(result)
+        res.json(result.recordset)
+
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+
+} 
+
+export const ChatPorID = async (req, res) => {
+    //Los headers deben habilitarse para que el frontend pueda recuperar los datos
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    const { numSala} = req.body
+    console.log('valores 2 :', req.body)
+    if (!numSala) {
+        console.log('here')
+        return res.sendStatus(400, { msg: 'Bad Request. Please fill all fields' })
+    }
+    try {
+        const pool = await getConnection();
+        const result = await pool
+            .request()
+            .input('IDchat', sql.Int, numSala)
+            .execute('ReadChatByID')
         console.log(result)
         res.json(result.recordset)
 
