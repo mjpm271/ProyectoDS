@@ -35,7 +35,9 @@ export default function InicioEstudiante() {
             <Link to={'/SiguienteActividad'}state= {Persona}>
                 <Button type='button' size='large'>Siguiente Actividad </Button>
                 </Link>
-           
+            <Link to={'/Chats'}state= {Persona}>
+                <Button type='button' size='large'>Ver Chats </Button>
+            </Link>
         </div>
         </div>
 

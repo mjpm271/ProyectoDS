@@ -108,7 +108,7 @@ function App() {
         <Route path="/modificarEstudiante/:Carnet" element={<ModificarEstudiante />}/>
         <Route path="/IniciarChat" element={<IniciarChat />} />
         <Route path="/Chats" element={<Chats />} />
-        <Route path="/Chat" element={<Chat />} />
+        <Route path="/Chat/:IDChat" element={<Chat />} />
 
        {/*Coordinador */}
        <Route path="/verActividad" element={<VerActividad />}/>

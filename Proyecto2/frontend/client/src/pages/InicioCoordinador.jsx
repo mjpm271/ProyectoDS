@@ -55,6 +55,10 @@ export default function InicioCoordinador() {
             <Link to={'/verActividad'}state= {Persona}>
                 <Button type='button' size='large'>Modificar Actividad </Button>
             </Link>
+
+            <Link to={'/Chats'}state= {Persona}>
+                <Button type='button' size='large'>Ver Chats </Button>
+            </Link>
             
           </div>
         </div>

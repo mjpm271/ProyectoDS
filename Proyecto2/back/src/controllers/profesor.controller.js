@@ -316,7 +316,7 @@ export const VerPersonaPorID= async (req, res) => {
         const pool = await getConnection();
         const result = await pool
             .request()
-            .input('Carnet', sql.Int, Carnet)
+            .input('Carnet', sql.VarChar(64), Carnet)
             .execute('ReadPersonaPorID')
         console.log(result)
         res.json(result.recordset)

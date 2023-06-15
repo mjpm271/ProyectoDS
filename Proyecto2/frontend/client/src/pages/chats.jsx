@@ -10,12 +10,12 @@ export default function Chats() {
     const navigate = useNavigate();
     const Persona = location.state;
     const info = JSON.parse(Persona)
-    const id = info.IDpersona
+    const id = info.Carnet
     /* IMPORTANTE PASAR */
     const [items, setitems] = useState([])
     useEffect(() => {
-        axios.post(`http://localhost:4000/index/VerNotificacionesUsuario`, {
-          IDpersona:id
+        axios.post(`http://localhost:4000/chat/LeerChatsPorCarnet`, {
+          Carnet:id
         }
         , {
           headers: {
@@ -24,7 +24,7 @@ export default function Chats() {
         }
         )
             .then((response) => {
-                console.log(response.data)
+                console.log("chats",response.data)
                 setitems(response.data);
             })
     }, [id]);
@@ -33,7 +33,7 @@ export default function Chats() {
         <div>
             <NavBar Persona={{Persona}}/>
                 <div  className="container" >
-                    <h1 >Buzon Notificaciones</h1>
+                    <h1 >Lista de Chats</h1>
                     
                     <List divided relaxed>
                     {items.map((item, index) => (
@@ -44,8 +44,8 @@ export default function Chats() {
                             verticalAlign="middle"
                         />
                         <List.Content>
-                            <List.Header as={Link} to={`/Notificacion/${item.IDnotificacion}`} state= {Persona}>
-                            {item.Titulo}
+                            <List.Header as={Link} to={`/Chat/${item.IDchat}`} state= {Persona}>
+                            {item.nombre}
                             </List.Header>
                             
                         </List.Content>
