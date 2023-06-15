@@ -139,7 +139,7 @@ go
 CREATE PROCEDURE CreateMensaje
 (
     @IDchat int,
-    @CarnetEmisor int,
+    @CarnetEmisor varchar(64),
     @Mensaje text,
     @Fecha datetime
 )
