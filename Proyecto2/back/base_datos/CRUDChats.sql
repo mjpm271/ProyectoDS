@@ -1,4 +1,6 @@
 use proyecto
+Go
+
 CREATE PROCEDURE CreateChats
     @IDchat int,
     @nombre varchar(255)
