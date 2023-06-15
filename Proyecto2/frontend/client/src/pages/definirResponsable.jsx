@@ -14,7 +14,7 @@ export default function DefinirResponsable() {
     // const id = info.Carnet
     /* IMPORTANTE PASAR */
     const [Carnet, setCarnet] = useState();
-    const showAlert = (Result) => {
+    const showAlert = () => {
           window.alert('ha asignado responsable con exito')
     };
     const postData = () => {
@@ -30,7 +30,7 @@ export default function DefinirResponsable() {
           )
             .then(response => {
               console.log(response.data);
-              showAlert(0)
+              showAlert()
             }).catch(error => {
                 console.log(error)
             });

@@ -12,7 +12,10 @@ export default function Notificacion() {
     /* IMPORTANTE PASAR */
     const { IDNotificacion } = useParams();
     const [items, setitems] = useState([])
-
+    const navigate = useNavigate();
+    const showAlert = () => {
+          window.alert('se ha borrado con exito')
+    };
     useEffect(() => {
         axios
         .post(
@@ -62,6 +65,8 @@ const postData = () => {
           )
             .then(response => {
               console.log('entre');
+              showAlert()
+              navigate('/Notificaciones',{ state: Persona } )
             }).catch(error => {
                 console.log(error)
             });
