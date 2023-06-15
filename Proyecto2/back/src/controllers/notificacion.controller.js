@@ -15,6 +15,10 @@ export const SimuladorFecha  = async (req, res) => {
         for (const item of result.recordset){
             //console.log(item.IDtipoEstado);
             if (item.IDtipoEstado === 1){
+                const activar = await pool
+                    .request()
+                    .input('IDactividad', sql.Int, item.IDactividad)
+                    .execute('ActivarActividad')
                 const notificacionProf = await pool
                     .request()
                     .input('Titulo', sql.VarChar(sql.MAX), 'Publicacion actividad')
@@ -39,25 +43,31 @@ export const SimuladorFecha  = async (req, res) => {
                 await NotifyAll(item.IDactividad)
             }
             else if (item.IDtipoEstado === 2){
-
+                const NumRec = await pool
+                    .request()
+                    .input('FechaSistema', sql.Date, FechaSistema)
+                    .input('FechaActividad', sql.DateTime, item.Fecha)
+                    .input('DiasRequeridos', sql.Int, item.Cantidaddiasrequeridos)
+                    .output('Result', sql.Int)
+                    .execute('NumeroRecordatorio')
                 const notificacionProf = await pool
                     .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${numRec.output.Result}`)
+                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${item.Nombre}`)
                     .input('Fecha', sql.Date, FechaSistema)
                     .input('Emisor', sql.Int, null)
                     .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${numRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
+                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${NumRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
                     .input('IDactividad', sql.Int, item.IDactividad)
                     //.input('Titulo')
                     .execute('CreateNotificacion')
                 await NotifyProfesor(item.IDactividad)
                 const notificacionAll = await pool
                     .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${numRec.output.Result}`)
+                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${item.Nombre}`)
                     .input('Fecha', sql.Date, FechaSistema)
                     .input('Emisor', sql.Int, null)
                     .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${numRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
+                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${NumRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
                     .input('IDactividad', sql.Int, item.IDactividad)
                     //.input('Titulo')
                     .execute('CreateNotificacion')
