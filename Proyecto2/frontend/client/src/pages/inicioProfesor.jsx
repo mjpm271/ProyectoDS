@@ -40,6 +40,9 @@ export default function InicioProfesor() {
                 <Link to={'/IniciarChat'} state={Persona}>
                      <Button type='button' size='large'>Mensajeria instantanea</Button>
                 </Link>
+                <Link to={'/Chats'}state= {Persona}>
+                    <Button type='button' size='large'>Ver Chats </Button>
+                </Link>
             </div>
         </div>    
 

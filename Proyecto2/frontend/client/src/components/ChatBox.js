@@ -32,7 +32,7 @@ export default function ChatBoxReceiver({user, msg}) {
     )
 }
 
-export default function ChatBoxSender({user, msg}) {
+export function ChatBoxSender({user, msg}) {
     console.log('prop persona:', user.Persona.Persona)
     const Persona1 = JSON.parse(user.Persona.Persona)
     console.log('prop mensaje:', msg)
