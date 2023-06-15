@@ -21,7 +21,8 @@ export default function Configuracion() {
     const [Fecha, setFecha] = useState(new Date().toLocaleString('en-US', utcTime));
     const postData = () => {
 
-        axios.post('http://localhost:4000/coordinador/CrearActividad', {
+        axios.post('http://localhost:4000/notificacion/SimuladorFecha', {
+          FechaSistema:Fecha
 
           }
           , {
@@ -56,7 +57,7 @@ export default function Configuracion() {
                     </Grid.Column>
                     </Grid.Row>
                 </Grid>    
-                <Button onClick={postData} type='Submit'>Siguiente</Button>
+                <Button onClick={postData} type='Submit'>Simular</Button>
         </div>    
         </div> 
     )

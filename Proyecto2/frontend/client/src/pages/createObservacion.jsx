@@ -14,9 +14,12 @@ export default function CrearObservacion() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    const info = JSON.parse(Persona);
         /* IMPORTANTE PASAR */    
     const { actividad } = useParams();
     const [Fecha, setFecha] = useState(new Date());
+    const [FechaSistema, setFechaSistema] = useState(new Date());
+    const [NombreActividad, setNombreActividad] = useState();
     const [Observacion, setObservacion] = useState();
     const [IDactividad, setIDactividad] = useState();
     const showAlert = (Result) => {
@@ -39,10 +42,44 @@ export default function CrearObservacion() {
             }
         )
             .then((response) => {
-                console.log('funciona')
                 showAlert(2)
             })
     }, [actividad]);
+
+    useEffect(() => {
+        axios.post('http://localhost:4000/coordinador/ReadNombreActividad',
+            {IDactividad: actividad},
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+            .then((response) => {
+                setNombreActividad(response.data[0].Nombre)
+            })
+    }, [actividad]);
+
+    useEffect(() => {
+        axios.post('http://localhost:4000/notificacion/NotificarCancelacion',
+            {IDactividad: actividad,
+            IDpersona: info.IDpersona,
+            FechaSistema: FechaSistema,
+            Nombre: NombreActividad,
+            NombreCompleto: info.NombreCompleto},
+
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+            .then((response) => {
+                console.log(response.data[0].Nombre)
+                setNombreActividad(response.data[0].Nombre)
+            })
+    }, [actividad]);
+
     const postData = () => {
         
         axios.post('http://localhost:4000/coordinador/CrearObservacion', {

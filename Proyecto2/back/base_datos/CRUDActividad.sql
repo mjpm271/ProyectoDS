@@ -67,6 +67,18 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadNombreActividad
+(
+    @IDactividad int
+)
+AS
+BEGIN
+    SELECT Nombre
+	FROM actividad 
+	WHERE IDactividad = @IDactividad
+END;
+GO
+
 CREATE PROCEDURE ReadActividades
 AS
 BEGIN
@@ -81,9 +93,9 @@ CREATE PROCEDURE ReadActividadesUpdate
 )
 AS
 BEGIN
-    SELECT IDactividad, IDtipoEstado, Fecha, Cantidaddiasrequeridos
+    SELECT IDactividad, IDtipoEstado, Fecha, Cantidaddiasrequeridos, Nombre
 	FROM actividad
-	WHERE DATEDIFF(day, Fecha, @Fecha) >= 0 and (IDtipoEstado = 1 or IDtipoEstado = 2)
+	WHERE DATEDIFF(day, FechaPublicacion, @Fecha) >= 0 and (IDtipoEstado = 1 or IDtipoEstado = 2)
 END;
 GO
 
@@ -116,6 +128,7 @@ BEGIN
 	ORDER BY Fecha ASC
 END;
 GO
+
 
 CREATE PROCEDURE ReadActividadesPublicadas
 AS
@@ -220,19 +233,16 @@ begin
 end;
 go
 
-create procedure ActivarActividades
+create procedure ActivarActividad
 (
-	@FechaSistema date,
-	@Result int output
+	@IDactividad int
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 2
-	where DATEDIFF(day, FechaPublicacion, @FechaSistema) >= 0
-	set @Result = 0
-	select @Result
-	return @Result
+	where IDactividad = @IDactividad and IDtipoEstado = 1
+
 end;
 go
 
@@ -250,12 +260,13 @@ BEGIN
 	IF @FechaSistema >= @FechaPrimerRecordatorio AND @FechaSistema <= CONVERT(DATE,@FechaActividad)
 		--Si la fecha coincide con una fecha de recordatorio entonces:
 			--Determina numero de recordatorio a notificar (X)
+		BEGIN
 		SET @Result = DATEDIFF(day, @FechaSistema, @FechaActividad) 
-		
+		END
 	ELSE
-		
+		BEGIN
 		SET @Result = -1
-	
+		END
 	SELECT @Result 
 	RETURN @Result
 END

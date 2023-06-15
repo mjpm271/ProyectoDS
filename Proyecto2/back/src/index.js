@@ -4,6 +4,7 @@ import ProfesorGuia from './routes/profesor.route'
 import Coordinador from './routes/profesorCoordinador.route'
 import Login from './routes/index.route'
 import Estudiante from './routes/estudiante.route'
+import Notificacion from './routes/notificacion.route'
 
 // para chats
 import http from "http"
@@ -16,6 +17,7 @@ app.use('/asistente', AsistenteAdmin)
 app.use('/profesor', ProfesorGuia)
 app.use('/coordinador',Coordinador)
 app.use('/estudiante',Estudiante)
+app.use('/notificacion',Notificacion)
 app.use('/index',Login)
 
 
