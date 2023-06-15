@@ -37,6 +37,7 @@ export const SimuladorFecha  = async (req, res) => {
                 await NotifyAll(item.IDactividad)
             }
         }
+        res.json(result.recordset)
     } catch (err) {
         res.sendStatus(500, err.message)
     }
@@ -51,11 +52,7 @@ export const NotifyResponsable = async (IDactividad) => {
         .input('IDactividad', sql.Int, IDactividad) 
         .execute('ReadResponsableActividadPorID')
     for (const item of grupo.recordset){
-        const link = await pool
-            .request()
-            .input('IDnotificacion', sql.Int, ultima)
-            .input('IDpersona', sql.Int, item.IDprofesor)
-            .execute('CreateNotificacionUsuario')
+        await Link(ultima, item.IDprofesor)
     }
 }
 
@@ -67,12 +64,17 @@ export const NotifyAll = async (IDactividad) => {
         .input('IDactividad', sql.Int, IDactividad)
         .execute('ReadGrupoUsuarioporID')
     for (const item of grupo.recordset){
-        const link = await pool
-            .request()
-            .input('IDnotificacion', sql.Int, ultima)
-            .input('IDpersona', sql.Int, item.IDpersona)
-            .execute('CreateNotificacionUsuario')
+        await Link(ultima, item.IDpersona)
     }
+}
+
+export const Link = async (ultima, IDpersona) => {
+    const pool = await getConnection()
+    const link = await pool
+        .request()
+        .input('IDnotificacion', sql.Int, ultima)
+        .input('IDpersona', sql.Int, IDpersona)
+        .execute('CreateNotificacionUsuario')
 }
 
 // Crea las notificaciones generales
@@ -238,7 +240,6 @@ export const Habilitado = async (req, res) => {
             .request()
             .input('IDactividad', sql.Int, IDactividad)
             .input('IDpersona', sql.Int, IDpersona)
-            
             .execute('ReadHabilitadoGrupoUsuario')
         console.log(result)
         res.json(result.recordset)
@@ -258,6 +259,7 @@ export const BorrarBuzon = async (req, res) => {
             .request()
             .input('IDpersona', sql.Int, IDpersona)
             .execute('DeleteBuzon')
+        res.json(result.recordset)
     } catch (err) {
         res.sendStatus(500, err.message)
     }
@@ -274,6 +276,7 @@ export const BorrarNotificacion = async (req, res) => {
             .input('IDnotificacion', sql.Int, IDnotificacion)
             .input('IDpersona', sql.Int, IDpersona)
             .execute('DeleteNotificacionUsuarioID')
+        res.json(result.recordset)
     } catch (err) {
         res.sendStatus(500, err.message)
     }

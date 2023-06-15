@@ -19,6 +19,9 @@ export default function Configuracion() {
     /* IMPORTANTE PASAR */
     const utcTime = {timeZone: 'CST' };
     const [Fecha, setFecha] = useState(new Date().toLocaleString('en-US', utcTime));
+    const showAlert = () => {
+          window.alert('Se ha simulado con exito')
+    };
     const postData = () => {
 
         axios.post('http://localhost:4000/notificacion/SimuladorFecha', {
@@ -32,6 +35,7 @@ export default function Configuracion() {
           }
           )
             .then(response => {
+              showAlert()
               console.log(response.data);
               
             }).catch(error => {

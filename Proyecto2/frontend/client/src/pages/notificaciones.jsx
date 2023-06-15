@@ -13,6 +13,9 @@ export default function Notificaciones() {
     const id = info.IDpersona
     /* IMPORTANTE PASAR */
     const [items, setitems] = useState([])
+    const showAlert = () => {
+          window.alert('Se ha borrado el buzon')
+    };
     useEffect(() => {
         axios.post(`http://localhost:4000/index/VerNotificacionesUsuario`, {
           IDpersona:id
@@ -43,6 +46,8 @@ const postData = () => {
           )
             .then(response => {
               console.log('entre');
+              showAlert()
+              navigate('/Notificaciones',{ state: Persona } )
             }).catch(error => {
                 console.log(error)
             });
