@@ -1,23 +1,12 @@
-
-CREATE PROCEDURE CreateChats
-    @IDchat INT,
-    @nombre VARCHAR(255),
-    @resultado INT OUTPUT
+use proyecto;
+CREATE  PROCEDURE CreateChats
+    @nombre varchar(255)
 AS
 BEGIN
-    SET NOCOUNT ON;
-    
-    BEGIN TRY
-        INSERT INTO Chats (IDchat, nombre)
-        VALUES (@IDchat, @nombre);
-        
-        SET @resultado = 1; -- Éxito
-    END TRY
-    BEGIN CATCH
-        SET @resultado = 0; -- Error
-    END CATCH
+    INSERT INTO Chats (nombre)
+    VALUES (@nombre)
 END;
-GO
+go
 
 CREATE PROCEDURE ReadChats
 AS
@@ -42,6 +31,17 @@ BEGIN
     SELECT * FROM Chats WHERE IDchat = @IDchat;
 END;
 go
+
+CREATE PROCEDURE ReadChatPorNombre
+(
+    @nombre varchar(255)
+)
+AS
+BEGIN
+    SELECT * FROM Chats WHERE nombre = @nombre;
+END;
+go
+
 
 CREATE PROCEDURE UpdateChat
 (

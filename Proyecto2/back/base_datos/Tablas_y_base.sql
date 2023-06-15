@@ -172,13 +172,13 @@ create table grupoUsuario( -- Es la tabla que habilita o deshabilita el recibir 
 );
 --Tabla de Chats
 CREATE TABLE Chats (
-  IDchat int not null IDENTITY(1,1),
+  IDchat int not null,
   nombre VARCHAR(255) NOT NULL
   primary key (IDchat)
 );
 
 CREATE TABLE ParticipantesChat (
-  IDParticipantesChat int not null IDENTITY(1,1),
+  IDParticipantesChat int not null,
   IDchats INT NOT NULL,
   IDpersona INT NOT NULL,
   primary key (IDParticipantesChat),
@@ -187,7 +187,7 @@ CREATE TABLE ParticipantesChat (
 );
 
 CREATE TABLE Mensajes (
-  IDMensajes int not null,
+  IDMensajes int not null  ,
   IDchat INT NOT NULL,
   Emisor INT NOT NULL,
   Mensaje TEXT NOT NULL,
