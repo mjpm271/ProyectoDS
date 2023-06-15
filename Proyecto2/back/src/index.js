@@ -5,6 +5,10 @@ import Coordinador from './routes/profesorCoordinador.route'
 import Login from './routes/index.route'
 import Estudiante from './routes/estudiante.route'
 
+// para chats
+import http from "http"
+import {Server} from "socket.io"
+
 // import './database/connection.js'
 
 // app.use('/ejemplo', ejemploRoutes)
@@ -15,6 +19,26 @@ app.use('/estudiante',Estudiante)
 app.use('/index',Login)
 
 
-app.listen(app.get('port'))
+const server = http.createServer(app)
+const io = new Server(server, {
+    cors:{
+        origin:"*"
+    }
+})
+
+io.on('connection', socket => {
+    console.log("Socket connected")
+
+    // cuando se hace el submit de un chat
+    socket.on('chat', chat => {
+        io.emit('chat', chat)
+    })
+
+    socket.on('disconnect', () => {
+        console.log("Socket disconnected")
+    })
+})
+
+server.listen(app.get('port'))
 
 console.log('server running on', app.get('port'))
