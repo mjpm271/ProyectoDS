@@ -67,6 +67,18 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE ReadNombreActividad
+(
+    @IDactividad int
+)
+AS
+BEGIN
+    SELECT Nombre
+	FROM actividad 
+	WHERE IDactividad = @IDactividad
+END;
+GO
+
 CREATE PROCEDURE ReadActividades
 AS
 BEGIN
@@ -116,6 +128,7 @@ BEGIN
 	ORDER BY Fecha ASC
 END;
 GO
+
 
 CREATE PROCEDURE ReadActividadesPublicadas
 AS
@@ -222,17 +235,14 @@ go
 
 create procedure ActivarActividad
 (
-	@IDactividad int,
-	@Result int output
+	@IDactividad int
 )
 as 
 begin 
 	update actividad
 	set IDtipoEstado = 2
 	where IDactividad = @IDactividad and IDtipoEstado = 1
-	set @Result = 0
-	select @Result
-	return @Result
+
 end;
 go
 

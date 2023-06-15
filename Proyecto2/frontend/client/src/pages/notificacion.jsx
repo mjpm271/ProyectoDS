@@ -10,14 +10,14 @@ export default function Notificacion() {
     const info = JSON.parse(Persona)
     const id = info.Carnet
     /* IMPORTANTE PASAR */
-    const { IDnotificacion } = useParams();
+    const { IDNotificacion } = useParams();
     const [items, setitems] = useState([])
 
     useEffect(() => {
         axios
         .post(
             'http://localhost:4000/index/VerNotificacion',
-            { IDnotificacion: IDnotificacion },
+            { IDnotificacion: IDNotificacion },
             {
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export default function Notificacion() {
             const informacion = response.data[0];
             setitems(response.data);
         });
-    }, [IDnotificacion]);
+    }, [IDNotificacion]);
 
     return (
         <div>

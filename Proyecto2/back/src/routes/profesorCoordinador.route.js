@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { CrearPlanTrabajo,VerPlanTrabajo,VerPlanesTrabajo,ModificarInformacionPlan,EliminarPlanTrabajo,CrearActividad,VerActividad,ModificarActividad,EliminarActividad,VerProfesorPerfil,ModificarProfesorPerfil, Comentar, VerActividadxPlan, CrearEvidencia, CrearObservacion, RealizarActividad, CancelarActividad, DefinirResponsable, VerResponsables, VerObservacion, VerEvidencias} from "../controllers/profesorCoordinador.controller"
+import { CrearPlanTrabajo,VerPlanTrabajo,VerPlanesTrabajo,ModificarInformacionPlan,EliminarPlanTrabajo,CrearActividad,VerActividad,ModificarActividad,EliminarActividad,VerProfesorPerfil,ModificarProfesorPerfil, Comentar, VerActividadxPlan, CrearEvidencia, CrearObservacion, RealizarActividad, CancelarActividad, DefinirResponsable, VerResponsables, VerObservacion, VerEvidencias, VerNombreActividad} from "../controllers/profesorCoordinador.controller"
 
 const router = Router()
 
@@ -23,5 +23,6 @@ router.post('/CrearObservacion',CrearObservacion)
 router.post('/VerObservacion',VerObservacion)
 router.put('/RealizarActividad',RealizarActividad)
 router.put('/CancelarActividad',CancelarActividad)
+router.post('/ReadNombreActividad',VerNombreActividad)
 
 export default router

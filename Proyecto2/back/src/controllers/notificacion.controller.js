@@ -19,27 +19,9 @@ export const SimuladorFecha  = async (req, res) => {
                     .request()
                     .input('IDactividad', sql.Int, item.IDactividad)
                     .execute('ActivarActividad')
-                const notificacionProf = await pool
-                    .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), 'Publicacion actividad')
-                    .input('Fecha', sql.Date, FechaSistema)
-                    .input('Emisor', sql.Int, null)
-                    .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha activado la actividad: ${item.Nombre}`)
-                    .input('IDactividad', sql.Int, item.IDactividad)
-                    //.input('Titulo')
-                    .execute('CreateNotificacion')
-                await NotifyProfesor(item.IDactividad)
-                const notificacionAll = await pool
-                    .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), 'Invitacion actividad')
-                    .input('Fecha', sql.Date, FechaSistema)
-                    .input('Emisor', sql.Int, null)
-                    .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se le invita a la actividad: ${item.Nombre}`)
-                    .input('IDactividad', sql.Int, item.IDactividad)
-                    //.input('Titulo')
-                    .execute('CreateNotificacion')
+                await CrearNotificacion('Publicacion actividad', FechaSistema, `Se ha activado la actividad: ${item.Nombre}`, null, null, item.Idactividad)
+                await NotifyResponsable(item.IDactividad)
+                await CrearNotificacion('Invitacion actividad', FechaSistema, `Se le invita a la actividad: ${item.Nombre}`, null, null, item.Idactividad)
                 await NotifyAll(item.IDactividad)
             }
             else if (item.IDtipoEstado === 2){
@@ -50,30 +32,9 @@ export const SimuladorFecha  = async (req, res) => {
                     .input('DiasRequeridos', sql.Int, item.Cantidaddiasrequeridos)
                     .output('Result', sql.Int)
                     .execute('NumeroRecordatorio')
-                const notificacionProf = await pool
-                    .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${item.Nombre}`)
-                    .input('Fecha', sql.Date, FechaSistema)
-                    .input('Emisor', sql.Int, null)
-                    .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${NumRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
-                    .input('IDactividad', sql.Int, item.IDactividad)
-                    //.input('Titulo')
-                    .execute('CreateNotificacion')
-                await NotifyProfesor(item.IDactividad)
-                const notificacionAll = await pool
-                    .request()
-                    .input('Titulo', sql.VarChar(sql.MAX), `Recordatorio Actividad: ${item.Nombre}`)
-                    .input('Fecha', sql.Date, FechaSistema)
-                    .input('Emisor', sql.Int, null)
-                    .input('NombreEmisor', sql.VarChar(100), null)
-                    .input('Contenido', sql.VarChar(sql.MAX), `Se ha enviado recordatorio ${NumRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`)
-                    .input('IDactividad', sql.Int, item.IDactividad)
-                    //.input('Titulo')
-                    .execute('CreateNotificacion')
+                await CrearNotificacion(`Recordatorio de actividad: ${item.Nombre}`, FechaSistema,`Se ha enviado recordatorio ${NumRec.output.Result}/${item.Cantidaddiasrequeridos} de la actividad: ${item.Nombre} que se realiza el ${item.Fecha}`, null, null, item.IDactividad)
+                await NotifyResponsable(item.IDactividad)
                 await NotifyAll(item.IDactividad)
-
-
             }
         }
     } catch (err) {
@@ -82,19 +43,17 @@ export const SimuladorFecha  = async (req, res) => {
 
 }
 
-export const NotifyProfesor = async (IDactividad) => {
+export const NotifyResponsable = async (IDactividad) => {
     const pool = await getConnection();
-    const ultima = await pool
-        .request()
-        .execute('ReadUltimaNotificacion')
+    const ultima = await UltimaNotificacion()
     const grupo = await pool
         .request()
-        .input('IDactividad', sql.Int, IDactividad)
+        .input('IDactividad', sql.Int, IDactividad) 
         .execute('ReadResponsableActividadPorID')
     for (const item of grupo.recordset){
         const link = await pool
             .request()
-            .input('IDnotificacion', sql.Int, ultima.recordset[0].IDnotificacion)
+            .input('IDnotificacion', sql.Int, ultima)
             .input('IDpersona', sql.Int, item.IDprofesor)
             .execute('CreateNotificacionUsuario')
     }
@@ -102,9 +61,7 @@ export const NotifyProfesor = async (IDactividad) => {
 
 export const NotifyAll = async (IDactividad) => {
     const pool = await getConnection();
-    const ultima = await pool
-        .request()
-        .execute('ReadUltimaNotificacion')
+    const ultima = await UltimaNotificacion()
     const grupo = await pool
         .request()
         .input('IDactividad', sql.Int, IDactividad)
@@ -112,8 +69,49 @@ export const NotifyAll = async (IDactividad) => {
     for (const item of grupo.recordset){
         const link = await pool
             .request()
-            .input('IDnotificacion', sql.Int, ultima.recordset[0].IDnotificacion)
+            .input('IDnotificacion', sql.Int, ultima)
             .input('IDpersona', sql.Int, item.IDpersona)
             .execute('CreateNotificacionUsuario')
     }
 }
+
+// Crea las notificaciones generales
+export const CrearNotificacion = async (Titulo, Fecha, Contenido, Emisor, NombreEmisor, IDactividad) => {
+    const pool = await getConnection()
+    const notificacion = await pool
+        .request()
+        .input('Titulo', sql.VarChar(sql.MAX), Titulo)
+        .input('Fecha', sql.Date, Fecha)
+        .input('Emisor', sql.Int, Emisor)
+        .input('NombreEmisor', sql.VarChar(100), NombreEmisor)
+        .input('Contenido', sql.VarChar(sql.MAX), Contenido)
+        .input('IDactividad', sql.Int, IDactividad)
+        //.input('Titulo')
+        .execute('CreateNotificacion')
+
+}
+
+export const UltimaNotificacion = async () => {
+    const pool = await getConnection()
+    const ultima = await pool
+        .request()
+        .execute('ReadUltimaNotificacion')
+    const id = ultima.recordset[0].IDnotificacion
+    return id
+}
+
+
+export const NotificarCancelacion = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // --> posiblemente haya que cambiar el lugar de acceso dependiendo de la pag que viene
+    res.header('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');    
+    const {IDactividad, IDpersona, FechaSistema, Nombre, NombreCompleto} = req.body
+    try{
+        const pool = await getConnection();
+        await CrearNotificacion('Actividad cancelada', FechaSistema, `Se cancela la actividad: ${Nombre}`, IDpersona, NombreCompleto, IDactividad)
+        await NotifyResponsable(IDactividad)
+        await NotifyAll(IDactividad)
+    } catch (err) {
+        res.sendStatus(500, err.message)
+    }
+}
+
