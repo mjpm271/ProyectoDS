@@ -7,11 +7,19 @@ import ChatBoxReceiver from '../components/ChatBox';
 import ChatContainer from '../components/ChatContainer';
 
 function Chat() {
+        /* IMPORTANTE PASAR */
+        const location = useLocation();
+        const Persona = location.state;
+        const info = JSON.parse(Persona)
+        // const id = info.IDpersona
     return (
         <div>
+            <NavBar Persona={{Persona}}/>
+            <div className="container">
             <h1>Chat</h1>
             <div style={{backgroundColor: "#fff" , maxHeight:"100%" , padding:10}} >
              <ChatContainer/>
+            </div>
             </div>
         </div>
     )

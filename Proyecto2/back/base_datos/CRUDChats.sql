@@ -140,7 +140,7 @@ CREATE PROCEDURE CreateMensaje
 (
     @IDchat int,
     @CarnetEmisor varchar(64),
-    @Mensaje text,
+    @Mensaje VARCHAR(MAX),
     @Fecha datetime
 )
 AS
@@ -148,9 +148,9 @@ BEGIN
 	declare @IDpersona as int 
 	set @IDpersona = (select top 1 IDpersona from persona where Carnet = @CarnetEmisor);
     INSERT INTO Mensajes (IDchat, Emisor, Mensaje, Fecha)
-    VALUES ( @IDchat, @IDpersona, @Mensaje, @Fecha);
-END;
-Go
+    VALUES ( @IDchat, @IDpersona, CAST(@Mensaje AS TEXT), @Fecha);
+END
+GO
 
 CREATE PROCEDURE ReadMensajes
 AS
@@ -163,7 +163,9 @@ CREATE PROCEDURE ReadMensajesByIDChat
 	@IDchat int
 AS
 BEGIN
-    SELECT * FROM Mensajes WHERE IDchat =@IDchat;
+    SELECT M.IDchat, M.Emisor, M.Mensaje, M.Fecha , P.NombreCompleto FROM Mensajes M 
+	INNER JOIN Persona P ON P.IDpersona = M.Emisor
+	WHERE IDchat =@IDchat;
 END;
 go
 

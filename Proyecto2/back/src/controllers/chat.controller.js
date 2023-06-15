@@ -1,3 +1,4 @@
+import { MAX } from "mssql"
 import { getConnection, sql } from "../database/connection"
 
 export const CrearSalaChat = async (req, res) => {
@@ -201,10 +202,10 @@ export const BorrarParticipanteChat = async (req, res) => {
 
 export const EnviarMensaje = async (req, res) => {
     const { Carnet, Mensaje, Fecha, IDSalaChat } = req.body
-    console.log('User info:', IDUsuario)
+    console.log('User info:',   Carnet)
     console.log('Message info:', Mensaje, Fecha)
     console.log('Chat info:', IDSalaChat)
-    if (!IDUsuario || !Mensaje || !Fecha || !IDSalaChat) {
+    if (!Carnet || !Mensaje || !Fecha || !IDSalaChat) {
         return res.status(400).json({msg: 'Bad request. Please fill all fields'})
     }
     try {
@@ -213,15 +214,16 @@ export const EnviarMensaje = async (req, res) => {
             .request()
             .input('IDchat', sql.Int, IDSalaChat)
             .input('CarnetEmisor', sql.VarChar(64), Carnet)
-            .input('Mensaje', sql.Text, Mensaje)
+            .input('Mensaje', sql.VarChar(sql.MAX), Mensaje)
             .input('Fecha', sql.DateTime, Fecha)
-            .output(sql.Int)
+            
             .execute('CreateMensaje')
-        const outputValue = result.output
+        const outputValue = result.recordset
 
-        res.json(outputValue)
+        res.json(result.recordset)
 
     } catch (err) {
+        console.error(err)
         res.sendStatus(500, err.message)
     }
 }

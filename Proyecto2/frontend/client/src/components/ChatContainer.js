@@ -116,10 +116,38 @@ export default function ChatContainer() {
     }
 
     function crearMensaje(chat){
-        const nuevoMensaje = { ...chat, user: nombre, foto }
-        setItems([...chats, nuevoMensaje])
+        console.log('mensaje contenido', chat)
+        // const nuevoMensaje = { ... Mensaje: chat.message, Emisor: carnet, Fecha:new Date().toISOString().slice(0, 19).replace('T', ' '),IDSalaChat:IDChat }
+        
+        // setItems([...chats, nuevoMensaje])
+        mensaje(chat)
+
     }
-    
+    const mensaje = (chat) => {
+        axios
+        .post(
+            'http://localhost:4000/chat/EnviarMensaje',
+            {
+            Carnet:carnet,
+            Mensaje: chat.message,
+            Fecha: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            IDSalaChat: IDChat
+            },
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+        .then(response => {
+            console.log(response.data);
+            
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        
+    };
 
     // function logout() {
     //     localStorage.removeItem("user")
@@ -128,12 +156,12 @@ export default function ChatContainer() {
     // }
 
     function ChatsList() {
-        console.log("mensaje",message)
+        console.log("mensaje",typeof(message))
         return (<div style={{ height: '75vh', overflow: 'scroll', overflowX: 'hidden' }}>
             {
                 items.map((chat, index) => {
-                    if (chat.Emisor === id) return <ChatBoxSender key={index}   user={chat.Emisor}  msg={chat.Mensaje}/>
-                    return <ChatBoxReciever key={index}  user={chat.Emisor}  msg={chat.Mensaje}/>
+                    if (chat.Emisor === id) return <ChatBoxSender key={index}   user={chat.NombreCompleto}  msg={chat.Mensaje}/>
+                    return <ChatBoxReciever key={index}  user={chat.NombreCompleto}  msg={chat.Mensaje}/>
                 })
             }
             <div ref={messagesEndRef} />
@@ -155,7 +183,7 @@ export default function ChatContainer() {
                         <ChatsList
                         />
 
-                        <InputText addMessage={addMessage} />
+                        <InputText addMessage={crearMensaje} />
                     </div>
                      
             }
