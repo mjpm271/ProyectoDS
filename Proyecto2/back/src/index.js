@@ -5,6 +5,7 @@ import Coordinador from './routes/profesorCoordinador.route'
 import Login from './routes/index.route'
 import Estudiante from './routes/estudiante.route'
 import Notificacion from './routes/notificacion.route'
+import Chat from './routes/chat.route'
 
 // para chats
 import http from "http"
@@ -19,6 +20,7 @@ app.use('/coordinador',Coordinador)
 app.use('/estudiante',Estudiante)
 app.use('/notificacion',Notificacion)
 app.use('/index',Login)
+app.use('/chat', Chat)
 
 
 const server = http.createServer(app)
