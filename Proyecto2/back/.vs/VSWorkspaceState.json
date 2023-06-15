@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\dist",
+    "\\dist\\routes",
+    "\\request",
     "\\src",
     "\\src\\controllers",
-    "\\src\\database"
+    "\\src\\database",
+    "\\src\\routes"
   ],
   "SelectedNode": "\\src\\controllers\\profesor.controller.js",
   "PreviewInSolutionExplorer": false

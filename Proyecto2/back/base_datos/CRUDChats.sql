@@ -1,4 +1,6 @@
 use proyecto
+Go
+
 CREATE PROCEDURE CreateChats
     @IDchat int,
     @nombre varchar(255)
@@ -91,7 +93,12 @@ AS
 BEGIN
 	declare @IDpersona as int 
 	set @IDpersona = (select top 1 IDpersona from persona where Carnet = @Carnet);
-    SELECT * FROM ParticipantesChat WHERE IDpersona = @IDpersona;
+    SELECT Chats.IDchat, Chats.nombre, ParticipantesChat.IDParticipantesChat, ParticipantesChat.IDchats, ParticipantesChat.IDpersona
+	FROM Chats
+	INNER JOIN ParticipantesChat ON Chats.IDchat = ParticipantesChat.IDchats
+	INNER JOIN persona ON ParticipantesChat.IDpersona = persona.IDpersona
+	WHERE ParticipantesChat.IDpersona = @IDpersona;
+
 END;
 go
 
