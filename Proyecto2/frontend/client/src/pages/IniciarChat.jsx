@@ -15,6 +15,7 @@ export default function IniciarChat() {
     const [Carnet, setCarnet] = useState(0);
     const [numSalaChat, setnumSalaChat] = useState(0);
     const [SalaChat, setSalaChat] = useState(0);
+    const [numSala, setnumSala] = useState(0);
     const [IDAgregado, setIDAgregado] = useState(0);
     const VerPersonaID = () => {
         setError('')
@@ -31,32 +32,49 @@ export default function IniciarChat() {
                 console.log(error)
             });
     };
+    const ChatPorID = () => {
+        setError('')
+        axios.post(`http://localhost:4000/profesor/ChatPorID`, { numSala: numSala })
+            .then(response => {
+                if (response.data.length > 0) {
+                    alert('Se va  agregar a una sala de chat existente');
+                    AgregarAlChat()
+                }
+                else {
+                    alert('Se va  agregar a una sala de chat nueva');
+                    CrearSala()
+                }
+                
+
+            }).catch(error => {
+
+                alert('Un error ha ocurrido');
+                console.log(error)
+            });
+    }
     const CrearSala = () => {
         setError('')
-        axios.post(`http://localhost:4000/profesor/CrearSala`, { SalaChat: SalaChat })
+        axios.post(`http://localhost:4000/profesor/CrearSala`, { numSala:numSala ,SalaChat: SalaChat })
             .then(response => {
                 // console.log(response.data)
-                alert('Agregado con Exito');
+               {AgregarAlChat()}
                 
             }).catch(error => {
+                alert('Un error ha ocurrido');
                 console.log(error)
             });
     };
 
     const AgregarAlChat = () => {
+        
         setError('')
-        axios.post(`http://localhost:4000/profesor/VerPersonaPorID`, { Carnet: Carnet })
+        axios.post(`http://localhost:4000/profesor/AgragarAlChat`, { numSala: numSala, IDAgregado: IDAgregado })
             .then(response => {
-                const items = response.data
-                setItems(items)
                 // console.log(response.data)
-                if (response.data.length === 0) {
-                    setError('No existe ')
-                }
-                else {
-                    alert('Agregado con Exito');
-                }
+                alert('Agregado con Exito');
+
             }).catch(error => {
+                alert('Un error ha ocurrido');
                 console.log(error)
             });
     };
@@ -69,6 +87,11 @@ export default function IniciarChat() {
                 <h1>Agregar al Chat</h1>
                 <div>
                     <Form className="create-form">
+                        <Form.Field>
+                            <label>Nombre de la Sala de Chat</label>
+                            <input placeholder='numero de Sala de Chat' onChange={(e) => setnumSala(e.target.value)} />
+                        </Form.Field>
+
                         <Form.Field>
                             <label>Nombre de la Sala de Chat</label>
                             <input placeholder='Sala de Chat' onChange={(e) => setSalaChat(e.target.value)} />
@@ -114,7 +137,7 @@ export default function IniciarChat() {
                                             <Table.Cell>
                                                 <Button onClick={() => {
                                                     setIDAgregado(item.Carnet)
-                                                    CrearSala()
+                                                    ChatPorID()
                                                 }}> Agregar </Button>
                                             </Table.Cell>
                                         }

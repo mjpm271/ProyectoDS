@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState , useEffect } from 'react';
-import { Grid, Segment, List} from 'semantic-ui-react'
+import { Grid, Segment, List, Button} from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar2';
 
@@ -8,6 +8,8 @@ export default function SiguienteActividad() {
     /* IMPORTANTE PASAR */
     const location = useLocation();
     const Persona = location.state;
+    const info = JSON.parse(Persona)
+    const ID = info.IDpersona
     /* IMPORTANTE PASAR */  
     const [FechaActual, setFechaActual] = useState(new Date());
     const Actividad = null
@@ -16,6 +18,7 @@ export default function SiguienteActividad() {
     const Estado = ['Planeada', 'Notificada', 'Realizada', 'Cancelada'];
     const [items, setItems] = useState([]);
     const [Responsables, setResponsables] = useState([]);
+    const [Habilitado, setHabilitado] =  useState([]);
 
     useEffect(() => { 
         axios.post('http://localhost:4000/asistente/SiguienteActividad', {
@@ -55,7 +58,66 @@ const buscarResponsables = () => {
           console.log(error)
       });
 }
- 
+
+const Habilitar = () => {
+
+  axios.post('http://localhost:4000/notificacion/HabilitarNotificaciones', {
+    IDactividad: Actividad,
+    IDpersona:ID
+
+    }
+    , {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    )
+      .then(response => {
+        console.log('entre');
+      }).catch(error => {
+          console.log(error)
+      });
+}
+const Deshabilitar = () => {
+
+axios.post('http://localhost:4000/notificacion/DeshabilitarNotificaciones', {
+  IDactividad: Actividad,
+  IDpersona:ID
+
+  }
+  , {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  )
+    .then(response => {
+      console.log('entre');
+    }).catch(error => {
+        console.log(error)
+    });
+}
+
+const Habilitados = () => {
+
+axios.post('http://localhost:4000/notificacion/Habilitado', {
+  IDactividad: Actividad,
+    IDpersona:ID
+
+  }
+  , {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  )
+    .then(response => {
+      // console.log(response.data[0].Habilitado);
+      setHabilitado(response.data[0].Habilitado);
+    }).catch(error => {
+        console.log(error)
+    });
+}
     return ( 
       <div>
       <NavBar Persona={{Persona}}/>
@@ -68,7 +130,12 @@ const buscarResponsables = () => {
               <Segment>Numero Actividad: {item.IDactividad} </Segment>
             </Grid.Column>
             <Grid.Column>
-              
+              <Segment textAlign='center' >
+                
+                {Habilitado === false && <Button onClick={Habilitar} type='Submit'>Activar Notificaciones</Button>}
+                  
+                {Habilitado === true && <Button onClick={Deshabilitar} type='Submit'>Desactivar Notificaciones</Button>} 
+              </Segment>
             </Grid.Column>
             <Grid.Column>
               <Segment>Semana: {item.Semana} </Segment>

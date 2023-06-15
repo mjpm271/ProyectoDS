@@ -178,7 +178,7 @@ CREATE TABLE Chats (
 );
 
 CREATE TABLE ParticipantesChat (
-  IDParticipantesChat int not null,
+  IDParticipantesChat int not null identity(1,1),
   IDchats INT NOT NULL,
   IDpersona INT NOT NULL,
   primary key (IDParticipantesChat),
@@ -187,7 +187,7 @@ CREATE TABLE ParticipantesChat (
 );
 
 CREATE TABLE Mensajes (
-  IDMensajes int not null  ,
+  IDMensajes int not null identity(1,1) ,
   IDchat INT NOT NULL,
   Emisor INT NOT NULL,
   Mensaje TEXT NOT NULL,

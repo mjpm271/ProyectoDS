@@ -18,15 +18,14 @@ export default function Actividad() {
     /* IMPORTANTE PASAR */
   const [habilitarComentarios, sethabilitarComentarios]= useState(false)  
   const { planId, activityId } = useParams();
-  const [actividad, setActividad] = useState([]);
-  const [actividadInfo, setActividadInfo] = useState({
-    IDmodalidad: null,
-    IDtipoActividad: null,
-    IDestado: null
-  });
-  const [Modalidad, setModalidad] = useState([]);
-  const [TipoActividad, setTipoActividad] = useState([]);
-  const [Estado, setEstado] = useState([]);
+
+  const Actividad = null
+  const Modalidad = ['Presencial', 'Remoto'];
+  const TipoAct = ['Orientadora', 'Motivacional', 'Apoyo Vida Estudiantil', 'Orden Tecnico', 'Recreacion'];
+  const Estado = ['Planeada', 'Notificada', 'Realizada', 'Cancelada'];
+  const [items, setItems] = useState([]);
+  const [Habilitado, setHabilitado] =  useState([]);
+
   const [Responsables, setResponsables] = useState([]);
 
   useEffect(() => {
@@ -42,24 +41,19 @@ export default function Actividad() {
       )
       .then((response) => {
         console.log(response.data);
-        setActividad(response.data);
+        
+        setItems(response.data);
+        Actividad = response.data[0].IDactividad
+        
 
-        const informacion = response.data[0];
-        setActividadInfo({
-          IDmodalidad: informacion?.IDmodalidad,
-          IDtipoActividad: informacion?.IDtipoActividad,
-          IDestado: informacion?.IDtipoEstado
-        });
-        buscarResponsables();
-        console.log(actividadInfo);
-      });
-  }, [actividadInfo]);
+      }).catch(error => {
+        console.log(error)
+      })
+      buscarResponsables();
+      Habilitados();
+  }, []);
 
-  useEffect(() => {
-    definirModalidad();
-    definirTipoActividad();
-    definirEstado();
-  }, [actividadInfo, activityId]);
+
 
   const buscarResponsables = () => {
 
@@ -75,68 +69,77 @@ export default function Actividad() {
         })
 }
 
-  const definirModalidad = () => {
-    switch (actividadInfo?.IDmodalidad) {
-      case 1:
-        setModalidad('PRESENCIAL');
-        break;
-      case 2:
-        setModalidad('VIRTUAL');
-        break;
-      default:
-        console.log('default');
-    }
-  };
+  const Habilitar = () => {
 
-  const definirTipoActividad = () => {
-    switch (actividadInfo?.IDtipoActividad) {
-      case 1:
-        setTipoActividad('ORIENTADORA');
-        break;
-      case 2:
-        setTipoActividad('MOTIVACIONAL');
-        break;
-      case 3:
-        setTipoActividad('APOYO_VIDA_ESTUDIANTIL');
-        break;
-      case 4:
-        setTipoActividad('ORDEN_TECNICO');
-        break;
-      case 5:
-        setTipoActividad('RECREACION');
-        break;
-      default:
-        console.log('default');
-    }
-  };
+      axios.post('http://localhost:4000/notificacion/HabilitarNotificaciones', {
+        IDactividad: activityId,
+        IDpersona:ID
 
-  const definirEstado = () => {
-    switch (actividadInfo?.IDestado) {
-      case 1:
-        setEstado('PLANEADA');
-        break;
-      case 2:
-        setEstado('NOTIFICADA');
-        break;
-      case 3:
-        setEstado('REALIZADA');
-        break;
-      case 4:
-        setEstado('CANCELADA');
-        break;
-      default:
-        console.log('default');
-    }
-  };
+        }
+        , {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+        )
+          .then(response => {
+            console.log('entre');
+          }).catch(error => {
+              console.log(error)
+          });
+  }
+  const Deshabilitar = () => {
+
+    axios.post('http://localhost:4000/notificacion/DeshabilitarNotificaciones', {
+      IDactividad: activityId,
+      IDpersona:ID
+
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+        .then(response => {
+          console.log('entre');
+        }).catch(error => {
+            console.log(error)
+        });
+}
+
+  const Habilitados = () => {
+
+    axios.post('http://localhost:4000/notificacion/Habilitado', {
+      IDactividad: activityId,
+        IDpersona:ID
+
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+        .then(response => {
+          // console.log(response.data[0].Habilitado);
+          setHabilitado(response.data[0].Habilitado);
+        }).catch(error => {
+            console.log(error)
+        });
+}
+
 
   const Comentarios = () => {
     sethabilitarComentarios(true)
   };
+
+  
   return (
     
     <div>
       <NavBar Persona={{Persona}}/>
-      {actividad.map((info)=>(
+      {items.map((info)=>(
 
       
     <Grid columns='equal'>
@@ -145,7 +148,12 @@ export default function Actividad() {
           <Segment>Nombre Actividad: {info.Nombre} </Segment>
         </Grid.Column>
         <Grid.Column>
-          
+          <Segment textAlign='center' >
+            
+            {Habilitado === false && <Button onClick={Habilitar} type='Submit'>Activar Notificaciones</Button>}
+              
+            {Habilitado === true && <Button onClick={Deshabilitar} type='Submit'>Desactivar Notificaciones</Button>} 
+          </Segment>
         </Grid.Column>
         <Grid.Column>
           <Segment>Semana: {info.Semana} </Segment>
@@ -165,13 +173,13 @@ export default function Actividad() {
           <p>Fecha Actividad: {info.Fecha}  </p>
           <p>Dias Previos: {info.Cantidaddiasprevios} </p>
           <p>Dias requeridos: {info.Cantidaddiasrequeridos}  </p>
-          <p>Tipo Actividad: {TipoActividad}  </p>
-          <p> Modalidad: {Modalidad}  </p>
+          <p>Tipo Actividad: {TipoAct[info.IDtipoActividad - 1]}</p>
+          <p> Modalidad: {Modalidad[info.IDmodalidad - 1]}   </p>
           <p>Lugar o enlace:  
           <a href={info.Linkreunion}>Enlace</a>
           </p>
           
-          <p> Estado: {Estado}  </p>
+          <p> Estado: {Estado[info.IDtipoEstado - 1]}  </p>
           </Segment>
         </Grid.Column>
         <Grid.Column>
@@ -190,8 +198,8 @@ export default function Actividad() {
               <h2>Afiche</h2>
               <a href={info.Afiche}>Enlace Afiche</a>
               <p></p>
-              {Estado === 'REALIZADA' && <Link to='/verEvidencias'state={Persona}><Button>Evidencias</Button></Link>}
-              {Estado === 'CANCELADA' && <Link to='/verObservacion'state={Persona}><Button>Observaciones</Button></Link>}
+              {Estado[info.IDtipoEstado - 1] === 'Realizada' && <Link to='/verEvidencias'state={Persona}><Button>Evidencias</Button></Link>}
+              {Estado[info.IDtipoEstado - 1] === 'CANCELADA' && <Link to='/verObservacion'state={Persona}><Button>Observaciones</Button></Link>}
           </Segment>
         </Grid.Column>
         {(tipo !== 2 && tipo !==3 )&& 

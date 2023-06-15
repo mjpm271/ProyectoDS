@@ -48,8 +48,9 @@ const postData = () => {
             });
 }
 
-  const getIconName = (Visto) => {
-    if (Visto === false) {
+  const getIconName = (visto) => {
+    console.log(visto)
+    if (visto === false || visto === null) {
       return 'bell';
     } else {
       return 'bell outline';

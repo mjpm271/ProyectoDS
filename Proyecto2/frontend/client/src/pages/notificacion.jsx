@@ -30,6 +30,23 @@ export default function Notificacion() {
         });
     }, [IDNotificacion]);
 
+    useEffect(() => {
+        axios
+        .post(
+            'http://localhost:4000/notificacion/NotificacionVista',
+            { IDnotificacion: IDNotificacion,
+            IDpersona: id },
+            {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            }
+        )
+        .then((response) => {
+            console.log('actualizado el visto')
+        });
+    }, [IDNotificacion, id]);
+
 const postData = () => {
 
         axios.post('http://localhost:4000/notificacion/BorrarNotificacion', {
@@ -48,6 +65,25 @@ const postData = () => {
             }).catch(error => {
                 console.log(error)
             });
+}
+const Desver = () => {
+
+    axios.post('http://localhost:4000/notificacion/Desver', {
+      IDnotificacion: IDNotificacion,
+      IDpersona:id
+
+      }
+      , {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      )
+        .then(response => {
+          console.log('entre');
+        }).catch(error => {
+            console.log(error)
+        });
 }
     return (
         <div>
@@ -74,6 +110,7 @@ const postData = () => {
                 ))}
                 </List>
                 <Button onClick={postData} type='Submit'>Borrar Notificacion</Button>
+                <Button onClick={Desver} type='Submit'>Marcar como no leida</Button>
                 </Segment>
             </div>
         </div>    

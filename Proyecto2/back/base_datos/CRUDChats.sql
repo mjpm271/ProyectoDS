@@ -1,4 +1,4 @@
-
+use proyecto
 CREATE PROCEDURE CreateChats
     @IDchat int,
     @nombre varchar(255)
@@ -16,12 +16,7 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE ReadChats
-AS
-BEGIN
-    SELECT * FROM Chats;
-END;
-go 
+
 
 CREATE PROCEDURE ReadChatByID
 (
@@ -59,14 +54,15 @@ go
 
 CREATE PROCEDURE CreateParticipanteChat
 (
-    @IDParticipantesChat int,
     @IDchats int,
-    @IDpersona int
+    @Carnet varchar(64)
 )
 AS
 BEGIN
-    INSERT INTO ParticipantesChat (IDParticipantesChat, IDchats, IDpersona)
-    VALUES (@IDParticipantesChat, @IDchats, @IDpersona);
+	declare @IDperson as int 
+	set @IDperson = (select top 1 IDpersona from persona where Carnet = @Carnet);
+    INSERT INTO ParticipantesChat ( IDchats, IDpersona)
+    VALUES ( @IDchats, @IDperson);
 END;
 go
 
@@ -87,6 +83,27 @@ BEGIN
 END;
 go
 
+CREATE PROCEDURE ReadParticipanteChatPorCarnet
+(
+    @Carnet varchar(64)
+)
+AS
+BEGIN
+	declare @IDpersona as int 
+	set @IDpersona = (select top 1 IDpersona from persona where Carnet = @Carnet);
+    SELECT * FROM ParticipantesChat WHERE IDpersona = @IDpersona;
+END;
+go
+
+CREATE PROCEDURE ReadParticipanteChatPorIDchat
+(
+   @IDchat int
+)
+AS
+BEGIN
+    SELECT * FROM ParticipantesChat WHERE IDchats =@IDchat;
+END;
+go
 CREATE PROCEDURE UpdateParticipanteChat
 (
     @IDParticipantesChat int,
@@ -114,16 +131,17 @@ go
 
 CREATE PROCEDURE CreateMensaje
 (
-    @IDMensajes int,
     @IDchat int,
-    @Emisor int,
+    @CarnetEmisor int,
     @Mensaje text,
     @Fecha datetime
 )
 AS
 BEGIN
-    INSERT INTO Mensajes (IDMensajes, IDchat, Emisor, Mensaje, Fecha)
-    VALUES (@IDMensajes, @IDchat, @Emisor, @Mensaje, @Fecha);
+	declare @IDpersona as int 
+	set @IDpersona = (select top 1 IDpersona from persona where Carnet = @CarnetEmisor);
+    INSERT INTO Mensajes (IDchat, Emisor, Mensaje, Fecha)
+    VALUES ( @IDchat, @IDpersona, @Mensaje, @Fecha);
 END;
 Go
 
@@ -131,6 +149,14 @@ CREATE PROCEDURE ReadMensajes
 AS
 BEGIN
     SELECT * FROM Mensajes;
+END;
+go
+
+CREATE PROCEDURE ReadMensajesByIDChat
+	@IDchat int
+AS
+BEGIN
+    SELECT * FROM Mensajes WHERE IDchat =@IDchat;
 END;
 go
 
